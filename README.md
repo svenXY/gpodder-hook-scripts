@@ -143,3 +143,13 @@ items to the episode list context menu. Each item needs to have a label and
 a callable that will take a list of selected episodes. This script shows you
 how to implement a "Enqueue in VLC" context menu item using hooks.
 
+## flv2mp4
+
+This script will automatically wrap FLV files from YouTube into a MP4 format
+container after download. It also includes a context menu item for already-
+downloaded files. This requires the "ffmpeg" utility to be installed. It only
+works for YouTube videos (e.g. fmt_id = 35). For fmt_id 35 on YouTube, this
+allows playback of the resulting files on a PS3 (H.264 + AAC), which does not
+work with the FLV container, but does work with the MP4 container. The change
+is quick, because no re-encoding is done.
+
