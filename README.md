@@ -34,9 +34,7 @@ Hooks script to create a CMML file containing chapters for Linux Outlaws.
 
 ### Requirements
 
-- BeautifulSoup
-
-  Homepage: http://www.crummy.com/software/BeautifulSoup/
+- BeautifulSoup - Beautiful Soup is a Python HTML/XML parser designed for quick turnaround projects like screen-scraping (http://www.crummy.com/software/BeautifulSoup/)
 
    
 ## cmml_radiotux_magazin
@@ -45,9 +43,7 @@ Hooks script to create a CMML file containing chapters for the RadioTux Monthly 
 
 ### Requirements
 
-- BeautifulSoup
-
-  Homepage: http://www.crummy.com/software/BeautifulSoup/
+- BeautifulSoup (http://www.crummy.com/software/BeautifulSoup/)
 
 
 ## enqueue_in_vlc
@@ -76,9 +72,7 @@ Split mp3 files in ranges of 10 minutes when the files are copied to the device.
 
 ### Requirements
 
-- mp3splt binary on the path.
-
-  Homepage: http://mp3splt.sourceforge.net/
+- mp3splt binary on the path (http://mp3splt.sourceforge.net/)
 
 
 ## rename_downloads
@@ -91,10 +85,6 @@ Rename downloaded episodes based on their episode title in the feed.
 Resets the etag and last modified information for a podcast. This could be necessary if the server lies about the last modified state.
 This will cause gPodder to reload (and re-parse) the feed every time 
 
-### Requirements
-
-No requirements
-
 
 ## rm_ogg_coover_hook
 
@@ -103,11 +93,7 @@ The reason for this script is that my media player (MEIZU SL6) could not handle 
 
 ### Requirements
 
-- python-mutagen
-
-  Homepage: http://code.google.com/p/mutagen/
-
-  Mutagen is a Python module to handle audio metadata.
+- python-mutagen - Mutagen is a Python module to handle audio metadata. (http://code.google.com/p/mutagen/)
 
 
 ## rockbox_mp4_convert
@@ -116,21 +102,11 @@ This script converts any mp4 videos to play on a Sansa Fuze with rockbox install
 
 ### Requirements
 
-- python-kaa-metadata
+- python-kaa-metadata - Kaa Metadata is a Media Meta Data retrieval framework. It retrieves metadata from mp3, ogg, avi, jpg, tiff and other file formats. Among others it thereby parses ID3v2, ID3v1, EXIF, IPTC and Vorbis data into an object oriented struture. (http://freevo.org/kaa)
 
-  Homepage: http://freevo.org/kaa 
+- python-dbus - simple interprocess messaging system (Python interface)
 
-  Kaa Metadata is a Media Meta Data retrieval framework. It retrieves metadata from mp3, ogg, avi, jpg, tiff and other file formats. Among others it thereby parses ID3v2, ID3v1, EXIF, IPTC and Vorbis data into an object oriented struture.
-
-- python-dbus
-
-  simple interprocess messaging system (Python interface)
-
-- ffmpeg
-
-  Homepage: http://www.ffmpeg.org/
-
-  Multimedia player, server, encoder and transcoder
+- ffmpeg - Multimedia player, server, encoder and transcoder (http://www.ffmpeg.org/)
 
 
 ## tagging_hook
@@ -141,11 +117,7 @@ The podcast title is written into the album tag
 
 ### Requirements
 
-- python-mutagen
-
-  Homepage: http://code.google.com/p/mutagen/
-
-  Mutagen is a Python module to handle audio metadata.
+- python-mutagen - Mutagen is a Python module to handle audio metadata. (http://code.google.com/p/mutagen/)
 
 
 ## tfh_shownotes_hook
@@ -161,17 +133,9 @@ This github repository includes two options to configure your gPodder installati
 
 ### Requirements
 
-- python-eyed3
+- python-eyed3 - eyeD3 is a Python module and program for processing ID3 tags (http://eyed3.nicfit.net/)
 
-  Homepage: http://eyed3.nicfit.net/
-
-  eyeD3 is a Python module and program for processing ID3 tags
-
-- steghide
-
-  Homepage: http://steghide.sourceforge.net/
-
-  Steghide is a steganography program that is able to hide data in various kinds of image- and audio-files. 
+- steghide - Steghide is a steganography program that is able to hide data in various kinds of image- and audio-files. (http://steghide.sourceforge.net/)
 
 
 ## zpravy
