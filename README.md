@@ -27,20 +27,64 @@ In the "tres" branch, the example is in examples/hooks.py.
 
 Automatically open .torrent files with a BitTorrent client.
 
-## rename_downloads
 
-Rename downloaded episodes based on their episode title in the feed.
+## cmml_linux_outlaws
+
+Hooks script to create a CMML file containing chapters for Linux Outlaws.
+
+### Requirements
+
+- BeautifulSoup
+
+  Homepage: http://www.crummy.com/software/BeautifulSoup/
+
+   
+## cmml_radiotux_magazin
+
+Hooks script to create a CMML file containing chapters for the RadioTux Monthly magazin.
+
+### Requirements
+
+- BeautifulSoup
+
+  Homepage: http://www.crummy.com/software/BeautifulSoup/
+
+
+## enqueue_in_vlc
+
+This hook shows a new feature of the gPodder "tres" branch - you can now add
+items to the episode list context menu. Each item needs to have a label and
+a callable that will take a list of selected episodes. This script shows you
+how to implement a "Enqueue in VLC" context menu item using hooks.
+
+
+## flv2mp4
+
+This script will automatically wrap FLV files from YouTube into a MP4 format
+container after download. It also includes a context menu item for already-
+downloaded files. This requires the "ffmpeg" utility to be installed. It only
+works for YouTube videos (e.g. fmt_id = 35). For fmt_id 35 on YouTube, this
+allows playback of the resulting files on a PS3 (H.264 + AAC), which does not
+work with the FLV container, but does work with the MP4 container. The change
+is quick, because no re-encoding is done.
+
 
 ## mp3split
 
 Split mp3 files in ranges of 10 minutes when the files are copied to the device.
+
 
 ### Requirements
 
 - mp3splt binary on the path.
 
   Homepage: http://mp3splt.sourceforge.net/
-  
+
+
+## rename_downloads
+
+Rename downloaded episodes based on their episode title in the feed.  
+
 
 ## reset_etag
 
@@ -134,22 +178,3 @@ This github repository includes two options to configure your gPodder installati
 
 The $subj podcast rss does not contain id and pubdate. Because of the missing guid gPodder reports always "no new episodes" for the podcast. 
 This hook script fixes this. The pubdate can be calculated from the audio file url and I used the same number as guid.
-
-
-## enqueue_in_vlc
-
-This hook shows a new feature of the gPodder "tres" branch - you can now add
-items to the episode list context menu. Each item needs to have a label and
-a callable that will take a list of selected episodes. This script shows you
-how to implement a "Enqueue in VLC" context menu item using hooks.
-
-## flv2mp4
-
-This script will automatically wrap FLV files from YouTube into a MP4 format
-container after download. It also includes a context menu item for already-
-downloaded files. This requires the "ffmpeg" utility to be installed. It only
-works for YouTube videos (e.g. fmt_id = 35). For fmt_id 35 on YouTube, this
-allows playback of the resulting files on a PS3 (H.264 + AAC), which does not
-work with the FLV container, but does work with the MP4 container. The change
-is quick, because no re-encoding is done.
-
