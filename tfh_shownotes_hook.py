@@ -27,6 +27,7 @@
 
 import gpodder
 import os
+import shlex
 import subprocess
 import tempfile
 
@@ -74,14 +75,18 @@ class gPodderHooks(object):
         password = 'tinfoilhat'
         shownotes_file = '/tmp/shownotes.txt'
 
-        myprocess = subprocess.Popen(['steghide', 'extract', '-f', '-p', password,
-            '-sf', imagefile, '-xf', shownotes_file],
+        cmd = 'steghide extract -f -p %(pwd)s -sf %(img)s -xf %(file)s' % {
+            'pwd': password,
+            'img': imagefile,
+            'file': shownotes_file
+        }
+        myprocess = subprocess.Popen(shlex.split(cmd),
             stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         (stdout, stderr) = myprocess.communicate()
 
         os.remove(imagefile)
 
-        if stderr.startswith('wrote extracted data to'):
+        if myprocess.returncode == 0:
             #read shownote file
             f = open(shownotes_file)
             shownotes = f.read()
