@@ -27,6 +27,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+import os
 
 import gpodder
 from gpodder.liblogger import log,enable_verbose
@@ -37,31 +38,34 @@ from BeautifulSoup import BeautifulSoup
 import re
 from xml.etree import ElementTree as ET
 
+def get_cmml_filename(ogg_file):
+    (name, ext) = os.path.splitext(ogg_file)
+    return '%s.cmml' % name
+
+
 def create_cmml(html, ogg_file):
     soup = BeautifulSoup(html, convertEntities=BeautifulSoup.HTML_ENTITIES)
     time_re  = text=re.compile("\\d{1,2}(:\\d{2}){2}")
     times = soup.findAll(text=time_re)
     if len(times) > 0:
-        m = re.match('(.*)\\.[^\\.]+$',ogg_file)
-        if m is not None:
-            to_file = m.group(1) + ".cmml"
-            cmml = ET.Element('cmml',attrib={'lang':'en'})
-            remove_ws = re.compile('\s+')
-            for t in times:
-                txt = ''
-                for c in t.parent.findAll(text=True):
-                    if c is not t: txt += c
-                txt = remove_ws.sub(' ', txt)
-                txt = txt.strip()
-                log("found chapter %s at %s"%(txt,t))
-                # totem want's escaped html in the title attribute (not &amp; but &amp;amp;)
-                txt = txt.replace('&','&amp;')
-                clip = ET.Element('clip')
-                clip.set('id',t)
-                clip.set( 'start', ('npt:'+t))
-                clip.set('title',txt)
-                cmml.append(clip)
-            ET.ElementTree(cmml).write(to_file,encoding='utf-8')
+        to_file = get_cmml_filename(ogg_file)
+        cmml = ET.Element('cmml',attrib={'lang':'en'})
+        remove_ws = re.compile('\s+')
+        for t in times:
+            txt = ''
+            for c in t.parent.findAll(text=True):
+                if c is not t: txt += c
+            txt = remove_ws.sub(' ', txt)
+            txt = txt.strip()
+            log("found chapter %s at %s"%(txt,t))
+            # totem want's escaped html in the title attribute (not &amp; but &amp;amp;)
+            txt = txt.replace('&','&amp;')
+            clip = ET.Element('clip')
+            clip.set('id',t)
+            clip.set( 'start', ('npt:'+t))
+            clip.set('title',txt)
+            cmml.append(clip)
+        ET.ElementTree(cmml).write(to_file,encoding='utf-8')
 
 
 class gPodderHooks(object):

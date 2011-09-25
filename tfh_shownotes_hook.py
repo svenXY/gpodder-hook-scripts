@@ -116,3 +116,7 @@ class gPodderHooks(object):
                 episode.save()
                 episode.db.commit()
                 log(u'updated shownotes for podcast: (%s/%s)' % (episode.channel.title, episode.title))
+
+    def on_episode_save(self, episode):
+        # TODO: add possibility to extract shownotes after downloaded the episode
+        pass

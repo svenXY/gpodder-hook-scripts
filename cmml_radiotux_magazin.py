@@ -35,10 +35,10 @@ import urllib2
 import BeautifulSoup
 from BeautifulSoup import BeautifulSoup
 
-
 import re
 import sys
 from xml.etree import ElementTree as ET
+
 
 def create_cmml(html, ogg_file):
     soup = BeautifulSoup(html, convertEntities=BeautifulSoup.HTML_ENTITIES)
@@ -50,31 +50,33 @@ def create_cmml(html, ogg_file):
             cmml = ET.Element('cmml',attrib={'lang':'en'})
             remove_ws = re.compile('\s+')
             for s in startzeit:
-		tr = s.parent.parent.parent
-		for row in tr.findNextSiblings(name='tr'):
-                	txt = ''
-			tds=row.findAll(name='td')
-			t = remove_ws.sub('',tds[1].string)
-                	for c in tds[0].findAll(text=True):
-                	    txt += c
-                	txt = remove_ws.sub(' ', txt)
-                	txt = txt.strip()
-                	log("found chapter %s at %s"%(txt,t))
-                	# totem want's escaped html in the title attribute (not &amp; but &amp;amp;)
-                	txt = txt.replace('&','&amp;')
-                	clip = ET.Element('clip')
-                	clip.set('id',t)
-                	clip.set( 'start', ('npt:'+t))
-                	clip.set('title',txt)
-                	cmml.append(clip)
+                tr = s.parent.parent.parent
+                for row in tr.findNextSiblings(name='tr'):
+                    txt = ''
+                    tds=row.findAll(name='td')
+                    t = remove_ws.sub('',tds[1].string)
+                    for c in tds[0].findAll(text=True):
+                        txt += c
+                    txt = remove_ws.sub(' ', txt)
+                    txt = txt.strip()
+                    log("found chapter %s at %s"%(txt,t))
+                    # totem want's escaped html in the title attribute (not &amp; but &amp;amp;)
+                    txt = txt.replace('&','&amp;')
+                    clip = ET.Element('clip')
+                    clip.set('id',t)
+                    clip.set( 'start', ('npt:'+t))
+                    clip.set('title',txt)
+                    cmml.append(clip)
             ET.ElementTree(cmml).write(to_file,encoding='utf-8')
+
 
 # doesn't really work : can't guess the url to the shownotes
 def create_cmml_from_file(ogg_file):
-    	url = 'http://blog.radiotux.de/2011/04/26/radiotux-magazin-april-2011/'
-    	log("downloading show notes for episode")
-    	page = urllib2.urlopen(url)
-    	create_cmml(page,ogg_file)
+    url = 'http://blog.radiotux.de/2011/04/26/radiotux-magazin-april-2011/'
+    log("downloading show notes for episode")
+    page = urllib2.urlopen(url)
+    create_cmml(page,ogg_file)
+
 
 class gPodderHooks(object):
     def __init__(self):
@@ -84,12 +86,10 @@ class gPodderHooks(object):
         log('radiotux_magazin: on_episode_downloaded(%s, %s)' % (episode.title, episode.channel.url))
         # may have to change that if the feed is renamed...
         if episode.title.startswith('RadioTux Magazin'):
-        	html = episode.description
-        	ogg_file = episode.local_filename(False)
-        	# if html notes don't work for you, use create_cmml_from_file
-        	# instead of create_cmml
-        	# create_cmml_from_file(ogg_file)
-        	create_cmml(html,ogg_file)
+            html = episode.description
+            ogg_file = episode.local_filename(False)
+            create_cmml(html,ogg_file)
+
 
 if __name__ == '__main__':
     enable_verbose()
