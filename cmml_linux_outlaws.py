@@ -31,13 +31,10 @@
 import gpodder
 from gpodder.liblogger import log,enable_verbose
 
-import urllib2
 import BeautifulSoup
 from BeautifulSoup import BeautifulSoup
 
-
 import re
-import sys
 from xml.etree import ElementTree as ET
 
 def create_cmml(html, ogg_file):
@@ -66,16 +63,6 @@ def create_cmml(html, ogg_file):
                 cmml.append(clip)
             ET.ElementTree(cmml).write(to_file,encoding='utf-8')
 
-def create_cmml_from_file(ogg_file):
-    m = re.match('(.*linuxoutlaws)([0-9]+)\\.(ogg|mp3)',ogg_file)
-    if m is not None:
-    	episode_num = m.group(2)
-    	url = 'http://linuxoutlaws.com/podcast/ogg/' + episode_num
-    	log("downloading show notes for episode %s" % episode_num)
-    	page = urllib2.urlopen(url)
-    	create_cmml(page,ogg_file)
-    else:
-    	print("not a Linux Outlaws file !")
 
 class gPodderHooks(object):
     def __init__(self):
@@ -87,15 +74,4 @@ class gPodderHooks(object):
         if episode.channel.title.startswith('Linux Outlaws'):
         	html = episode.description
         	ogg_file = episode.local_filename(False)
-        	# if html notes don't work for you, use create_cmml_from_file
-        	# instead of create_cmml
-        	# create_cmml_from_file(ogg_file)
         	create_cmml(html,ogg_file)
-
-if __name__ == '__main__':
-    enable_verbose()
-    if len(sys.argv) != 2:
-        print("Usage: %s PATH_TO_LINUXOUTLAWSEPISODEXXX.ogg"%sys.argv[0])
-    else:
-        ogg_file = sys.argv[1]
-        create_cmml_from_file(ogg_file)
