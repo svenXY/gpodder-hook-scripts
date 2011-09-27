@@ -41,60 +41,66 @@ except:
 
 TFH_TITLE='Tin Foil Hat'
 
+
+def extract_image(filename):
+    """
+    extract image from the podcast file
+    """
+    imagefile = None
+    try:
+        if eyeD3.isMp3File(filename):
+            tag = eyeD3.Mp3AudioFile(filename).getTag()
+            images = tag.getImages()
+            if images:
+                tempdir = tempfile.gettempdir()
+                img = images[0]
+                imagefile = img.getDefaultFileName()
+                img.writeFile(path=tempdir, name=imagefile)
+                imagefile = "%s/%s" % (tempdir, imagefile)
+            else:
+                log(u'No image found in %s' % filename)
+    except:
+        pass
+
+    return imagefile
+
+
+def extract_shownotes(imagefile):
+    """
+    extract shownotes from the FRONT_COVER.jpeg
+    """
+    shownotes = None
+    password = 'tinfoilhat'
+    shownotes_file = '/tmp/shownotes.txt'
+
+    if not os.path.exists(imagefile):
+        return shownotes
+
+    cmd = 'steghide extract -f -p %(pwd)s -sf %(img)s -xf %(file)s' % {
+        'pwd': password,
+        'img': imagefile,
+        'file': shownotes_file
+    }
+    myprocess = subprocess.Popen(shlex.split(cmd),
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    (stdout, stderr) = myprocess.communicate()
+
+    os.remove(imagefile)
+
+    if myprocess.returncode == 0:
+        #read shownote file
+        f = open(shownotes_file)
+        shownotes = f.read()
+        f.close()
+    else:
+        log(u'Error extracting shownotes from the image file %s' % imagefile)
+
+    return shownotes
+
+
 class gPodderHooks(object):
     def __init__(self):
         log('"Tin Foil Hat" shownote extractor extension is initializing.')
-
-    def __extract_image(self, filename):
-        """
-        extract image from the podcast file
-        """
-        imagefile = None
-        try:
-            if eyeD3.isMp3File(filename):
-                tag = eyeD3.Mp3AudioFile(filename).getTag()
-                images = tag.getImages()
-                if images:
-                    tempdir = tempfile.gettempdir()
-                    img = images[0]
-                    imagefile = img.getDefaultFileName()
-                    img.writeFile(path=tempdir, name=imagefile)
-                    imagefile = "%s/%s" % (tempdir, imagefile)
-                else:
-                    log(u'No image found in %s' % filename)
-        except:
-            pass
-
-        return imagefile
-
-    def __extract_shownotes(self, imagefile):
-        """
-        extract shownotes from the FRONT_COVER.jpeg
-        """
-        shownotes = None
-        password = 'tinfoilhat'
-        shownotes_file = '/tmp/shownotes.txt'
-
-        cmd = 'steghide extract -f -p %(pwd)s -sf %(img)s -xf %(file)s' % {
-            'pwd': password,
-            'img': imagefile,
-            'file': shownotes_file
-        }
-        myprocess = subprocess.Popen(shlex.split(cmd),
-            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        (stdout, stderr) = myprocess.communicate()
-
-        os.remove(imagefile)
-
-        if myprocess.returncode == 0:
-            #read shownote file
-            f = open(shownotes_file)
-            shownotes = f.read()
-            f.close()
-        else:
-            log(u'Error extracting shownotes from the image file %s' % imagefile)
-
-        return shownotes
 
     def on_episode_downloaded(self, episode):
         if episode.channel.title == TFH_TITLE:
@@ -102,11 +108,11 @@ class gPodderHooks(object):
             if filename is None:
                 return
             
-            imagefile = self.__extract_image(filename)
+            imagefile = extract_image(filename)
             if imagefile is None:
                 return
 
-            shownotes = self.__extract_shownotes(imagefile)
+            shownotes = extract_shownotes(imagefile)
             if shownotes is None:
                 return
 
