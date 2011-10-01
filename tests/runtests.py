@@ -84,12 +84,14 @@ if __name__ == "__main__":
 
     #import all test files
     import cmml_linux_outlaws_test
+    import rename_downloads_test
     import tfh_shownotes_test
 
     loader = unittest.TestLoader()
 
     suite = loader.loadTestsFromModule(cmml_linux_outlaws_test)
     suite.addTests(loader.loadTestsFromModule(tfh_shownotes_test))
+    suite.addTests(loader.loadTestsFromModule(rename_downloads_test))
 
     runner = unittest.TextTestRunner(verbosity=2)
     result = runner.run(suite)
