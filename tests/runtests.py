@@ -79,7 +79,6 @@ def init_data():
 
 if __name__ == "__main__":
     args = read_args()
-    print args
     append_python_path(args.gpo_src, args.hook_src)
 
     gpo_version = check_version(args.gpo_bin or '')
