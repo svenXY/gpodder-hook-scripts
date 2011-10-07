@@ -12,7 +12,7 @@ class TestRenameDownloads(unittest.TestCase):
     def setUp(self):
         self.client = api.PodcastClient()
 
-        self.podcast = self.client.get_podcast(config.TINFOILHAT)
+        self.podcast = self.client.get_podcast(config.TEST_PODCASTS['TinFoilHat']['url'])
         self.podcast_title = self.podcast.title
 
         self.episode = self.podcast.get_episodes()[-1]

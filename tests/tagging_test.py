@@ -14,10 +14,11 @@ class TestTagging(unittest.TestCase):
     def setUp(self):
         self.client = api.PodcastClient()
 
-        self.podcast = self.client.get_podcast(config.TINFOILHAT)
+        self.podcast = self.client.get_podcast(config.TEST_PODCASTS['TinFoilHat']['url'])
         self.podcast_title = self.podcast.title
 
-        self.episode = self.podcast.get_episodes()[-1]
+        index = config.TEST_PODCASTS['TinFoilHat']['episode']
+        self.episode = self.podcast.get_episodes()[index]
         self.filename = self.episode._episode.local_filename(create=False, check_only=True)
         self.filename_save = '%s.save' % self.filename 
 

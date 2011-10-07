@@ -48,23 +48,25 @@ def check_version(gpo_bin):
             raise NameError("couldn't read gpodder version number")
 
 
+def ins_test_podcast(client, podcast_url, episode2dl=None):
+    podcast = client.create_podcast(podcast_url)
+    podcast.disable()
+
+    if episode2dl:
+        episode = podcast.get_episodes()[episode2dl]
+        if (not episode.is_downloaded):
+            episode.download()
+    
+
 def init_data():
     import test_config as config
     from gpodder import api
 
     client = api.PodcastClient()
-  
-    # TinFoilHat Testdata
-    podcast = client.create_podcast(config.TINFOILHAT)
-    podcast.disable()
-    pilot_show = podcast.get_episodes()[-1]
-    if (not pilot_show.is_downloaded):
-        pilo_show.download()
 
-    # zpravy podcasts
-    podcast = client.create_podcast(config.ZPRAVY)
-    podcast.disable()
-
+    for name, conf in config.TEST_PODCASTS.items():
+        ins_test_podcast(client, conf['url'], conf['episode'])
+        
     client._db.close()
 
 
@@ -89,6 +91,7 @@ if __name__ == "__main__":
     #import all test files
     import cmml_linux_outlaws_test
     import rename_downloads_test
+    import rm_ogg_cover_test
     import tagging_test
     import tfh_shownotes_test
     import zpravy_test
@@ -97,6 +100,7 @@ if __name__ == "__main__":
 
     suite = loader.loadTestsFromModule(cmml_linux_outlaws_test)
     suite.addTests(loader.loadTestsFromModule(rename_downloads_test))
+    suite.addTests(loader.loadTestsFromModule(rm_ogg_cover_test))
     suite.addTests(loader.loadTestsFromModule(tagging_test))
     suite.addTests(loader.loadTestsFromModule(tfh_shownotes_test))
     suite.addTests(loader.loadTestsFromModule(zpravy_test))
