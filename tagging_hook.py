@@ -67,7 +67,12 @@ def read_episode_info(episode):
         pubDate = datetime.datetime.fromtimestamp(episode.pubDate)
         info['pubDate'] = pubDate.strftime('%Y-%m-%d %H:%M')
     except:
-        info['pubDate'] = None
+        try:
+            # since version 3 the published date has a new/other name
+            pubDate = datetime.datetime.fromtimestamp(episode.published)
+            info['pubDate'] = pubDate.strftime('%Y-%m-%d %H:%M')
+        except:
+            info['pubDate'] = None
 
     return info
 

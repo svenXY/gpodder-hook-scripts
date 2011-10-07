@@ -17,7 +17,11 @@ class TestZpravy(unittest.TestCase):
         self.client._db.close()
 
     def test_zpravy_pubdate(self):
-        pubDate = self.episode._episode.pubDate
+        try:
+            pubDate = self.episode._episode.pubDate
+        except:
+            # since version 3 the published date has a new/other name
+            pubDate = self.episode._episode.published
         guid = self.episode._episode.guid
 
         self.assertEqual(0, pubDate)

@@ -30,7 +30,7 @@
 import os
 
 import gpodder
-from gpodder.liblogger import log,enable_verbose
+from gpodder.liblogger import log
 
 import BeautifulSoup
 from BeautifulSoup import BeautifulSoup

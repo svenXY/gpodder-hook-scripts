@@ -40,12 +40,19 @@ def check_version(gpo_bin):
     if myprocess.returncode > 0:
         raise NameError("couldn't start gpodder with '%s'" % cmd)
     else:
-        # group(0): gpodder 2.19, group(1): gpodder, group(2): 2, group(3): 19
-        m = re.match(r'(\w+) ([0-9])\.([0-9]+)', stdout)
-        if m is not None and m.group(2) in ('2', '3'):
-            return int(m.group(2))
-        else:
-            raise NameError("couldn't read gpodder version number")
+        # group(0): gpodder 2.19, group(1): gpodder, group(2): 2.19
+        m = re.match(r'(\w+) ([0-9]\.[0-9]+)', stdout)
+        if m is not None and m.group(2) is not None:
+            try:
+                version = float(m.group(2))
+                if 2.0 < version < 2.99:
+                    return 2
+                elif version >= 2.99:
+                    return 3
+                else:
+                    raise NameError("couldn't read gpodder version number")
+            except:
+                raise NameError("couldn't read gpodder version number")
 
 
 def ins_test_podcast(client, podcast_url, episode2dl=None):
@@ -82,8 +89,8 @@ if __name__ == "__main__":
         os.environ['GPODDER_DOWNLOAD_DIR'] = os.path.join(test_dir, 'gpodder2', 'downloads')
 
     elif gpo_version == 3:
-        # TODO: add settings for version 3 of gpodder
-        pass
+        os.environ['GPODDER_HOME'] = os.path.join(test_dir, 'gpodder3', 'config')
+        os.environ['GPODDER_DOWNLOAD_DIR'] = os.path.join(test_dir, 'gpodder3', 'config', 'Downloads')
 
     if args.init:
         init_data()

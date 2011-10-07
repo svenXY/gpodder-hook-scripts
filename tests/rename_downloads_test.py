@@ -28,5 +28,5 @@ class TestRenameDownloads(unittest.TestCase):
         filename_new = rename_file(self.filename, self.title) 
 
         self.assertEqual(filename_test, filename_new)
-        self.assertNotEqual(self.episode._episode.filename, filename_new)
+        self.assertNotEqual(self.filename, filename_new)
 
