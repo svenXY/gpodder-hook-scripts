@@ -3,16 +3,17 @@
 import unittest
 
 from gpodder import api
+import test_config as config
 import tfh_shownotes_hook
 
-TINFOILHAT='http://feeds.feedburner.com/TinFoilHat'
 IMAGEFILE='/tmp/FRONT_COVER.jpeg'
+DESC='Show Notes Get the commands at http://cafeninja.blogspot.com<img height="1" src="http://feeds.feedburner.com/~r/TinFoilHat/~4/zzwDl_AW194" width="1" />'
 
 
 class TestTfhShownotes(unittest.TestCase):
     def setUp(self):
         self.client = api.PodcastClient()
-        self.podcast = self.client.get_podcast(TINFOILHAT)
+        self.podcast = self.client.get_podcast(config.TINFOILHAT)
         self.episode = self.podcast.get_episodes()[-1]
         self.filename = self.episode._episode.local_filename(create=False, check_only=True)
 
@@ -31,6 +32,12 @@ class TestTfhShownotes(unittest.TestCase):
         self.assertEqual(IMAGEFILE, imagefile)
 
     def test_extract_shownotes(self):
-        shownotes = tfh_shownotes_hook.extract_shownotes(IMAGEFILE)
-        self.assertTrue(shownotes)
+        shownotes = tfh_shownotes_hook.extract_shownotes(IMAGEFILE, remove_image=False)
+        self.assertIsNotNone(shownotes)
 
+    def test_search_shownotes_in_desc(self):
+        shownotes = tfh_shownotes_hook.extract_shownotes(IMAGEFILE, remove_image=False)
+        desc = self.episode._episode.description
+
+        self.assertEqual(DESC, desc)
+        self.assertEqual(-1, desc.find(shownotes))

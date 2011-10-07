@@ -65,7 +65,7 @@ def extract_image(filename):
     return imagefile
 
 
-def extract_shownotes(imagefile):
+def extract_shownotes(imagefile, remove_image=True):
     """
     extract shownotes from the FRONT_COVER.jpeg
     """
@@ -85,11 +85,12 @@ def extract_shownotes(imagefile):
         stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     (stdout, stderr) = myprocess.communicate()
 
-    os.remove(imagefile)
+    if remove_image:
+        os.remove(imagefile)
 
     if myprocess.returncode == 0:
         #read shownote file
-        f = open(shownotes_file)
+        f = open(shownotes_file, 'r')
         shownotes = f.read()
         f.close()
     else:

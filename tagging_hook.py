@@ -41,6 +41,66 @@ strip_album_from_title = True
 genre_tag = u'Podcast'
 
 
+def read_episode_info(episode):
+    info = {
+        'filename': None,
+        'album': None,
+        'title': None,
+        'pubDate': None
+    }
+
+    # read filename (incl. file path) from gPodder database
+    info['filename'] = episode.local_filename(create=False, check_only=True)
+    if info['filename'] is None:
+        return
+
+    # read title+album from gPodder database
+    info['album'] = episode.channel.title
+    title = episode.title
+    if (strip_album_from_title and title and info['album'] and title.startswith(info['album'])):
+        info['title'] = title[len(info['album']):].lstrip()
+    else:
+        info['title'] = title
+
+    # convert pubDate to string
+    try:
+        pubDate = datetime.datetime.fromtimestamp(episode.pubDate)
+        info['pubDate'] = pubDate.strftime('%Y-%m-%d %H:%M')
+    except:
+        info['pubDate'] = None
+
+    return info
+
+
+def write_info2file(info):
+    # open file with mutagen
+    audio = File(info['filename'], easy=True)
+    if audio is None:
+        return
+
+    # write title+album information into audio files
+    if audio.tags is None:
+        audio.add_tags()
+
+    # write album+title
+    if info['album'] is not None:
+        audio.tags['album'] = info['album']
+    if info['title'] is not None:
+        audio.tags['title'] = info['title']
+
+    # write genre tag
+    if genre_tag is not None:
+        audio.tags['genre'] = genre_tag
+    else:
+        audio.tags['genre'] = ''
+
+    # write pubDate
+    if info['pubDate'] is not None:
+        audio.tags['date'] = info['pubDate']
+
+    audio.save()
+
+
 class gPodderHooks(object):
     def __init__(self):
         log('tagging extension is initializing.')
@@ -50,48 +110,7 @@ class gPodderHooks(object):
         if not mutagen_installed:
             return
 
-        # read filename (incl. file path) from gPodder database
-        filename = episode.local_filename(create=False, check_only=True)
-        if filename is None:
-            return
+        info = read_episode_info(episode)
+        write_info2file(info)
 
-        # open file with mutagen
-        audio = File(filename, easy=True)
-        if audio is None:
-            return
-
-        # read title+album from gPodder database
-        album = episode.channel.title
-        title = episode.title
-        if (strip_album_from_title and title and album and title.startswith(album)):
-            title = title[len(album):].lstrip()
-
-        # convert pubDate to string
-        try:
-            pubDate =  datetime.datetime.fromtimestamp(episode.pubDate).strftime('%Y-%m-%d %H:%M')
-        except:
-            pubDate = None
-
-        # write title+album information into audio files
-        if audio.tags is None:
-            audio.add_tags()
-
-        # write album+title
-        if album is not None:
-            audio.tags['album'] = album
-        if title is not None:
-            audio.tags['title'] = title
-
-        # write genre tag
-        if genre_tag is not None:
-            audio.tags['genre'] = genre_tag
-        else:
-            audio.tags['genre'] = ''
-
-        # write pubDate
-        if pubDate is not None:
-            audio.tags['date'] = pubDate
-
-        audio.save()
         log(u'tagging.on_episode_downloaded(%s/%s)' % (episode.channel.title, episode.title))
-

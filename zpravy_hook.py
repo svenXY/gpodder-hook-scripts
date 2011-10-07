@@ -30,16 +30,27 @@ import time
 # settings
 domain = u'http://.*/media/zpravy/(\d+)-cro1_(\d\d)_(\d\d)_(\d\d)_(\d\d).mp3'
 
+def get_pubdate(episode):
+    ts = None
+
+    m = re.search(domain, episode.url)
+    if m: 
+        ts = time.mktime([int(m.group(1)), int(m.group(2)), int(m.group(3)), 
+            int(m.group(4)), int(m.group(5)), 0, -1, -1, -1])
+    else:
+        ts = episode.pubDate
+
+    return ts
+    
+
 class gPodderHooks(object):
     def __init__(self):
         log('Zpravy extension is initializing.')
 
     def on_episode_save(self, episode):
-        m = re.search(domain, episode.url) 
-        if m: 
-            ts = time.mktime([int(m.group(1)),int(m.group(2)),int(m.group(3)),int(m.group(4)),int(m.group(5)),0,-1,-1,-1]) 
-            episode.pubDate = ts 
-            episode.guid = int(ts)
-            episode.save()
-            episode.dv.commit()
-            log(u'updated pubDate and guid for podcast: (%s/%s)' % (episode.channel.title, episode.title))
+        ts = get_pubdate(episode)
+        episode.pubDate = ts 
+        episode.guid = int(ts)
+        episode.save()
+        episode.db.commit()
+        log(u'updated pubDate and guid for podcast: (%s/%s)' % (episode.channel.title, episode.title))

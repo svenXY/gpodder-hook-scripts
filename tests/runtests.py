@@ -49,17 +49,21 @@ def check_version(gpo_bin):
 
 
 def init_data():
+    import test_config as config
     from gpodder import api
 
     client = api.PodcastClient()
   
     # TinFoilHat Testdata
-    TINFOILHAT='http://feeds.feedburner.com/TinFoilHat'
-    podcast = client.create_podcast(TINFOILHAT)
+    podcast = client.create_podcast(config.TINFOILHAT)
     podcast.disable()
     pilot_show = podcast.get_episodes()[-1]
     if (not pilot_show.is_downloaded):
         pilo_show.download()
+
+    # zpravy podcasts
+    podcast = client.create_podcast(config.ZPRAVY)
+    podcast.disable()
 
     client._db.close()
 
@@ -85,13 +89,17 @@ if __name__ == "__main__":
     #import all test files
     import cmml_linux_outlaws_test
     import rename_downloads_test
+    import tagging_test
     import tfh_shownotes_test
+    import zpravy_test
 
     loader = unittest.TestLoader()
 
     suite = loader.loadTestsFromModule(cmml_linux_outlaws_test)
-    suite.addTests(loader.loadTestsFromModule(tfh_shownotes_test))
     suite.addTests(loader.loadTestsFromModule(rename_downloads_test))
+    suite.addTests(loader.loadTestsFromModule(tagging_test))
+    suite.addTests(loader.loadTestsFromModule(tfh_shownotes_test))
+    suite.addTests(loader.loadTestsFromModule(zpravy_test))
 
     runner = unittest.TextTestRunner(verbosity=2)
     result = runner.run(suite)
