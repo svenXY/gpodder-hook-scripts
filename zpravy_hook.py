@@ -22,10 +22,13 @@
 # and I used the same number as guid.
 
 import gpodder
-from gpodder.liblogger import log
 
 import re
 import time
+
+import logging
+logger = logging.getLogger(__name__)
+
 
 # settings
 domain = u'http://.*/media/zpravy/(\d+)-cro1_(\d\d)_(\d\d)_(\d\d)_(\d\d).mp3'
@@ -45,7 +48,7 @@ def get_pubdate(episode):
 
 class gPodderHooks(object):
     def __init__(self):
-        log('Zpravy extension is initializing.')
+        logger.info('Zpravy extension is initializing.')
 
     def on_episode_save(self, episode):
         ts = get_pubdate(episode)
@@ -53,4 +56,4 @@ class gPodderHooks(object):
         episode.guid = int(ts)
         episode.save()
         episode.db.commit()
-        log(u'updated pubDate and guid for podcast: (%s/%s)' % (episode.channel.title, episode.title))
+        logger.info(u'updated pubDate and guid for podcast: (%s/%s)' % (episode.channel.title, episode.title))

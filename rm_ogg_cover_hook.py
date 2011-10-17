@@ -25,12 +25,14 @@
 
 import os
 import gpodder
-from gpodder.liblogger import log
+
+import logging
+logger = logging.getLogger(__name__)
 
 try:
     from mutagen.oggvorbis import OggVorbis 
 except:
-    log( '(remove ogg cover hook) Could not find mutagen')
+    logger.error( '(remove ogg cover hook) Could not find mutagen')
 
 
 def rm_ogg_cover(episode):
@@ -40,7 +42,7 @@ def rm_ogg_cover(episode):
 
     (basename, extension) = os.path.splitext(filename)
     if episode.file_type() == 'audio' and extension.lower().endswith('ogg'):
-        log(u'trying to remove cover from %s' % filename)
+        logger.info(u'trying to remove cover from %s' % filename)
         found = False
 
         try:
@@ -51,10 +53,10 @@ def rm_ogg_cover(episode):
                     ogg.pop(key)
             
             if found:
-                log(u'removed cover from the ogg file successfully')
+                logger.info(u'removed cover from the ogg file successfully')
                 ogg.save()
             else:
-                log(u'there was no cover to remove in the ogg file')
+                logger.info(u'there was no cover to remove in the ogg file')
         except:
             None
 
@@ -62,7 +64,7 @@ def rm_ogg_cover(episode):
 
 class gPodderHooks(object):
     def __init__(self):
-        log('Remove ogg cover extension is initializing.')
+        logger.info('Remove ogg cover extension is initializing.')
 
     def on_episode_downloaded(self, episode):
         rm_ogg_cover(episode)

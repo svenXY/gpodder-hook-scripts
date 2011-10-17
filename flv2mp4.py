@@ -8,14 +8,13 @@
 # Released under the same license terms as gPodder itself.
 
 import gpodder
-import logging
-
-logger = logging.getLogger(__name__)
+from gpodder import youtube
 
 import os
 import subprocess
 
-from gpodder import youtube
+import logging
+logger = logging.getLogger(__name__)
 
 class gPodderHooks(object):
     def on_episode_downloaded(self, episode):

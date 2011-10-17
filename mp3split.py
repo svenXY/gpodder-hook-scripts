@@ -8,26 +8,27 @@ import gpodder
 import subprocess
 import os
 
-from gpodder.liblogger import log
+import logging
+logger = logging.getLogger(__name__)
 
 def mp3split(from_file, to_file):
     # http://docs.python.org/library/subprocess.html#subprocess-replacements
     # http://www.doughellmann.com/PyMOTW/subprocess/
     try:
         destination = os.path.dirname(to_file)
-        log("mp3split: destination is %s", destination)
+        logger.debug("mp3split: destination is %s", destination)
         command = 'mp3splt -ft 10.00 -o "@f_@n" "%s" -d "%s"' % (from_file, destination)
-        log("mp3split: Executing %s", command)
+        logger.debug("mp3split: Executing %s", command)
         p = subprocess.Popen(command, shell=True)
         # retcode[1] values:
         #  <0: error
         #   0: success, script handle the copy by hand(snif, progress bar is not used)
         retcode = os.waitpid(p.pid, 0)
-        log("mp3split: Child with pid %s returned %s", retcode[0], retcode[1])
+        logger.debug("mp3split: Child with pid %s returned %s", retcode[0], retcode[1])
         os.remove(to_file)
-        log("mp3split: Original file %s removed", to_file)
+        logger.info("mp3split: Original file %s removed", to_file)
     except OSError, e:
-        log("mp3split: Execution failed: %s", e)
+        logger.error("mp3split: Execution failed: %s", e)
 
 class gPodderHooks(object):
     def __init__(self):
@@ -43,5 +44,5 @@ class gPodderHooks(object):
         pass
 
     def on_file_copied_to_filesystem(self, mp3playerdevice, from_file, to_file):
-        log(u'on_file_copied_to_filesystem(%s, %s)' % (from_file, to_file))
+        logger.info(u'on_file_copied_to_filesystem(%s, %s)' % (from_file, to_file))
         mp3split(from_file, to_file)

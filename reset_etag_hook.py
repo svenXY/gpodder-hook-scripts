@@ -21,7 +21,9 @@
 # This will cause gPodder to reload (and re-parse) the feed every time 
 
 import gpodder
-from gpodder.liblogger import log
+
+import logging
+logger = logging.getLogger(__name__)
 
 
 ## settings
@@ -30,11 +32,11 @@ domains = (u'http://podcast.wdr.de', )
 
 class gPodderHooks(object):
     def __init__(self):
-        log('Reset etag extension is initializing.')
+        logger.info('Reset etag extension is initializing.')
 
     def on_podcast_updated(self, podcast):
         if podcast.url.startswith(domains):
             podcast.etag = None
             podcast.last_modified = None
             podcast.save()
-            log(u'deleted etag and last modified date from podcast: %s' % podcast.title)
+            logger.info(u'deleted etag and last modified date from podcast: %s' % podcast.title)
