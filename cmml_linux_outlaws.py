@@ -30,13 +30,15 @@
 import os
 
 import gpodder
-from gpodder.liblogger import log
 
 import BeautifulSoup
 from BeautifulSoup import BeautifulSoup
 
 import re
 from xml.etree import ElementTree as ET
+
+import logging
+logger = logging.getLogger(__name__)
 
 def get_cmml_filename(ogg_file):
     (name, ext) = os.path.splitext(ogg_file)
@@ -57,7 +59,7 @@ def create_cmml(html, ogg_file):
                 if c is not t: txt += c
             txt = remove_ws.sub(' ', txt)
             txt = txt.strip()
-            log("found chapter %s at %s"%(txt,t))
+            logger.info("found chapter %s at %s"%(txt,t))
             # totem want's escaped html in the title attribute (not &amp; but &amp;amp;)
             txt = txt.replace('&','&amp;')
             clip = ET.Element('clip')
@@ -70,10 +72,10 @@ def create_cmml(html, ogg_file):
 
 class gPodderHooks(object):
     def __init__(self):
-        log('linux_outlaws_cmml extension: Initializing.')
+        logger.info('linux_outlaws_cmml extension: Initializing.')
 
     def on_episode_downloaded(self, episode):
-        log('linux_outlaws_cmml: on_episode_downloaded(%s, %s)' % (episode.title, episode.channel.url))
+        logger.info('linux_outlaws_cmml: on_episode_downloaded(%s, %s)' % (episode.title, episode.channel.url))
         # may have to change that if the feed is renamed...
         if episode.channel.title.startswith('Linux Outlaws'):
         	html = episode.description

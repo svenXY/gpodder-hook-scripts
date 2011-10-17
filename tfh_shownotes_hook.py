@@ -31,12 +31,13 @@ import shlex
 import subprocess
 import tempfile
 
-from gpodder.liblogger import log
+import logging
+logger = logging.getLogger(__name__)
 
 try:
     import eyeD3
 except:
-    log( '(tfh shownotes hook) Could not find eyeD3')
+    logger.error( '(tfh shownotes hook) Could not find eyeD3')
 
 
 TFH_TITLE='Tin Foil Hat'
@@ -58,7 +59,7 @@ def extract_image(filename):
                 img.writeFile(path=tempdir, name=imagefile)
                 imagefile = "%s/%s" % (tempdir, imagefile)
             else:
-                log(u'No image found in %s' % filename)
+                logger.info(u'No image found in %s' % filename)
     except:
         pass
 
@@ -94,14 +95,14 @@ def extract_shownotes(imagefile, remove_image=True):
         shownotes = f.read()
         f.close()
     else:
-        log(u'Error extracting shownotes from the image file %s' % imagefile)
+        logger.error(u'Error extracting shownotes from the image file %s' % imagefile)
 
     return shownotes
 
 
 class gPodderHooks(object):
     def __init__(self):
-        log('"Tin Foil Hat" shownote extractor extension is initializing.')
+        logger.info('"Tin Foil Hat" shownote extractor extension is initializing.')
 
     def on_episode_downloaded(self, episode):
         if episode.channel.title == TFH_TITLE:
@@ -122,7 +123,7 @@ class gPodderHooks(object):
                 episode.description = "%s\n\n<pre>%s</pre>" % (episode.description, shownotes)
                 episode.save()
                 episode.db.commit()
-                log(u'updated shownotes for podcast: (%s/%s)' % (episode.channel.title, episode.title))
+                logger.info(u'updated shownotes for podcast: (%s/%s)' % (episode.channel.title, episode.title))
 
     def on_episode_save(self, episode):
         # TODO: add possibility to extract shownotes after downloaded the episode

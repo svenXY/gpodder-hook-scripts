@@ -26,13 +26,15 @@
 import datetime
 import os
 import gpodder
-from gpodder.liblogger import log
+
+import logging
+logger = logging.getLogger(__name__)
 
 try:
     from mutagen import File 
     mutagen_installed = True
 except:
-    log( '(tagging hook) Could not find mutagen')
+    logger.error( '(tagging hook) Could not find mutagen')
     mutagen_installed = False
 
 
@@ -108,7 +110,7 @@ def write_info2file(info):
 
 class gPodderHooks(object):
     def __init__(self):
-        log('tagging extension is initializing.')
+        logger.info('tagging extension is initializing.')
 
     def on_episode_downloaded(self, episode):
         # exit if mutagen is not installed
@@ -118,4 +120,4 @@ class gPodderHooks(object):
         info = read_episode_info(episode)
         write_info2file(info)
 
-        log(u'tagging.on_episode_downloaded(%s/%s)' % (episode.channel.title, episode.title))
+        logger.info(u'tagging.on_episode_downloaded(%s/%s)' % (episode.channel.title, episode.title))
