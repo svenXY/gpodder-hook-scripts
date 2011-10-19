@@ -7,6 +7,9 @@ from gpodder import util
 
 import os
 
+import logging
+logger = logging.getLogger(__name__)
+
 
 def rename_file(current_filename, title):
     dirname = os.path.dirname(current_filename)
@@ -22,8 +25,7 @@ class gPodderHooks(object):
         current_filename = episode.local_filename(create=False)
 
         new_filename = rename_file(current_filename, episode.title)
-        # TODO: change to log message
-        #print 'Renaming:', current_filename, '->', new_filename
+        logger.info('Renaming:', current_filename, '->', new_filename)
 
         os.rename(current_filename, new_filename)
         episode.filename = new_filename
