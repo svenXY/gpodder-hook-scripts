@@ -8,6 +8,8 @@ import subprocess
 import sys
 import unittest
 
+import logging
+logging.basicConfig()
 
 def read_args():
     #read command line arguments
