@@ -97,8 +97,8 @@ if __name__ == "__main__":
         init_data()
 
     #import all test files
-    import cmml_linux_outlaws_test
-    import rename_downloads_test
+    import cmml_creator_tests
+    import rename_download_test
     import rm_ogg_cover_test
     import tagging_test
     import tfh_shownotes_test
@@ -106,8 +106,8 @@ if __name__ == "__main__":
 
     loader = unittest.TestLoader()
 
-    suite = loader.loadTestsFromModule(cmml_linux_outlaws_test)
-    suite.addTests(loader.loadTestsFromModule(rename_downloads_test))
+    suite = loader.loadTestsFromModule(cmml_creator_tests)
+    suite.addTests(loader.loadTestsFromModule(rename_download_test))
     suite.addTests(loader.loadTestsFromModule(rm_ogg_cover_test))
     suite.addTests(loader.loadTestsFromModule(tagging_test))
     suite.addTests(loader.loadTestsFromModule(tfh_shownotes_test))

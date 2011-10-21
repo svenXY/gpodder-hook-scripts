@@ -8,7 +8,7 @@ from mutagen.oggvorbis import OggVorbis
 
 from gpodder import api
 import test_config as config
-from rm_ogg_cover_hook import rm_ogg_cover
+from rm_ogg_cover.hook import rm_ogg_cover
 
 
 class TestTagging(unittest.TestCase):

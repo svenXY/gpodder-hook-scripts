@@ -1,5 +1,4 @@
 config = {
-    "hook_script": "bittorrent.py",
     "name": "Bittorrent downloader",
     "desc": "Downloads the file if the file from the podcast ends with .torrent",
     "params": {

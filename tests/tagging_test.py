@@ -7,7 +7,7 @@ from mutagen import File
 
 from gpodder import api
 import test_config as config
-from tagging_hook import read_episode_info, write_info2file
+from tagging.hook import read_episode_info, write_info2file
 
 
 class TestTagging(unittest.TestCase):

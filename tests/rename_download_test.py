@@ -5,7 +5,7 @@ import unittest
 
 from gpodder import api
 import test_config as config
-from rename_downloads import rename_file
+from rename_download.hook import rename_file
 
 
 class TestRenameDownloads(unittest.TestCase):
