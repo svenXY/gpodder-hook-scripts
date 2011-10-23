@@ -1,7 +1,3 @@
-config = {
-    "name": "CMML generator/Linux-Outlaws",
-    "desc": "Generates CMML-files after downloading a Linux-Outlaw Episode",
-    "params": {
-    }
-}
+from hook import PODCAST_LIST
 
+params = PODCAST_LIST 

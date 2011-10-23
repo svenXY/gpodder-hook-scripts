@@ -31,7 +31,7 @@ domains = (u'http://podcast.wdr.de', )
 
 
 class gPodderHooks(object):
-    def __init__(self):
+    def __init__(self, params=None):
         logger.info('Reset etag extension is initializing.')
 
     def on_podcast_updated(self, podcast):

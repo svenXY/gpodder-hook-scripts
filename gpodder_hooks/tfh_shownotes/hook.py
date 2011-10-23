@@ -101,7 +101,7 @@ def extract_shownotes(imagefile, remove_image=True):
 
 
 class gPodderHooks(object):
-    def __init__(self):
+    def __init__(self, params=None):
         logger.info('"Tin Foil Hat" shownote extractor extension is initializing.')
 
     def on_episode_downloaded(self, episode):

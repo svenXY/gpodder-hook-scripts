@@ -29,8 +29,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import os
 
-import gpodder
-
 import BeautifulSoup
 from BeautifulSoup import BeautifulSoup
 
@@ -39,6 +37,12 @@ from xml.etree import ElementTree as ET
 
 import logging
 logger = logging.getLogger(__name__)
+
+import gpodder
+
+LINUX_OUTLAWS = 'Linux Outlaws'
+RADIOTUX = 'RadioTux Magazin'
+PODCAST_LIST = { "podcast_list": [ (True, LINUX_OUTLAWS), (True, RADIOTUX) ] }
 
 
 def get_cmml_filename(audio_file):
@@ -100,8 +104,9 @@ def create_cmml_radiotux(html, audio_file):
 
 
 class gPodderHooks(object):
-    def __init__(self):
+    def __init__(self, params=PODCAST_LIST):
         logger.info('create_cmml extension: Initializing.')
+        self.podcast_list = params['podcast_list']
 
     def on_episode_downloaded(self, episode):
         logger.info('create_cmml: on_episode_downloaded(%s, %s)' % (episode.title, episode.channel.url))
@@ -110,9 +115,9 @@ class gPodderHooks(object):
         audio_file = episode.local_filename(False)
 
         # may have to change that if the feed is renamed...
-        if episode.channel.title.startswith('Linux Outlaws'):
+        if episode.channel.title.startswith(LINUX_OUTLAWS) and LINUX_OUTLAWS in [p for s, p in self.podcast_list]:
         	create_cmml_linux_outlaws(html, audio_file)
 
-        elif episode.channel.title.startswith('RadioTux Magazin'):
+        elif episode.channel.title.startswith(RADIOTUX) and RADIOTUX in [p for s, p in self.podcast_list]:
             create_cmml_radiotux(html, audio_file)
             

@@ -8,6 +8,9 @@ import gpodder
 import subprocess
 
 class gPodderHooks(object):
+    def __init__(self, params=None):
+        pass
+
     def _enqueue_episodes(self, episodes):
         filenames = [episode.get_playback_url() for episode in episodes]
         cmd = ['vlc', '--started-from-file', '--playlist-enqueue'] + filenames

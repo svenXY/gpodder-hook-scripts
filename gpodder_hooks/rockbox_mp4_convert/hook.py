@@ -91,6 +91,9 @@ def convertMP4(from_file, to_file):
             
 print "RockBox mp4 converter hook loaded"
 class gPodderHooks(object):
+    def __init__(self, params=None):
+        pass
+
     def on_episode_downloaded(self, episode):
         
         try:            
