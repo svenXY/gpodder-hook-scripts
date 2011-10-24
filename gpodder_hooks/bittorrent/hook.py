@@ -5,11 +5,12 @@
 import shlex
 import subprocess
 
-BITTORRENT_CMD = { "bittorrent_cmd": "qbittorrent %s" }
-
 class gPodderHooks(object):
-    def __init__(self, params=BITTORRENT_CMD):
-        self.bittorrent_cmd = params['bittorrent_cmd']
+    def __init__(self, params=None):
+        if params is None:
+            from metadata import params
+
+        self.bittorrent_cmd = params['value']
 
     def on_episode_downloaded(self, episode):
         if episode.extension() == '.torrent':

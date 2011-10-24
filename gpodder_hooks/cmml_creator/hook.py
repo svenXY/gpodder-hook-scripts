@@ -42,7 +42,6 @@ import gpodder
 
 LINUX_OUTLAWS = 'Linux Outlaws'
 RADIOTUX = 'RadioTux Magazin'
-PODCAST_LIST = { "podcast_list": [ (True, LINUX_OUTLAWS), (True, RADIOTUX) ] }
 
 
 def get_cmml_filename(audio_file):
@@ -104,9 +103,11 @@ def create_cmml_radiotux(html, audio_file):
 
 
 class gPodderHooks(object):
-    def __init__(self, params=PODCAST_LIST):
-        logger.info('create_cmml extension: Initializing.')
-        self.podcast_list = params['podcast_list']
+    def __init__(self, params=None):
+        if parms is None:
+            from metadata import params
+
+        self.podcast_list = params['value']
 
     def on_episode_downloaded(self, episode):
         logger.info('create_cmml: on_episode_downloaded(%s, %s)' % (episode.title, episode.channel.url))
