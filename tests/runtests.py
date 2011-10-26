@@ -92,6 +92,7 @@ if __name__ == "__main__":
     elif gpo_version == 3:
         os.environ['GPODDER_HOME'] = os.path.join(test_dir, 'gpodder3', 'config')
         os.environ['GPODDER_DOWNLOAD_DIR'] = os.path.join(test_dir, 'gpodder3', 'config', 'Downloads')
+        os.environ['GPODDER_HOOKS'] = args.hook_src
 
     if args.init:
         init_data()

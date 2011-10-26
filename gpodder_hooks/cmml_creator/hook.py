@@ -43,6 +43,15 @@ import gpodder
 LINUX_OUTLAWS = 'Linux Outlaws'
 RADIOTUX = 'RadioTux Magazin'
 
+DEFAULT_PARAMS = {
+    "podcast_list": {
+        "desc": "Supported podcasts:",
+        "type": "multichoice-list",
+        "list": [ LINUX_OUTLAWS, RADIOTUX ],
+        "value": [ True, True ]
+    }
+}
+
 
 def get_cmml_filename(audio_file):
     (name, ext) = os.path.splitext(audio_file)
@@ -103,22 +112,21 @@ def create_cmml_radiotux(html, audio_file):
 
 
 class gPodderHooks(object):
-    def __init__(self, params=None):
-        if parms is None:
-            from metadata import params
-
-        self.podcast_list = params['value']
+    def __init__(self, params=DEFAULT_PARAMS):
+        self.choices = params['podcast_list']['list']
+        self.state = params['podcast_list']['value']
 
     def on_episode_downloaded(self, episode):
         logger.info('create_cmml: on_episode_downloaded(%s, %s)' % (episode.title, episode.channel.url))
 
         html = episode.description
         audio_file = episode.local_filename(False)
+        channel_title = episode.channel.title
 
         # may have to change that if the feed is renamed...
-        if episode.channel.title.startswith(LINUX_OUTLAWS) and LINUX_OUTLAWS in [p for s, p in self.podcast_list]:
+        if channel_title.startswith(LINUX_OUTLAWS) and self.state[self.choices.index(LINUX_OUTLAWS)]:
         	create_cmml_linux_outlaws(html, audio_file)
 
-        elif episode.channel.title.startswith(RADIOTUX) and RADIOTUX in [p for s, p in self.podcast_list]:
+        elif channel_title.startswith(RADIOTUX) and self.state[self.choices.index(RADIOTUX)]:
             create_cmml_radiotux(html, audio_file)
             

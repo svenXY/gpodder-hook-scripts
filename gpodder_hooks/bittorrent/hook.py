@@ -5,12 +5,17 @@
 import shlex
 import subprocess
 
-class gPodderHooks(object):
-    def __init__(self, params=None):
-        if params is None:
-            from metadata import params
+DEFAULT_PARAMS = {
+    "bittorrent_cmd": {
+        "desc": "Defines the command line bittorrent program:",
+        "value": "qbittorrent %s",
+        "type": "textitem"
+    }
+}
 
-        self.bittorrent_cmd = params['value']
+class gPodderHooks(object):
+    def __init__(self, params=DEFAULT_PARAMS):
+        self.bittorrent_cmd = params['bittorrent_cmd']['value']
 
     def on_episode_downloaded(self, episode):
         if episode.extension() == '.torrent':

@@ -7,7 +7,7 @@ import test_config as config
 from tfh_shownotes import hook
 
 IMAGEFILE='/tmp/FRONT_COVER.jpeg'
-DESC='Show Notes Get the commands at http://cafeninja.blogspot.com<img height="1" src="http://feeds.feedburner.com/~r/TinFoilHat/~4/zzwDl_AW194" width="1" />'
+DESC=u'Show Notes Get the commands at http://cafeninja.blogspot.com<img height="1" src="http://feeds.feedburner.com/~r/TinFoilHat/~4/zzwDl_AW194" width="1" />'
 
 
 class TestTfhShownotes(unittest.TestCase):
