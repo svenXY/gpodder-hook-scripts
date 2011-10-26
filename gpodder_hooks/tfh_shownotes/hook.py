@@ -92,7 +92,7 @@ def extract_shownotes(imagefile, remove_image=True):
     if myprocess.returncode == 0:
         #read shownote file
         f = open(shownotes_file, 'r')
-        shownotes = f.read()
+        shownotes = unicode(f.read(), "utf-8")
         f.close()
     else:
         logger.error(u'Error extracting shownotes from the image file %s' % imagefile)

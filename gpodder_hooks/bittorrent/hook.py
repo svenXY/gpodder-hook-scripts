@@ -13,6 +13,7 @@ DEFAULT_PARAMS = {
     }
 }
 
+
 class gPodderHooks(object):
     def __init__(self, params=DEFAULT_PARAMS):
         self.bittorrent_cmd = params['bittorrent_cmd']['value']
@@ -21,4 +22,3 @@ class gPodderHooks(object):
         if episode.extension() == '.torrent':
             cmd = self.bittorrent_cmd % episode.local_filename(False)
             subprocess.Popen(shlex.split(cmd))
-

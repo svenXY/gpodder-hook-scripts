@@ -98,6 +98,7 @@ if __name__ == "__main__":
         init_data()
 
     #import all test files
+    import bittorrent_tests
     import cmml_creator_tests
     import rename_download_test
     import rm_ogg_cover_test
@@ -107,7 +108,8 @@ if __name__ == "__main__":
 
     loader = unittest.TestLoader()
 
-    suite = loader.loadTestsFromModule(cmml_creator_tests)
+    suite = loader.loadTestsFromModule(bittorrent_tests)
+    suite.addTests(loader.loadTestsFromModule(cmml_creator_tests))
     suite.addTests(loader.loadTestsFromModule(rename_download_test))
     suite.addTests(loader.loadTestsFromModule(rm_ogg_cover_test))
     suite.addTests(loader.loadTestsFromModule(tagging_test))
