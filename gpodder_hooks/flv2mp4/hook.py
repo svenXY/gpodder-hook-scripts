@@ -17,7 +17,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 class gPodderHooks(object):
-    def __init__(self, param=None):
+    def __init__(self, params=None):
         pass
 
     def on_episode_downloaded(self, episode):

@@ -18,9 +18,7 @@ class TestBittorrent(unittest.TestCase):
         self.episode = self.podcast.get_episodes()[episode_no]
         self.filename = self.episode._episode.local_filename(create=False, check_only=True)
 
-        self.param = hook.DEFAULT_PARAM
-        self.origin_cmd = self.param['bittorrent_cmd']['value']
-        self.param['bittorrent_cmd']['value'] = 'echo "%s"' % self.origin_cmd
+        self.cmd = hook.DEFAULT_PARAMS['bittorrent_cmd']['value']
 
     def tearDown(self):
         self.client._db.close()
@@ -28,8 +26,8 @@ class TestBittorrent(unittest.TestCase):
     def test_shellcommand(self):
         self.assertIsNotNone(self.filename)
 
-        bt_hook = hook.gPodderHooks(self.param, stdout=True)
+        bt_hook = hook.gPodderHooks(test=True)
         stdout, stderr = bt_hook.on_episode_downloaded(self.episode._episode)
 
-        cmd = self.origin_cmd % self.filename
-        self.assertEqual(stdout.rstrip(), cmd)
+        test_cmd = self.cmd % self.filename
+        self.assertEqual(stdout.rstrip(), test_cmd)

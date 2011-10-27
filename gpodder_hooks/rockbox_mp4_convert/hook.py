@@ -10,12 +10,30 @@
 # Copyright (c) 2011-04-04 Thomas Perl <thp.io>
 # Licensed under the same terms as gPodder itself
 
-DEFAULT_DEVICE_WIDTH = 224.0 #make sure to include the .0, this is a float
-DEFAULT_DEVICE_HEIGHT = 176.0
-ROCKBOX_EXTENTION = "mpg"
-EXTENTIONS_TO_CONVERT = ['.mp4',"." + ROCKBOX_EXTENTION] 
-FFMPEG_OPTIONS = '-vcodec mpeg2video -b 500k -ab 192k -ac 2 -ar 44100 -acodec libmp3lame'
+DEFAULT_PARAMS = {
+    "device_width": {
+        "desc": 'Device width',
+        "value": 224.0,
+        "type": 'spinbutton'
+    },
+    "device_height": {
+        "desc": 'Device height',
+        "value": 176.0,
+        "type": 'spinbutton'
+    },
+    "ffmpeg_options": {
+        "desc": 'ffmpeg options',
+        "value": '-vcodec mpeg2video -b 500k -ab 192k -ac 2 -ar 44100 -acodec libmp3lame',
+        "type": 'textitem'
+    }
+}
 
+ROCKBOX_EXTENTION = "mpg"
+EXTENTIONS_TO_CONVERT = ['.mp4',"." + ROCKBOX_EXTENTION]
+FFMPEG_CMD = 'ffmpeg -y -i "%(from)s" -s %(width)sx%(height)s %(options)s "%(to)s"'
+
+
+from util import check_command
 from gpodder import util
 import os
 import os.path
@@ -23,6 +41,9 @@ import os.path
 import kaa.metadata
 #import subprocess
 import time
+
+import logging
+logger = logging.getLogger(__name__)
 
 import dbus #For onscreen messages
 
@@ -36,6 +57,7 @@ notify_service = bus.get_object('org.freedesktop.Notifications', \
 #interface for a message
 notify_interface = dbus.Interface(notify_service, \
         'org.freedesktop.Notifications')
+
 def message(title,message):
     '''
     Send a notify message via Dbus
@@ -43,7 +65,7 @@ def message(title,message):
     notify_interface.Notify("test-notify", 0, '', title, \
         message, [], {}, -1)
 
-def convertMP4(from_file, to_file):
+def convertMP4(from_file, to_file, params):
     '''
     Convert MP4 file to rockbox mpg file
     '''
@@ -54,19 +76,21 @@ def convertMP4(from_file, to_file):
     
     if not os.path.isfile(to_file):
         
-        print "Converting:" + from_file
+        logger.debug("Converting: %s", from_file)
+        print from_file
         info = kaa.metadata.parse(from_file)
+        print info
         
-        deviceWidth = DEFAULT_DEVICE_WIDTH
-        deviceHeight = DEFAULT_DEVICE_HEIGHT
+        deviceWidth = params['device_width']['value']
+        deviceHeight = params['device_height']['value']
         width = info.video[0].width
         height = info.video[0].height
         
         try:
             if height != None:
                 
-                destWidth = DEFAULT_DEVICE_WIDTH
-                destHeight = DEFAULT_DEVICE_HEIGHT
+                destWidth = params['device_width']['value']
+                destHeight = params['device_height']['value']
                 
                 widthRatio = destWidth/width
                 heightRatio = deviceHeight/height
@@ -78,8 +102,14 @@ def convertMP4(from_file, to_file):
                     destHeight = deviceHeight
                     destWidth = heightRatio*width
                 message('Running conversion script',"Converting  "+ from_file)
-                
-                convert_command = 'ffmpeg -y -i "' + from_file +'" -s ' + str(int(destWidth))+ 'x' +  str(int(destHeight)) + ' ' + FFMPEG_OPTIONS + ' "' + to_file + '"'
+                convert_command = FFMPEG_CMD % {
+                    'from': from_file,
+                    'to': to_file,
+                    'width': str(int(destWidth)),
+                    'height': str(int(destHeight)),
+                    'options': params['ffmpeg_options']['value']
+                }
+                #'ffmpeg -y -i "' + from_file +'" -s ' + str(int(destWidth))+ 'x' +  str(int(destHeight)) + ' ' + ffmpeg_options + ' "' + to_file + '"'
                 
                 #process = subprocess.Popen(convert_command, stdout=subprocess.PIPE, shell=True)
                 os.system(convert_command)
@@ -89,10 +119,12 @@ def convertMP4(from_file, to_file):
             message('Conversion error',"Could not locate file for Conversion:  "+ from_file)
     return
             
-print "RockBox mp4 converter hook loaded"
 class gPodderHooks(object):
-    def __init__(self, param=None):
-        pass
+    def __init__(self, params=DEFAULT_PARAMS):
+        logger.info("RockBox mp4 converter hook loaded")
+        self.params = params
+
+        check_command(FFMPEG_CMD)
 
     def on_episode_downloaded(self, episode):
         
@@ -122,13 +154,11 @@ class gPodderHooks(object):
                 filename = os.path.basename(current_filename)
                 basename, ext = os.path.splitext(filename)
                             
-            
-                
             print 'Renaming:', filename, '->', new_filename
     
             destination_filename = os.path.join(dirname, new_filename)
             
-            convertMP4(current_filename, destination_filename)
+            convertMP4(current_filename, destination_filename, self.params)
             
             #os.rename(current_filename, destination_filename)
             

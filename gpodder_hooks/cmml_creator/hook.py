@@ -43,7 +43,7 @@ import gpodder
 LINUX_OUTLAWS = 'Linux Outlaws'
 RADIOTUX = 'RadioTux Magazin'
 
-DEFAULT_PARAM = {
+DEFAULT_PARAMS = {
     "podcast_list": {
         "desc": "Supported podcasts:",
         "type": "multichoice-list",
@@ -112,9 +112,9 @@ def create_cmml_radiotux(html, audio_file):
 
 
 class gPodderHooks(object):
-    def __init__(self, param=DEFAULT_PARAM):
-        self.choices = param['podcast_list']['list']
-        self.state = param['podcast_list']['value']
+    def __init__(self, params=DEFAULT_PARAMS):
+        self.choices = params['podcast_list']['list']
+        self.state = params['podcast_list']['value']
 
     def on_episode_downloaded(self, episode):
         logger.info('create_cmml: on_episode_downloaded(%s, %s)' % (episode.title, episode.channel.url))

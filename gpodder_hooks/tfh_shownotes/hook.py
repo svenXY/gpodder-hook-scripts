@@ -25,7 +25,7 @@
 # "Tin Foil Hat" podcast here:
 # http://cafeninja.blogspot.com/2010/10/tin-foil-hat-show-episode-001.html
 
-import gpodder
+import eyeD3
 import os
 import shlex
 import subprocess
@@ -34,13 +34,12 @@ import tempfile
 import logging
 logger = logging.getLogger(__name__)
 
-try:
-    import eyeD3
-except:
-    logger.error( '(tfh shownotes hook) Could not find eyeD3')
+import gpodder
+from util import check_command
 
 
-TFH_TITLE='Tin Foil Hat'
+TFH_URL='http://feeds.feedburner.com/TinFoilHat'
+STEGHIDE_CMD='steghide extract -f -p %(pwd)s -sf %(img)s -xf %(file)s'
 
 
 def extract_image(filename):
@@ -77,7 +76,7 @@ def extract_shownotes(imagefile, remove_image=True):
     if not os.path.exists(imagefile):
         return shownotes
 
-    cmd = 'steghide extract -f -p %(pwd)s -sf %(img)s -xf %(file)s' % {
+    cmd = STEGHIDE_CMD % {
         'pwd': password,
         'img': imagefile,
         'file': shownotes_file
@@ -101,11 +100,12 @@ def extract_shownotes(imagefile, remove_image=True):
 
 
 class gPodderHooks(object):
-    def __init__(self, param=None):
+    def __init__(self, params=None):
         logger.info('"Tin Foil Hat" shownote extractor extension is initializing.')
+        check_command(STEGHIDE_CMD)
 
     def on_episode_downloaded(self, episode):
-        if episode.channel.title == TFH_TITLE:
+        if episode.channel.url == TFH_URL:
             filename = episode.local_filename(create=False, check_only=True)
             if filename is None:
                 return

@@ -5,6 +5,8 @@ import os
 import unittest
 import urllib2
 
+from gpodder import api
+import test_config as config
 from cmml_creator import hook
 
 LINUXOUTLAWS_FILENAME='linuxoutlaws230.ogg'
@@ -20,14 +22,36 @@ def create_cmml_from_file(ogg_file):
         print("not a Linux Outlaws file !")
 
 
+def delete_cmml_file(filename):
+    cmml_file = hook.get_cmml_filename(filename)
+    if os.path.exists(cmml_file):
+        os.remove(cmml_file)
+
+
 class TestCmmlLinuxOutlaws(unittest.TestCase):
+    def setUp(self):
+        self.client = api.PodcastClient()
+
+        url = config.TEST_PODCASTS['LinuxOutlaws']['url']
+        self.podcast = self.client.get_podcast(url)
+
+        self.episode = self.podcast.get_episodes()[-1]
+        self.filename = self.episode._episode.local_filename(create=True)
+
     def tearDown(self):
-        cmml_file = hook.get_cmml_filename(LINUXOUTLAWS_FILENAME)
-        if os.path.exists(cmml_file):
-            os.remove(cmml_file)
+        delete_cmml_file(LINUXOUTLAWS_FILENAME)
+        delete_cmml_file(self.filename)
+        self.client._db.close()
 
     def test_create_cmml(self):
         cmml_file = hook.get_cmml_filename(LINUXOUTLAWS_FILENAME)
         create_cmml_from_file(LINUXOUTLAWS_FILENAME)
+        self.assertTrue(os.path.exists(cmml_file))
+        self.assertTrue(os.path.getsize(cmml_file)>0)
+
+    def test_create_cmml_hook(self):
+        cmml_hook = hook.gPodderHooks()
+        cmml_hook.on_episode_downloaded(self.episode._episode)
+        cmml_file = hook.get_cmml_filename(self.filename)
         self.assertTrue(os.path.exists(cmml_file))
         self.assertTrue(os.path.getsize(cmml_file)>0)

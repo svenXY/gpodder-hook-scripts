@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import filecmp
+import os
 import shutil 
 import unittest
 
@@ -41,6 +42,7 @@ class TestTagging(unittest.TestCase):
         self.assertTrue(filecmp.cmp(self.mp3_file, self.mp3_file_save))
 
     def test_ogg_file(self):
+        self.assertTrue(os.path.exists(self.ogg_file))
         ogg = OggVorbis(self.ogg_file)
         self.assertTrue(ogg.has_key('coverart'))
         self.assertTrue(ogg.has_key('coverartmime'))

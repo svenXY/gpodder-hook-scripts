@@ -101,6 +101,7 @@ if __name__ == "__main__":
     import bittorrent_tests
     import cmml_creator_tests
     import rename_download_test
+    import rockbox_mp4_convert_test
     import rm_ogg_cover_test
     import tagging_test
     import tfh_shownotes_test
@@ -111,6 +112,7 @@ if __name__ == "__main__":
     suite = loader.loadTestsFromModule(bittorrent_tests)
     suite.addTests(loader.loadTestsFromModule(cmml_creator_tests))
     suite.addTests(loader.loadTestsFromModule(rename_download_test))
+    suite.addTests(loader.loadTestsFromModule(rockbox_mp4_convert_test))
     suite.addTests(loader.loadTestsFromModule(rm_ogg_cover_test))
     suite.addTests(loader.loadTestsFromModule(tagging_test))
     suite.addTests(loader.loadTestsFromModule(tfh_shownotes_test))
