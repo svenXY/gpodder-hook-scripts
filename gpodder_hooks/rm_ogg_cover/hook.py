@@ -63,7 +63,7 @@ def rm_ogg_cover(episode):
 
 
 class gPodderHooks(object):
-    def __init__(self, params=None):
+    def __init__(self, param=None):
         logger.info('Remove ogg cover extension is initializing.')
 
     def on_episode_downloaded(self, episode):

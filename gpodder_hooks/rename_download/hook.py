@@ -21,7 +21,7 @@ def rename_file(current_filename, title):
     
 
 class gPodderHooks(object):
-    def __init__(self, params=None):
+    def __init__(self, param=None):
         pass
 
     def on_episode_downloaded(self, episode):

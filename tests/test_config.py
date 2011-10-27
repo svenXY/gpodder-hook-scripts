@@ -2,7 +2,7 @@ TEST_PODCASTS = {
     # rss feed don't contains all episodes
     # we don't have to download a epiosode for the tests
     'CRETorrent': {'url': 'http://chaosradio.ccc.de/chaosradio_express-latest-bt.rss',
-                   'episode': None },
+                   'episode': -1 },
 
     # rss feed contains all episodes from the beginning
     # selected episode should be 'dh-20091121-kurz-005.ogg'

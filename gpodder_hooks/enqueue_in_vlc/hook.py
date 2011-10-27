@@ -8,7 +8,7 @@ import gpodder
 import subprocess
 
 class gPodderHooks(object):
-    def __init__(self, params=None):
+    def __init__(self, param=None):
         pass
 
     def _enqueue_episodes(self, episodes):

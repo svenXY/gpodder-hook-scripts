@@ -31,7 +31,7 @@ def mp3split(from_file, to_file):
         logger.error("mp3split: Execution failed: %s", e)
 
 class gPodderHooks(object):
-    def __init__(self, params=None):
+    def __init__(self, param=None):
         pass
 
     def on_podcast_updated(self, podcast):

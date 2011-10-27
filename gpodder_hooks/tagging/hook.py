@@ -109,7 +109,7 @@ def write_info2file(info):
 
 
 class gPodderHooks(object):
-    def __init__(self, params=None):
+    def __init__(self, param=None):
         logger.info('tagging extension is initializing.')
 
     def on_episode_downloaded(self, episode):
