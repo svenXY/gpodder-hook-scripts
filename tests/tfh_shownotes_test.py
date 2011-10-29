@@ -3,7 +3,7 @@
 import unittest
 
 from gpodder import api
-import test_config as config
+from config import data
 from tfh_shownotes import hook
 
 IMAGEFILE='/tmp/FRONT_COVER.jpeg'
@@ -13,8 +13,8 @@ DESC=u'Show Notes Get the commands at http://cafeninja.blogspot.com<img height="
 class TestTfhShownotes(unittest.TestCase):
     def setUp(self):
         self.client = api.PodcastClient()
-        self.podcast = self.client.get_podcast(config.TEST_PODCASTS['TinFoilHat']['url'])
-        self.episode = self.podcast.get_episodes()[config.TEST_PODCASTS['TinFoilHat']['episode']]
+        self.podcast = self.client.get_podcast(data.TEST_PODCASTS['TinFoilHat']['url'])
+        self.episode = self.podcast.get_episodes()[data.TEST_PODCASTS['TinFoilHat']['episode']]
         self.filename = self.episode._episode.local_filename(create=False, check_only=True)
 
     def tearDown(self):

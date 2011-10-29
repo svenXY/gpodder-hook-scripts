@@ -4,7 +4,7 @@ import os
 import unittest
 
 from gpodder import api
-import test_config as config
+from config import data
 from rename_download.hook import rename_file
 
 
@@ -12,7 +12,7 @@ class TestRenameDownloads(unittest.TestCase):
     def setUp(self):
         self.client = api.PodcastClient()
 
-        url = config.TEST_PODCASTS['TinFoilHat']['url']
+        url = data.TEST_PODCASTS['TinFoilHat']['url']
         self.podcast = self.client.get_podcast(url)
         self.podcast_title = self.podcast.title
 

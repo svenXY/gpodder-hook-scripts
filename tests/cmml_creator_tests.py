@@ -6,7 +6,7 @@ import unittest
 import urllib2
 
 from gpodder import api
-import test_config as config
+from config import data
 from cmml_creator import hook
 
 LINUXOUTLAWS_FILENAME='linuxoutlaws230.ogg'
@@ -32,7 +32,7 @@ class TestCmmlLinuxOutlaws(unittest.TestCase):
     def setUp(self):
         self.client = api.PodcastClient()
 
-        url = config.TEST_PODCASTS['LinuxOutlaws']['url']
+        url = data.TEST_PODCASTS['LinuxOutlaws']['url']
         self.podcast = self.client.get_podcast(url)
 
         self.episode = self.podcast.get_episodes()[-1]

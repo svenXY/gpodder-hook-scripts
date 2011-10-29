@@ -68,12 +68,12 @@ def ins_test_podcast(client, podcast_url, episode2dl=None):
     
 
 def init_data():
-    import test_config as config
+    from config import data
     from gpodder import api
 
     client = api.PodcastClient()
 
-    for name, conf in config.TEST_PODCASTS.items():
+    for name, conf in data.TEST_PODCASTS.items():
         ins_test_podcast(client, conf['url'], conf['episode'])
         
     client._db.close()
@@ -110,13 +110,13 @@ if __name__ == "__main__":
     loader = unittest.TestLoader()
 
     suite = loader.loadTestsFromModule(bittorrent_tests)
-    suite.addTests(loader.loadTestsFromModule(cmml_creator_tests))
-    suite.addTests(loader.loadTestsFromModule(rename_download_test))
+    #suite.addTests(loader.loadTestsFromModule(cmml_creator_tests))
+    #suite.addTests(loader.loadTestsFromModule(rename_download_test))
     suite.addTests(loader.loadTestsFromModule(rockbox_mp4_convert_test))
-    suite.addTests(loader.loadTestsFromModule(rm_ogg_cover_test))
-    suite.addTests(loader.loadTestsFromModule(tagging_test))
-    suite.addTests(loader.loadTestsFromModule(tfh_shownotes_test))
-    suite.addTests(loader.loadTestsFromModule(zpravy_test))
+    #suite.addTests(loader.loadTestsFromModule(rm_ogg_cover_test))
+    #suite.addTests(loader.loadTestsFromModule(tagging_test))
+    #suite.addTests(loader.loadTestsFromModule(tfh_shownotes_test))
+    #suite.addTests(loader.loadTestsFromModule(zpravy_test))
 
     runner = unittest.TextTestRunner(verbosity=2)
     result = runner.run(suite)

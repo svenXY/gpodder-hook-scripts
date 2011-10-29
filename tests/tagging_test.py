@@ -6,7 +6,7 @@ import unittest
 from mutagen import File
 
 from gpodder import api
-import test_config as config
+from config import data
 from tagging.hook import read_episode_info, write_info2file
 
 
@@ -14,10 +14,10 @@ class TestTagging(unittest.TestCase):
     def setUp(self):
         self.client = api.PodcastClient()
 
-        self.podcast = self.client.get_podcast(config.TEST_PODCASTS['TinFoilHat']['url'])
+        self.podcast = self.client.get_podcast(data.TEST_PODCASTS['TinFoilHat']['url'])
         self.podcast_title = self.podcast.title
 
-        index = config.TEST_PODCASTS['TinFoilHat']['episode']
+        index = data.TEST_PODCASTS['TinFoilHat']['episode']
         self.episode = self.podcast.get_episodes()[index]
         self.filename = self.episode._episode.local_filename(create=False, check_only=True)
         self.filename_save = '%s.save' % self.filename 

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="/podcast/rss-podcast-obal.xml"?><rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss"><channel><title>Zpravodajství (Český rozhlas 1 - Radiožurnál)</title><language>cs</language><link>http://www.rozhlas.cz/iradio/radiozurnal/</link>
+	   <description>Záznamy zpravodajských relací ČRo 1 - Radiožurnál za posledních 24 hodin ve formátu MP3.</description>
+<itunes:image href="http://www2.rozhlas.cz/podcast/img/podcast-radiozurnal.jpg"/>
+<itunes:author>Český rozhlas 1 - Radiožurnál</itunes:author>
+<itunes:category text="News"/>
+
+	   		<itunes:keywords>Zprávy zpravodajství Český rozhlas 1 - Radiožurnál</itunes:keywords>
+<copyright>(c) Český rozhlas 2000 - 2011</copyright><item><title>Zprávy (29.10. 15:00)</title><enclosure url="http://195.113.180.50/media/zpravy/2011-cro1_10_29_15_00.mp3" type="audio/mpeg" length="999999"></enclosure><media:content url="http://195.113.180.50/media/zpravy/2011-cro1_10_29_15_00.mp3" 
+fileSize="999999" 
+type="audio/mpeg"
+expression="full" 
+duration="360"
+bitrate="48"/>
+</item><item><title>Zprávy (29.10. 15:00)</title><enclosure url="http://195.113.180.50/media/zpravy/2011-cro1_10_29_15_00.mp3" type="audio/mpeg" length="0"></enclosure><media:content url="http://195.113.180.50/media/zpravy/2011-cro1_10_29_15_00.mp3" 
+fileSize="0" 
+type="audio/mpeg"
+expression="full" 
+duration="550"
+bitrate="48"/>
+</item><item><title>Zprávy (29.10. 14:00)</title><enclosure url="http://195.113.180.50/media/zpravy/2011-cro1_10_29_14_00.mp3" type="audio/mpeg" length="999999"></enclosure><media:content url="http://195.113.180.50/media/zpravy/2011-cro1_10_29_14_00.mp3" 
+fileSize="999999" 
+type="audio/mpeg"
+expression="full" 
+duration="360"
+bitrate="48"/>
+</item><item><title>Zprávy (29.10. 14:00)</title><enclosure url="http://195.113.180.50/media/zpravy/2011-cro1_10_29_14_00.mp3" type="audio/mpeg" length="0"></enclosure><media:content url="http://195.113.180.50/media/zpravy/2011-cro1_10_29_14_00.mp3" 
+fileSize="0" 
+type="audio/mpeg"
+expression="full" 
+duration="550"
+bitrate="48"/>
+</item><item><title>Zprávy (29.10. 13:00)</title><enclosure url="http://195.113.180.50/media/zpravy/2011-cro1_10_29_13_00.mp3" type="audio/mpeg" length="999999"></enclosure><media:content url="http://195.113.180.50/media/zpravy/2011-cro1_10_29_13_00.mp3" 
+fileSize="999999" 
+type="audio/mpeg"
+expression="full" 
+duration="360"
+bitrate="48"/>
+</item><item><title>Zprávy (29.10. 13:00)</title><enclosure url="http://195.113.180.50/media/zpravy/2011-cro1_10_29_13_00.mp3" type="audio/mpeg" length="0"></enclosure><media:content url="http://195.113.180.50/media/zpravy/2011-cro1_10_29_13_00.mp3" 
+fileSize="0" 
+type="audio/mpeg"
+expression="full" 
+duration="550"
+bitrate="48"/>
+</item><item><title>Zprávy (29.10. 12:00)</title><enclosure url="http://195.113.180.50/media/zpravy/2011-cro1_10_29_12_00.mp3" type="audio/mpeg" length="999999"></enclosure><media:content url="http://195.113.180.50/media/zpravy/2011-cro1_10_29_12_00.mp3" 
+fileSize="999999" 
+type="audio/mpeg"
+expression="full" 
+duration="360"
+bitrate="48"/>
+</item><item><title>Zprávy (29.10. 11:00)</title><enclosure url="http://195.113.180.50/media/zpravy/2011-cro1_10_29_11_00.mp3" type="audio/mpeg" length="999999"></enclosure><media:content url="http://195.113.180.50/media/zpravy/2011-cro1_10_29_11_00.mp3" 
+fileSize="999999" 
+type="audio/mpeg"
+expression="full" 
+duration="360"
+bitrate="48"/>
+</item><item><title>Zprávy (29.10. 10:00)</title><enclosure url="http://195.113.180.50/media/zpravy/2011-cro1_10_29_10_00.mp3" type="audio/mpeg" length="999999"></enclosure><media:content url="http://195.113.180.50/media/zpravy/2011-cro1_10_29_10_00.mp3" 
+fileSize="999999" 
+type="audio/mpeg"
+expression="full" 
+duration="360"
+bitrate="48"/>
+</item><item><title>Zprávy (29.10. 10:00)</title><enclosure url="http://195.113.180.50/media/zpravy/2011-cro1_10_29_10_00.mp3" type="audio/mpeg" length="0"></enclosure><media:content url="http://195.113.180.50/media/zpravy/2011-cro1_10_29_10_00.mp3" 
+fileSize="0" 
+type="audio/mpeg"
+expression="full" 
+duration="550"
+bitrate="48"/>
+</item><item><title>Zprávy (29.10. 09:00)</title><enclosure url="http://195.113.180.50/media/zpravy/2011-cro1_10_29_09_00.mp3" type="audio/mpeg" length="999999"></enclosure><media:content url="http://195.113.180.50/media/zpravy/2011-cro1_10_29_09_00.mp3" 
+fileSize="999999" 
+type="audio/mpeg"
+expression="full" 
+duration="360"
+bitrate="48"/>
+</item><item><title>Zprávy (29.10. 09:00)</title><enclosure url="http://195.113.180.50/media/zpravy/2011-cro1_10_29_09_00.mp3" type="audio/mpeg" length="0"></enclosure><media:content url="http://195.113.180.50/media/zpravy/2011-cro1_10_29_09_00.mp3" 
+fileSize="0" 
+type="audio/mpeg"
+expression="full" 
+duration="550"
+bitrate="48"/>
+</item></channel></rss>
+

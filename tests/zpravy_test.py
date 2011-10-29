@@ -3,14 +3,14 @@
 import unittest
 
 from gpodder import api
-import test_config as config
+from config import data
 from zpravy.hook import get_pubdate
 
 
 class TestZpravy(unittest.TestCase):
     def setUp(self):
         self.client = api.PodcastClient()
-        self.podcast = self.client.get_podcast(config.TEST_PODCASTS['Zpravy']['url'])
+        self.podcast = self.client.get_podcast(data.TEST_PODCASTS['Zpravy']['url'])
         self.episode = self.podcast.get_episodes()[-1]
 
     def tearDown(self):
