@@ -18,12 +18,14 @@ import subprocess
 
 import logging
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
 
-FFMPEG_CMD = 'ffmpeg -i %(infile)s -vcodec copy -acodec copy %(outfile)s'
+
+FFMPEG_CMD = 'ffmpeg -i "%(infile)s" -vcodec copy -acodec copy "%(outfile)s"'
+#FFMPEG_CMD = 'ffmpeg -i "%(infile)s" -vcodec copy -acodec libfaac -aq 200 "%(outfile)s"'
 
 class gPodderHooks(object):
-    def __init__(self, params=None):
+    def __init__(self, params=None, test=False):
+        self.test = test
         check_command(FFMPEG_CMD) 
 
     def on_episode_downloaded(self, episode):
@@ -56,13 +58,17 @@ class gPodderHooks(object):
             'infile': filename,
             'outfile': target 
         }
-        ffmpeg = subprocess.Popen(shlex.split(cmd))
+        ffmpeg = subprocess.Popen(shlex.split(str(cmd)),
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE
+        )
+        stdout, stderr = ffmpeg.communicate()
 
-        if ffmpeg.wait() == 0:
+        if ffmpeg.returncode == 0:
             logger.info('FLV conversion successful.')
-            os.remove(filename)
-            episode.download_filename = basename+'.mp4'
-            episode.save()
+            if not self.test:
+                os.remove(filename)
+                episode.download_filename = basename+'.mp4'
+                episode.save()
         else:
             logger.info('Error converting file. FFMPEG installed?')
             try:

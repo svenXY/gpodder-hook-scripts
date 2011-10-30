@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import os.path
+import os
+import shutil
 import unittest
 
 from gpodder import api
@@ -18,13 +19,19 @@ class TestFlv2Mp4(unittest.TestCase):
 
         self.episode = self.podcast.get_episodes()[episode_no]
         self.filename = self.episode._episode.local_filename(create=False, check_only=True)
+        self.converted_file = os.path.splitext(self.filename)[0] + '.mp4'
 
     def tearDown(self):
         self.client._db.close()
+        
+        if os.path.exists(self.converted_file):
+            os.remove(self.converted_file)
 
     def test_mp4convert(self):
         self.assertIsNotNone(self.filename)
-        self.assertEqual(self.episode._episode.title, 'Corporations Are People, Too')
 
-        flv_hook = hook.gPodderHooks()
+        flv_hook = hook.gPodderHooks(test=True)
         flv_hook.on_episode_downloaded(self.episode._episode)
+
+        self.assertTrue(os.path.exists(self.converted_file))
+        self.assertTrue(os.path.getsize(self.converted_file)>0)

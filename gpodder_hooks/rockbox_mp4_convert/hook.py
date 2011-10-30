@@ -9,8 +9,9 @@
 # Copyright (c) 2011-04-06 Guy Sheffer <guysoft at gmail.com>
 # Copyright (c) 2011-04-04 Thomas Perl <thp.io>
 # Licensed under the same terms as gPodder itself
-from util import check_command, init_dbus, message
 from gpodder import util
+from metadata import metadata
+from util import check_command, init_dbus, message
 
 import kaa.metadata
 import os
@@ -103,7 +104,7 @@ def convert_mp4(from_file, params):
     dest_width, dest_height = resolution
         
     # Running conversion command (ffmpeg)
-    message(NOTIFY_INTERFACE, 'Running conversion script',
+    message(NOTIFY_INTERFACE, metadata['name'], 'Running conversion script',
         "Converting '%s'" % from_file
     )
     convert_command = FFMPEG_CMD % {

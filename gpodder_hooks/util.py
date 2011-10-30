@@ -24,8 +24,8 @@ def init_dbus():
     return notify_interface
 
 
-def message(notify_interface, title, message):
+def message(notify_interface, hook_name, title, message):
     """Send a notify message via Dbus"""
-    notify_interface.Notify("test-notify", 0, '', title,
+    notify_interface.Notify('gPodder: %s' % hook_name, 0, '', title,
         message, [], {}, -1
     )

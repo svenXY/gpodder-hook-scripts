@@ -58,6 +58,9 @@ def check_version(gpo_bin):
 
 
 def ins_test_podcast(client, podcast_url, episode2dl=None):
+    if client.get_podcast(podcast_url) is not None:
+        return
+
     podcast = client.create_podcast(podcast_url)
     podcast.disable()
 
@@ -72,6 +75,10 @@ def init_data():
     from gpodder import api
 
     client = api.PodcastClient()
+
+    # set preferred youtube format to FLV (for flv2mp4 test)
+    client._config.youtube_preferred_fmt_id = 34 
+    client._config.save()
 
     for name, conf in data.TEST_PODCASTS.items():
         ins_test_podcast(client, conf['url'], conf['episode'])
@@ -101,7 +108,7 @@ if __name__ == "__main__":
     import bittorrent_test
     import cmml_creator_test
     import enqueue_in_vlc_test
-    #import flv2mp4_test
+    import flv2mp4_test
     import rename_download_test
     import rm_ogg_cover_test
     import rockbox_mp4_convert_test
@@ -114,7 +121,7 @@ if __name__ == "__main__":
     suite = loader.loadTestsFromModule(bittorrent_test)
     suite.addTests(loader.loadTestsFromModule(cmml_creator_test))
     suite.addTests(loader.loadTestsFromModule(enqueue_in_vlc_test))
-    #suite.addTests(loader.loadTestsFromModule(flv2mp4_test))
+    suite.addTests(loader.loadTestsFromModule(flv2mp4_test))
     suite.addTests(loader.loadTestsFromModule(rename_download_test))
     suite.addTests(loader.loadTestsFromModule(rm_ogg_cover_test))
     suite.addTests(loader.loadTestsFromModule(rockbox_mp4_convert_test))
