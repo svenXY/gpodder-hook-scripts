@@ -19,12 +19,12 @@ def mp3split(from_file, to_file):
         logger.debug("mp3split: destination is %s", destination)
         command = 'mp3splt -ft 10.00 -o "@f_@n" "%s" -d "%s"' % (from_file, destination)
         logger.debug("mp3split: Executing %s", command)
-        p = subprocess.Popen(command, shell=True)
+        p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         # retcode[1] values:
         #  <0: error
         #   0: success, script handle the copy by hand(snif, progress bar is not used)
-        retcode = os.waitpid(p.pid, 0)
-        logger.debug("mp3split: Child with pid %s returned %s", retcode[0], retcode[1])
+        stdout, stderr = p.communicate()
+        logger.debug("mp3split: Prozess returned %s", p.returncode)
         os.remove(to_file)
         logger.info("mp3split: Original file %s removed", to_file)
     except OSError, e:

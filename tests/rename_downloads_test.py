@@ -13,10 +13,11 @@ class TestRenameDownloads(unittest.TestCase):
         self.client = api.PodcastClient()
 
         url = data.TEST_PODCASTS['TinFoilHat']['url']
+        episodeno = data.TEST_PODCASTS['TinFoilHat']['episode']
         self.podcast = self.client.get_podcast(url)
         self.podcast_title = self.podcast.title
 
-        self.episode = self.podcast.get_episodes()[-1]
+        self.episode = self.podcast.get_episodes()[episodeno]
         self.filename = self.episode._episode.local_filename(create=False, check_only=True)
         self.title = self.episode.title
 
