@@ -32,8 +32,8 @@ TEST_PODCASTS = {
     'TEDTalks': {'url': 'file://%s/tedtalks_video.rss' % config_dir,
                  'episode': -31},
 
-    # selected episode should be 'Richie Hawtin, "The Tunnel" music video, directed by Ali Demirel. (flv)'
-    #'drovics': {#'url': 'http://m-nus.com/podcast.xml',
-    #            'url': 'https://www.youtube.com/user/drovics',
-    #            'episode': 0 },
+    # YouTube-Channel
+    'drovics': {#'url': 'https://www.youtube.com/user/drovics',
+                'url': 'http://gdata.youtube.com/feeds/base/users/drovics/uploads?alt=rss&v=2&orderby=published&client=ytapi-youtube-profile',
+                'episode': 0 },
 }
