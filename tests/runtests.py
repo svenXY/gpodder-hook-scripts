@@ -101,10 +101,10 @@ if __name__ == "__main__":
     import bittorrent_test
     import cmml_creator_test
     import enqueue_in_vlc_test
-    import flv2mp4_test
+    #import flv2mp4_test
     import rename_download_test
-    import rockbox_mp4_convert_test
     import rm_ogg_cover_test
+    import rockbox_mp4_convert_test
     import tagging_test
     import tfh_shownotes_test
     import zpravy_test
@@ -116,8 +116,8 @@ if __name__ == "__main__":
     suite.addTests(loader.loadTestsFromModule(enqueue_in_vlc_test))
     #suite.addTests(loader.loadTestsFromModule(flv2mp4_test))
     suite.addTests(loader.loadTestsFromModule(rename_download_test))
-    suite.addTests(loader.loadTestsFromModule(rockbox_mp4_convert_test))
     suite.addTests(loader.loadTestsFromModule(rm_ogg_cover_test))
+    suite.addTests(loader.loadTestsFromModule(rockbox_mp4_convert_test))
     suite.addTests(loader.loadTestsFromModule(tagging_test))
     suite.addTests(loader.loadTestsFromModule(tfh_shownotes_test))
     suite.addTests(loader.loadTestsFromModule(zpravy_test))
