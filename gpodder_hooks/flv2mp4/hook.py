@@ -21,7 +21,7 @@ logger = logging.getLogger(__name__)
 
 
 FFMPEG_CMD = 'ffmpeg -i "%(infile)s" -vcodec copy -acodec copy "%(outfile)s"'
-#FFMPEG_CMD = 'ffmpeg -i "%(infile)s" -vcodec copy -acodec libfaac -aq 200 "%(outfile)s"'
+
 
 class gPodderHooks(object):
     def __init__(self, params=None, test=False):
