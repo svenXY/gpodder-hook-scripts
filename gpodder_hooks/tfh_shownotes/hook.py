@@ -35,8 +35,17 @@ import logging
 logger = logging.getLogger(__name__)
 
 import gpodder
+from metadata import metadata
 from util import check_command
 
+
+DEFAULT_PARAMS = { 
+    "context_menu": {
+        "desc": "add plugin to the context-menu",
+        "value": True,
+        "type": "checkbox"
+    }   
+}
 
 TFH_URL='http://feeds.feedburner.com/TinFoilHat'
 STEGHIDE_CMD='steghide extract -f -p %(pwd)s -sf %(img)s -xf %(file)s'
@@ -96,9 +105,19 @@ def extract_shownotes(imagefile, remove_image=True):
 
 
 class gPodderHooks(object):
-    def __init__(self, params=None):
+    def __init__(self, params=DEFAULT_PARAMS):
         logger.info('"Tin Foil Hat" shownote extractor extension is initializing.')
+        self.params = params
+
         check_command(STEGHIDE_CMD)
+
+    def _download_shownotes(self, episodes):
+        for episode in episodes:
+            self.on_episode_downloaded(episode)
+
+    def on_episodes_context_menu(self, episodes):
+        if self.params['context_menu'] and TFH_URL in [e.channel.url for e in episodes]:
+            return [(metadata['name'], self._download_shownotes)]
 
     def on_episode_downloaded(self, episode):
         if episode.channel.url == TFH_URL:
