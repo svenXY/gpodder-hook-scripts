@@ -31,4 +31,9 @@ TEST_PODCASTS = {
     # selected episode should be 'TED: Matt Cutts: Try something new for 30 days - Matt Cutts (2011)'
     'TEDTalks': {'url': 'file://%s/tedtalks_video.rss' % config_dir,
                  'episode': -31},
+
+    # selected episode should be 'Richie Hawtin, "The Tunnel" music video, directed by Ali Demirel. (flv)'
+    #'drovics': {#'url': 'http://m-nus.com/podcast.xml',
+    #            'url': 'https://www.youtube.com/user/drovics',
+    #            'episode': 0 },
 }

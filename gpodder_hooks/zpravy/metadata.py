@@ -4,6 +4,3 @@ metadata = {
     "authors": [ 'Jan Lana <lana.jan@gmail.org>', 'Bernd Schlapsi <brot@gmx.info>' ],
     "url": 'https://github.com/gpodder/gpodder-hook-scripts',
 }
-
-params = {
-}

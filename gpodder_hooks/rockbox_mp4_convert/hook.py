@@ -9,10 +9,9 @@
 # Copyright (c) 2011-04-06 Guy Sheffer <guysoft at gmail.com>
 # Copyright (c) 2011-04-04 Thomas Perl <thp.io>
 # Licensed under the same terms as gPodder itself
-from util import check_command
+from util import check_command, init_dbus, message
 from gpodder import util
 
-import dbus #For onscreen messages
 import kaa.metadata
 import os
 import shlex
@@ -44,27 +43,7 @@ ROCKBOX_EXTENTION = "mpg"
 EXTENTIONS_TO_CONVERT = ['.mp4',"." + ROCKBOX_EXTENTION]
 FFMPEG_CMD = 'ffmpeg -y -i "%(from)s" -s %(width)sx%(height)s %(options)s "%(to)s"'
 
-
-#create a session 
-bus = dbus.SessionBus()
-
-#Get the required notification service
-notify_service = bus.get_object('org.freedesktop.Notifications', \
-        '/org/freedesktop/Notifications')
-
-#interface for a message
-notify_interface = dbus.Interface(notify_service, \
-        'org.freedesktop.Notifications')
-
-
-def message(title,message):
-    '''
-    Send a notify message via Dbus
-    '''
-    pass
-    #notify_interface.Notify("test-notify", 0, '', title, \
-    #    message, [], {}, -1)
-
+NOTIFY_INTERFACE = init_dbus()
 
 def get_rockbox_filename(origin_filename):
     if not os.path.exists(origin_filename):
@@ -101,10 +80,8 @@ def calc_resolution(video_width, video_height, device_width, device_height):
     return (dest_width, dest_height)
 
 
-def convertMP4(from_file, params):
-    '''
-    Convert MP4 file to rockbox mpg file
-    '''
+def convert_mp4(from_file, params):
+    """Convert MP4 file to rockbox mpg file"""
     # generate new filename and check if the file already exists
     to_file = get_rockbox_filename(from_file)
     if os.path.isfile(to_file):
@@ -126,7 +103,9 @@ def convertMP4(from_file, params):
     dest_width, dest_height = resolution
         
     # Running conversion command (ffmpeg)
-    message('Running conversion script',"Converting '%s'" % from_file)
+    message(NOTIFY_INTERFACE, 'Running conversion script',
+        "Converting '%s'" % from_file
+    )
     convert_command = FFMPEG_CMD % {
         'from': from_file,
         'to': to_file,
@@ -155,7 +134,7 @@ class gPodderHooks(object):
 
     def on_episode_downloaded(self, episode):
         current_filename = episode.local_filename(False)
-        converted_filename = convertMP4(current_filename, self.params)
+        converted_filename = convert_mp4(current_filename, self.params)
 
         if converted_filename is not None:
             episode.filename = os.path.basename(converted_filename)

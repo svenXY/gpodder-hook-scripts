@@ -9,22 +9,28 @@
 
 import gpodder
 from gpodder import youtube
+from metadata import metadata
+from util import check_command
 
 import os
+import shlex
 import subprocess
 
 import logging
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
+FFMPEG_CMD = 'ffmpeg -i %(infile)s -vcodec copy -acodec copy %(outfile)s'
 
 class gPodderHooks(object):
     def __init__(self, params=None):
-        pass
+        check_command(FFMPEG_CMD) 
 
     def on_episode_downloaded(self, episode):
         self._convert_episode(episode)
 
     def on_episodes_context_menu(self, episodes):
-        return [('Convert FLV to MP4', self._convert_episodes)]
+        return [(metadata['name'], self._convert_episodes)]
 
     def _convert_episode(self, episode):
         if not youtube.is_video_link(episode.url):
@@ -46,8 +52,11 @@ class gPodderHooks(object):
             filename = newname
 
         target = os.path.join(dirname, basename+'.mp4')
-        ffmpeg = subprocess.Popen(['ffmpeg', '-i', filename,
-            '-vcodec', 'copy', '-acodec', 'copy', target])
+        cmd = FFMPEG_CMD % {
+            'infile': filename,
+            'outfile': target 
+        }
+        ffmpeg = subprocess.Popen(shlex.split(cmd))
 
         if ffmpeg.wait() == 0:
             logger.info('FLV conversion successful.')

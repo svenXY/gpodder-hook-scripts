@@ -61,7 +61,7 @@ def ins_test_podcast(client, podcast_url, episode2dl=None):
     podcast = client.create_podcast(podcast_url)
     podcast.disable()
 
-    if episode2dl:
+    if episode2dl is not None:
         episode = podcast.get_episodes()[episode2dl]
         if (not episode.is_downloaded):
             episode.download()
@@ -98,8 +98,10 @@ if __name__ == "__main__":
         init_data()
 
     #import all test files
-    import bittorrent_tests
-    import cmml_creator_tests
+    import bittorrent_test
+    import cmml_creator_test
+    import enqueue_in_vlc_test
+    import flv2mp4_test
     import rename_download_test
     import rockbox_mp4_convert_test
     import rm_ogg_cover_test
@@ -109,14 +111,16 @@ if __name__ == "__main__":
 
     loader = unittest.TestLoader()
 
-    suite = loader.loadTestsFromModule(bittorrent_tests)
-    #suite.addTests(loader.loadTestsFromModule(cmml_creator_tests))
-    #suite.addTests(loader.loadTestsFromModule(rename_download_test))
+    suite = loader.loadTestsFromModule(bittorrent_test)
+    suite.addTests(loader.loadTestsFromModule(cmml_creator_test))
+    suite.addTests(loader.loadTestsFromModule(enqueue_in_vlc_test))
+    #suite.addTests(loader.loadTestsFromModule(flv2mp4_test))
+    suite.addTests(loader.loadTestsFromModule(rename_download_test))
     suite.addTests(loader.loadTestsFromModule(rockbox_mp4_convert_test))
-    #suite.addTests(loader.loadTestsFromModule(rm_ogg_cover_test))
-    #suite.addTests(loader.loadTestsFromModule(tagging_test))
-    #suite.addTests(loader.loadTestsFromModule(tfh_shownotes_test))
-    #suite.addTests(loader.loadTestsFromModule(zpravy_test))
+    suite.addTests(loader.loadTestsFromModule(rm_ogg_cover_test))
+    suite.addTests(loader.loadTestsFromModule(tagging_test))
+    suite.addTests(loader.loadTestsFromModule(tfh_shownotes_test))
+    suite.addTests(loader.loadTestsFromModule(zpravy_test))
 
     runner = unittest.TextTestRunner(verbosity=2)
     result = runner.run(suite)

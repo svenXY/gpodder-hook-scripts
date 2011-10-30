@@ -43,9 +43,7 @@ STEGHIDE_CMD='steghide extract -f -p %(pwd)s -sf %(img)s -xf %(file)s'
 
 
 def extract_image(filename):
-    """
-    extract image from the podcast file
-    """
+    """extract image from the podcast file"""
     imagefile = None
     try:
         if eyeD3.isMp3File(filename):
@@ -66,9 +64,7 @@ def extract_image(filename):
 
 
 def extract_shownotes(imagefile, remove_image=True):
-    """
-    extract shownotes from the FRONT_COVER.jpeg
-    """
+    """extract shownotes from the FRONT_COVER.jpeg"""
     shownotes = None
     password = 'tinfoilhat'
     shownotes_file = '/tmp/shownotes.txt'
