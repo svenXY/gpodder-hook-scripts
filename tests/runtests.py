@@ -58,11 +58,10 @@ def check_version(gpo_bin):
 
 
 def ins_test_podcast(client, podcast_url, episode2dl=None):
-    if client.get_podcast(podcast_url) is not None:
-        return
-
-    podcast = client.create_podcast(podcast_url)
-    podcast.disable()
+    podcast = client.get_podcast(podcast_url)
+    if podcast is None:
+        podcast = client.create_podcast(podcast_url)
+        podcast.disable()
 
     if episode2dl is not None:
         episode = podcast.get_episodes()[episode2dl]
