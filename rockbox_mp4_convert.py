@@ -9,130 +9,130 @@
 # Copyright (c) 2011-04-06 Guy Sheffer <guysoft at gmail.com>
 # Copyright (c) 2011-04-04 Thomas Perl <thp.io>
 # Licensed under the same terms as gPodder itself
+from gpodder import util
 
-DEFAULT_DEVICE_WIDTH = 224.0 #make sure to include the .0, this is a float
-DEFAULT_DEVICE_HEIGHT = 176.0
-ROCKBOX_EXTENTION = "mpg"
-EXTENTIONS_TO_CONVERT = ['.mp4',"." + ROCKBOX_EXTENTION] 
+import dbus
+import kaa.metadata
+import os
+import shlex
+import subprocess
+
+import logging
+logger = logging.getLogger(__name__)
+
+
+DEVICE_WIDTH = 224.0
+DEVICE_HEIGHT = 176.0
+FFMPEG_CMD = 'ffmpeg -y -i "%(from)s" -s %(width)sx%(height)s %(options)s "%(to)s"'
 FFMPEG_OPTIONS = '-vcodec mpeg2video -b 500k -ab 192k -ac 2 -ar 44100 -acodec libmp3lame'
 
-from gpodder import util
-import os
-import os.path
+ROCKBOX_EXTENTION = "mpg"
+EXTENTIONS_TO_CONVERT = ['.mp4',"." + ROCKBOX_EXTENTION]
 
-import kaa.metadata
-#import subprocess
-import time
-
-import dbus #For onscreen messages
-
-#create a session 
 bus = dbus.SessionBus()
-
-#Get the required notification service
 notify_service = bus.get_object('org.freedesktop.Notifications', \
-        '/org/freedesktop/Notifications')
-
-#interface for a message
+    '/org/freedesktop/Notifications')
 notify_interface = dbus.Interface(notify_service, \
-        'org.freedesktop.Notifications')
-def message(title,message):
-    '''
-    Send a notify message via Dbus
-    '''
-    notify_interface.Notify("test-notify", 0, '', title, \
-        message, [], {}, -1)
+    'org.freedesktop.Notifications')
 
-def convertMP4(from_file, to_file):
-    '''
-    Convert MP4 file to rockbox mpg file
-    '''
-    time.sleep(4)
-    
-    #input_command = self.decoder_command % input_filename
-    #output_command = self.encoder_command % output_filename
-    
-    if not os.path.isfile(to_file):
+
+def message(title, message):
+    """Send a notify message via Dbus"""
+    notify_interface.Notify("test-notify", 0, '', title,
+        message, [], {}, -1
+    )   
+
+
+def get_rockbox_filename(origin_filename):
+    if not os.path.exists(origin_filename):
+        return None
+
+    dirname = os.path.dirname(origin_filename)
+    filename = os.path.basename(origin_filename)
+    basename, ext = os.path.splitext(filename)
+
+    if ext not in EXTENTIONS_TO_CONVERT:
+        return None
+
+    if filename.endswith(ROCKBOX_EXTENTION):
+        new_filename = "%s-convert.%s" % (basename, ROCKBOX_EXTENTION)
+    else:
+        new_filename = "%s.%s" % (basename, ROCKBOX_EXTENTION)
+    return os.path.join(dirname, new_filename)
+
+
+def calc_resolution(video_width, video_height, device_width, device_height):
+    if video_height is None:
+        return None
         
-        print "Converting:" + from_file
-        info = kaa.metadata.parse(from_file)
+    width_ratio = device_width / video_width
+    height_ratio = device_height / video_height
+                
+    dest_width = device_width
+    dest_height = width_ratio * video_height
+                
+    if dest_height > device_height:
+        dest_width = height_ratio * video_width
+        dest_height = device_height
+
+    return (dest_width, dest_height)
+
+
+def convert_mp4(from_file):
+    """Convert MP4 file to rockbox mpg file"""
+    # generate new filename and check if the file already exists
+    to_file = get_rockbox_filename(from_file)
+    if os.path.isfile(to_file):
+        return to_file
+
+    logger.info("Converting: %s", from_file)
+
+    # calculationg the new screen resolution
+    info = kaa.metadata.parse(from_file)
+    resolution = calc_resolution(
+        info.video[0].width,
+        info.video[0].height,
+        DEVICE_WIDTH,
+        DEVICE_HEIGHT
+    )
+    if resolution is None:
+        logger.error("Error calculating the new screen resolution") 
+        return None
+    dest_width, dest_height = resolution
         
-        deviceWidth = DEFAULT_DEVICE_WIDTH
-        deviceHeight = DEFAULT_DEVICE_HEIGHT
-        width = info.video[0].width
-        height = info.video[0].height
-        
-        try:
-            if height != None:
-                
-                destWidth = DEFAULT_DEVICE_WIDTH
-                destHeight = DEFAULT_DEVICE_HEIGHT
-                
-                widthRatio = destWidth/width
-                heightRatio = deviceHeight/height
-                
-                destWidth = deviceWidth
-                destHeight = widthRatio*height
-                
-                if destHeight > deviceHeight:
-                    destHeight = deviceHeight
-                    destWidth = heightRatio*width
-                message('Running conversion script',"Converting  "+ from_file)
-                
-                convert_command = 'ffmpeg -y -i "' + from_file +'" -s ' + str(int(destWidth))+ 'x' +  str(int(destHeight)) + ' ' + FFMPEG_OPTIONS + ' "' + to_file + '"'
-                
-                #process = subprocess.Popen(convert_command, stdout=subprocess.PIPE, shell=True)
-                os.system(convert_command)
-            else:
-                raise
-        except:
-            message('Conversion error',"Could not locate file for Conversion:  "+ from_file)
-    return
-            
-print "RockBox mp4 converter hook loaded"
+    # Running conversion command (ffmpeg)
+    message('Running conversion script', "Converting '%s'" % from_file)
+    convert_command = FFMPEG_CMD % {
+        'from': from_file,
+        'to': to_file,
+        'width': str(int(dest_width)),
+        'height': str(int(dest_height)),
+        'options': FFMPEG_OPTIONS
+    }
+
+    # Prior to Python 2.7.3, this module (shlex) did not support Unicode input.
+    process = subprocess.Popen(shlex.split(str(convert_command)),
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    stdout, stderr = process.communicate()
+    if process.returncode != 0:
+        logger.error(stderr)
+        return None
+
+    return to_file
+
+
 class gPodderHooks(object):
+    def __init__(self):
+        logger.info("RockBox mp4 converter hook loaded")
+
     def on_episode_downloaded(self, episode):
-        
-        try:            
-            current_filename = episode.local_filename(False)
-            
-            dirname = os.path.dirname(current_filename)
-            filename = os.path.basename(current_filename)
-            basename, ext = os.path.splitext(filename)
-            
-            #print ext + " "+ str(EXTENTIONS_TO_CONVERT)
-        except:
-            print "Exception!"
-            
-        if  ext in EXTENTIONS_TO_CONVERT:
-            print "Converting"
-            #new_filename = util.sanitize_encoding(episode.title) + ext
-            
-            new_filename = (current_filename[:- len(ext)]) +  "." + ROCKBOX_EXTENTION
-            new_filebasename = basename + "." + ROCKBOX_EXTENTION
-            
-            if filename.endswith(ROCKBOX_EXTENTION):
-                tmpFilename= current_filename + ".tmp"
-                os.rename(current_filename , tmpFilename)
-                current_filename = tmpFilename
-                dirname = os.path.dirname(current_filename)
-                filename = os.path.basename(current_filename)
-                basename, ext = os.path.splitext(filename)
-                            
-            
-                
-            print 'Renaming:', filename, '->', new_filename
-    
-            destination_filename = os.path.join(dirname, new_filename)
-            
-            convertMP4(current_filename, destination_filename)
-            
-            #os.rename(current_filename, destination_filename)
-            
-            episode.filename = os.path.basename(destination_filename)
+        current_filename = episode.local_filename(False)
+        converted_filename = convert_mp4(current_filename)
+
+        if converted_filename is not None:
+            episode.filename = os.path.basename(converted_filename)
             episode.save()
             os.remove(current_filename)
-            print "done converting!"
+            logger.info('Conversion for %s was successfully' % current_filename)
         else:
-            print "Not converting"
-
+            logger.info('Conversion for %s had errors' % current_filename)

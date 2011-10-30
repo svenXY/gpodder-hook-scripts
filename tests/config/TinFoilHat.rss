@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" media="screen" href="/~d/styles/rss2enclosuresfull.xsl"?><?xml-stylesheet type="text/css" media="screen" href="http://feeds.feedburner.com/~d/styles/itemcontent.css"?><rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:creativeCommons="http://backend.userland.com/creativeCommonsRssModule" xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0" version="2.0">
+	<channel>
+		
+		<lastBuildDate>Sat, 22 Oct 2011 13:13:51 -0400</lastBuildDate>
+		<title>Tin Foil Hat</title>
+		<itunes:author>CafeNinja</itunes:author>
+		<link>http://www.fuzionpodcastnetwork.com</link>
+		<generator>Podcast Maker v1.4.0 - http://www.lemonzdream.com/podcastmaker</generator>
+		<description><![CDATA[This is CafeNinja’s soap-box for political awareness in regards to digital rights and practical personal security in the digital age. Following the latest in legal and policy changes with analysis on how it impacts you and your life. As well as practical tips and tricks on how the common non-hacker can help protect themselves online.]]></description>
+		<itunes:subtitle>This is CafeNinja’s soap-box for political awareness in regards to digital rights and practical personal security in the digital age. Following the latest in legal and policy changes with analysis on how it impacts you and your life. As well as practical </itunes:subtitle>
+		<itunes:summary>This is CafeNinja’s soap-box for political awareness in regards to digital rights and practical personal security in the digital age. Following the latest in legal and policy changes with analysis on how it impacts you and your life. As well as practical tips and tricks on how the common non-hacker can help protect themselves online.</itunes:summary>
+		<language>en</language>
+		<copyright>CreativeCommons Attribution-Noncommercial-Share Alike 3.0 United States License.</copyright>
+		<image>
+			<url>http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TinFoilHat_144.jpg</url>
+			<title>Tin Foil Hat</title>
+			<link>http://www.fuzionpodcastnetwork.com</link>
+			<width>144</width>
+			<height>120</height>
+		</image>
+		<itunes:image href="http://fuzionpodcastnetwork.com/wordpress/wp-content/uploads/2010/10/TinFoilHat-560x315.jpg" />
+		<category>Podcasting</category>
+		
+		<itunes:keywords>rights,security,digital,linux,online,fuzionpodcastnetwork</itunes:keywords>
+		<itunes:explicit>no</itunes:explicit>
+		<atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/rss+xml" href="http://feeds.feedburner.com/TinFoilHat" /><feedburner:info uri="tinfoilhat" /><atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="hub" href="http://pubsubhubbub.appspot.com/" /><media:copyright>CreativeCommons Attribution-Noncommercial-Share Alike 3.0 United States License.</media:copyright><media:thumbnail url="http://fuzionpodcastnetwork.com/wordpress/wp-content/uploads/2010/10/TinFoilHat-560x315.jpg" /><media:keywords>rights,security,digital,linux,online,fuzionpodcastnetwork</media:keywords><media:category scheme="http://www.itunes.com/dtds/podcast-1.0.dtd">Technology</media:category><itunes:owner><itunes:email>tinfoilhatshow@gmail.com</itunes:email><itunes:name>CafeNinja</itunes:name></itunes:owner><itunes:category text="Technology" /><creativeCommons:license>http://creativecommons.org/licenses/by-nc-sa/3.0/</creativeCommons:license><item>
+			<title>Unplug, walk away and no one will get hurt.</title>
+			<itunes:author>CafeNinja</itunes:author>
+			<description>Show Notes Get the commands at http://cafeninja.blogspot.com&lt;img src="http://feeds.feedburner.com/~r/TinFoilHat/~4/Xx65pqvcaxg" height="1" width="1"/&gt;</description>
+			<itunes:subtitle>Show Notes Get the commands at http://cafeninja.blogspot.com</itunes:subtitle>
+			<itunes:summary />
+			<enclosure type="audio/mpeg" url="http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-015.mp3" length="20632914" />
+			<guid isPermaLink="false">http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-015.mp3</guid>
+			<pubDate>Sat, 22 Oct 2011 13:13:34 -0400</pubDate>
+			<category>Podcasting</category>
+			<itunes:explicit>no</itunes:explicit>
+			<itunes:duration>00:21:02</itunes:duration>
+			<itunes:keywords>Tin Foil Hat linux rights digital conspiracy computer hacking ubuntu mac apple</itunes:keywords>
+		<author>tinfoilhatshow@gmail.com (CafeNinja)</author><media:content url="http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-015.mp3" fileSize="20632914" type="audio/mpeg" /><link>http://feedproxy.google.com/~r/TinFoilHat/~3/Xx65pqvcaxg/TFH-015.mp3</link><feedburner:origLink>http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-015.mp3</feedburner:origLink></item>
+		<item>
+			<title>Think big, Think Free</title>
+			<itunes:author>CafeNinja</itunes:author>
+			<description>Show Notes Get the commands at http://cafeninja.blogspot.com&lt;img src="http://feeds.feedburner.com/~r/TinFoilHat/~4/-38hH6Wukic" height="1" width="1"/&gt;</description>
+			<itunes:subtitle>Show Notes Get the commands at http://cafeninja.blogspot.com</itunes:subtitle>
+			<itunes:summary />
+			<enclosure type="audio/mpeg" url="http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-014.mp3" length="39654460" />
+			<guid isPermaLink="false">http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-014.mp3</guid>
+			<pubDate>Sun, 18 Sep 2011 17:08:53 -0400</pubDate>
+			<category>Podcasting</category>
+			<itunes:explicit>no</itunes:explicit>
+			<itunes:duration>00:41:09</itunes:duration>
+			<itunes:keywords>Tin Foil Hat linux rights digital conspiracy computer hacking ubuntu mac apple</itunes:keywords>
+		<author>tinfoilhatshow@gmail.com (CafeNinja)</author><media:content url="http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-014.mp3" fileSize="39654460" type="audio/mpeg" /><link>http://feedproxy.google.com/~r/TinFoilHat/~3/-38hH6Wukic/TFH-014.mp3</link><feedburner:origLink>http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-014.mp3</feedburner:origLink></item>
+		<item>
+			<title>Don't use that keyboard, it's already hacked.</title>
+			<itunes:author>CafeNinja</itunes:author>
+			<description>Show Notes Get the commands at http://cafeninja.blogspot.com&lt;img src="http://feeds.feedburner.com/~r/TinFoilHat/~4/kMYJDNMrNDU" height="1" width="1"/&gt;</description>
+			<itunes:subtitle>Show Notes Get the commands at http://cafeninja.blogspot.com</itunes:subtitle>
+			<itunes:summary />
+			<enclosure type="audio/mpeg" url="http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-013.mp3" length="37818528" />
+			<guid isPermaLink="false">http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-013.mp3</guid>
+			<pubDate>Sat, 23 Jul 2011 12:09:45 -0400</pubDate>
+			<category>Podcasting</category>
+			<itunes:explicit>no</itunes:explicit>
+			<itunes:duration>00:39:01</itunes:duration>
+			<itunes:keywords>Tin Foil Hat linux rights digital conspiracy computer hacking ubuntu mac apple</itunes:keywords>
+		<author>tinfoilhatshow@gmail.com (CafeNinja)</author><media:content url="http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-013.mp3" fileSize="37818528" type="audio/mpeg" /><link>http://feedproxy.google.com/~r/TinFoilHat/~3/kMYJDNMrNDU/TFH-013.mp3</link><feedburner:origLink>http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-013.mp3</feedburner:origLink></item>
+		<item>
+			<title>Wake up and smell the legislation</title>
+			<itunes:author>CafeNinja</itunes:author>
+			<description>Show Notes Get the commands at http://cafeninja.blogspot.com&lt;img src="http://feeds.feedburner.com/~r/TinFoilHat/~4/SQvNyYzS85s" height="1" width="1"/&gt;</description>
+			<itunes:subtitle>Show Notes Get the commands at http://cafeninja.blogspot.com</itunes:subtitle>
+			<itunes:summary />
+			<enclosure type="audio/mpeg" url="http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-012.mp3" length="35345897" />
+			<guid isPermaLink="false">http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-012.mp3</guid>
+			<pubDate>Mon, 30 May 2011 16:57:01 -0400</pubDate>
+			<category>Podcasting</category>
+			<itunes:explicit>no</itunes:explicit>
+			<itunes:duration>00:36:27</itunes:duration>
+			<itunes:keywords>Tin Foil Hat linux rights digital conspiracy computer hacking ubuntu mac apple</itunes:keywords>
+		<author>tinfoilhatshow@gmail.com (CafeNinja)</author><media:content url="http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-012.mp3" fileSize="35345897" type="audio/mpeg" /><link>http://feedproxy.google.com/~r/TinFoilHat/~3/SQvNyYzS85s/TFH-012.mp3</link><feedburner:origLink>http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-012.mp3</feedburner:origLink></item>
+		<item>
+			<title>More privacy dominoes.</title>
+			<itunes:author>CafeNinja</itunes:author>
+			<description>Show Notes Get the commands at http://cafeninja.blogspot.com&lt;img src="http://feeds.feedburner.com/~r/TinFoilHat/~4/WDtJVH7mKcQ" height="1" width="1"/&gt;</description>
+			<itunes:subtitle>Show Notes Get the commands at http://cafeninja.blogspot.com</itunes:subtitle>
+			<itunes:summary />
+			<enclosure type="audio/mpeg" url="http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-011.mp3" length="37246111" />
+			<guid isPermaLink="false">http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-011.mp3</guid>
+			<pubDate>Sat, 07 May 2011 11:34:24 -0400</pubDate>
+			<category>Podcasting</category>
+			<itunes:explicit>no</itunes:explicit>
+			<itunes:duration>00:38:41</itunes:duration>
+			<itunes:keywords>Tin Foil Hat linux rights digital conspiracy computer hacking ubuntu mac apple</itunes:keywords>
+		<author>tinfoilhatshow@gmail.com (CafeNinja)</author><media:content url="http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-011.mp3" fileSize="37246111" type="audio/mpeg" /><link>http://feedproxy.google.com/~r/TinFoilHat/~3/WDtJVH7mKcQ/TFH-011.mp3</link><feedburner:origLink>http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-011.mp3</feedburner:origLink></item>
+		<item>
+			<title>Tech Talk: Multi boot USB key</title>
+			<itunes:author>CafeNinja</itunes:author>
+			<description>Show Notes Get the commands at http://cafeninja.blogspot.com&lt;img src="http://feeds.feedburner.com/~r/TinFoilHat/~4/6hkv21Gftjs" height="1" width="1"/&gt;</description>
+			<itunes:subtitle>Show Notes Get the commands at http://cafeninja.blogspot.com</itunes:subtitle>
+			<itunes:summary />
+			<enclosure type="audio/mpeg" url="http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-010.mp3" length="38425445" />
+			<guid isPermaLink="false">http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-010.mp3</guid>
+			<pubDate>Sat, 26 Mar 2011 12:07:48 -0400</pubDate>
+			<category>Podcasting</category>
+			<itunes:explicit>no</itunes:explicit>
+			<itunes:duration>00:39:58</itunes:duration>
+			<itunes:keywords>Tin Foil Hat linux rights digital conspiracy computer hacking ubuntu mac apple</itunes:keywords>
+		<author>tinfoilhatshow@gmail.com (CafeNinja)</author><media:content url="http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-010.mp3" fileSize="38425445" type="audio/mpeg" /><link>http://feedproxy.google.com/~r/TinFoilHat/~3/6hkv21Gftjs/TFH-010.mp3</link><feedburner:origLink>http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-010.mp3</feedburner:origLink></item>
+		<item>
+			<title>Your personal cloud?</title>
+			<itunes:author>CafeNinja</itunes:author>
+			<description>Show Notes Get the commands at http://cafeninja.blogspot.com&lt;img src="http://feeds.feedburner.com/~r/TinFoilHat/~4/QqbBYknO10s" height="1" width="1"/&gt;</description>
+			<itunes:subtitle>Show Notes Get the commands at http://cafeninja.blogspot.com</itunes:subtitle>
+			<itunes:summary />
+			<enclosure type="audio/mpeg" url="http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-009.mp3" length="53959054" />
+			<guid isPermaLink="false">http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-009.mp3</guid>
+			<pubDate>Sun, 13 Mar 2011 10:28:34 -0400</pubDate>
+			<category>Podcasting</category>
+			<itunes:explicit>no</itunes:explicit>
+			<itunes:duration>00:56:06</itunes:duration>
+			<itunes:keywords>Tin Foil Hat linux rights digital conspiracy computer hacking ubuntu mac apple</itunes:keywords>
+		<author>tinfoilhatshow@gmail.com (CafeNinja)</author><media:content url="http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-009.mp3" fileSize="53959054" type="audio/mpeg" /><link>http://feedproxy.google.com/~r/TinFoilHat/~3/QqbBYknO10s/TFH-009.mp3</link><feedburner:origLink>http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-009.mp3</feedburner:origLink></item>
+		<item>
+			<title>Tech Talk: Truecrypt</title>
+			<itunes:author>CafeNinja</itunes:author>
+			<description>Show Notes Get the commands at http://cafeninja.blogspot.com&lt;img src="http://feeds.feedburner.com/~r/TinFoilHat/~4/Cu2MAcg9vQg" height="1" width="1"/&gt;</description>
+			<itunes:subtitle>Show Notes Get the commands at http://cafeninja.blogspot.com</itunes:subtitle>
+			<itunes:summary />
+			<enclosure type="audio/mpeg" url="http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-008.mp3" length="40420043" />
+			<guid isPermaLink="false">http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-008.mp3</guid>
+			<pubDate>Sun, 27 Feb 2011 15:15:24 -0500</pubDate>
+			<category>Podcasting</category>
+			<itunes:explicit>no</itunes:explicit>
+			<itunes:duration>00:41:42</itunes:duration>
+			<itunes:keywords>Tin Foil Hat linux rights digital conspiracy computer hacking ubuntu mac apple</itunes:keywords>
+		<author>tinfoilhatshow@gmail.com (CafeNinja)</author><media:content url="http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-008.mp3" fileSize="40420043" type="audio/mpeg" /><link>http://feedproxy.google.com/~r/TinFoilHat/~3/Cu2MAcg9vQg/TFH-008.mp3</link><feedburner:origLink>http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-008.mp3</feedburner:origLink></item>
+		<item>
+			<title>Tor my Egypt, it's the law.</title>
+			<itunes:author>CafeNinja</itunes:author>
+			<description>Show Notes Get the commands at http://cafeninja.blogspot.com&lt;img src="http://feeds.feedburner.com/~r/TinFoilHat/~4/kyd2MyN6BI8" height="1" width="1"/&gt;</description>
+			<itunes:subtitle>Show Notes Get the commands at http://cafeninja.blogspot.com</itunes:subtitle>
+			<itunes:summary />
+			<enclosure type="audio/mpeg" url="http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-007.mp3" length="46685966" />
+			<guid isPermaLink="false">http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-007.mp3</guid>
+			<pubDate>Sat, 12 Feb 2011 14:33:27 -0500</pubDate>
+			<category>Podcasting</category>
+			<itunes:explicit>no</itunes:explicit>
+			<itunes:duration>00:48:26</itunes:duration>
+			<itunes:keywords>Tin Foil Hat linux rights digital conspiracy computer hacking ubuntu mac apple</itunes:keywords>
+		<author>tinfoilhatshow@gmail.com (CafeNinja)</author><media:content url="http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-007.mp3" fileSize="46685966" type="audio/mpeg" /><link>http://feedproxy.google.com/~r/TinFoilHat/~3/kyd2MyN6BI8/TFH-007.mp3</link><feedburner:origLink>http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-007.mp3</feedburner:origLink></item>
+		<item>
+			<title>Bad DOJ, bad DOJ</title>
+			<itunes:author>CafeNinja</itunes:author>
+			<description>Show Notes Get the commands at http://cafeninja.blogspot.com&lt;img src="http://feeds.feedburner.com/~r/TinFoilHat/~4/cCUgpOHQ6Q0" height="1" width="1"/&gt;</description>
+			<itunes:subtitle>Show Notes Get the commands at http://cafeninja.blogspot.com</itunes:subtitle>
+			<itunes:summary />
+			<enclosure type="audio/mpeg" url="http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-006.mp3" length="31065527" />
+			<guid isPermaLink="false">http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-006.mp3</guid>
+			<pubDate>Sat, 15 Jan 2011 18:19:28 -0500</pubDate>
+			<category>Podcasting</category>
+			<itunes:explicit>no</itunes:explicit>
+			<itunes:duration>00:32:19</itunes:duration>
+			<itunes:keywords>Tin Foil Hat linux rights digital conspiracy computer hacking ubuntu mac apple</itunes:keywords>
+		<author>tinfoilhatshow@gmail.com (CafeNinja)</author><media:content url="http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-006.mp3" fileSize="31065527" type="audio/mpeg" /><link>http://feedproxy.google.com/~r/TinFoilHat/~3/cCUgpOHQ6Q0/TFH-006.mp3</link><feedburner:origLink>http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-006.mp3</feedburner:origLink></item>
+		<item>
+			<title>Text Me.</title>
+			<itunes:author>CafeNinja</itunes:author>
+			<description>Show Notes Get the commands at http://cafeninja.blogspot.com&lt;img src="http://feeds.feedburner.com/~r/TinFoilHat/~4/MtU89yUUC3s" height="1" width="1"/&gt;</description>
+			<itunes:subtitle>Show Notes Get the commands at http://cafeninja.blogspot.com</itunes:subtitle>
+			<itunes:summary />
+			<enclosure type="audio/mpeg" url="http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-005.mp3" length="25436313" />
+			<guid isPermaLink="false">http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-005.mp3</guid>
+			<pubDate>Sat, 04 Dec 2010 08:38:07 -0500</pubDate>
+			<category>Podcasting</category>
+			<itunes:explicit>no</itunes:explicit>
+			<itunes:duration>00:26:13</itunes:duration>
+			<itunes:keywords>Tin Foil Hat linux rights digital conspiracy computer hacking ubuntu mac apple</itunes:keywords>
+		<author>tinfoilhatshow@gmail.com (CafeNinja)</author><media:content url="http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-005.mp3" fileSize="25436313" type="audio/mpeg" /><link>http://feedproxy.google.com/~r/TinFoilHat/~3/MtU89yUUC3s/TFH-005.mp3</link><feedburner:origLink>http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-005.mp3</feedburner:origLink></item>
+		<item>
+			<title>Crap Acronyms</title>
+			<itunes:author>CafeNinja</itunes:author>
+			<description>Show Notes Get the commands at http://cafeninja.blogspot.com&lt;img src="http://feeds.feedburner.com/~r/TinFoilHat/~4/3wrrfupWnIM" height="1" width="1"/&gt;</description>
+			<itunes:subtitle>Show Notes Get the commands at http://cafeninja.blogspot.com</itunes:subtitle>
+			<itunes:summary />
+			<enclosure type="audio/mpeg" url="http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-004.mp3" length="49875090" />
+			<guid isPermaLink="false">http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-004.mp3</guid>
+			<pubDate>Sat, 20 Nov 2010 09:22:36 -0500</pubDate>
+			<category>Podcasting</category>
+			<itunes:explicit>no</itunes:explicit>
+			<itunes:duration>00:51:47</itunes:duration>
+			<itunes:keywords>Tin Foil Hat linux rights digital conspiracy computer hacking ubuntu mac apple</itunes:keywords>
+		<author>tinfoilhatshow@gmail.com (CafeNinja)</author><media:content url="http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-004.mp3" fileSize="49875090" type="audio/mpeg" /><link>http://feedproxy.google.com/~r/TinFoilHat/~3/3wrrfupWnIM/TFH-004.mp3</link><feedburner:origLink>http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-004.mp3</feedburner:origLink></item>
+		<item>
+			<title>Snif or be Sniffed</title>
+			<itunes:author>CafeNinja</itunes:author>
+			<description>Show Notes Get the commands at http://cafeninja.blogspot.com&lt;img src="http://feeds.feedburner.com/~r/TinFoilHat/~4/Jite8U90DHs" height="1" width="1"/&gt;</description>
+			<itunes:subtitle>Show Notes Get the commands at http://cafeninja.blogspot.com</itunes:subtitle>
+			<itunes:summary />
+			<enclosure type="audio/mpeg" url="http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-003.mp3" length="29979235" />
+			<guid isPermaLink="false">http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-003.mp3</guid>
+			<pubDate>Sat, 06 Nov 2010 08:54:34 -0400</pubDate>
+			<category>Podcasting</category>
+			<itunes:explicit>no</itunes:explicit>
+			<itunes:duration>00:31:01</itunes:duration>
+			<itunes:keywords>Tin Foil Hat linux rights digital conspiracy computer hacking ubuntu mac apple</itunes:keywords>
+		<author>tinfoilhatshow@gmail.com (CafeNinja)</author><media:content url="http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-003.mp3" fileSize="29979235" type="audio/mpeg" /><link>http://feedproxy.google.com/~r/TinFoilHat/~3/Jite8U90DHs/TFH-003.mp3</link><feedburner:origLink>http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-003.mp3</feedburner:origLink></item>
+		<item>
+			<title>The Sources</title>
+			<itunes:author>CafeNinja</itunes:author>
+			<description>Show Notes Get the commands at http://cafeninja.blogspot.com&lt;img src="http://feeds.feedburner.com/~r/TinFoilHat/~4/3Nt4XBMLyok" height="1" width="1"/&gt;</description>
+			<itunes:subtitle>Show Notes Get the commands at http://cafeninja.blogspot.com</itunes:subtitle>
+			<itunes:summary />
+			<enclosure type="audio/mpeg" url="http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-002.mp3" length="30389234" />
+			<guid isPermaLink="false">http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-002.mp3</guid>
+			<pubDate>Mon, 25 Oct 2010 19:00:05 -0400</pubDate>
+			<category>Podcasting</category>
+			<itunes:explicit>no</itunes:explicit>
+			<itunes:duration>00:31:36</itunes:duration>
+			<itunes:keywords>Tin Foil Hat linux rights digital conspiracy computer hacking ubuntu mac apple</itunes:keywords>
+		<author>tinfoilhatshow@gmail.com (CafeNinja)</author><media:content url="http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-002.mp3" fileSize="30389234" type="audio/mpeg" /><link>http://feedproxy.google.com/~r/TinFoilHat/~3/3Nt4XBMLyok/TFH-002.mp3</link><feedburner:origLink>http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-002.mp3</feedburner:origLink></item>
+		<item>
+			<title>Pilot show</title>
+			<itunes:author>CafeNinja</itunes:author>
+			<description>Show Notes Get the commands at http://cafeninja.blogspot.com&lt;img src="http://feeds.feedburner.com/~r/TinFoilHat/~4/zzwDl_AW194" height="1" width="1"/&gt;</description>
+			<itunes:subtitle>Show Notes Get the commands at http://cafeninja.blogspot.com</itunes:subtitle>
+			<itunes:summary />
+			<enclosure type="audio/mpeg" url="http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-001.mp3" length="16991876" />
+			<guid isPermaLink="false">http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-001.mp3</guid>
+			<pubDate>Sat, 23 Oct 2010 15:00:44 -0400</pubDate>
+			<category>Podcasting</category>
+			<itunes:explicit>no</itunes:explicit>
+			<itunes:duration>00:17:33</itunes:duration>
+			<itunes:keywords>Tin Foil Hat linux rights digital conspiracy computer hacking ubuntu mac apple</itunes:keywords>
+		<author>tinfoilhatshow@gmail.com (CafeNinja)</author><media:content url="http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-001.mp3" fileSize="16991876" type="audio/mpeg" /><link>http://feedproxy.google.com/~r/TinFoilHat/~3/zzwDl_AW194/TFH-001.mp3</link><feedburner:origLink>http://www.fuzionpodcastnetwork.com/wordpress/TFH-Episodes/TFH-001.mp3</feedburner:origLink></item>
+	<media:credit role="author">CafeNinja</media:credit><media:rating>nonadult</media:rating><media:description type="plain">This is CafeNinja’s soap-box for political awareness in regards to digital rights and practical personal security in the digital age. Following the latest in legal and policy changes with analysis on how it impacts you and your life. As well as practical </media:description></channel>
+</rss>

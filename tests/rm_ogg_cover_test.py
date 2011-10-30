@@ -7,7 +7,7 @@ import unittest
 from mutagen.oggvorbis import OggVorbis
 
 from gpodder import api
-import test_config as config
+from config import data
 from rm_ogg_cover_hook import rm_ogg_cover
 
 
@@ -15,12 +15,12 @@ class TestTagging(unittest.TestCase):
     def setUp(self):
         self.client = api.PodcastClient()
         (self.ogg_episode, self.ogg_file, self.ogg_file_save) = self.read_episode(
-                config.TEST_PODCASTS['DeimHart']['url'],
-                config.TEST_PODCASTS['DeimHart']['episode'])
+                data.TEST_PODCASTS['DeimHart']['url'],
+                data.TEST_PODCASTS['DeimHart']['episode'])
 
         (self.mp3_episode, self.mp3_file, self.mp3_file_save) = self.read_episode(
-                config.TEST_PODCASTS['TinFoilHat']['url'],
-                config.TEST_PODCASTS['TinFoilHat']['episode'])
+                data.TEST_PODCASTS['TinFoilHat']['url'],
+                data.TEST_PODCASTS['TinFoilHat']['episode'])
 
     def tearDown(self):
         self.client._db.close()

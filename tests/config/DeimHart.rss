@@ -1,0 +1,1116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<rss version="2.0" 
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:admin="http://webns.net/mvcb/"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+   xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+   xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:creativeCommons="http://backend.userland.com/creativeCommonsRssModule" >
+<channel>
+    
+    <title>DeimHart - sendung ogg</title>
+    <link>http://deimhart.net/</link>
+    <description>Das klingt gut ...</description>
+    <dc:language>de</dc:language>
+    <generator>Serendipity 1.6 - http://www.s9y.org/</generator>
+    <pubDate>Wed, 19 Oct 2011 19:38:09 GMT</pubDate>
+
+    <image>
+        <url>http://deimhart.net/uploads/deimhart_weiss.jpg</url>
+        <title>RSS: DeimHart - sendung ogg - Das klingt gut ...</title>
+        <link>http://deimhart.net/</link>
+        <width>85</width>
+        <height>85</height>
+    </image>
+
+<item>
+    <title>ShortCast #11: Rückblick auf die Ubucon</title>
+    <link>http://deimhart.net/index.php?/archives/140-ShortCast-11-Rueckblick-auf-die-Ubucon.html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/140-ShortCast-11-Rueckblick-auf-die-Ubucon.html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=140</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=140</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Dirk Deimeke)</author>
+    <content:encoded>
+    Hier ist der ShortCast #11 im ogg-Format. Kommentare bitte im &lt;a href=&quot;http://deimhart.net/index.php?/archives/139-ShortCast-11-Rueckblick-auf-die-Ubucon.html&quot; title=&quot;ShortCast #11: Rückblick auf die Ubucon  - DeimHart&quot;&gt;Hauptbeitrag&lt;/a&gt; hinterlassen. Danke!&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20111019-kurz-011.ogg&quot; title=&quot;dh-20111019-kurz-011.ogg&quot; target=&quot;_blank&quot;&gt;dh-20111019-kurz-011.ogg&lt;/a&gt; (30:30 Minuten 19.9 MB)&lt;br /&gt;
+ 
+    </content:encoded>
+
+    <pubDate>Wed, 19 Oct 2011 21:37:00 +0200</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/140-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20111019-kurz-011.ogg" type="application/ogg" length='19934291' />
+</item>
+<item>
+    <title>Folge 29: Balance im Leben</title>
+    <link>http://deimhart.net/index.php?/archives/138-Folge-29-Balance-im-Leben.html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/138-Folge-29-Balance-im-Leben.html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=138</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=138</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Dirk Deimeke)</author>
+    <content:encoded>
+    Hier ist die Folge 29 im ogg-Format. Kommentare bitte im &lt;a href=&quot;http://deimhart.net/index.php?/archives/136-Folge-29-Balance-im-Leben.html&quot; title=&quot;Folge 29: Balance im Leben  - DeimHart&quot;&gt;Hauptbeitrag&lt;/a&gt; hinterlassen. Danke!&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20111003-ausgabe-029.ogg&quot; title=&quot;dh-20111003-ausgabe-029.ogg&quot; target=&quot;_blank&quot;&gt;dh-20111003-ausgabe-029.ogg&lt;/a&gt; (54:37 min, 45 MB) 
+    </content:encoded>
+
+    <pubDate>Mon, 03 Oct 2011 05:30:00 +0200</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/138-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20111003-ausgabe-029.ogg" type="application/ogg" length='45007269' />
+</item>
+<item>
+    <title>Folge 28: 20 Jahre Linux</title>
+    <link>http://deimhart.net/index.php?/archives/134-Folge-28-20-Jahre-Linux.html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/134-Folge-28-20-Jahre-Linux.html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=134</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=134</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Dirk Deimeke)</author>
+    <content:encoded>
+    Hier ist die Folge 28 im ogg-Format. Kommentare bitte im &lt;a href=&quot;http://deimhart.net/index.php?/archives/133-Folge-28-20-Jahre-Linux.html&quot; title=&quot;Folge 28: 20 Jahre Linux  - DeimHart&quot;&gt;Hauptbeitrag&lt;/a&gt; hinterlassen. Danke!&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20110905-ausgabe-028.ogg&quot; title=&quot;dh-20110905-ausgabe-028.ogg&quot; target=&quot;_blank&quot;&gt;dh-20110905-ausgabe-028.ogg&lt;/a&gt; (01:45:09 min, 86.4 MB) 
+    </content:encoded>
+
+    <pubDate>Mon, 05 Sep 2011 06:01:00 +0200</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/134-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20110905-ausgabe-028.ogg" type="application/ogg" length='86426192' />
+</item>
+<item>
+    <title>Folge 27: Unsere Hardware ...</title>
+    <link>http://deimhart.net/index.php?/archives/131-Folge-27-Unsere-Hardware-....html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/131-Folge-27-Unsere-Hardware-....html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=131</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=131</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Dirk Deimeke)</author>
+    <content:encoded>
+    Hier ist die Folge 27 im ogg-Format. Kommentare bitte im &lt;a href=&quot;http://deimhart.net/index.php?/archives/130-Folge-27-Unsere-Hardware-....html&quot; title=&quot;Folge 27: Unsere Hardware ...  - DeimHart&quot;&gt;Hauptbeitrag&lt;/a&gt; hinterlassen. Danke!&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20110801-ausgabe-027.ogg&quot; title=&quot;dh-20110801-ausgabe-027.ogg&quot; target=&quot;_blank&quot;&gt;dh-20110801-ausgabe-027.ogg&lt;/a&gt; (01:02:51 min, 39.7 MB) 
+    </content:encoded>
+
+    <pubDate>Mon, 01 Aug 2011 07:31:00 +0200</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/131-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20110801-ausgabe-027.ogg" type="application/ogg" length='39748264' />
+</item>
+<item>
+    <title>Folge 26: Android in der Schweiz</title>
+    <link>http://deimhart.net/index.php?/archives/129-Folge-26-Android-in-der-Schweiz.html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/129-Folge-26-Android-in-der-Schweiz.html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=129</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=129</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Roman Hanhart)</author>
+    <content:encoded>
+    Hier ist die Folge 26 im ogg-Format. Kommentare bitte im &lt;a href=&quot;http://deimhart.net/index.php?/archives/127-Folge-26-Android-in-der-Schweiz.html&quot; title=&quot;Folge 26: Android in der Schweiz  - DeimHart&quot;&gt;Hauptbeitrag&lt;/a&gt; hinterlassen. Danke!&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20110704-ausgabe-026.ogg&quot; title=&quot;dh-20110704-ausgabe-026.ogg&quot; target=&quot;_blank&quot;&gt;dh-20110704-ausgabe-026.ogg&lt;/a&gt; (01:35:34 min, 58.9 MB) 
+    </content:encoded>
+
+    <pubDate>Mon, 04 Jul 2011 05:33:57 +0200</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/129-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20110704-ausgabe-026.ogg" type="application/ogg" length='61803546' />
+</item>
+<item>
+    <title>Folge 25: Open-Source-Veranstaltungen</title>
+    <link>http://deimhart.net/index.php?/archives/124-Folge-25-Open-Source-Veranstaltungen.html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/124-Folge-25-Open-Source-Veranstaltungen.html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=124</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=124</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Dirk Deimeke)</author>
+    <content:encoded>
+    Hier ist die ogg-Datei zur Sendung &lt;a href=&quot;http://deimhart.net/index.php?/archives/123-Folge-25-Open-Source-Veranstaltungen.html&quot; title=&quot;Folge 25: Open-Source-Veranstaltungen  - DeimHart&quot;&gt;Folge 25: Open-Source-Veranstaltungen&lt;/a&gt;:&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20110502-ausgabe-025.ogg&quot; title=&quot;dh-20110502-ausgabe-025.ogg&quot; target=&quot;_blank&quot;&gt;dh-20110502-ausgabe-025.ogg&lt;/a&gt;&lt;br /&gt;
+&lt;br /&gt;
+Kommentare bitte in den verlinkten &lt;a href=&quot;http://deimhart.net/index.php?/archives/123-Folge-25-Open-Source-Veranstaltungen.html&quot; title=&quot;Folge 25: Open-Source-Veranstaltungen  - DeimHart&quot;&gt;Hauptartikel&lt;/a&gt;. 
+    </content:encoded>
+
+    <pubDate>Mon, 02 May 2011 06:03:00 +0200</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/124-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20110502-ausgabe-025.ogg" type="application/ogg" length='65658651' />
+</item>
+<item>
+    <title>Folge 24: WebOS und mobiles Computing</title>
+    <link>http://deimhart.net/index.php?/archives/122-Folge-24-WebOS-und-mobiles-Computing.html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/122-Folge-24-WebOS-und-mobiles-Computing.html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=122</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=122</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Roman Hanhart)</author>
+    <content:encoded>
+    Hier ist die ogg-Datei zur Sendung &lt;a href=&quot;http://deimhart.net/index.php?/archives/120-Folge-24-WebOS-und-mobiles-Computing.html&quot; title=&quot;Folge 24: WebOS und mobiles Computing  - DeimHart&quot;&gt;Folge 24: WebOS und mobiles Computing&lt;/a&gt;:&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20110404-ausgabe-024.ogg&quot; title=&quot;dh-20110404-ausgabe-024.ogg&quot; target=&quot;_blank&quot;&gt;dh-20110404-ausgabe-024.ogg&lt;/a&gt;&lt;br /&gt;
+&lt;br /&gt;
+Kommentare bitte in den verlinkten &lt;a href=&quot;http://deimhart.net/index.php?/archives/120-Folge-24-WebOS-und-mobiles-Computing.html&quot; title=&quot;Folge 24: WebOS und mobiles Computing  - DeimHart&quot;&gt;Hauptartikel&lt;/a&gt;.&lt;br /&gt;
+ 
+    </content:encoded>
+
+    <pubDate>Mon, 04 Apr 2011 06:00:00 +0200</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/122-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20110404-ausgabe-024.ogg" type="application/ogg" length='77214182' />
+</item>
+<item>
+    <title>Themefolge 4: Das Administrationshandbuch</title>
+    <link>http://deimhart.net/index.php?/archives/119-Themefolge-4-Das-Administrationshandbuch.html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/119-Themefolge-4-Das-Administrationshandbuch.html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=119</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=119</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Roman Hanhart)</author>
+    <content:encoded>
+    Hier ist die Folge mit der ogg-Datei. Kommentare bitte im &lt;a href=&quot;http://deimhart.net/index.php?/archives/114-Themefolge-4-Das-Administrationshandbuch.html&quot; title=&quot;Themenfolge 4: Das Administrationshandbuch  - DeimHart&quot;&gt;Hauptbeitrag&lt;/a&gt; hinterlassen. Danke!&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20110301-thema-004.ogg&quot; title=&quot;dh-20110301-thema-004.ogg&quot; target=&quot;_blank&quot;&gt;dh-20110301-thema-004.ogg&lt;/a&gt; 
+    </content:encoded>
+
+    <pubDate>Tue, 08 Mar 2011 18:48:44 +0100</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/119-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20110301-thema-004.ogg" type="application/ogg" length='35877484' />
+</item>
+<item>
+    <title>Folge 23: Rund um DeimHart</title>
+    <link>http://deimhart.net/index.php?/archives/116-Folge-23-Rund-um-DeimHart.html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/116-Folge-23-Rund-um-DeimHart.html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=116</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=116</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Dirk Deimeke)</author>
+    <content:encoded>
+    Hier ist die OGG-Datei zu unserer 23. Folge. Bitte Kommentare im &lt;a href=&quot;http://deimhart.net/index.php?/archives/115-Folge-23-Rund-um-DeimHart.html&quot; title=&quot;Folge 23: Rund um DeimHart  - DeimHart&quot;&gt;Hauptbeitrag&lt;/a&gt; hinterlassen, danke!&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20110307-ausgabe-023.ogg&quot; title=&quot;dh-20110307-ausgabe-023.ogg&quot; target=&quot;_blank&quot;&gt;dh-20110307-ausgabe-023.ogg&lt;/a&gt; 
+    </content:encoded>
+
+    <pubDate>Mon, 07 Mar 2011 05:34:46 +0100</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/116-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20110307-ausgabe-023.ogg" type="application/ogg" length='32222229' />
+</item>
+<item>
+    <title>Folge 22: Lebensziele</title>
+    <link>http://deimhart.net/index.php?/archives/113-Folge-22-Lebensziele.html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/113-Folge-22-Lebensziele.html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=113</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=113</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Roman Hanhart)</author>
+    <content:encoded>
+    Hier ist die OGG-Datei zu unserer 22. Folge. Bitte Kommentare im &lt;a href=&quot;http://deimhart.net/index.php?/archives/111-Folge22-Lebensziele.html&quot; title=&quot;Folge 22: Lebensziele  - DeimHart&quot;&gt;Hauptbeitrag&lt;/a&gt; hinterlassen, danke!&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20110207-ausgabe-022.ogg&quot; title=&quot;dh-20110207-ausgabe-022.ogg&quot; target=&quot;_blank&quot;&gt;dh-20110207-ausgabe-022.ogg&lt;/a&gt; 
+    </content:encoded>
+
+    <pubDate>Mon, 07 Feb 2011 05:47:09 +0100</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/113-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20110207-ausgabe-022.ogg" type="application/ogg" length='66374243' />
+</item>
+<item>
+    <title>Folge 21: Freie Software unter Windows</title>
+    <link>http://deimhart.net/index.php?/archives/110-Folge-21-Freie-Software-unter-Windows.html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/110-Folge-21-Freie-Software-unter-Windows.html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=110</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=110</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Roman Hanhart)</author>
+    <content:encoded>
+    Hier ist die ogg-Datei zu unserer 21. Folge. Kommentare bitte im &lt;a href=&quot;http://deimhart.net/index.php?/archives/108-Folge-21-Freie-Software-unter-Windows.html&quot; title=&quot;Folge 21: Freie Software unter Windows  - DeimHart&quot;&gt;Hauptbeitrag&lt;/a&gt; hinterlassen. Danke!&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20110103-ausgabe-021.ogg&quot; title=&quot;dh-20110103-ausgabe-021.ogg&quot; target=&quot;_blank&quot;&gt;dh-20110103-ausgabe-021.ogg&lt;/a&gt; 
+    </content:encoded>
+
+    <pubDate>Mon, 03 Jan 2011 06:16:17 +0100</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/110-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20110103-ausgabe-021.ogg" type="application/ogg" length='37507279' />
+</item>
+<item>
+    <title>Folge 20: Perl</title>
+    <link>http://deimhart.net/index.php?/archives/105-Folge-20-Perl.html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/105-Folge-20-Perl.html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=105</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=105</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Dirk Deimeke)</author>
+    <content:encoded>
+    Hier ist die ogg-Datei zu unserer 20. Folge. Kommentare bitte im &lt;a href=&quot;http://deimhart.net/index.php?/archives/104-Folge-20-Perl.html&quot; title=&quot;Folge 20: Perl  - DeimHart&quot;&gt;Hauptbeitrag&lt;/a&gt; hinterlassen. Danke!&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20101206-ausgabe-020.ogg&quot; title=&quot;dh-20101206-ausgabe-020.ogg&quot; target=&quot;_blank&quot;&gt;dh-20101206-ausgabe-020.ogg&lt;/a&gt; 
+    </content:encoded>
+
+    <pubDate>Mon, 06 Dec 2010 05:17:00 +0100</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/105-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20101206-ausgabe-020.ogg" type="application/ogg" length='64412950' />
+</item>
+<item>
+    <title>Folge 19: Ubucon 2010 und Ubuntu 10.10</title>
+    <link>http://deimhart.net/index.php?/archives/102-Folge-19-Ubucon-2010-und-Ubuntu-10.10.html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/102-Folge-19-Ubucon-2010-und-Ubuntu-10.10.html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=102</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=102</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Dirk Deimeke)</author>
+    <content:encoded>
+    Hier ist die ogg-Datei zu unserer 19. Folge. Kommentare bitte im &lt;a href=&quot;http://deimhart.net/index.php?/archives/101-Folge-19-Ubucon-2010-und-Ubuntu-10.10.html&quot; title=&quot;Folge 19: Ubucon 2010 und Ubuntu 10.10  - DeimHart&quot;&gt;Hauptbeitrag&lt;/a&gt; hinterlassen. Danke!&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20101101-ausgabe-019.ogg&quot; title=&quot;dh-20101101-ausgabe-019.ogg&quot; target=&quot;_blank&quot;&gt;dh-20101101-ausgabe-019.ogg&lt;/a&gt; 
+    </content:encoded>
+
+    <pubDate>Mon, 01 Nov 2010 05:32:00 +0100</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/102-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20101101-ausgabe-019.ogg" type="application/ogg" length='65691308' />
+</item>
+<item>
+    <title>Folge 18: Synchronisation unter Linux (und Windows)</title>
+    <link>http://deimhart.net/index.php?/archives/100-Folge-18-Synchronisation-unter-Linux-und-Windows.html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/100-Folge-18-Synchronisation-unter-Linux-und-Windows.html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=100</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=100</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Roman Hanhart)</author>
+    <content:encoded>
+    Hier ist die ogg-Datei zu unserer 18. Folge. Kommentare bitte im &lt;a href=&quot;http://deimhart.net/index.php?/archives/98-Folge-18-Synchronisation-unter-Linux-und-Windows.html&quot; title=&quot;Folge 18: Synchronisation unter Linux (und Windows)  - DeimHart&quot;&gt;Hauptbeitrag&lt;/a&gt; hinterlassen. Danke!&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20101004-ausgabe-018.ogg&quot; title=&quot;dh-20101004-ausgabe-018.ogg&quot; target=&quot;_blank&quot;&gt;dh-20101004-ausgabe-018.ogg&lt;/a&gt; 
+    </content:encoded>
+
+    <pubDate>Mon, 04 Oct 2010 06:06:01 +0200</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/100-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20101004-ausgabe-018.ogg" type="application/ogg" length='57992735' />
+</item>
+<item>
+    <title>ShortCast #10: FrOSCamp und Keysigning in Zürich</title>
+    <link>http://deimhart.net/index.php?/archives/97-ShortCast-10-FrOSCamp-und-Keysigning-in-Zuerich.html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/97-ShortCast-10-FrOSCamp-und-Keysigning-in-Zuerich.html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=97</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=97</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Roman Hanhart)</author>
+    <content:encoded>
+    Hier ist der Beitrag zum ShortCast Nummer 10 im Format ogg. Kommentare bitte im &lt;a href=&quot;http://deimhart.net/index.php?/archives/95-ShortCast-10-FrOSCamp-und-Keysigning-in-Zuerich.html&quot; title=&quot;ShortCast #10: FrOSCamp und Keysigning in Zürich  - DeimHart&quot;&gt;Hauptbeitrag&lt;/a&gt; hinterlassen. Danke!&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20100919-kurz-010.ogg&quot; title=&quot;dh-20100919-kurz-010.ogg&quot; target=&quot;_blank&quot;&gt;dh-20100919-kurz-010.ogg&lt;/a&gt; 
+    </content:encoded>
+
+    <pubDate>Sun, 19 Sep 2010 12:52:24 +0200</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/97-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20100919-kurz-010.ogg" type="application/ogg" length='9304604' />
+</item>
+<item>
+    <title>Folge17: Linux und Tablet-PC</title>
+    <link>http://deimhart.net/index.php?/archives/94-Folge17-Linux-und-Tablet-PC.html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/94-Folge17-Linux-und-Tablet-PC.html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=94</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=94</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Roman Hanhart)</author>
+    <content:encoded>
+    Hier ist die 17. Folge unseres Podcasts mit dem Thema Tablet PC. Kommentare bitte im &lt;a href=&quot;http://deimhart.net/index.php?/archives/92-Folge17-Linux-und-Tablet-PC.html&quot; title=&quot;Folge 17: Linux und Tablet-PC  - DeimHart&quot;&gt;Haupteintrag&lt;/a&gt; hinterlassen. Danke!&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20100906-ausgabe-017.ogg&quot; title=&quot;dh-20100906-ausgabe-017.ogg&quot; target=&quot;_blank&quot;&gt;dh-20100906-ausgabe-017.ogg&lt;/a&gt; 
+    </content:encoded>
+
+    <pubDate>Mon, 06 Sep 2010 05:44:50 +0200</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/94-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20100906-ausgabe-017.ogg" type="application/ogg" length='64825980' />
+</item>
+<item>
+    <title>Motivation, Wissen und Geld</title>
+    <link>http://deimhart.net/index.php?/archives/91-Motivation,-Wissen-und-Geld.html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/91-Motivation,-Wissen-und-Geld.html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=91</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=91</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Dirk Deimeke)</author>
+    <content:encoded>
+    &lt;a href=&quot;http://deimhart.net/uploads/dh-20100802-ausgabe-016.ogg&quot; title=&quot;dh-20100802-ausgabe-016.ogg&quot; target=&quot;_blank&quot;&gt;dh-20100802-ausgabe-016.ogg&lt;/a&gt; (1:26:32 58 MB)&lt;br /&gt;
+&lt;br /&gt;
+Bitte Kommentare im &lt;a href=&quot;http://deimhart.net/index.php?/archives/89-Motivation,-Wissen-und-Geld.html&quot; title=&quot;Motivation, Wissen und Geld  - DeimHart&quot;&gt;Textbeitrag&lt;/a&gt; hinterlassen. Danke! 
+    </content:encoded>
+
+    <pubDate>Mon, 02 Aug 2010 05:15:00 +0200</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/91-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20100802-ausgabe-016.ogg" type="application/ogg" length='60450724' />
+</item>
+<item>
+    <title>Ingo Ebel und RadioTux</title>
+    <link>http://deimhart.net/index.php?/archives/88-Ingo-Ebel-und-RadioTux.html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/88-Ingo-Ebel-und-RadioTux.html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=88</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=88</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Roman Hanhart)</author>
+    <content:encoded>
+    &lt;a href=&quot;http://deimhart.net/uploads/dh-20100705-ausgabe-015.ogg&quot; title=&quot;dh-20100705-ausgabe-015.ogg&quot; target=&quot;_blank&quot;&gt;dh-20100705-ausgabe-015.ogg&lt;/a&gt; (1:38:29 65.1 MB)&lt;br /&gt;
+&lt;br /&gt;
+Bitte Kommentare im &lt;a href=&quot;http://deimhart.net/index.php?/archives/86-Ingo-Ebel-und-RadioTux.html&quot; title=&quot;Ingo Ebel und RadioTux  - DeimHart&quot;&gt;Textbeitrag&lt;/a&gt; hinterlassen. Danke! 
+    </content:encoded>
+
+    <pubDate>Mon, 05 Jul 2010 06:22:00 +0200</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/88-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20100705-ausgabe-015.ogg" type="application/ogg" length='68265179' />
+</item>
+<item>
+    <title>Dominik und freiesMagazin und LaTeX</title>
+    <link>http://deimhart.net/index.php?/archives/83-Dominik-und-freiesMagazin-und-LaTeX.html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/83-Dominik-und-freiesMagazin-und-LaTeX.html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=83</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=83</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Dirk Deimeke)</author>
+    <content:encoded>
+    Hier ist der Feed zur OGG-Datei. Kommentare bitte im &lt;a href=&quot;http://deimhart.net/index.php?/archives/82-Dominik-und-freiesMagazin-und-LaTeX.html&quot; title=&quot;Dominik und freiesMagazin und LaTeX  - DeimHart&quot;&gt;Textbeitrag&lt;/a&gt; hinterlassen. Danke!&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20100607-ausgabe-014.ogg&quot; title=&quot;dh-20100607-ausgabe-014.ogg&quot; target=&quot;_blank&quot;&gt;dh-20100607-ausgabe-014.ogg&lt;/a&gt; (1:42:22, 84 MB) 
+    </content:encoded>
+
+    <pubDate>Mon, 07 Jun 2010 05:57:00 +0200</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/83-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20100607-ausgabe-014.ogg" type="application/ogg" length='87157500' />
+</item>
+<item>
+    <title>ShortCast #9: Neues Equipment und LinuxTag   	 </title>
+    <link>http://deimhart.net/index.php?/archives/80-ShortCast-9-Neues-Equipment-und-LinuxTag.html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/80-ShortCast-9-Neues-Equipment-und-LinuxTag.html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=80</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=80</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Dirk Deimeke)</author>
+    <content:encoded>
+    Hier ist der Feed zur OGG-Datei. Kommentare bitte im &lt;a href=&quot;http://deimhart.net/index.php?/archives/79-ShortCast-9-Neues-Equipment-und-LinuxTag.html&quot; title=&quot;ShortCast #9: Neues Equipment und LinuxTag  - DeimHart&quot;&gt;Textbeitrag&lt;/a&gt; hinterlassen. Danke!&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20100605-kurz-009.ogg&quot; title=&quot;dh-20100605-kurz-009.ogg&quot; target=&quot;_blank&quot;&gt;dh-20100605-kurz-009.ogg&lt;/a&gt; (14:04 Minuten 12 MB) 
+    </content:encoded>
+
+    <pubDate>Sat, 05 Jun 2010 17:42:00 +0200</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/80-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20100605-kurz-009.ogg" type="application/ogg" length='11924594' />
+</item>
+<item>
+    <title>ShortCast #8: Rückschau Ubuntu-ReleaseParty vom 1. Mai 2010</title>
+    <link>http://deimhart.net/index.php?/archives/78-ShortCast-8-Rueckschau-Ubuntu-ReleaseParty-vom-1.-Mai-2010.html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/78-ShortCast-8-Rueckschau-Ubuntu-ReleaseParty-vom-1.-Mai-2010.html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=78</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=78</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Roman Hanhart)</author>
+    <content:encoded>
+    Hier ist der Feed zur OGG-Datei. Kommentare bitte im &lt;a href=&quot;http://deimhart.net/index.php?/archives/76-ShortCast-8-Rueckschau-Ubuntu-ReleaseParty-vom-1.-Mai-2010.html&quot; title=&quot;ShortCast #8: Rückschau Ubuntu-ReleaseParty vom 1. Mai 2010  - DeimHart&quot;&gt;Textbeitrag&lt;/a&gt; hinterlassen. Danke!&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20100516-kurz-008.ogg&quot; title=&quot;dh-20100516-kurz-008.ogg&quot; target=&quot;_blank&quot;&gt;dh-20100516-kurz-008.ogg&lt;/a&gt; (9:58 Minuten 10.5 MB) 
+    </content:encoded>
+
+    <pubDate>Sun, 16 May 2010 12:54:12 +0200</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/78-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20100516-kurz-008.ogg" type="application/ogg" length='10993787' />
+</item>
+<item>
+    <title>Jubiläumsausgabe: Deutsche in der Schweiz</title>
+    <link>http://deimhart.net/index.php?/archives/75-Jubilaeumsausgabe-Deutsche-in-der-Schweiz.html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/75-Jubilaeumsausgabe-Deutsche-in-der-Schweiz.html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=75</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=75</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Roman Hanhart)</author>
+    <content:encoded>
+    Hier ist der ogg-Feed zu unserer 13. Ausgabe. Kommentare bitte in &lt;a href=&quot;http://deimhart.net/index.php?/archives/73-Jubilaeumsausgabe-Deutsche-in-der-Schweiz.html&quot; title=&quot;Jubiläumsausgabe: Deutsche in der Schweiz  - DeimHart&quot;&gt;Haupt-Beitrag&lt;/a&gt; hinterlassen. Danke!&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net//uploads/dh-20100503-ausgabe-013.ogg&quot; title=&quot;dh-20100503-ausgabe-013.ogg&quot; target=&quot;_blank&quot;&gt;dh-20100503-ausgabe-013.ogg&lt;/a&gt; (2:03:30, 94.6 MB) 
+    </content:encoded>
+
+    <pubDate>Mon, 03 May 2010 06:00:00 +0200</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/75-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net//uploads/dh-20100503-ausgabe-013.ogg" type="application/ogg" length='99218141' />
+</item>
+<item>
+    <title>Verschlüsselung in der Praxis ...</title>
+    <link>http://deimhart.net/index.php?/archives/71-Verschluesselung-in-der-Praxis-....html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/71-Verschluesselung-in-der-Praxis-....html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=71</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=71</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Dirk Deimeke)</author>
+    <content:encoded>
+    Bitte Kommentare im &lt;a href=&quot;http://deimhart.net/index.php?/archives/70-Verschluesselung-in-der-Praxis-....html&quot; title=&quot;Textbeitrag&quot;&gt;Textbeitrag&lt;/a&gt; hinterlassen, danke!&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20100419-thema-002.ogg&quot; title=&quot;dh-20100419-thema-002.ogg&quot; target=&quot;_blank&quot;&gt;dh-20100419-thema-002.ogg&lt;/a&gt; (29:25 min, 21 MB) 
+    </content:encoded>
+
+    <pubDate>Mon, 19 Apr 2010 15:01:00 +0200</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/71-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20100419-thema-002.ogg" type="application/ogg" length='21656777' />
+</item>
+<item>
+    <title>Linux-Server mit Open Source Software</title>
+    <link>http://deimhart.net/index.php?/archives/66-Linux-Server-mit-Open-Source-Software.html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/66-Linux-Server-mit-Open-Source-Software.html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=66</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=66</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Dirk Deimeke)</author>
+    <content:encoded>
+    Bitte Kommentare im &lt;a href=&quot;http://deimhart.net/index.php?/archives/65-Linux-Server-mit-Open-Source-Software.html&quot; title=&quot;Textbeitrag&quot;&gt;Textbeitrag&lt;/a&gt; hinterlassen, danke!&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20100405-ausgabe-012.ogg&quot; title=&quot;dh-20100405-ausgabe-012.ogg&quot; target=&quot;_blank&quot;&gt;dh-20100405-ausgabe-012.ogg&lt;/a&gt; (01:05:00 hrs, 53 MB) 
+    </content:encoded>
+
+    <pubDate>Mon, 05 Apr 2010 11:14:00 +0200</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/66-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20100405-ausgabe-012.ogg" type="application/ogg" length='55570152' />
+</item>
+<item>
+    <title>Virtualisierung ...</title>
+    <link>http://deimhart.net/index.php?/archives/62-Virtualisierung-....html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/62-Virtualisierung-....html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=62</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=62</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Dirk Deimeke)</author>
+    <content:encoded>
+    Bitte Kommentare im &lt;a href=&quot;http://deimhart.net/index.php?/archives/61-Virtualisierung-....html&quot; title=&quot;Textbeitrag&quot;&gt;Textbeitrag&lt;/a&gt; hinterlassen, danke!&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20100320-thema-001.ogg&quot; title=&quot;dh-20100320-thema-001.ogg&quot; target=&quot;_blank&quot;&gt;dh-20100320-thema-001.ogg&lt;/a&gt; (59:23 min, 66 MB)&lt;br /&gt;
+ 
+    </content:encoded>
+
+    <pubDate>Sat, 20 Mar 2010 15:51:00 +0100</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/62-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20100320-thema-001.ogg" type="application/ogg" length='68944130' />
+</item>
+<item>
+    <title>Digitale Verschlüsselung</title>
+    <link>http://deimhart.net/index.php?/archives/57-Digitale-Verschluesselung.html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/57-Digitale-Verschluesselung.html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=57</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=57</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Roman Hanhart)</author>
+    <content:encoded>
+    Bitte Kommentare im &lt;a href=&quot;http://deimhart.net/index.php?/archives/56-Digitale-Verschluesselung.html&quot; title=&quot;Textbeitrag&quot;&gt;Textbeitrag&lt;/a&gt; hinterlassen, danke!&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20100301-ausgabe-011.ogg&quot; title=&quot;dh-20100301-ausgabe-011.ogg&quot; target=&quot;_blank&quot;&gt;dh-20100301-ausgabe-011.ogg&lt;/a&gt; (1:09:31, 74.9 MB) 
+    </content:encoded>
+
+    <pubDate>Mon, 01 Mar 2010 05:24:39 +0100</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/57-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license><category>antike</category>
+<category>asynchron</category>
+<category>cacert</category>
+<category>crypt</category>
+<category>digital</category>
+<category>gnupg</category>
+<category>linux</category>
+<category>pgp</category>
+<category>sicherheit</category>
+<category>ssl</category>
+<category>synchron</category>
+<category>ubuntu</category>
+<category>verschlüsselung</category>
+
+	<enclosure url="http://deimhart.net/uploads/dh-20100301-ausgabe-011.ogg" type="application/ogg" length='77882193' />
+</item>
+<item>
+    <title>Wikis (ogg) ...</title>
+    <link>http://deimhart.net/index.php?/archives/54-Wikis-ogg-....html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/54-Wikis-ogg-....html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=54</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=54</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Dirk Deimeke)</author>
+    <content:encoded>
+    Hier ist die ogg-Datei zur Sendung &lt;a href=&quot;http://deimhart.net/index.php?/archives/53-Wikis-....html&quot; title=&quot;Wikis ...  - DeimHart&quot;&gt;Wikis ...&lt;/a&gt;:&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20100201-ausgabe-010.ogg&quot; title=&quot;dh-20100201-ausgabe-010.ogg&quot; target=&quot;_blank&quot;&gt;dh-dh-20100201-ausgabe-010.ogg&lt;/a&gt;&lt;br /&gt;
+&lt;br /&gt;
+Kommentare bitte in den verlinkten Hauptartikel. 
+    </content:encoded>
+
+    <pubDate>Mon, 01 Feb 2010 05:59:00 +0100</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/54-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20100201-ausgabe-010.ogg" type="application/ogg" length='76584593' />
+</item>
+<item>
+    <title>ShortCast #7: Das Jahr 2012, die Maya, ein Barcamp und das Buch</title>
+    <link>http://deimhart.net/index.php?/archives/52-ShortCast-7-Das-Jahr-2012,-die-Maya,-ein-Barcamp-und-das-Buch.html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/52-ShortCast-7-Das-Jahr-2012,-die-Maya,-ein-Barcamp-und-das-Buch.html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=52</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=52</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Roman Hanhart)</author>
+    <content:encoded>
+    Hier ist die ogg-Datei zu unserem 7. ShortCast. Bitte Kommentare im &lt;a href=&quot;http://deimhart.net/index.php?/archives/50-ShortCast-7-Das-Jahr-2012,-die-Maya,-ein-Barcamp-und-das-Buch.html&quot; title=&quot;Textbeitrag&quot;&gt;Textbeitrag&lt;/a&gt; hinterlassen. Danke!&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20100111-kurz-007.ogg&quot; title=&quot;dh-20100111-kurz-007.ogg&quot; target=&quot;_blank&quot;&gt;dh-20100111-kurz-007.ogg&lt;/a&gt; 
+    </content:encoded>
+
+    <pubDate>Mon, 04 Jan 2010 22:11:12 +0100</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/52-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20100111-kurz-007.ogg" type="application/ogg" length='28820152' />
+</item>
+<item>
+    <title>LTS und SSH (ogg) ...</title>
+    <link>http://deimhart.net/index.php?/archives/48-LTS-und-SSH-ogg-....html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/48-LTS-und-SSH-ogg-....html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=48</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=48</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Dirk Deimeke)</author>
+    <content:encoded>
+    Hier ist die ogg-Datei zur Sendung &lt;a href=&quot;http://deimhart.net/index.php?/archives/47-LTS-und-SSH-....html&quot; title=&quot;LTS und SSH ...  - DeimHart&quot;&gt;LTS und SSH ...&lt;/a&gt;:&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20100104-ausgabe-009.ogg&quot; title=&quot;dh-20100104-ausgabe-009.ogg&quot; target=&quot;_blank&quot;&gt;dh-20100104-ausgabe-009.ogg&lt;/a&gt;&lt;br /&gt;
+&lt;br /&gt;
+Kommentare bitte in den verlinkten Hauptartikel. 
+    </content:encoded>
+
+    <pubDate>Mon, 04 Jan 2010 05:59:00 +0100</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/48-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20100104-ausgabe-009.ogg" type="application/ogg" length='59992682' />
+</item>
+<item>
+    <title>ShortCast #6: Twitter, Upload-Magazin, T3N und Jan...</title>
+    <link>http://deimhart.net/index.php?/archives/45-ShortCast-6-Twitter,-Upload-Magazin,-T3N-und-Jan....html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/45-ShortCast-6-Twitter,-Upload-Magazin,-T3N-und-Jan....html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=45</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=45</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Roman Hanhart)</author>
+    <content:encoded>
+    Hier ist der OGG-Download zum Short-Cast Nummer 6. Bitte Kommentare im Hauptartikel hinterlegen.&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20091215-kurz-006.ogg&quot; title=&quot;dh-20091215-kurz-006.ogg&quot; target=&quot;_blank&quot;&gt;dh-20091215-kurz-006.ogg&lt;/a&gt; 
+    </content:encoded>
+
+    <pubDate>Thu, 17 Dec 2009 20:38:03 +0100</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/45-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20091215-kurz-006.ogg" type="application/ogg" length='34697196' />
+</item>
+<item>
+    <title>ShortCast #6: Twitter, Upload-Magazin, T3N und Jan Tissler</title>
+    <link>http://deimhart.net/index.php?/archives/46-ShortCast-6-Twitter,-Upload-Magazin,-T3N-und-Jan-Tissler.html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/46-ShortCast-6-Twitter,-Upload-Magazin,-T3N-und-Jan-Tissler.html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=46</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=46</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Roman Hanhart)</author>
+    <content:encoded>
+    Hier ist der OGG-Download zum Short-Cast Nummer 6. Bitte Kommentare im &lt;a href=&quot;http://deimhart.net/index.php?/archives/43-ShortCast-6-Twitter,-Upload-Magazin,-T3N-und-Jan-Tissler.html&quot; title=&quot;Hauptartikel&quot;&gt;Hauptartikel&lt;/a&gt; hinterlegen.&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20091215-kurz-006.ogg&quot; title=&quot;dh-20091215-kurz-006.ogg&quot; target=&quot;_blank&quot;&gt;dh-20091215-kurz-006.ogg&lt;/a&gt; (30:00 Minuten, 33.1 MB) 
+    </content:encoded>
+
+    <pubDate>Thu, 17 Dec 2009 20:38:03 +0100</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/46-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20091215-kurz-006.ogg" type="application/ogg" length='34697196' />
+</item>
+<item>
+    <title>OpenSource und Mac (ogg) ...</title>
+    <link>http://deimhart.net/index.php?/archives/40-OpenSource-und-Mac-ogg-....html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/40-OpenSource-und-Mac-ogg-....html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=40</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=40</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Dirk Deimeke)</author>
+    <content:encoded>
+    Hier ist die ogg-Datei zur Sendung &lt;a href=&quot;http://deimhart.net/index.php?/archives/39-OpenSource-und-Mac-....html&quot; title=&quot;OpenSource und Mac ...  - DeimHart&quot;&gt;OpenSource und Mac ...&lt;/a&gt;:&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20091207-ausgabe-008.ogg&quot; title=&quot;dh-20091207-ausgabe-008.ogg&quot; target=&quot;_blank&quot;&gt;dh-20091207-ausgabe-008.ogg&lt;/a&gt;&lt;br /&gt;
+&lt;br /&gt;
+Kommentare bitte in den verlinkten Hauptartikel. 
+    </content:encoded>
+
+    <pubDate>Mon, 07 Dec 2009 05:59:00 +0100</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/40-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20091207-ausgabe-008.ogg" type="application/ogg" length='91963873' />
+</item>
+<item>
+    <title>ShortCast #5: Debian seit Anbeginn</title>
+    <link>http://deimhart.net/index.php?/archives/38-ShortCast-5-Debian-seit-Anbeginn.html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/38-ShortCast-5-Debian-seit-Anbeginn.html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=38</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=38</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Roman Hanhart)</author>
+    <content:encoded>
+    &lt;a href=&quot;http://deimhart.net/index.php?/archives/36-ShortCast-5-Debian-seit-Anbeginn.html&quot; title=&quot;Textform&quot;&gt;Hier ist der Beitrag in Textform&lt;/a&gt; zu lesen. Bitte Kommentare dort eintragen, danke!&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20091121-kurz-005.ogg&quot; title=&quot;dh-20091121-kurz-005.ogg&quot; target=&quot;_blank&quot;&gt;dh-20091121-kurz-005.ogg&lt;/a&gt; 
+    </content:encoded>
+
+    <pubDate>Sun, 22 Nov 2009 12:21:21 +0100</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/38-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20091121-kurz-005.ogg" type="application/ogg" length='12809359' />
+</item>
+<item>
+    <title>Rund um die Ubucon (ogg) ...</title>
+    <link>http://deimhart.net/index.php?/archives/33-Rund-um-die-Ubucon-ogg-....html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/33-Rund-um-die-Ubucon-ogg-....html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=33</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=33</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Dirk Deimeke)</author>
+    <content:encoded>
+    Hier ist die ogg-Datei zur Sendung &lt;a href=&quot;http://deimhart.net/index.php?/archives/32-Rund-um-die-Ubucon-....html&quot; title=&quot;Rund um die Ubucon ...  - DeimHart&quot;&gt;Rund um die Ubucon ...&lt;/a&gt;:&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20091102-ausgabe-007.ogg&quot; title=&quot;dh-20091102-ausgabe-007.ogg&quot; target=&quot;_blank&quot;&gt;dh-20091102-ausgabe-007.ogg&lt;/a&gt;&lt;br /&gt;
+&lt;br /&gt;
+Kommentare bitte in den verlinkten Hauptartikel. 
+    </content:encoded>
+
+    <pubDate>Mon, 02 Nov 2009 06:00:00 +0100</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/33-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20091102-ausgabe-007.ogg" type="application/ogg" length='89144031' />
+</item>
+<item>
+    <title>ShortCast #4: Ubuntu-Party in Andelfingen</title>
+    <link>http://deimhart.net/index.php?/archives/31-ShortCast-4-Ubuntu-Party-in-Andelfingen.html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/31-ShortCast-4-Ubuntu-Party-in-Andelfingen.html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=31</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=31</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Roman Hanhart)</author>
+    <content:encoded>
+    &lt;a href=&quot;http://deimhart.net/index.php?/archives/29-ShortCast-4-Ubuntu-Party-in-Andelfingen.html&quot; title=&quot;Textform&quot;&gt;Hier ist der Beitrag in Textform&lt;/a&gt; zu lesen. Bitte Kommentare dort eintragen, danke!&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20091025-kurz-004.ogg&quot; title=&quot;dh-20091025-kurz-004.ogg&quot; target=&quot;_blank&quot;&gt;dh-20091025-kurz-004.ogg&lt;/a&gt; 
+    </content:encoded>
+
+    <pubDate>Mon, 26 Oct 2009 19:01:26 +0100</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/31-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20091025-kurz-004.ogg" type="application/ogg" length='6901488' />
+</item>
+<item>
+    <title>ShortCast #3: Buchbesprechung VirtualBox – Installation, Anwendung, Praxis</title>
+    <link>http://deimhart.net/index.php?/archives/28-ShortCast-3-Buchbesprechung-VirtualBox-Installation,-Anwendung,-Praxis.html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/28-ShortCast-3-Buchbesprechung-VirtualBox-Installation,-Anwendung,-Praxis.html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=28</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=28</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Roman Hanhart)</author>
+    <content:encoded>
+    &lt;a href=&quot;http://deimhart.net/index.php?/archives/26-ShortCast-3-Buchbesprechung-VirtualBox-Installation,-Anwendung,-Praxis.html&quot; title=&quot;Beitrag&quot;&gt;Hier ist der Beitrag&lt;/a&gt; in Textform zu lesen. Bitte Kommentare dort eintragen, danke!&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20091011-kurz-003.ogg&quot; title=&quot;dh-20091011-kurz-003.ogg&quot; target=&quot;_blank&quot;&gt;dh-20091011-kurz-003.ogg&lt;/a&gt; 
+    </content:encoded>
+
+    <pubDate>Wed, 14 Oct 2009 19:28:52 +0200</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/28-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20091011-kurz-003.ogg" type="application/ogg" length='6816686' />
+</item>
+<item>
+    <title>ShortCast #2: Ubucon 2009 (ogg)</title>
+    <link>http://deimhart.net/index.php?/archives/24-ShortCast-2-Ubucon-2009-ogg.html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/24-ShortCast-2-Ubucon-2009-ogg.html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=24</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=24</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Dirk Deimeke)</author>
+    <content:encoded>
+    &lt;a href=&quot;http://deimhart.net/index.php?/archives/23-ShortCast-2-Ubucon-2009.html&quot; title=&quot;Beitrag in Textform&quot;&gt;Hier ist der Beitrag&lt;/a&gt; in Textform zu lesen. Bitte Kommentare dort eintragen, danke!&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20091010-kurz-002.ogg&quot; title=&quot;dh-20091010-kurz-002.ogg&quot; target=&quot;_blank&quot;&gt;dh-20091010-kurz-002.ogg&lt;/a&gt; 
+    </content:encoded>
+
+    <pubDate>Sat, 10 Oct 2009 14:00:00 +0200</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/24-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20091010-kurz-002.ogg" type="application/ogg" length='6666551' />
+</item>
+<item>
+    <title>ShortCast #1: Buchbesprechung Debian GNU/Linux - das umfassende Handbuch</title>
+    <link>http://deimhart.net/index.php?/archives/22-ShortCast-1-Buchbesprechung-Debian-GNULinux-das-umfassende-Handbuch.html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/22-ShortCast-1-Buchbesprechung-Debian-GNULinux-das-umfassende-Handbuch.html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=22</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=22</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Roman Hanhart)</author>
+    <content:encoded>
+    &lt;a href=&quot;http://deimhart.net/index.php?/archives/20-ShortCast-1-Buchbesprechung-GNULinux-das-umfassende-Handbuch.html&quot; title=&quot;Beitrag&quot;&gt;Hier ist der Beitrag&lt;/a&gt; in Textform zu lesen. Bitte Kommentare dort eintragen, danke!&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20091006-kurz-001.ogg&quot; title=&quot;dh-20091006-kurz-001.ogg&quot; target=&quot;_blank&quot;&gt;dh-20091006-kurz-001.ogg&lt;/a&gt; (5.42 Minuten, 5.0 MB) 
+    </content:encoded>
+
+    <pubDate>Tue, 06 Oct 2009 14:20:00 +0200</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/22-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20091006-kurz-001.ogg" type="application/ogg" length='5190859' />
+</item>
+<item>
+    <title>Umgang mit Zeit (ogg) ...</title>
+    <link>http://deimhart.net/index.php?/archives/17-Umgang-mit-Zeit-ogg-....html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/17-Umgang-mit-Zeit-ogg-....html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=17</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=17</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Dirk Deimeke)</author>
+    <content:encoded>
+    Hier ist die ogg-Datei zur Sendung &lt;a href=&quot;http://deimhart.net/index.php?/archives/16-Umgang-mit-Zeit-....html&quot; title=&quot;Umgang mit Zeit ...  - DeimHart&quot;&gt;Umgang mit Zeit ...&lt;/a&gt;:&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20091005-ausgabe-006.ogg&quot; title=&quot;dh-20091005-ausgabe-006.ogg&quot; target=&quot;_blank&quot;&gt;dh-20091005-ausgabe-006.ogg&lt;/a&gt;&lt;br /&gt;
+&lt;br /&gt;
+Kommentare bitte in den verlinkten Hauptartikel. 
+    </content:encoded>
+
+    <pubDate>Mon, 05 Oct 2009 04:59:00 +0200</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/17-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20091005-ausgabe-006.ogg" type="application/ogg" length='58250060' />
+</item>
+<item>
+    <title>Von Gentoo auf Ubuntu (ogg) ...</title>
+    <link>http://deimhart.net/index.php?/archives/14-Von-Gentoo-auf-Ubuntu-ogg-....html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/14-Von-Gentoo-auf-Ubuntu-ogg-....html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=14</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=14</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Dirk Deimeke)</author>
+    <content:encoded>
+    Hier ist die ogg-Datei zur Sendung &lt;a href=&quot;http://www.deimhart.net/index.php?/archives/13-Von-Gentoo-auf-Ubuntu-....html&quot; title=&quot;Von Gentoo auf Ubuntu ...  - DeimHart&quot;&gt;Von Gentoo auf Ubuntu ...&lt;/a&gt;:&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20090907-ausgabe-005.ogg&quot; title=&quot;dh-20090907-ausgabe-005.ogg&quot; target=&quot;_blank&quot;&gt;dh-20090907-ausgabe-005.ogg&lt;/a&gt;&lt;br /&gt;
+&lt;br /&gt;
+Kommentare bitte in den verlinkten Hauptartikel. 
+    </content:encoded>
+
+    <pubDate>Mon, 07 Sep 2009 04:59:00 +0200</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/14-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20090907-ausgabe-005.ogg" type="application/ogg" length='38709891' />
+</item>
+<item>
+    <title>Hier ist die vier (ogg) ...</title>
+    <link>http://deimhart.net/index.php?/archives/11-Hier-ist-die-vier-ogg-....html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/11-Hier-ist-die-vier-ogg-....html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=11</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=11</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Dirk Deimeke)</author>
+    <content:encoded>
+    Hier ist die ogg-Datei zur Sendung &lt;a href=&quot;http://www.deimhart.net/index.php?/archives/10-Hier-ist-die-vier....html&quot; title=&quot;Hier ist die vier ...  - DeimHart&quot;&gt;Hier ist die vier ...&lt;/a&gt;:&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20090803-ausgabe-004.ogg&quot; title=&quot;dh-20090803-ausgabe-004.ogg&quot; target=&quot;_blank&quot;&gt;dh-20090803-ausgabe-004.ogg&lt;/a&gt;&lt;br /&gt;
+&lt;br /&gt;
+Kommentare bitte in den verlinkten Hauptartikel. 
+    </content:encoded>
+
+    <pubDate>Mon, 03 Aug 2009 04:59:00 +0200</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/11-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20090803-ausgabe-004.ogg" type="application/ogg" length='30705346' />
+</item>
+<item>
+    <title>Und hier kommt die Nummer drei (ogg) ...</title>
+    <link>http://deimhart.net/index.php?/archives/8-Und-hier-kommt-die-Nummer-drei-ogg-....html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/8-Und-hier-kommt-die-Nummer-drei-ogg-....html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=8</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=8</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Dirk Deimeke)</author>
+    <content:encoded>
+    Hier ist die ogg-Datei zur Sendung &lt;a href=&quot;http://www.deimhart.net/index.php?/archives/7-Und-hier-kommt-die-Nummer-drei-....html&quot; title=&quot;Und hier kommt die Nummer drei ...  - DeimHart&quot;&gt;Und hier kommt die Nummer drei ...&lt;/a&gt;:&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20090706-ausgabe-003.ogg&quot; title=&quot;dh-20090706-ausgabe-003.ogg&quot; target=&quot;_blank&quot;&gt;dh-20090706-ausgabe-003.ogg&lt;/a&gt;&lt;br /&gt;
+&lt;br /&gt;
+Kommentare bitte in den verlinkten Hauptartikel. 
+    </content:encoded>
+
+    <pubDate>Mon, 06 Jul 2009 05:59:00 +0200</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/8-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20090706-ausgabe-003.ogg" type="application/ogg" length='53056494' />
+</item>
+<item>
+    <title>Und der zweite (ogg) ...</title>
+    <link>http://deimhart.net/index.php?/archives/6-Und-der-zweite-ogg-....html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/6-Und-der-zweite-ogg-....html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=6</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=6</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Dirk Deimeke)</author>
+    <content:encoded>
+    Hier ist die ogg-Datei zur Sendung &lt;a href=&quot;http://www.deimhart.net/index.php?/archives/4-Und-der-zweite-....html&quot; title=&quot;Und der zweite ...  - DeimHart&quot;&gt;Und der zweite ...&lt;/a&gt;:&lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20090601-ausgabe-002.ogg&quot; title=&quot;dh-20090601-ausgabe-002.ogg&quot; target=&quot;_blank&quot;&gt;dh-20090601-ausgabe-002.ogg&lt;/a&gt;&lt;br /&gt;
+&lt;br /&gt;
+Kommentare bitte in den verlinkten Hauptartikel. 
+    </content:encoded>
+
+    <pubDate>Mon, 01 Jun 2009 07:59:00 +0200</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/6-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20090601-ausgabe-002.ogg" type="application/ogg" length='41635606' />
+</item>
+<item>
+    <title>Aller Anfang (ogg) ...</title>
+    <link>http://deimhart.net/index.php?/archives/2-Aller-Anfang-ogg-....html</link>
+            <category>sendung ogg</category>
+    
+    <comments>http://deimhart.net/index.php?/archives/2-Aller-Anfang-ogg-....html#comments</comments>
+    <wfw:comment>http://deimhart.net/wfwcomment.php?cid=2</wfw:comment>
+
+    <slash:comments>0</slash:comments>
+    <wfw:commentRss>http://deimhart.net/rss.php?version=2.0&amp;type=comments&amp;cid=2</wfw:commentRss>
+    
+
+    <author>nospam@example.com (Dirk Deimeke)</author>
+    <content:encoded>
+    OGG-Datei zur Sendung &lt;a href=&quot;http://www.deimhart.net/index.php?/archives/1-Aller-Anfang-....html&quot; title=&quot;Aller Anfang ...  - DeimHart&quot;&gt;Aller Anfang ...&lt;/a&gt;: &lt;br /&gt;
+&lt;a href=&quot;http://deimhart.net/uploads/dh-20090504-ausgabe001.ogg&quot; title=&quot;dh-20090504-ausgabe001.ogg&quot; target=&quot;_blank&quot;&gt;dh-20090504-ausgabe001.ogg&lt;/a&gt;&lt;br /&gt;
+&lt;br /&gt;
+Kommentare bitte in den verlinkten Hauptartikel.&lt;br /&gt;
+&lt;br /&gt;
+&lt;!-- http://www.podcast.de/podcast/aneignung/pod_45257BdzRigWpUUKxQSHD13311/ --&gt; 
+    </content:encoded>
+
+    <pubDate>Mon, 04 May 2009 05:59:00 +0200</pubDate>
+    <guid isPermaLink="false">http://deimhart.net/index.php?/archives/2-guid.html</guid>
+    <creativeCommons:license>http://creativecommons.org/licenses/by/3.0/deed.de</creativeCommons:license>
+	<enclosure url="http://deimhart.net/uploads/dh-20090504-ausgabe001.ogg" type="application/ogg" length='58567899' />
+</item>
+
+</channel>
+</rss>

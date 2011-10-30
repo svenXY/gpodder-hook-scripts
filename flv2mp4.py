@@ -20,9 +20,6 @@ class gPodderHooks(object):
     def on_episode_downloaded(self, episode):
         self._convert_episode(episode)
 
-    def on_episodes_context_menu(self, episodes):
-        return [('Convert FLV to MP4', self._convert_episodes)]
-
     def _convert_episode(self, episode):
         if not youtube.is_video_link(episode.url):
             logger.debug('Not a YouTube video. Ignoring.')
@@ -57,8 +54,3 @@ class gPodderHooks(object):
                 os.remove(target)
             except OSError:
                 pass
-
-    def _convert_episodes(self, episodes):
-        for episode in episodes:
-            self._convert_episode(episode)
-

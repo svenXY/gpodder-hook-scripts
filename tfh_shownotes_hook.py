@@ -40,13 +40,12 @@ except:
     logger.error( '(tfh shownotes hook) Could not find eyeD3')
 
 
-TFH_TITLE='Tin Foil Hat'
+TFH_URL='http://feeds.feedburner.com/TinFoilHat'
+STEGHIDE_CMD='steghide extract -f -p %(pwd)s -sf %(img)s -xf %(file)s'
 
 
 def extract_image(filename):
-    """
-    extract image from the podcast file
-    """
+    """extract image from the podcast file"""
     imagefile = None
     try:
         if eyeD3.isMp3File(filename):
@@ -67,9 +66,7 @@ def extract_image(filename):
 
 
 def extract_shownotes(imagefile, remove_image=True):
-    """
-    extract shownotes from the FRONT_COVER.jpeg
-    """
+    """extract shownotes from the FRONT_COVER.jpeg"""
     shownotes = None
     password = 'tinfoilhat'
     shownotes_file = '/tmp/shownotes.txt'
@@ -77,7 +74,7 @@ def extract_shownotes(imagefile, remove_image=True):
     if not os.path.exists(imagefile):
         return shownotes
 
-    cmd = 'steghide extract -f -p %(pwd)s -sf %(img)s -xf %(file)s' % {
+    cmd = STEGHIDE_CMD % {
         'pwd': password,
         'img': imagefile,
         'file': shownotes_file
@@ -92,7 +89,7 @@ def extract_shownotes(imagefile, remove_image=True):
     if myprocess.returncode == 0:
         #read shownote file
         f = open(shownotes_file, 'r')
-        shownotes = f.read()
+        shownotes = unicode(f.read(), "utf-8")
         f.close()
     else:
         logger.error(u'Error extracting shownotes from the image file %s' % imagefile)
@@ -105,7 +102,7 @@ class gPodderHooks(object):
         logger.info('"Tin Foil Hat" shownote extractor extension is initializing.')
 
     def on_episode_downloaded(self, episode):
-        if episode.channel.title == TFH_TITLE:
+        if episode.channel.url == TFH_URL:
             filename = episode.local_filename(create=False, check_only=True)
             if filename is None:
                 return
@@ -124,7 +121,3 @@ class gPodderHooks(object):
                 episode.save()
                 episode.db.commit()
                 logger.info(u'updated shownotes for podcast: (%s/%s)' % (episode.channel.title, episode.title))
-
-    def on_episode_save(self, episode):
-        # TODO: add possibility to extract shownotes after downloaded the episode
-        pass

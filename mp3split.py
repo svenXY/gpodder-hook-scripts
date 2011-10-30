@@ -34,15 +34,6 @@ class gPodderHooks(object):
     def __init__(self):
         pass
 
-    def on_podcast_updated(self, podcast):
-        pass
-
-    def on_podcast_save(self, podcast):
-        pass
-
-    def on_episode_save(self, episode):
-        pass
-
     def on_file_copied_to_filesystem(self, mp3playerdevice, from_file, to_file):
         logger.info(u'on_file_copied_to_filesystem(%s, %s)' % (from_file, to_file))
         mp3split(from_file, to_file)

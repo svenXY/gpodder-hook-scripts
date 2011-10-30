@@ -66,12 +66,12 @@ def ins_test_podcast(client, podcast_url, episode2dl=None):
     
 
 def init_data():
-    import test_config as config
+    from config import data
     from gpodder import api
 
     client = api.PodcastClient()
 
-    for name, conf in config.TEST_PODCASTS.items():
+    for name, conf in data.TEST_PODCASTS.items():
         ins_test_podcast(client, conf['url'], conf['episode'])
         
     client._db.close()
@@ -95,18 +95,22 @@ if __name__ == "__main__":
         init_data()
 
     #import all test files
-    import cmml_linux_outlaws_test
+    import bittorrent_test
+    import cmml_creator_test
     import rename_downloads_test
     import rm_ogg_cover_test
+    import rockbox_mp4_convert_test
     import tagging_test
     import tfh_shownotes_test
     import zpravy_test
 
     loader = unittest.TestLoader()
 
-    suite = loader.loadTestsFromModule(cmml_linux_outlaws_test)
+    suite = loader.loadTestsFromModule(bittorrent_test)
+    suite.addTests(loader.loadTestsFromModule(cmml_creator_test))
     suite.addTests(loader.loadTestsFromModule(rename_downloads_test))
     suite.addTests(loader.loadTestsFromModule(rm_ogg_cover_test))
+    suite.addTests(loader.loadTestsFromModule(rockbox_mp4_convert_test))
     suite.addTests(loader.loadTestsFromModule(tagging_test))
     suite.addTests(loader.loadTestsFromModule(tfh_shownotes_test))
     suite.addTests(loader.loadTestsFromModule(zpravy_test))
