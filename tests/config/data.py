@@ -29,7 +29,8 @@ TEST_PODCASTS = {
                'episode': None },
 
     # selected episode should be 'TED: Matt Cutts: Try something new for 30 days - Matt Cutts (2011)'
-    'TEDTalks': {'url': 'file://%s/tedtalks_video.rss' % config_dir,
+    'TEDTalks': {#'url': 'http://feeds.feedburner.com/tedtalks_video',
+                 'url': 'file://%s/tedtalks_video.rss' % config_dir,
                  'episode': -31},
 
     # YouTube-Channel

@@ -17,6 +17,9 @@ class TestTfhShownotes(unittest.TestCase):
         self.episode = self.podcast.get_episodes()[data.TEST_PODCASTS['TinFoilHat']['episode']]
         self.filename = self.episode._episode.local_filename(create=False, check_only=True)
 
+        self.podcast1 = self.client.get_podcast(data.TEST_PODCASTS['DeimHart']['url'])
+        self.episode1 = self.podcast1.get_episodes()[data.TEST_PODCASTS['DeimHart']['episode']]
+
     def tearDown(self):
         self.client._db.close()
 
@@ -41,3 +44,11 @@ class TestTfhShownotes(unittest.TestCase):
 
         self.assertEqual(DESC, desc)
         self.assertEqual(-1, desc.find(shownotes))
+
+    def test_context_menu(self):
+        self.assertEqual(self.episode._episode.channel.title, hook.TFH_TITLE)
+        self.assertNotEqual(self.episode1._episode.channel.title, hook.TFH_TITLE)
+
+        tfh_hook = hook.gPodderHooks()
+        self.assertTrue(tfh_hook._show_context_menu([self.episode._episode,]))
+        self.assertFalse(tfh_hook._show_context_menu([self.episode1._episode,]))

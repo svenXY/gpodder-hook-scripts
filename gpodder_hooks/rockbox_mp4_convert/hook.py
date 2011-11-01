@@ -78,7 +78,7 @@ def calc_resolution(video_width, video_height, device_width, device_height):
         dest_width = height_ratio * video_width
         dest_height = device_height
 
-    return (dest_width, dest_height)
+    return (int(round(dest_width)), round(int(dest_height)))
 
 
 def convert_mp4(from_file, params):
@@ -101,7 +101,6 @@ def convert_mp4(from_file, params):
     if resolution is None:
         logger.error("Error calculating the new screen resolution") 
         return None
-    dest_width, dest_height = resolution
         
     # Running conversion command (ffmpeg)
     message(NOTIFY_INTERFACE, metadata['name'], 'Running conversion script',
@@ -110,8 +109,8 @@ def convert_mp4(from_file, params):
     convert_command = FFMPEG_CMD % {
         'from': from_file,
         'to': to_file,
-        'width': str(int(dest_width)),
-        'height': str(int(dest_height)),
+        'width': str(resolution[0]),
+        'height': str(resolution[1]),
         'options': params['ffmpeg_options']['value']
     }
 

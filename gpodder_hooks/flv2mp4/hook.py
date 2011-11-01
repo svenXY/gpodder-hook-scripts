@@ -20,19 +20,38 @@ import logging
 logger = logging.getLogger(__name__)
 
 
+DEFAULT_PARAMS = { 
+    "context_menu": {
+        "desc": "add plugin to the context-menu",
+        "value": True,
+        "type": "checkbox"
+    }   
+}
+
 FFMPEG_CMD = 'ffmpeg -i "%(infile)s" -vcodec copy -acodec copy "%(outfile)s"'
 
 
 class gPodderHooks(object):
-    def __init__(self, params=None, test=False):
+    def __init__(self, params=DEFAULT_PARAMS, test=False):
+        self.params = params
         self.test = test
-        check_command(FFMPEG_CMD) 
+
+        check_command(FFMPEG_CMD)
 
     def on_episode_downloaded(self, episode):
         self._convert_episode(episode)
 
     def on_episodes_context_menu(self, episodes):
-        return [(metadata['name'], self._convert_episodes)]
+        if self._show_context_menu(episodes):
+            return [(metadata['name'], self._convert_episodes)]
+
+    def _show_context_menu(self, episodes):
+        if not self.params['context_menu']:
+            return False
+
+        if 'video/x-flv' not in [e.mime_type for e in episodes]:
+            return False
+        return True 
 
     def _convert_episode(self, episode):
         if not youtube.is_video_link(episode.url):
@@ -79,4 +98,3 @@ class gPodderHooks(object):
     def _convert_episodes(self, episodes):
         for episode in episodes:
             self._convert_episode(episode)
-

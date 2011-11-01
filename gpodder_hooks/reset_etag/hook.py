@@ -26,16 +26,26 @@ import logging
 logger = logging.getLogger(__name__)
 
 
+DEFAULT_PARAMS = { 
+    "domain_list": {
+        "desc": "reset the etag and last modified information for",
+        "value": [u'http://podcast.wdr.de', ],
+        "type": "combobox"
+    }   
+}
+
 ## settings
 domains = (u'http://podcast.wdr.de', )
 
 
 class gPodderHooks(object):
-    def __init__(self, params=None):
+    def __init__(self, params=DEFAULT_PARAMS):
+        self.domain_list = params['domain_list']['value']
+
         logger.info('Reset etag extension is initializing.')
 
     def on_podcast_updated(self, podcast):
-        if podcast.url.startswith(domains):
+        if podcast.url.startswith(self.domain_list):
             podcast.etag = None
             podcast.last_modified = None
             podcast.save()

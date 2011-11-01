@@ -47,7 +47,7 @@ DEFAULT_PARAMS = {
     }   
 }
 
-TFH_URL='http://feeds.feedburner.com/TinFoilHat'
+TFH_TITLE='Tin Foil Hat'
 STEGHIDE_CMD='steghide extract -f -p %(pwd)s -sf %(img)s -xf %(file)s'
 
 
@@ -115,12 +115,20 @@ class gPodderHooks(object):
         for episode in episodes:
             self.on_episode_downloaded(episode)
 
+    def _show_context_menu(self, episodes):
+        if not self.params['context_menu']:
+            return False
+
+        if TFH_TITLE not in [e.channel.title for e in episodes]:
+            return False
+        return True 
+
     def on_episodes_context_menu(self, episodes):
-        if self.params['context_menu'] and TFH_URL in [e.channel.url for e in episodes]:
+        if self._show_context_menu(episodes):
             return [(metadata['name'], self._download_shownotes)]
 
     def on_episode_downloaded(self, episode):
-        if episode.channel.url == TFH_URL:
+        if episode.chanel.title == TFH_TITLE:
             filename = episode.local_filename(create=False, check_only=True)
             if filename is None:
                 return
