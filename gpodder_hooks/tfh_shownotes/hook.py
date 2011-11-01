@@ -41,14 +41,14 @@ from util import check_command
 
 DEFAULT_PARAMS = { 
     "context_menu": {
-        "desc": "add plugin to the context-menu",
+        "desc": u"add plugin to the context-menu",
         "value": True,
-        "type": "checkbox"
+        "type": u"checkbox"
     }   
 }
 
-TFH_TITLE='Tin Foil Hat'
-STEGHIDE_CMD='steghide extract -f -p %(pwd)s -sf %(img)s -xf %(file)s'
+TFH_TITLE = 'Tin Foil Hat'
+STEGHIDE_CMD = 'steghide extract -f -p %(pwd)s -sf %(img)s -xf %(file)s'
 
 
 def extract_image(filename):

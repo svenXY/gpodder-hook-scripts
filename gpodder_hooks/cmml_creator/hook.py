@@ -40,13 +40,13 @@ logger = logging.getLogger(__name__)
 
 import gpodder
 
-LINUX_OUTLAWS = 'Linux Outlaws'
-RADIOTUX = 'RadioTux Magazin'
+LINUX_OUTLAWS = u'Linux Outlaws'
+RADIOTUX = u'RadioTux Magazin'
 
 DEFAULT_PARAMS = {
     "podcast_list": {
-        "desc": "Supported podcasts:",
-        "type": "multichoice-list",
+        "desc": u"Supported podcasts:",
+        "type": u"multichoice-list",
         "list": [ LINUX_OUTLAWS, RADIOTUX ],
         "value": [ True, True ]
     }

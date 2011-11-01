@@ -3,6 +3,10 @@ def check_command(cmd):
     import shlex
     import subprocess
 
+    # Prior to Python 2.7.3, this module (shlex) did not support Unicode input.
+    if isinstance(cmd, unicode):
+        cmd = cmd.encode('ascii', 'ignore')
+        
     program = shlex.split(cmd)[0]
     try:
         subprocess.Popen(shlex.split('%s --version' % program),

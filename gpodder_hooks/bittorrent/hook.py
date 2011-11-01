@@ -10,9 +10,9 @@ from util import check_command
 
 DEFAULT_PARAMS = {
     "bittorrent_cmd": {
-        "desc": "Defines the command line bittorrent program:",
-        "value": 'transmission-cli %s',
-        "type": "textitem"
+        "desc": u"Defines the command line bittorrent program:",
+        "value": u"transmission-cli %s",
+        "type": u"textitem"
     }
 }
 
@@ -29,8 +29,11 @@ class gPodderHooks(object):
 
     def on_episode_downloaded(self, episode):
         if episode.extension() == '.torrent':
+            cmd = self.bittorrent_cmd % episode.local_filename(False)
+            
             # Prior to Python 2.7.3, this module (shlex) did not support Unicode input.
-            cmd = str(self.bittorrent_cmd % episode.local_filename(False))
+            if isinstance(cmd, unicode):
+                cmd = cmd.encode('ascii', 'ignore')
 
             # for testing purpose it's possible to get to stdout+stderr output
             if self.test:

@@ -24,19 +24,19 @@ logger = logging.getLogger(__name__)
 
 DEFAULT_PARAMS = {
     "device_width": {
-        "desc": 'Device width',
+        "desc": u'Device width',
         "value": 224.0,
-        "type": 'spinbutton'
+        "type": u'spinbutton'
     },
     "device_height": {
-        "desc": 'Device height',
+        "desc": u'Device height',
         "value": 176.0,
-        "type": 'spinbutton'
+        "type": u'spinbutton'
     },
     "ffmpeg_options": {
-        "desc": 'ffmpeg options',
-        "value": '-vcodec mpeg2video -b 500k -ab 192k -ac 2 -ar 44100 -acodec libmp3lame',
-        "type": 'textitem'
+        "desc": u'ffmpeg options',
+        "value": u'-vcodec mpeg2video -b 500k -ab 192k -ac 2 -ar 44100 -acodec libmp3lame',
+        "type": u'textitem'
     }
 }
 
@@ -115,7 +115,10 @@ def convert_mp4(from_file, params):
     }
 
     # Prior to Python 2.7.3, this module (shlex) did not support Unicode input.
-    process = subprocess.Popen(shlex.split(str(convert_command)),
+    if isinstance(convert_command, unicode):
+        convert_command = convert_command.encode('ascii', 'ignore')
+
+    process = subprocess.Popen(shlex.split(convert_command),
         stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout, stderr = process.communicate()
     if process.returncode != 0:
