@@ -108,6 +108,8 @@ if __name__ == "__main__":
     import cmml_creator_test
     import enqueue_in_vlc_test
     import flv2mp4_test
+    import mp3gain_test
+    import normalize_audio_test
     import rename_download_test
     import rm_ogg_cover_test
     import rockbox_mp4_convert_test
@@ -121,6 +123,8 @@ if __name__ == "__main__":
     suite.addTests(loader.loadTestsFromModule(cmml_creator_test))
     suite.addTests(loader.loadTestsFromModule(enqueue_in_vlc_test))
     suite.addTests(loader.loadTestsFromModule(flv2mp4_test))
+    suite.addTests(loader.loadTestsFromModule(mp3gain_test))
+    suite.addTests(loader.loadTestsFromModule(normalize_audio_test))
     suite.addTests(loader.loadTestsFromModule(rename_download_test))
     suite.addTests(loader.loadTestsFromModule(rm_ogg_cover_test))
     suite.addTests(loader.loadTestsFromModule(rockbox_mp4_convert_test))
