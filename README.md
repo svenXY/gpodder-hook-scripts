@@ -65,14 +65,33 @@ work with the FLV container, but does work with the MP4 container. The change
 is quick, because no re-encoding is done.
 
 
+## mp3gain
+
+adjusts mp3s so that they all have the same volume. Contrary to normalize_audio this hook don't decode and re-encode the audio. But this hook only supports mp3 files.
+
+### Requirements
+
+- mp3gain - MP3Gain analyzes and adjusts mp3 files so that they have the same volume. (http://mp3gain.sourceforge.net/)
+
+
 ## mp3split
 
 Split mp3 files in ranges of 10 minutes when the files are copied to the device.
 
-
 ### Requirements
 
 - mp3splt binary on the path (http://mp3splt.sourceforge.net/)
+
+
+## normalize_audio
+
+adjusts mp3s/oggs so that they all have the same volume. Contrary to mp3gain this hook decode and re-encode the audio and supports mp3 and ogg files.
+
+### Requirements
+
+- normalize-audio - Normalize is a tool for adjusting the volume of audio files to a standard level (http://normalize.nongnu.org)
+- mpg123 - Fast console MPEG Audio Player and decoder library (http://www.mpg123.de/)
+- vorbis-tools - several Ogg Vorbis tools (https://www.xiph.org/downloads/)
 
 
 ## rename_downloads
