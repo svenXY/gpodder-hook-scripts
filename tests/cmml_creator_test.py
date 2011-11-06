@@ -22,12 +22,6 @@ def create_cmml_from_file(ogg_file):
         print("not a Linux Outlaws file !")
 
 
-def delete_cmml_file(filename):
-    cmml_file = hook.get_cmml_filename(filename)
-    if os.path.exists(cmml_file):
-        os.remove(cmml_file)
-
-
 class TestCmmlLinuxOutlaws(unittest.TestCase):
     def setUp(self):
         self.client = api.PodcastClient()
@@ -39,8 +33,8 @@ class TestCmmlLinuxOutlaws(unittest.TestCase):
         self.filename = self.episode._episode.local_filename(create=True)
 
     def tearDown(self):
-        delete_cmml_file(LINUXOUTLAWS_FILENAME)
-        delete_cmml_file(self.filename)
+        hook.delete_cmml_file(LINUXOUTLAWS_FILENAME)
+        hook.delete_cmml_file(self.filename)
         self.client._db.close()
 
     def test_create_cmml(self):

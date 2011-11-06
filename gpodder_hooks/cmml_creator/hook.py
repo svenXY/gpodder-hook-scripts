@@ -57,6 +57,10 @@ def get_cmml_filename(audio_file):
     (name, ext) = os.path.splitext(audio_file)
     return '%s.cmml' % name
 
+def delete_cmml_file(filename):
+    cmml_file = get_cmml_filename(filename)
+    if os.path.exists(cmml_file):
+        os.remove(cmml_file)
 
 def create_cmml_linux_outlaws(html, audio_file):
     soup = BeautifulSoup(html, convertEntities=BeautifulSoup.HTML_ENTITIES)
@@ -81,7 +85,6 @@ def create_cmml_linux_outlaws(html, audio_file):
             clip.set('title',txt)
             cmml.append(clip)
         ET.ElementTree(cmml).write(to_file,encoding='utf-8')
-
 
 def create_cmml_radiotux(html, audio_file):
     soup = BeautifulSoup(html, convertEntities=BeautifulSoup.HTML_ENTITIES)
@@ -129,4 +132,6 @@ class gPodderHooks(object):
 
         elif channel_title.startswith(RADIOTUX) and self.state[self.choices.index(RADIOTUX)]:
             create_cmml_radiotux(html, audio_file)
-            
+           
+    def on_episode_delete(self, episode, filename):
+        delete_cmml_filename(filename)
