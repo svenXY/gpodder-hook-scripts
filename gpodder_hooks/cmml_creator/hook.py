@@ -48,7 +48,8 @@ DEFAULT_PARAMS = {
         "desc": u"Supported podcasts:",
         "type": u"multichoice-list",
         "list": [ LINUX_OUTLAWS, RADIOTUX ],
-        "value": [ True, True ]
+        "value": [ True, True ],
+        "sort": 1
     }
 }
 

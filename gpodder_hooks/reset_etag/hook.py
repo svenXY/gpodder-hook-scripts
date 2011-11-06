@@ -30,7 +30,8 @@ DEFAULT_PARAMS = {
     "domain_list": {
         "desc": "reset the etag and last modified information for",
         "value": [u'http://podcast.wdr.de', ],
-        "type": "combobox"
+        "type": "combobox",
+        "sort": 1
     }   
 }
 

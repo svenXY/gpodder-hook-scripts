@@ -12,7 +12,8 @@ DEFAULT_PARAMS = {
     "bittorrent_cmd": {
         "desc": u"Defines the command line bittorrent program:",
         "value": u"transmission-cli %s",
-        "type": u"textitem"
+        "type": u"textitem",
+        "sort": 1
     }
 }
 

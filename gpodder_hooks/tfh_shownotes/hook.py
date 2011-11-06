@@ -43,7 +43,8 @@ DEFAULT_PARAMS = {
     "context_menu": {
         "desc": u"add plugin to the context-menu",
         "value": True,
-        "type": u"checkbox"
+        "type": u"checkbox",
+        "sort": 1
     }   
 }
 

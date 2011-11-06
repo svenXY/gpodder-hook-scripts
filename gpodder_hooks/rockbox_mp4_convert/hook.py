@@ -23,20 +23,23 @@ logger = logging.getLogger(__name__)
 
 
 DEFAULT_PARAMS = {
-    "device_width": {
-        "desc": u'Device width',
-        "value": 224.0,
-        "type": u'spinbutton'
-    },
     "device_height": {
         "desc": u'Device height',
         "value": 176.0,
-        "type": u'spinbutton'
+        "type": u'spinbutton',
+        "sort": 1
+    },
+    "device_width": {
+        "desc": u'Device width',
+        "value": 224.0,
+        "type": u'spinbutton',
+        "sort": 2
     },
     "ffmpeg_options": {
         "desc": u'ffmpeg options',
         "value": u'-vcodec mpeg2video -b 500k -ab 192k -ac 2 -ar 44100 -acodec libmp3lame',
-        "type": u'textitem'
+        "type": u'textitem',
+        "sort": 3
     }
 }
 
