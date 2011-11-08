@@ -24,7 +24,6 @@
 # couldn't handle ogg files with included coverart
 
 import os
-import gpodder
 
 import logging
 logger = logging.getLogger(__name__)
@@ -33,6 +32,18 @@ try:
     from mutagen.oggvorbis import OggVorbis 
 except:
     logger.error( '(remove ogg cover hook) Could not find mutagen')
+
+import gpodder
+from metadata import metadata
+
+DEFAULT_PARAMS = { 
+    "context_menu": {
+        "desc": u"add plugin to the context-menu",
+        "value": True,
+        "type": u"checkbox",
+        "sort": 1
+    }   
+}
 
 
 def rm_ogg_cover(episode):
@@ -60,11 +71,27 @@ def rm_ogg_cover(episode):
         except:
             None
 
-
-
 class gPodderHooks(object):
-    def __init__(self, params=None):
+    def __init__(self, params=DEFAULT_PARAMS):
         logger.info('Remove ogg cover extension is initializing.')
+        self.params = params
 
     def on_episode_downloaded(self, episode):
         rm_ogg_cover(episode)
+
+    def on_episodes_context_menu(self, episodes):
+        if self._show_context_menu(episodes):
+            return [(metadata['name'], self._rm_ogg_covers)]
+
+    def _show_context_menu(self, episodes):
+        if not self.params['context_menu']:
+            return False
+
+        files = [e.download_filename for e in episodes]
+        if 'ogg' not in [os.path.splitext(f)[1][1:].lower() for f in files]:
+            return False
+        return True
+
+    def _rm_ogg_covers(self, episodes):
+        for episode in episodes:
+            rm_ogg_cover(episodes)

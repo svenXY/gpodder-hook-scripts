@@ -60,7 +60,7 @@ class gPodderHooks(object):
 
     def on_episodes_context_menu(self, episodes):
         if self._show_context_menu(episodes):
-            return [(metadata['name'], self._download_shownotes)]
+            return [(metadata['name'], self._convert_episodes)]
 
     def _convert_episode(self, episode):
         filename = episode.local_filename(create=False, check_only=True)

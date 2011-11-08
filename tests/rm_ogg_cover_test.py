@@ -9,7 +9,7 @@ from mutagen.oggvorbis import OggVorbis
 
 from gpodder import api
 from config import data
-from rm_ogg_cover.hook import rm_ogg_cover
+from rm_ogg_cover import hook
 
 
 class TestTagging(unittest.TestCase):
@@ -38,7 +38,7 @@ class TestTagging(unittest.TestCase):
         return(episode, filename, filename_save)
 
     def test_mp3_file(self):
-        rm_ogg_cover(self.mp3_episode._episode)
+        hook.rm_ogg_cover(self.mp3_episode._episode)
         self.assertTrue(filecmp.cmp(self.mp3_file, self.mp3_file_save))
 
     def test_ogg_file(self):
@@ -48,10 +48,16 @@ class TestTagging(unittest.TestCase):
         self.assertTrue(ogg.has_key('coverartmime'))
         self.assertTrue(ogg.has_key('coverartdescription'))
 
-        rm_ogg_cover(self.ogg_episode._episode)
+        hook.rm_ogg_cover(self.ogg_episode._episode)
         self.assertFalse(filecmp.cmp(self.ogg_file, self.ogg_file_save))
 
         ogg = OggVorbis(self.ogg_file)
         self.assertFalse(ogg.has_key('coverart'))
         self.assertFalse(ogg.has_key('coverartmime'))
         self.assertFalse(ogg.has_key('coverartdescription'))
+
+    def test_context_menu(self):
+        rm_hook = hook.gPodderHooks()
+        self.assertFalse(rm_hook._show_context_menu([self.mp3_episode._episode,]))
+        self.assertTrue(rm_hook._show_context_menu([self.ogg_episode._episode,]))
+

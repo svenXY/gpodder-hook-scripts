@@ -28,9 +28,13 @@ class TestCmmlLinuxOutlaws(unittest.TestCase):
 
         url = data.TEST_PODCASTS['LinuxOutlaws']['url']
         self.podcast = self.client.get_podcast(url)
-
         self.episode = self.podcast.get_episodes()[-1]
         self.filename = self.episode._episode.local_filename(create=True)
+
+        url2 = data.TEST_PODCASTS['TinFoilHat']['url']
+        epno2 = data.TEST_PODCASTS['TinFoilHat']['episode']
+        self.podcast2 = self.client.get_podcast(url2)
+        self.episode2 = self.podcast2.get_episodes()[epno2]
 
     def tearDown(self):
         hook.delete_cmml_file(LINUXOUTLAWS_FILENAME)
@@ -49,3 +53,8 @@ class TestCmmlLinuxOutlaws(unittest.TestCase):
         cmml_file = hook.get_cmml_filename(self.filename)
         self.assertTrue(os.path.exists(cmml_file))
         self.assertTrue(os.path.getsize(cmml_file)>0)
+
+    def test_context_menu(self):
+        cmml_hook = hook.gPodderHooks()
+        self.assertTrue(cmml_hook._show_context_menu([self.episode._episode,]))
+        self.assertFalse(cmml_hook._show_context_menu([self.episode2._episode,]))

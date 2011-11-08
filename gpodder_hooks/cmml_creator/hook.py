@@ -39,6 +39,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 import gpodder
+from metadata import metadata
 
 LINUX_OUTLAWS = u'Linux Outlaws'
 RADIOTUX = u'RadioTux Magazin'
@@ -50,7 +51,13 @@ DEFAULT_PARAMS = {
         "list": [ LINUX_OUTLAWS, RADIOTUX ],
         "value": [ True, True ],
         "sort": 1
-    }
+    },
+    "context_menu": {
+        "desc": u"add plugin to the context-menu",
+        "value": True,
+        "type": u"checkbox",
+        "sort": 2
+    }   
 }
 
 
@@ -117,22 +124,52 @@ def create_cmml_radiotux(html, audio_file):
 
 class gPodderHooks(object):
     def __init__(self, params=DEFAULT_PARAMS):
+        self.params = params
         self.choices = params['podcast_list']['list']
         self.state = params['podcast_list']['value']
 
     def on_episode_downloaded(self, episode):
-        logger.info('create_cmml: on_episode_downloaded(%s, %s)' % (episode.title, episode.channel.url))
+        self._convert_episode(episode)
+
+    def on_episodes_context_menu(self, episodes):
+        if self._show_context_menu(episodes):
+            return [(metadata['name'], self._convert_episodes)]
+
+    def on_episode_delete(self, episode, filename):
+        delete_cmml_filename(filename)
+
+    def _process_episode(self, episode, podcast_title):
+        if not episode.channel.title.startswith(podcast_title):
+            return False
+
+        if not self.state[self.choices.index(podcast_title)]:
+            return False
+
+        return True
+
+    def _show_context_menu(self, episodes):
+        if not self.params['context_menu']:
+            return False
+
+        episodes = [e for e in episodes 
+            if self._process_episode(e, LINUX_OUTLAWS) or self._process_episode(e, RADIOTUX)]
+        if not episodes:
+            return False
+        return True
+
+    def _convert_episode(self, episode):
+        logger.info('create_cmml(%s, %s)' % (episode.title, episode.channel.url))
 
         html = episode.description
         audio_file = episode.local_filename(False)
-        channel_title = episode.channel.title
 
         # may have to change that if the feed is renamed...
-        if channel_title.startswith(LINUX_OUTLAWS) and self.state[self.choices.index(LINUX_OUTLAWS)]:
+        if self._process_episode(episode, LINUX_OUTLAWS):
         	create_cmml_linux_outlaws(html, audio_file)
 
-        elif channel_title.startswith(RADIOTUX) and self.state[self.choices.index(RADIOTUX)]:
+        elif self._process_episode(episode, RADIOTUX):
             create_cmml_radiotux(html, audio_file)
-           
-    def on_episode_delete(self, episode, filename):
-        delete_cmml_filename(filename)
+
+    def _convert_episodes(self, episodes):
+        for episode in episodes:
+            self._convert_episode(episode)
