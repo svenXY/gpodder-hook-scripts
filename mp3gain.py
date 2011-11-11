@@ -10,13 +10,17 @@ import gpodder
 from gpodder import youtube
 
 import os
+import platform
 import shlex
 import subprocess
 
 import logging
 logger = logging.getLogger(__name__)
 
-CMD = 'mp3gain -c "%s"'
+CMD = {
+    'Linux': 'mp3gain -c "%s"',
+    'Windows': 'mp3gain.exe -c "%s"'
+}
 
 
 class gPodderHooks(object):
@@ -31,7 +35,11 @@ class gPodderHooks(object):
         (basename, extension) = os.path.splitext(filename)
         if episode.file_type() == 'audio' and extension.lower().endswith('mp3'):
 
-            p = subprocess.Popen(shlex.split(CMD % filename),
+            # get platform specific command
+            cmd = CMD[platform.system()]
+
+            # start command
+            p = subprocess.Popen(shlex.split(cmd % filename),
                 stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             stdout, stderr = p.communicate()
 
