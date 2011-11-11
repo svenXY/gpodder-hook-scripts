@@ -47,100 +47,21 @@ ROCKBOX_EXTENTION = "mpg"
 EXTENTIONS_TO_CONVERT = ['.mp4',"." + ROCKBOX_EXTENTION]
 FFMPEG_CMD = 'ffmpeg -y -i "%(from)s" -s %(width)sx%(height)s %(options)s "%(to)s"'
 
-NOTIFY_INTERFACE = init_dbus()
-
-def get_rockbox_filename(origin_filename):
-    if not os.path.exists(origin_filename):
-        return None
-
-    dirname = os.path.dirname(origin_filename)
-    filename = os.path.basename(origin_filename)
-    basename, ext = os.path.splitext(filename)
-
-    if ext not in EXTENTIONS_TO_CONVERT:
-        return None
-
-    if filename.endswith(ROCKBOX_EXTENTION):
-        new_filename = "%s-convert.%s" % (basename, ROCKBOX_EXTENTION)
-    else:
-        new_filename = "%s.%s" % (basename, ROCKBOX_EXTENTION)
-    return os.path.join(dirname, new_filename)
-
-
-def calc_resolution(video_width, video_height, device_width, device_height):
-    if video_height is None:
-        return None
-        
-    width_ratio = device_width / video_width
-    height_ratio = device_height / video_height
-                
-    dest_width = device_width
-    dest_height = width_ratio * video_height
-                
-    if dest_height > device_height:
-        dest_width = height_ratio * video_width
-        dest_height = device_height
-
-    return (int(round(dest_width)), round(int(dest_height)))
-
-
-def convert_mp4(from_file, params):
-    """Convert MP4 file to rockbox mpg file"""
-    # generate new filename and check if the file already exists
-    to_file = get_rockbox_filename(from_file)
-    if os.path.isfile(to_file):
-        return to_file
-
-    logger.info("Converting: %s", from_file)
-
-    # calculationg the new screen resolution
-    info = kaa.metadata.parse(from_file)
-    resolution = calc_resolution(
-        info.video[0].width,
-        info.video[0].height,
-        params['device_width']['value'],
-        params['device_height']['value']
-    )
-    if resolution is None:
-        logger.error("Error calculating the new screen resolution") 
-        return None
-        
-    # Running conversion command (ffmpeg)
-    message(NOTIFY_INTERFACE, metadata['name'], 'Running conversion script',
-        "Converting '%s'" % from_file
-    )
-    convert_command = FFMPEG_CMD % {
-        'from': from_file,
-        'to': to_file,
-        'width': str(resolution[0]),
-        'height': str(resolution[1]),
-        'options': params['ffmpeg_options']['value']
-    }
-
-    # Prior to Python 2.7.3, this module (shlex) did not support Unicode input.
-    if isinstance(convert_command, unicode):
-        convert_command = convert_command.encode('ascii', 'ignore')
-
-    process = subprocess.Popen(shlex.split(convert_command),
-        stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    stdout, stderr = process.communicate()
-    if process.returncode != 0:
-        logger.error(stderr)
-        return None
-
-    return to_file
-
 
 class gPodderHooks(object):
+    notify_id = 0
+    notify_msg = []
+
     def __init__(self, params=DEFAULT_PARAMS):
         logger.info("RockBox mp4 converter hook loaded")
         self.params = params
+        self.notify_interface = init_dbus()
 
         check_command(FFMPEG_CMD)
 
     def on_episode_downloaded(self, episode):
         current_filename = episode.local_filename(False)
-        converted_filename = convert_mp4(current_filename, self.params)
+        converted_filename = self._convert_mp4(current_filename, self.params)
 
         if converted_filename is not None:
             episode.filename = os.path.basename(converted_filename)
@@ -149,3 +70,85 @@ class gPodderHooks(object):
             logger.info('Conversion for %s was successfully' % current_filename)
         else:
             logger.info('Conversion for %s had errors' % current_filename)
+
+    def _get_rockbox_filename(self, origin_filename):
+        if not os.path.exists(origin_filename):
+            return None
+
+        dirname = os.path.dirname(origin_filename)
+        filename = os.path.basename(origin_filename)
+        basename, ext = os.path.splitext(filename)
+
+        if ext not in EXTENTIONS_TO_CONVERT:
+            return None
+
+        if filename.endswith(ROCKBOX_EXTENTION):
+            new_filename = "%s-convert.%s" % (basename, ROCKBOX_EXTENTION)
+        else:
+            new_filename = "%s.%s" % (basename, ROCKBOX_EXTENTION)
+        return os.path.join(dirname, new_filename)
+
+
+    def _calc_resolution(self, video_width, video_height, device_width, device_height):
+        if video_height is None:
+            return None
+            
+        width_ratio = device_width / video_width
+        height_ratio = device_height / video_height
+                    
+        dest_width = device_width
+        dest_height = width_ratio * video_height
+                    
+        if dest_height > device_height:
+            dest_width = height_ratio * video_width
+            dest_height = device_height
+
+        return (int(round(dest_width)), round(int(dest_height)))
+
+
+    def _convert_mp4(self, from_file, params):
+        """Convert MP4 file to rockbox mpg file"""
+        # generate new filename and check if the file already exists
+        to_file = self._get_rockbox_filename(from_file)
+        if os.path.isfile(to_file):
+            return to_file
+
+        logger.info("Converting: %s", from_file)
+
+        # calculationg the new screen resolution
+        info = kaa.metadata.parse(from_file)
+        resolution = self._calc_resolution(
+            info.video[0].width,
+            info.video[0].height,
+            params['device_width']['value'],
+            params['device_height']['value']
+        )
+        if resolution is None:
+            logger.error("Error calculating the new screen resolution") 
+            return None
+            
+        # Running conversion command (ffmpeg)
+        self.notify_msg.append("Converting '%s'" % from_file)
+        self.notify_id = message(self.notify_interface, metadata['name'], 
+            '\n'.join(self.notify_msg), self.notify_id
+        )
+        convert_command = FFMPEG_CMD % {
+            'from': from_file,
+            'to': to_file,
+            'width': str(resolution[0]),
+            'height': str(resolution[1]),
+            'options': params['ffmpeg_options']['value']
+        }
+
+        # Prior to Python 2.7.3, this module (shlex) did not support Unicode input.
+        if isinstance(convert_command, unicode):
+            convert_command = convert_command.encode('ascii', 'ignore')
+
+        process = subprocess.Popen(shlex.split(convert_command),
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        stdout, stderr = process.communicate()
+        if process.returncode != 0:
+            logger.error(stderr)
+            return None
+
+        return to_file
