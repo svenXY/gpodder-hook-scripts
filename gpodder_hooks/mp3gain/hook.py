@@ -6,6 +6,7 @@
 # (c) 2011-11-06 Bernd Schlapsi <brot@gmx.info>
 # Released under the same license terms as gPodder itself.
 import os
+import platform
 import shlex
 import subprocess
 
@@ -25,14 +26,18 @@ DEFAULT_PARAMS = {
     }   
 }
 
-CMD = 'mp3gain -c "%s"'
+CMD = {
+    'Linux': 'mp3gain -c "%s"',
+    'Windows': 'mp3gain.exe -c "%s"'
+}
 
 
 class gPodderHooks(object):
     def __init__(self, params=DEFAULT_PARAMS):
         self.params = params
+        self.cmd = CMD[platform.system()]
 
-        check_command(CMD)
+        check_command(self.cmd)
 
     def on_episode_downloaded(self, episode):
         self._convert_episode(episode)
@@ -58,7 +63,7 @@ class gPodderHooks(object):
         (basename, extension) = os.path.splitext(filename)
         if episode.file_type() == 'audio' and extension.lower().endswith('mp3'):
 
-            cmd = CMD % filename
+            cmd = self.cmd % filename
 
             # Prior to Python 2.7.3, this module (shlex) did not support Unicode input.
             if isinstance(cmd, unicode):
