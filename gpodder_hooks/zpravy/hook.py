@@ -22,6 +22,7 @@
 # and I used the same number as guid.
 
 import gpodder
+from gpodder.hooks import HookParent
 
 import re
 import time
@@ -46,9 +47,9 @@ def get_pubdate(episode):
     return ts
     
 
-class gPodderHooks(object):
-    def __init__(self, params=None):
-        logger.info('Zpravy extension is initializing.')
+class gPodderHooks(HookParent):
+    def __init__(self, metadata, params=None):
+        super(gPodderHooks, self).__init__(params=params)
 
     def on_episode_save(self, episode):
         ts = get_pubdate(episode)

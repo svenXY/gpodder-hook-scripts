@@ -7,15 +7,16 @@ import shlex
 import subprocess
 
 import gpodder
-from metadata import metadata
-from util import check_command
+from gpodder.hooks import HookParent
 
 CMD = "vlc --started-from-file --playlist-enqueue" 
 
-class gPodderHooks(object):
-    def __init__(self, params=CMD):
-        self.cmd = params 
-        check_command(self.cmd)
+class gPodderHooks(HookParent):
+    def __init__(self, metadata=None, params=None, cmd=CMD):
+        super(gPodderHooks, self).__init__(metadata=metadata, params=params)
+
+        self.cmd = cmd
+        self.check_command(self.cmd)
 
     def _enqueue_episodes(self, episodes):
         filenames = [episode.get_playback_url() for episode in episodes]
@@ -24,4 +25,7 @@ class gPodderHooks(object):
         )
 
     def on_episodes_context_menu(self, episodes):
-        return [(metadata['name'], self._enqueue_episodes)]
+        if self.metadata is None and not self.metadata.has_key('name'):
+            return False
+
+        return [(self.metadata['name'], self._enqueue_episodes)]

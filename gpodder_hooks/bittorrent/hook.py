@@ -5,25 +5,24 @@
 import shlex
 import subprocess
 
-from util import check_command
-
+from gpodder.hooks import HookParent
 
 DEFAULT_PARAMS = {
     "bittorrent_cmd": {
         "desc": u"Defines the command line bittorrent program:",
         "value": u"transmission-cli %s",
         "type": u"textitem",
-        "sort": 1
     }
 }
 
 
-class gPodderHooks(object):
+class gPodderHooks(HookParent):
     def __init__(self, params=DEFAULT_PARAMS, test=False):
-        self.bittorrent_cmd = params['bittorrent_cmd']['value']
-        self.test = test
+        super(gPodderHooks, self).__init__(params=params)
 
-        check_command(self.bittorrent_cmd)
+        self.test = test
+        self.bittorrent_cmd = self.params['bittorrent_cmd']['value']
+        self.check_command(self.bittorrent_cmd)
 
         if test:
             self.bittorrent_cmd = 'echo "%s"' % self.bittorrent_cmd

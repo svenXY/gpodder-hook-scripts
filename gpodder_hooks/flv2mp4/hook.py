@@ -9,8 +9,7 @@
 
 import gpodder
 from gpodder import youtube
-from metadata import metadata
-from util import check_command
+from gpodder.hooks import HookParent
 
 import os
 import shlex
@@ -25,26 +24,28 @@ DEFAULT_PARAMS = {
         "desc": "add plugin to the context-menu",
         "value": True,
         "type": "checkbox",
-        "sort": 1
     }   
 }
 
 FFMPEG_CMD = 'ffmpeg -i "%(infile)s" -vcodec copy -acodec copy "%(outfile)s"'
 
 
-class gPodderHooks(object):
-    def __init__(self, params=DEFAULT_PARAMS, test=False):
-        self.params = params
-        self.test = test
+class gPodderHooks(HookParent):
+    def __init__(self, metadata=None, params=DEFAULT_PARAMS, test=False):
+        super(gPodderHooks, self).__init__(metadata=metadata, params=params)
 
-        check_command(FFMPEG_CMD)
+        self.test = test
+        self.check_command(FFMPEG_CMD)
 
     def on_episode_downloaded(self, episode):
         self._convert_episode(episode)
 
     def on_episodes_context_menu(self, episodes):
+        if self.metadata is None and not self.metadata.has_key('name'):
+            return False
+
         if self._show_context_menu(episodes):
-            return [(metadata['name'], self._convert_episodes)]
+            return [(self.metadata['name'], self._convert_episodes)]
 
     def _show_context_menu(self, episodes):
         if not self.params['context_menu']:

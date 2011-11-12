@@ -21,6 +21,7 @@
 # This will cause gPodder to reload (and re-parse) the feed every time 
 
 import gpodder
+from gpodder.hooks import HookParent
 
 import logging
 logger = logging.getLogger(__name__)
@@ -31,7 +32,6 @@ DEFAULT_PARAMS = {
         "desc": "reset the etag and last modified information for",
         "value": [u'http://podcast.wdr.de', ],
         "type": "combobox",
-        "sort": 1
     }   
 }
 
@@ -39,11 +39,11 @@ DEFAULT_PARAMS = {
 domains = (u'http://podcast.wdr.de', )
 
 
-class gPodderHooks(object):
-    def __init__(self, params=DEFAULT_PARAMS):
-        self.domain_list = params['domain_list']['value']
+class gPodderHooks(HookParent):
+    def __init__(self, metadata, params=DEFAULT_PARAMS):
+        super(gPodderHooks, self).__init__(params=params)
 
-        logger.info('Reset etag extension is initializing.')
+        self.domain_list = params['domain_list']['value']
 
     def on_podcast_updated(self, podcast):
         if podcast.url.startswith(self.domain_list):

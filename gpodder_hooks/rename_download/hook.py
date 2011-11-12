@@ -4,6 +4,7 @@
 # Licensed under the same terms as gPodder itself
 
 from gpodder import util
+from gpodder.hooks import HookParent
 
 import os
 
@@ -20,9 +21,9 @@ def rename_file(current_filename, title):
     return os.path.join(dirname, new_filename)
     
 
-class gPodderHooks(object):
-    def __init__(self, params=None):
-        pass
+class gPodderHooks(HookParent):
+    def __init__(self, metadata, params=None):
+        super(gPodderHooks, self).__init__(params=params)
 
     def on_episode_downloaded(self, episode):
         current_filename = episode.local_filename(create=False)

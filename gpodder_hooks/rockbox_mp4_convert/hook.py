@@ -10,8 +10,7 @@
 # Copyright (c) 2011-04-04 Thomas Perl <thp.io>
 # Licensed under the same terms as gPodder itself
 from gpodder import util
-from metadata import metadata
-from util import check_command, init_dbus, message
+from gpodder.hooks import HookParent
 
 import kaa.metadata
 import os
@@ -27,19 +26,16 @@ DEFAULT_PARAMS = {
         "desc": u'Device height',
         "value": 176.0,
         "type": u'spinbutton',
-        "sort": 1
     },
     "device_width": {
         "desc": u'Device width',
         "value": 224.0,
         "type": u'spinbutton',
-        "sort": 2
     },
     "ffmpeg_options": {
         "desc": u'ffmpeg options',
         "value": u'-vcodec mpeg2video -b 500k -ab 192k -ac 2 -ar 44100 -acodec libmp3lame',
         "type": u'textitem',
-        "sort": 3
     }
 }
 
@@ -48,16 +44,11 @@ EXTENTIONS_TO_CONVERT = ['.mp4',"." + ROCKBOX_EXTENTION]
 FFMPEG_CMD = 'ffmpeg -y -i "%(from)s" -s %(width)sx%(height)s %(options)s "%(to)s"'
 
 
-class gPodderHooks(object):
-    notify_id = 0
-    notify_msg = []
+class gPodderHooks(HookParent):
+    def __init__(self, metadata=None, params=DEFAULT_PARAMS):
+        super(gPodderHooks, self).__init__(metadata=metadata, params=params, notification=True)
 
-    def __init__(self, params=DEFAULT_PARAMS):
-        logger.info("RockBox mp4 converter hook loaded")
-        self.params = params
-        self.notify_interface = init_dbus()
-
-        check_command(FFMPEG_CMD)
+        self.check_command(FFMPEG_CMD)
 
     def on_episode_downloaded(self, episode):
         current_filename = episode.local_filename(False)
@@ -128,10 +119,11 @@ class gPodderHooks(object):
             return None
             
         # Running conversion command (ffmpeg)
-        self.notify_msg.append("Converting '%s'" % from_file)
-        self.notify_id = message(self.notify_interface, metadata['name'], 
-            '\n'.join(self.notify_msg), self.notify_id
-        )
+        name = 'Convert to MP4'
+        if self.metadata is not None and self.metadata.has_key('name'):
+            name = self.metadata['name'] 
+
+        self.message(name, "Converting '%s'" % from_file)
         convert_command = FFMPEG_CMD % {
             'from': from_file,
             'to': to_file,

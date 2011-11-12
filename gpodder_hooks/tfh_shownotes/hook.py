@@ -35,8 +35,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 import gpodder
-from metadata import metadata
-from util import check_command
+from gpodder.hooks import HookParent
 
 
 DEFAULT_PARAMS = { 
@@ -44,7 +43,6 @@ DEFAULT_PARAMS = {
         "desc": u"add plugin to the context-menu",
         "value": True,
         "type": u"checkbox",
-        "sort": 1
     }   
 }
 
@@ -105,12 +103,11 @@ def extract_shownotes(imagefile, remove_image=True):
     return shownotes
 
 
-class gPodderHooks(object):
-    def __init__(self, params=DEFAULT_PARAMS):
-        logger.info('"Tin Foil Hat" shownote extractor extension is initializing.')
-        self.params = params
+class gPodderHooks(HookParent):
+    def __init__(self, metadata=None, params=DEFAULT_PARAMS):
+        super(gPodderHooks, self).__init__(metadata=metadata, params=params)
 
-        check_command(STEGHIDE_CMD)
+        self.check_command(STEGHIDE_CMD)
 
     def _download_shownotes(self, episodes):
         for episode in episodes:
@@ -125,8 +122,11 @@ class gPodderHooks(object):
         return True 
 
     def on_episodes_context_menu(self, episodes):
+        if self.metadata is None and not self.metadata.has_key('name'):
+            return False
+
         if self._show_context_menu(episodes):
-            return [(metadata['name'], self._download_shownotes)]
+            return [(self.metadata['name'], self._download_shownotes)]
 
     def on_episode_downloaded(self, episode):
         if episode.chanel.title == TFH_TITLE:

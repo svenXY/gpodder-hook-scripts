@@ -25,7 +25,9 @@
 
 import datetime
 import os
+
 import gpodder
+from gpodder.hooks import HookParent
 
 import logging
 logger = logging.getLogger(__name__)
@@ -108,9 +110,9 @@ def write_info2file(info):
     audio.save()
 
 
-class gPodderHooks(object):
-    def __init__(self, params=None):
-        logger.info('tagging extension is initializing.')
+class gPodderHooks(HookParent):
+    def __init__(self, metadata, params=None):
+        super(gPodderHooks, self).__init__(params=params)
 
     def on_episode_downloaded(self, episode):
         # exit if mutagen is not installed

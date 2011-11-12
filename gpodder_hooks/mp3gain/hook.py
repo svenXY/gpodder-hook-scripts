@@ -14,15 +14,13 @@ import logging
 logger = logging.getLogger(__name__)
 
 import gpodder
-from metadata import metadata
-from util import check_command
+from gpodder.hooks import HookParent
 
 DEFAULT_PARAMS = { 
     "context_menu": {
         "desc": u"add plugin to the context-menu",
         "value": True,
         "type": u"checkbox",
-        "sort": 1
     }   
 }
 
@@ -32,12 +30,12 @@ CMD = {
 }
 
 
-class gPodderHooks(object):
-    def __init__(self, params=DEFAULT_PARAMS):
-        self.params = params
-        self.cmd = CMD[platform.system()]
+class gPodderHooks(HookParent):
+    def __init__(self, metadata=None, params=DEFAULT_PARAMS):
+        super(gPodderHooks, self).__init__(metadata=metadata, params=params)
 
-        check_command(self.cmd)
+        self.cmd = CMD[platform.system()]
+        self.check_command(self.cmd)
 
     def on_episode_downloaded(self, episode):
         self._convert_episode(episode)
@@ -52,8 +50,11 @@ class gPodderHooks(object):
         return True
 
     def on_episodes_context_menu(self, episodes):
+        if self.metadata is None and not self.metadata.has_key('name'):
+            return False
+
         if self._show_context_menu(episodes):
-            return [(metadata['name'], self._download_shownotes)]
+            return [(self.metadata['name'], self._download_shownotes)]
 
     def _convert_episode(self, episode):
         filename = episode.local_filename(create=False, check_only=True)

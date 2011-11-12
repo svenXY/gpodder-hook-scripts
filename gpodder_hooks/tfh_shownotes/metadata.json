@@ -1,0 +1,6 @@
+{
+    "name": "Tin Foil Hat Shownotes",
+    "desc": "extract the shownotes from the 'Tin Foil Hat' podcast",
+    "authors": [ "Bernd Schlapsi <brot@gmx.info>" ],
+    "url": "https://github.com/gpodder/gpodder-hook-scripts"
+}

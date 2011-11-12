@@ -34,14 +34,13 @@ except:
     logger.error( '(remove ogg cover hook) Could not find mutagen')
 
 import gpodder
-from metadata import metadata
+from gpodder.hooks import HookParent
 
 DEFAULT_PARAMS = { 
     "context_menu": {
         "desc": u"add plugin to the context-menu",
         "value": True,
         "type": u"checkbox",
-        "sort": 1
     }   
 }
 
@@ -71,17 +70,19 @@ def rm_ogg_cover(episode):
         except:
             None
 
-class gPodderHooks(object):
-    def __init__(self, params=DEFAULT_PARAMS):
-        logger.info('Remove ogg cover extension is initializing.')
-        self.params = params
+class gPodderHooks(HookParent):
+    def __init__(self, metadata=None, params=DEFAULT_PARAMS):
+        super(gPodderHooks, self).__init__(metadata=metadata, params=params)
 
     def on_episode_downloaded(self, episode):
         rm_ogg_cover(episode)
 
     def on_episodes_context_menu(self, episodes):
+        if self.metadata is None and not self.metadata.has_key('name'):
+            return False
+
         if self._show_context_menu(episodes):
-            return [(metadata['name'], self._rm_ogg_covers)]
+            return [(self.metadata['name'], self._rm_ogg_covers)]
 
     def _show_context_menu(self, episodes):
         if not self.params['context_menu']:

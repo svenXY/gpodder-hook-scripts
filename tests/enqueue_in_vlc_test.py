@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+import json
 import os
 import unittest
 
@@ -18,11 +19,14 @@ class TestEnqueueInVLC(unittest.TestCase):
 
         self.episode = self.podcast.get_episodes()[-1]
 
+        with open(os.path.join(os.path.dirname(hook.__file__), 'metadata.json'), 'r') as f:
+            self.metadata = json.load(f)
+
     def tearDown(self):
         self.client._db.close()
 
     def test_menu_entry(self):
-        vlc_hook = hook.gPodderHooks()
+        vlc_hook = hook.gPodderHooks(metadata=self.metadata)
         menu_entry = vlc_hook.on_episodes_context_menu([self.episode._episode]) 
         self.assertTrue(isinstance(menu_entry, list))
         self.assertEqual(len(menu_entry), 1)
@@ -34,5 +38,5 @@ class TestEnqueueInVLC(unittest.TestCase):
 
     def test_enqueue_cmd(self):
         cmd = hook.CMD + " --no-audio"
-        vlc_hook = hook.gPodderHooks(cmd)
+        vlc_hook = hook.gPodderHooks(cmd=cmd)
         vlc_hook._enqueue_episodes([self.episode._episode]) 

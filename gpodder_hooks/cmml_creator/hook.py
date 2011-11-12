@@ -39,7 +39,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 import gpodder
-from metadata import metadata
+from gpodder.hooks import HookParent
 
 LINUX_OUTLAWS = u'Linux Outlaws'
 RADIOTUX = u'RadioTux Magazin'
@@ -50,13 +50,11 @@ DEFAULT_PARAMS = {
         "type": u"multichoice-list",
         "list": [ LINUX_OUTLAWS, RADIOTUX ],
         "value": [ True, True ],
-        "sort": 1
     },
     "context_menu": {
         "desc": u"add plugin to the context-menu",
         "value": True,
         "type": u"checkbox",
-        "sort": 2
     }   
 }
 
@@ -122,9 +120,10 @@ def create_cmml_radiotux(html, audio_file):
         ET.ElementTree(cmml).write(to_file, encoding='utf-8')
 
 
-class gPodderHooks(object):
-    def __init__(self, params=DEFAULT_PARAMS):
-        self.params = params
+class gPodderHooks(HookParent):
+    def __init__(self, metadata=None, params=DEFAULT_PARAMS):
+        super(gPodderHooks, self).__init__(metadata=metadata, params=params)
+
         self.choices = params['podcast_list']['list']
         self.state = params['podcast_list']['value']
 
@@ -132,8 +131,11 @@ class gPodderHooks(object):
         self._convert_episode(episode)
 
     def on_episodes_context_menu(self, episodes):
+        if self.metadata is None and not self.metadata.has_key('name'):
+            return False
+
         if self._show_context_menu(episodes):
-            return [(metadata['name'], self._convert_episodes)]
+            return [(self.metadata['name'], self._convert_episodes)]
 
     def on_episode_delete(self, episode, filename):
         delete_cmml_filename(filename)
