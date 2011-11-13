@@ -1,8 +1,6 @@
-# Hook
+# Extension
 
-A hook script is a *.py file which contains a class with the name 'gPodderHooks'.
+A extension script is a *.py file which contains a class with the name 'gPodderExtensions'.
 
-Additionally every hook script needs a config file with some metadata. This metadata is necessary to integrate the a hook script in the gPoder GUI.
-
-## How to create a config file 
+Additionally every extension script needs a metadata file. This metadata is necessary to integrate the a extension script in the gPoder GUI.
 
