@@ -7,7 +7,7 @@ import urllib2
 
 from gpodder import api
 from config import data
-from cmml_creator import hook
+from cmml_creator import extension
 
 LINUXOUTLAWS_FILENAME='linuxoutlaws230.ogg'
 
@@ -17,7 +17,7 @@ def create_cmml_from_file(ogg_file):
         episode_num = m.group(2)
         url = 'http://sixgun.org/linuxoutlaws/' + episode_num
         page = urllib2.urlopen(url)
-        hook.create_cmml_linux_outlaws(page, ogg_file)
+        extension.create_cmml_linux_outlaws(page, ogg_file)
     else:
         print("not a Linux Outlaws file !")
 
@@ -37,24 +37,24 @@ class TestCmmlLinuxOutlaws(unittest.TestCase):
         self.episode2 = self.podcast2.get_episodes()[epno2]
 
     def tearDown(self):
-        hook.delete_cmml_file(LINUXOUTLAWS_FILENAME)
-        hook.delete_cmml_file(self.filename)
+        extension.delete_cmml_file(LINUXOUTLAWS_FILENAME)
+        extension.delete_cmml_file(self.filename)
         self.client._db.close()
 
     def test_create_cmml(self):
-        cmml_file = hook.get_cmml_filename(LINUXOUTLAWS_FILENAME)
+        cmml_file = extension.get_cmml_filename(LINUXOUTLAWS_FILENAME)
         create_cmml_from_file(LINUXOUTLAWS_FILENAME)
         self.assertTrue(os.path.exists(cmml_file))
         self.assertTrue(os.path.getsize(cmml_file)>0)
 
-    def test_create_cmml_hook(self):
-        cmml_hook = hook.gPodderHooks()
-        cmml_hook.on_episode_downloaded(self.episode._episode)
-        cmml_file = hook.get_cmml_filename(self.filename)
+    def test_create_cmml_extension(self):
+        cmml_extension = extension.gPodderExtensions()
+        cmml_extension.on_episode_downloaded(self.episode._episode)
+        cmml_file = extension.get_cmml_filename(self.filename)
         self.assertTrue(os.path.exists(cmml_file))
         self.assertTrue(os.path.getsize(cmml_file)>0)
 
     def test_context_menu(self):
-        cmml_hook = hook.gPodderHooks()
-        self.assertTrue(cmml_hook._show_context_menu([self.episode._episode,]))
-        self.assertFalse(cmml_hook._show_context_menu([self.episode2._episode,]))
+        cmml_extension = extension.gPodderExtensions()
+        self.assertTrue(cmml_extension._show_context_menu([self.episode._episode,]))
+        self.assertFalse(cmml_extension._show_context_menu([self.episode2._episode,]))

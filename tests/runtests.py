@@ -13,25 +13,25 @@ logging.basicConfig()
 
 def read_args():
     #read command line arguments
-    parser = argparse.ArgumentParser(description='start gPodder hook script tests')
+    parser = argparse.ArgumentParser(description='start gPodder extension script tests')
     parser.add_argument('--gpo_bin', required=False, dest='gpo_bin',
                         help='Path of the gPodder bin files')
     parser.add_argument('--gpo_src', required=True, dest='gpo_src',
                         help='Path of the gPodder source')
-    parser.add_argument('--hook_src', required=True, dest='hook_src',
-                        help='Path of the gPodder hook scripts')
+    parser.add_argument('--extension_src', required=True, dest='extension_src',
+                        help='Path of the gPodder extension scripts')
     parser.add_argument('--init', required=False, action='store_true', default=False,
                         help='initialization of the test date ' +
                              '(e.g: downloading podcasts needed for the tests')
     return parser.parse_args()
 
 
-def append_python_path(gpo_src, hook_src):
+def append_python_path(gpo_src, extension_src):
     if os.path.exists(gpo_src):
         sys.path.append(args.gpo_src)
 
-    if os.path.exists(hook_src):
-        sys.path.append(args.hook_src)
+    if os.path.exists(extension_src):
+        sys.path.append(args.extension_src)
 
 
 def check_version(gpo_bin):
@@ -87,7 +87,7 @@ def init_data():
 
 if __name__ == "__main__":
     args = read_args()
-    append_python_path(args.gpo_src, args.hook_src)
+    append_python_path(args.gpo_src, args.extension_src)
 
     gpo_version = check_version(args.gpo_bin or '')
     test_dir = os.path.dirname(__file__)
@@ -98,7 +98,7 @@ if __name__ == "__main__":
     elif gpo_version == 3:
         os.environ['GPODDER_HOME'] = os.path.join(test_dir, 'gpodder3', 'config')
         os.environ['GPODDER_DOWNLOAD_DIR'] = os.path.join(test_dir, 'gpodder3', 'config', 'Downloads')
-        os.environ['GPODDER_HOOKS'] = args.hook_src
+        os.environ['GPODDER_EXTENSIONS'] = args.extension_src
 
     if args.init:
         init_data()

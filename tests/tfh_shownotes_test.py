@@ -4,7 +4,7 @@ import unittest
 
 from gpodder import api
 from config import data
-from tfh_shownotes import hook
+from tfh_shownotes import extension
 
 IMAGEFILE='/tmp/FRONT_COVER.jpeg'
 DESC=u'Show Notes Get the commands at http://cafeninja.blogspot.com<img height="1" src="http://feeds.feedburner.com/~r/TinFoilHat/~4/zzwDl_AW194" width="1" />'
@@ -30,25 +30,25 @@ class TestTfhShownotes(unittest.TestCase):
         self.assertTrue(self.episode.is_downloaded)
 
     def test_extract_image(self):
-        imagefile = hook.extract_image(self.filename)
+        imagefile = extension.extract_image(self.filename)
         self.assertTrue(imagefile)
         self.assertEqual(IMAGEFILE, imagefile)
 
     def test_extract_shownotes(self):
-        shownotes = hook.extract_shownotes(IMAGEFILE, remove_image=False)
+        shownotes = extension.extract_shownotes(IMAGEFILE, remove_image=False)
         self.assertIsNotNone(shownotes)
 
     def test_search_shownotes_in_desc(self):
-        shownotes = hook.extract_shownotes(IMAGEFILE, remove_image=False)
+        shownotes = extension.extract_shownotes(IMAGEFILE, remove_image=False)
         desc = self.episode._episode.description
 
         self.assertEqual(DESC, desc)
         self.assertEqual(-1, desc.find(shownotes))
 
     def test_context_menu(self):
-        self.assertEqual(self.episode._episode.channel.title, hook.TFH_TITLE)
-        self.assertNotEqual(self.episode1._episode.channel.title, hook.TFH_TITLE)
+        self.assertEqual(self.episode._episode.channel.title, extension.TFH_TITLE)
+        self.assertNotEqual(self.episode1._episode.channel.title, extension.TFH_TITLE)
 
-        tfh_hook = hook.gPodderHooks()
-        self.assertTrue(tfh_hook._show_context_menu([self.episode._episode,]))
-        self.assertFalse(tfh_hook._show_context_menu([self.episode1._episode,]))
+        tfh_extension = extension.gPodderExtensions()
+        self.assertTrue(tfh_extension._show_context_menu([self.episode._episode,]))
+        self.assertFalse(tfh_extension._show_context_menu([self.episode1._episode,]))

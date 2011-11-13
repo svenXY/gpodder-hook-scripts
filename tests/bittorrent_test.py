@@ -4,7 +4,7 @@ import unittest
 
 from gpodder import api
 from config import data
-from bittorrent import hook
+from bittorrent import extension
 
 
 class TestBittorrent(unittest.TestCase):
@@ -18,7 +18,7 @@ class TestBittorrent(unittest.TestCase):
         self.episode = self.podcast.get_episodes()[episode_no]
         self.filename = self.episode._episode.local_filename(create=False, check_only=True)
 
-        self.cmd = hook.DEFAULT_PARAMS['bittorrent_cmd']['value']
+        self.cmd = extension.DEFAULT_PARAMS['bittorrent_cmd']['value']
 
     def tearDown(self):
         self.client._db.close()
@@ -27,8 +27,8 @@ class TestBittorrent(unittest.TestCase):
         self.assertIsNotNone(self.filename)
         self.assertIsNotNone(self.episode._episode)
 
-        bt_hook = hook.gPodderHooks(test=True)
-        result = bt_hook.on_episode_downloaded(self.episode._episode)
+        bt_extension = extension.gPodderExtensions(test=True)
+        result = bt_extension.on_episode_downloaded(self.episode._episode)
         self.assertIsNotNone(result)
         self.assertTrue(result, tuple)
 

@@ -4,7 +4,7 @@ import unittest
 
 from gpodder import api
 from config import data
-from zpravy.hook import get_pubdate
+from zpravy.extension import get_pubdate
 
 
 class TestZpravy(unittest.TestCase):
