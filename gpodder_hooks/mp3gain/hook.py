@@ -31,8 +31,8 @@ CMD = {
 
 
 class gPodderHooks(HookParent):
-    def __init__(self, metadata=None, params=DEFAULT_PARAMS):
-        super(gPodderHooks, self).__init__(metadata=metadata, params=params)
+    def __init__(self, params=DEFAULT_PARAMS, **kwargs):
+        super(gPodderHooks, self).__init__(params=params, **kwargs)
 
         self.cmd = CMD[platform.system()]
         self.check_command(self.cmd)

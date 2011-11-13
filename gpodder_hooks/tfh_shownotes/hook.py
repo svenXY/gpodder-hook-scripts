@@ -104,8 +104,8 @@ def extract_shownotes(imagefile, remove_image=True):
 
 
 class gPodderHooks(HookParent):
-    def __init__(self, metadata=None, params=DEFAULT_PARAMS):
-        super(gPodderHooks, self).__init__(metadata=metadata, params=params)
+    def __init__(self, params=DEFAULT_PARAMS, **kwargs):
+        super(gPodderHooks, self).__init__(params=params, **kwargs)
 
         self.check_command(STEGHIDE_CMD)
 

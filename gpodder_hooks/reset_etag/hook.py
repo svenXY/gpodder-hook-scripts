@@ -40,8 +40,8 @@ domains = (u'http://podcast.wdr.de', )
 
 
 class gPodderHooks(HookParent):
-    def __init__(self, metadata, params=DEFAULT_PARAMS):
-        super(gPodderHooks, self).__init__(params=params)
+    def __init__(self, params=DEFAULT_PARAMS, **kwargs):
+        super(gPodderHooks, self).__init__(params=params, **kwargs)
 
         self.domain_list = params['domain_list']['value']
 

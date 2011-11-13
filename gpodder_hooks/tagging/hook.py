@@ -111,8 +111,8 @@ def write_info2file(info):
 
 
 class gPodderHooks(HookParent):
-    def __init__(self, metadata, params=None):
-        super(gPodderHooks, self).__init__(params=params)
+    def __init__(self, **kwargs):
+        super(gPodderHooks, self).__init__(**kwargs)
 
     def on_episode_downloaded(self, episode):
         # exit if mutagen is not installed

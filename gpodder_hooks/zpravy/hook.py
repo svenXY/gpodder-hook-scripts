@@ -48,8 +48,8 @@ def get_pubdate(episode):
     
 
 class gPodderHooks(HookParent):
-    def __init__(self, metadata, params=None):
-        super(gPodderHooks, self).__init__(params=params)
+    def __init__(self, **kwargs):
+        super(gPodderHooks, self).__init__(**kwargs)
 
     def on_episode_save(self, episode):
         ts = get_pubdate(episode)

@@ -37,8 +37,8 @@ CMDS_TO_TEST = ('normalize-ogg', 'normalize-mp3', 'normalize-audio',
 
 
 class gPodderHooks(HookParent):
-    def __init__(self, metadata=None, params=DEFAULT_PARAMS):
-        super(gPodderHooks, self).__init__(metadata=metadata, params=params)
+    def __init__(self, params=DEFAULT_PARAMS, **kwargs):
+        super(gPodderHooks, self).__init__(params=params, **kwargs)
 
         for cmd in CMDS_TO_TEST:
             self.check_command(cmd)

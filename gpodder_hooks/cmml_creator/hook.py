@@ -121,11 +121,11 @@ def create_cmml_radiotux(html, audio_file):
 
 
 class gPodderHooks(HookParent):
-    def __init__(self, metadata=None, params=DEFAULT_PARAMS):
-        super(gPodderHooks, self).__init__(metadata=metadata, params=params)
+    def __init__(self, params=DEFAULT_PARAMS, **kwargs):
+        super(gPodderHooks, self).__init__(params=params, **kwargs)
 
-        self.choices = params['podcast_list']['list']
-        self.state = params['podcast_list']['value']
+        self.choices = self.params['podcast_list']['list']
+        self.state = self.params['podcast_list']['value']
 
     def on_episode_downloaded(self, episode):
         self._convert_episode(episode)

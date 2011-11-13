@@ -31,10 +31,10 @@ FFMPEG_CMD = 'ffmpeg -i "%(infile)s" -vcodec copy -acodec copy "%(outfile)s"'
 
 
 class gPodderHooks(HookParent):
-    def __init__(self, metadata=None, params=DEFAULT_PARAMS, test=False):
-        super(gPodderHooks, self).__init__(metadata=metadata, params=params)
+    def __init__(self, params=DEFAULT_PARAMS, **kwargs):
+        super(gPodderHooks, self).__init__(params=params, **kwargs)
 
-        self.test = test
+        self.test = kwargs.get('test', False)
         self.check_command(FFMPEG_CMD)
 
     def on_episode_downloaded(self, episode):

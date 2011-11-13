@@ -45,8 +45,8 @@ FFMPEG_CMD = 'ffmpeg -y -i "%(from)s" -s %(width)sx%(height)s %(options)s "%(to)
 
 
 class gPodderHooks(HookParent):
-    def __init__(self, metadata=None, params=DEFAULT_PARAMS):
-        super(gPodderHooks, self).__init__(metadata=metadata, params=params, notification=True)
+    def __init__(self, params=DEFAULT_PARAMS, **kwargs):
+        super(gPodderHooks, self).__init__(notification=True, params=params, **kwargs)
 
         self.check_command(FFMPEG_CMD)
 

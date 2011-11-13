@@ -12,10 +12,10 @@ from gpodder.hooks import HookParent
 CMD = "vlc --started-from-file --playlist-enqueue" 
 
 class gPodderHooks(HookParent):
-    def __init__(self, metadata=None, params=None, cmd=CMD):
-        super(gPodderHooks, self).__init__(metadata=metadata, params=params)
+    def __init__(self, **kwargs):
+        super(gPodderHooks, self).__init__(**kwargs)
 
-        self.cmd = cmd
+        self.cmd = kwargs.get('cmd', CMD)
         self.check_command(self.cmd)
 
     def _enqueue_episodes(self, episodes):

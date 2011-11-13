@@ -17,14 +17,14 @@ DEFAULT_PARAMS = {
 
 
 class gPodderHooks(HookParent):
-    def __init__(self, params=DEFAULT_PARAMS, test=False):
-        super(gPodderHooks, self).__init__(params=params)
+    def __init__(self, params=DEFAULT_PARAMS, **kwargs):
+        super(gPodderHooks, self).__init__(params=params, **kwargs)
 
-        self.test = test
+        self.test = kwargs.get('test', False)
         self.bittorrent_cmd = self.params['bittorrent_cmd']['value']
         self.check_command(self.bittorrent_cmd)
 
-        if test:
+        if self.test:
             self.bittorrent_cmd = 'echo "%s"' % self.bittorrent_cmd
 
     def on_episode_downloaded(self, episode):
