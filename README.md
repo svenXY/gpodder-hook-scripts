@@ -74,15 +74,6 @@ adjusts mp3s so that they all have the same volume. Contrary to normalize_audio 
 - mp3gain - MP3Gain analyzes and adjusts mp3 files so that they have the same volume. (http://mp3gain.sourceforge.net/)
 
 
-## mp3split
-
-Split mp3 files in ranges of 10 minutes when the files are copied to the device.
-
-### Requirements
-
-- mp3splt binary on the path (http://mp3splt.sourceforge.net/)
-
-
 ## normalize_audio
 
 adjusts mp3s/oggs so that they all have the same volume. Contrary to mp3gain this hook decode and re-encode the audio and supports mp3 and ogg files.
