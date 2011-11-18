@@ -46,7 +46,8 @@ FFMPEG_CMD = 'ffmpeg -y -i "%(from)s" -s %(width)sx%(height)s %(options)s "%(to)
 
 class gPodderExtensions(ExtensionParent):
     def __init__(self, params=DEFAULT_PARAMS, **kwargs):
-        super(gPodderExtensions, self).__init__(notification=True, params=params, **kwargs)
+        super(gPodderExtensions, self).__init__(params=params, **kwargs)
+        self.notification = True
 
         self.check_command(FFMPEG_CMD)
 
