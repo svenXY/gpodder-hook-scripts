@@ -33,6 +33,7 @@ CMD = {
 class gPodderExtensions(ExtensionParent):
     def __init__(self, params=DEFAULT_PARAMS, **kwargs):
         super(gPodderExtensions, self).__init__(params=params, **kwargs)
+        self.context_menu_callback = self._convert_episodes
 
         self.cmd = CMD[platform.system()]
         self.check_command(self.cmd)
@@ -48,13 +49,6 @@ class gPodderExtensions(ExtensionParent):
         if 'mp3' not in [os.path.splitext(f)[1][1:].lower() for f in files]:
             return False
         return True
-
-    def on_episodes_context_menu(self, episodes):
-        if self.metadata is None and not self.metadata.has_key('name'):
-            return False
-
-        if self._show_context_menu(episodes):
-            return [(self.metadata['name'], self._download_shownotes)]
 
     def _convert_episode(self, episode):
         filename = episode.local_filename(create=False, check_only=True)

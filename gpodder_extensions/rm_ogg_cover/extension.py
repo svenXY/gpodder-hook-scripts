@@ -73,16 +73,10 @@ def rm_ogg_cover(episode):
 class gPodderExtensions(ExtensionParent):
     def __init__(self, params=DEFAULT_PARAMS, **kwargs):
         super(gPodderExtensions, self).__init__(params=params, **kwargs)
+        self.context_menu_callback = self._rm_ogg_covers
 
     def on_episode_downloaded(self, episode):
         rm_ogg_cover(episode)
-
-    def on_episodes_context_menu(self, episodes):
-        if self.metadata is None and not self.metadata.has_key('name'):
-            return False
-
-        if self._show_context_menu(episodes):
-            return [(self.metadata['name'], self._rm_ogg_covers)]
 
     def _show_context_menu(self, episodes):
         if not self.params['context_menu']:

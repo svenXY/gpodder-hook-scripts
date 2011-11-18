@@ -123,19 +123,13 @@ def create_cmml_radiotux(html, audio_file):
 class gPodderExtensions(ExtensionParent):
     def __init__(self, params=DEFAULT_PARAMS, **kwargs):
         super(gPodderExtensions, self).__init__(params=params, **kwargs)
+        self.context_menu_callback = self._convert_episodes
 
         self.choices = self.params['podcast_list']['list']
         self.state = self.params['podcast_list']['value']
 
     def on_episode_downloaded(self, episode):
         self._convert_episode(episode)
-
-    def on_episodes_context_menu(self, episodes):
-        if self.metadata is None and not self.metadata.has_key('name'):
-            return False
-
-        if self._show_context_menu(episodes):
-            return [(self.metadata['name'], self._convert_episodes)]
 
     def on_episode_delete(self, episode, filename):
         delete_cmml_filename(filename)

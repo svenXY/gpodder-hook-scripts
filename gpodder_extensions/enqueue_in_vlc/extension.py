@@ -14,6 +14,7 @@ CMD = "vlc --started-from-file --playlist-enqueue"
 class gPodderExtensions(ExtensionParent):
     def __init__(self, **kwargs):
         super(gPodderExtensions, self).__init__(**kwargs)
+        self.context_menu_callback = self._enqueue_episodes
 
         self.cmd = kwargs.get('cmd', CMD)
         self.check_command(self.cmd)
@@ -23,9 +24,6 @@ class gPodderExtensions(ExtensionParent):
         subprocess.Popen(shlex.split(self.cmd) + filenames,
             stdout=subprocess.PIPE, stderr=subprocess.PIPE
         )
-
-    def on_episodes_context_menu(self, episodes):
-        if self.metadata is None and not self.metadata.has_key('name'):
-            return False
-
-        return [(self.metadata['name'], self._enqueue_episodes)]
+        
+    def _show_context_menu(self, episodes):        
+        return True

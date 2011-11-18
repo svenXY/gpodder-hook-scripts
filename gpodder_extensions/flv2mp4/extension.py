@@ -33,19 +33,13 @@ FFMPEG_CMD = 'ffmpeg -i "%(infile)s" -vcodec copy -acodec copy "%(outfile)s"'
 class gPodderExtensions(ExtensionParent):
     def __init__(self, params=DEFAULT_PARAMS, **kwargs):
         super(gPodderExtensions, self).__init__(params=params, **kwargs)
+        self.context_menu_callback = self._convert_episodes
 
         self.test = kwargs.get('test', False)
         self.check_command(FFMPEG_CMD)
 
     def on_episode_downloaded(self, episode):
         self._convert_episode(episode)
-
-    def on_episodes_context_menu(self, episodes):
-        if self.metadata is None and not self.metadata.has_key('name'):
-            return False
-
-        if self._show_context_menu(episodes):
-            return [(self.metadata['name'], self._convert_episodes)]
 
     def _show_context_menu(self, episodes):
         if not self.params['context_menu']:

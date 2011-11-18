@@ -106,6 +106,7 @@ def extract_shownotes(imagefile, remove_image=True):
 class gPodderExtensions(ExtensionParent):
     def __init__(self, params=DEFAULT_PARAMS, **kwargs):
         super(gPodderExtensions, self).__init__(params=params, **kwargs)
+        self.context_menu_callback = self._download_shownotes
 
         self.check_command(STEGHIDE_CMD)
 
@@ -120,13 +121,6 @@ class gPodderExtensions(ExtensionParent):
         if TFH_TITLE not in [e.channel.title for e in episodes]:
             return False
         return True 
-
-    def on_episodes_context_menu(self, episodes):
-        if self.metadata is None and not self.metadata.has_key('name'):
-            return False
-
-        if self._show_context_menu(episodes):
-            return [(self.metadata['name'], self._download_shownotes)]
 
     def on_episode_downloaded(self, episode):
         if episode.chanel.title == TFH_TITLE:

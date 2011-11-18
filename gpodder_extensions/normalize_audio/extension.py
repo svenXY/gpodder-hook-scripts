@@ -39,6 +39,7 @@ CMDS_TO_TEST = ('normalize-ogg', 'normalize-mp3', 'normalize-audio',
 class gPodderExtensions(ExtensionParent):
     def __init__(self, params=DEFAULT_PARAMS, **kwargs):
         super(gPodderExtensions, self).__init__(params=params, **kwargs)
+        self.context_menu_callback = self._convert_episodes
 
         for cmd in CMDS_TO_TEST:
             self.check_command(cmd)
@@ -55,13 +56,6 @@ class gPodderExtensions(ExtensionParent):
         if 'mp3' not in extensions and 'ogg' not in extensions:
             return False
         return True
-
-    def on_episodes_context_menu(self, episodes):
-        if self.metadata is None and not self.metadata.has_key('name'):
-            return False
-
-        if self._show_context_menu(episodes):
-            return [(self.metadata['name'], self._convert_episodes)]
 
     def _convert_episode(self, episode):
         filename = episode.local_filename(create=False, check_only=True)
