@@ -132,7 +132,7 @@ class gPodderExtensions(ExtensionParent):
         self._convert_episode(episode)
 
     def on_episode_delete(self, episode, filename):
-        delete_cmml_filename(filename)
+        delete_cmml_file(filename)
 
     def _process_episode(self, episode, podcast_title):
         if not episode.channel.title.startswith(podcast_title):
