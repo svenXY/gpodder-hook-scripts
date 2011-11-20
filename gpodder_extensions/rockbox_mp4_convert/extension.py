@@ -52,7 +52,7 @@ class gPodderExtensions(ExtensionParent):
 
     def on_episode_downloaded(self, episode):
         current_filename = episode.local_filename(False)
-        converted_filename = self._convert_mp4(current_filename, self.params)
+        converted_filename = self._convert_mp4(episode, current_filename, self.params)
 
         if converted_filename is not None:
             episode.filename = os.path.basename(converted_filename)
@@ -97,7 +97,7 @@ class gPodderExtensions(ExtensionParent):
         return (int(round(dest_width)), round(int(dest_height)))
 
 
-    def _convert_mp4(self, from_file, params):
+    def _convert_mp4(self, episode, from_file, params):
         """Convert MP4 file to rockbox mpg file"""
         # generate new filename and check if the file already exists
         to_file = self._get_rockbox_filename(from_file)
@@ -105,6 +105,7 @@ class gPodderExtensions(ExtensionParent):
             return to_file
 
         logger.info("Converting: %s", from_file)
+        self.notify_action("Converting", episode)
 
         # calculationg the new screen resolution
         info = kaa.metadata.parse(from_file)
@@ -118,12 +119,6 @@ class gPodderExtensions(ExtensionParent):
             logger.error("Error calculating the new screen resolution") 
             return None
             
-        # Running conversion command (ffmpeg)
-        name = 'Convert to MP4'
-        if self.metadata is not None and self.metadata.has_key('name'):
-            name = self.metadata['name'] 
-
-        self.notify.message(name, "Converting '%s'" % from_file)
         convert_command = FFMPEG_CMD % {
             'from': from_file,
             'to': to_file,
@@ -142,5 +137,7 @@ class gPodderExtensions(ExtensionParent):
         if process.returncode != 0:
             logger.error(stderr)
             return None
+
+        self.notify_action("Converting finished", episode)
 
         return to_file

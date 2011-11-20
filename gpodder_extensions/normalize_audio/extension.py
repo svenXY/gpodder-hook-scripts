@@ -51,7 +51,7 @@ class gPodderExtensions(ExtensionParent):
         if not self.params['context_menu']:
             return False
 
-        files = [e.download_filename for e in episodes]
+        files = [e.download_filename for e in episodes if e.download_filename is not None]
         extensions = [os.path.splitext(f)[1][1:].lower() for f in files]
         if 'mp3' not in extensions and 'ogg' not in extensions:
             return False

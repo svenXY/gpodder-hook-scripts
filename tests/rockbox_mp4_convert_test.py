@@ -45,6 +45,7 @@ class TestRockboxMP4Convert(unittest.TestCase):
         self.assertIsNotNone(self.filename)
         self.assertEqual(self.episode._episode.title, 'TED: Matt Cutts: Try something new for 30 days - Matt Cutts (2011)')
 
-        new_filename = self.rb_extension._convert_mp4(self.filename, extension.DEFAULT_PARAMS)
+        new_filename = self.rb_extension._convert_mp4(self.episode._episode,
+            self.filename, extension.DEFAULT_PARAMS)
         self.assertIsNotNone(new_filename)
         self.assertTrue(os.path.exists(new_filename))

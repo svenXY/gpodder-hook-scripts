@@ -50,59 +50,6 @@ TFH_TITLE = 'Tin Foil Hat'
 STEGHIDE_CMD = 'steghide extract -f -p %(pwd)s -sf %(img)s -xf %(file)s'
 
 
-def extract_image(filename):
-    """extract image from the podcast file"""
-    imagefile = None
-    try:
-        if eyeD3.isMp3File(filename):
-            tag = eyeD3.Mp3AudioFile(filename).getTag()
-            images = tag.getImages()
-            if images:
-                tempdir = tempfile.gettempdir()
-                img = images[0]
-                imagefile = img.getDefaultFileName()
-                img.writeFile(path=tempdir, name=imagefile)
-                imagefile = "%s/%s" % (tempdir, imagefile)
-            else:
-                logger.info(u'No image found in %s' % filename)
-    except:
-        pass
-
-    return imagefile
-
-
-def extract_shownotes(imagefile, remove_image=True):
-    """extract shownotes from the FRONT_COVER.jpeg"""
-    shownotes = None
-    password = 'tinfoilhat'
-    shownotes_file = '/tmp/shownotes.txt'
-
-    if not os.path.exists(imagefile):
-        return shownotes
-
-    cmd = STEGHIDE_CMD % {
-        'pwd': password,
-        'img': imagefile,
-        'file': shownotes_file
-    }
-    myprocess = subprocess.Popen(shlex.split(cmd),
-        stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    (stdout, stderr) = myprocess.communicate()
-
-    if remove_image:
-        os.remove(imagefile)
-
-    if myprocess.returncode == 0:
-        #read shownote file
-        f = open(shownotes_file, 'r')
-        shownotes = unicode(f.read(), "utf-8")
-        f.close()
-    else:
-        logger.error(u'Error extracting shownotes from the image file %s' % imagefile)
-
-    return shownotes
-
-
 class gPodderExtensions(ExtensionParent):
     def __init__(self, params=DEFAULT_PARAMS, **kwargs):
         super(gPodderExtensions, self).__init__(params=params, **kwargs)
@@ -123,16 +70,16 @@ class gPodderExtensions(ExtensionParent):
         return True 
 
     def on_episode_downloaded(self, episode):
-        if episode.chanel.title == TFH_TITLE:
+        if episode.channel.title.startswith(TFH_TITLE):
             filename = episode.local_filename(create=False, check_only=True)
             if filename is None:
                 return
             
-            imagefile = extract_image(filename)
+            imagefile = self.extract_image(filename)
             if imagefile is None:
                 return
 
-            shownotes = extract_shownotes(imagefile)
+            shownotes = self.extract_shownotes(imagefile)
             if shownotes is None:
                 return
 
@@ -142,3 +89,55 @@ class gPodderExtensions(ExtensionParent):
                 episode.save()
                 episode.db.commit()
                 logger.info(u'updated shownotes for podcast: (%s/%s)' % (episode.channel.title, episode.title))
+
+    def extract_image(self, filename):
+        """extract image from the podcast file"""
+        imagefile = None
+        try:
+            if eyeD3.isMp3File(filename):
+                tag = eyeD3.Mp3AudioFile(filename).getTag()
+                images = tag.getImages()
+                if images:
+                    tempdir = tempfile.gettempdir()
+                    img = images[0]
+                    imagefile = img.getDefaultFileName()
+                    img.writeFile(path=tempdir, name=imagefile)
+                    imagefile = "%s/%s" % (tempdir, imagefile)
+                else:
+                    logger.info(u'No image found in %s' % filename)
+        except:
+            pass
+
+        return imagefile
+
+
+    def extract_shownotes(self, imagefile, remove_image=True):
+        """extract shownotes from the FRONT_COVER.jpeg"""
+        shownotes = None
+        password = 'tinfoilhat'
+        shownotes_file = '/tmp/shownotes.txt'
+
+        if not os.path.exists(imagefile):
+            return shownotes
+
+        cmd = STEGHIDE_CMD % {
+            'pwd': password,
+            'img': imagefile,
+            'file': shownotes_file
+        }
+        myprocess = subprocess.Popen(shlex.split(cmd),
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        (stdout, stderr) = myprocess.communicate()
+
+        if remove_image:
+            os.remove(imagefile)
+
+        if myprocess.returncode == 0:
+            #read shownote file
+            f = open(shownotes_file, 'r')
+            shownotes = unicode(f.read(), "utf-8")
+            f.close()
+        else:
+            logger.error(u'Error extracting shownotes from the image file %s' % imagefile)
+
+        return shownotes

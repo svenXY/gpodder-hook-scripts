@@ -30,16 +30,19 @@ class TestTfhShownotes(unittest.TestCase):
         self.assertTrue(self.episode.is_downloaded)
 
     def test_extract_image(self):
-        imagefile = extension.extract_image(self.filename)
+        tfh_extension = extension.gPodderExtensions()
+        imagefile = tfh_extension.extract_image(self.filename)
         self.assertTrue(imagefile)
         self.assertEqual(IMAGEFILE, imagefile)
 
     def test_extract_shownotes(self):
-        shownotes = extension.extract_shownotes(IMAGEFILE, remove_image=False)
+        tfh_extension = extension.gPodderExtensions()
+        shownotes = tfh_extension.extract_shownotes(IMAGEFILE, remove_image=False)
         self.assertIsNotNone(shownotes)
 
     def test_search_shownotes_in_desc(self):
-        shownotes = extension.extract_shownotes(IMAGEFILE, remove_image=False)
+        tfh_extension = extension.gPodderExtensions()
+        shownotes = tfh_extension.extract_shownotes(IMAGEFILE, remove_image=False)
         desc = self.episode._episode.description
 
         self.assertEqual(DESC, desc)

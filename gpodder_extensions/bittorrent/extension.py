@@ -29,6 +29,7 @@ class gPodderExtensions(ExtensionParent):
 
     def on_episode_downloaded(self, episode):
         if episode.extension() == '.torrent':
+            self.notify_action("Downloading", episode)
             cmd = self.bittorrent_cmd % episode.local_filename(False)
             
             # Prior to Python 2.7.3, this module (shlex) did not support Unicode input.
@@ -36,8 +37,13 @@ class gPodderExtensions(ExtensionParent):
                 cmd = cmd.encode('ascii', 'ignore')
 
             # for testing purpose it's possible to get to stdout+stderr output
-            if self.test:
-                p = subprocess.Popen(shlex.split(cmd), shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-                return p.communicate()
+            p = subprocess.Popen(shlex.split(cmd), shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            stdout, stderr = p.communicate()
+
+            if p.returncode == 0:
+                self.notify_action("Downloading finished", episode)
             else:
-                subprocess.Popen(shlex.split(cmd))
+                self.notify_action("Downloading finished with erros", episode)
+            
+            if self.test:                
+                return (stdout, stderr)
