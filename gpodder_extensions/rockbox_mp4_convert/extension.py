@@ -47,7 +47,6 @@ FFMPEG_CMD = 'ffmpeg -y -i "%(from)s" -s %(width)sx%(height)s %(options)s "%(to)
 class gPodderExtensions(ExtensionParent):
     def __init__(self, params=DEFAULT_PARAMS, **kwargs):
         super(gPodderExtensions, self).__init__(params=params, **kwargs)
-        self.notification = True
 
         self.check_command(FFMPEG_CMD)
 
@@ -124,7 +123,7 @@ class gPodderExtensions(ExtensionParent):
         if self.metadata is not None and self.metadata.has_key('name'):
             name = self.metadata['name'] 
 
-        self.message(name, "Converting '%s'" % from_file)
+        self.notify.message(name, "Converting '%s'" % from_file)
         convert_command = FFMPEG_CMD % {
             'from': from_file,
             'to': to_file,
