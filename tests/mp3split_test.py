@@ -46,6 +46,6 @@ class TestRenameDownloads(unittest.TestCase):
         generated_files = get_splitfiles(self.filename)
         self.assertEqual(len(generated_files), 2)
 
-        self.assertEqual(os.path.split(generated_files[0])[1], 'TFH-001_1.mp3')
-        self.assertEqual(os.path.split(generated_files[1])[1], 'TFH-001_2.mp3')
+        self.assertIn('TFH-001_1.mp3', [os.path.split(f)[1] for f in generated_files])
+        self.assertIn('TFH-001_2.mp3', [os.path.split(f)[1] for f in generated_files])
 
