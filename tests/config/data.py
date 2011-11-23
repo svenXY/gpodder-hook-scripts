@@ -18,6 +18,11 @@ TEST_PODCASTS = {
                      'url': 'file://%s/linuxoutlaws-ogg.rss' % config_dir,
                      'episode': None },
 
+    # selected episode should be 'lnp003-twitter-facebook-american-censorship-day.m4a'
+        'LogbuchNetzpolitik': {#'url': 'http://logbuch-netzpolitik.de/feed/podcast/',
+                                   'url': 'file://%s/LogbuchNetzpolitik.rss' % config_dir,
+                                                              'episode': -3 },
+
     # selected episode should be 'TFH-001.mp3'
     'TinFoilHat': {#'url': 'http://feeds.feedburner.com/TinFoilHat',
                    'url': 'file://%s/TinFoilHat.rss' % config_dir,
