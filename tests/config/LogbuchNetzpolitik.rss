@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+		xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+	xmlns:media="http://search.yahoo.com/mrss/"
+>
+
+<channel>
+	<title>Logbuch:Netzpolitik</title>
+	<atom:link href="http://logbuch-netzpolitik.de/feed/podcast/" rel="self" type="application/rss+xml" />
+	<link>http://logbuch-netzpolitik.de</link>
+	<description>Rückblicke, Einblicke und Ausblicke auf das netzpolitische Geschehen als wöchentlicher Podcast</description>
+	<lastBuildDate>Tue, 22 Nov 2011 11:54:10 +0000</lastBuildDate>
+	<language>de</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.2.1</generator>
+	<copyright>Creative Commons Attribution 3.0 Germany License http://creativecommons.org/licenses/by/3.0/de/</copyright>
+	<managingEditor>lnp@metaebene.me (Metaebene Personal Media)</managingEditor>
+	<webMaster>lnp@metaebene.me (Metaebene Personal Media)</webMaster>
+	<ttl>1440</ttl>
+	<image>
+		<url>http://logbuch-netzpolitik.de/files/2011/10/logbuch-netzpolitik-logo-1.0-600x600.jpg</url>
+		<title>Logbuch:Netzpolitik</title>
+		<link>http://logbuch-netzpolitik.de</link>
+		<width>144</width>
+		<height>144</height>
+	</image>
+	<itunes:subtitle>Rückblicke, Einblicke und Ausblicke auf das netzpolitische Geschehen</itunes:subtitle>
+	<itunes:summary>Rückblicke, Einblicke und Ausblicke auf das netzpolitische Geschehen als wöchentlicher Podcast</itunes:summary>
+	<itunes:keywords></itunes:keywords>
+	<itunes:category text="News &#38; Politics" />
+	<itunes:author>Metaebene Personal Media</itunes:author>
+	<itunes:owner>
+		<itunes:name>Metaebene Personal Media</itunes:name>
+		<itunes:email>lnp@metaebene.me</itunes:email>
+	</itunes:owner>
+	<itunes:block>no</itunes:block>
+	<itunes:explicit>no</itunes:explicit>
+	<itunes:image href="http://logbuch-netzpolitik.de/files/2011/10/logbuch-netzpolitik-logo-1.0-600x600.jpg" />
+		<item>
+		<title>LNP004 Loriot, Werner, Verizon TurboBoost, SPD</title>
+		<link>http://logbuch-netzpolitik.de/lnp004-loriot-werner-verizon-turboboost-spd/</link>
+		<comments>http://logbuch-netzpolitik.de/lnp004-loriot-werner-verizon-turboboost-spd/#comments</comments>
+		<pubDate>Tue, 22 Nov 2011 11:54:10 +0000</pubDate>
+		<dc:creator>Tim Pritlove</dc:creator>
+				<category><![CDATA[Podcast]]></category>
+
+		<guid isPermaLink="false">http://metaebene.me/lnp/?p=97</guid>
+		<description><![CDATA[Pünktlich produziert, leider erst einen Tag später rausgehauen aber deswegen nicht minder aktuell: die vierte Ausgabe des Netzpolitik-Logbuchs steht für Euch bereit.
+
+Und das sind unsere Themen der Woche:
+
+	Nachtrag zu WikiLeaks (LNP002): Julian Assange möchte beim Supreme Court mit seinem ...]]></description>
+			<content:encoded><![CDATA[<p>Pünktlich produziert, leider erst einen Tag später rausgehauen aber deswegen nicht minder aktuell: die vierte Ausgabe des Netzpolitik-Logbuchs steht für Euch bereit.</p>
+<p>Und das sind unsere Themen der Woche:</p>
+<ol>
+<li>Nachtrag zu WikiLeaks (<a href="http://logbuch-netzpolitik.de/lnp002-wikileaks-und-schultrojaner/" target="_blank">LNP002</a>): Julian Assange möchte beim Supreme Court mit seinem Fall in UK klären, ob er mit seinem Fall ein weiteres Mal in Berufung gehen kann. Am 5.12.2011 ist die Verhandlung, ob die Berufung überhaupt zugelassen wird.</li>
+<ul>
+<li><a href="http://www.sueddeutsche.de/politik/verfahren-gegen-wikileaks-gruender-assange-legt-erneut-berufung-gegen-auslieferung-nach-schweden-ein-1.1190154" target="_blank">Assange legt erneut Berufung gegen Auslieferung nach Schweden ein</a> (sueddeutsche.de)</li>
+</ul>
+<li>Nachtrag zum Schultrojaner (<a href="http://logbuch-netzpolitik.de/lnp002-wikileaks-und-schultrojaner/" target="_blank">LNP002</a>): Nach Kritik am Schultrojaner soll nun nachverhandelt werden. Dabei wurde bekannt, dass die Länder für den Deal jährlich 7,3 Millionen Euro zahlen, ab 2015 sogar 9 Millionen Euro.</li>
+<ul>
+<li><a href="http://www.taz.de/!82173/" target="_blank">Schultrojaner wird nachverhandelt</a> (taz.de)</li>
+</ul>
+<li>Urheberrecht 1: Die Erben von Loriot gehen gegen die Wikimedia Foundation in den USA vor, weil die WIkipedia Bilder von Wohlfahrtsmarken mit Loriot-Motiven vorhielt. Wikimedia zog die Bilder zurück und ging nicht dagegen vor, da Briefmarken in den USA auch dem Copyright unterliegen und auch kein Präzedenfall geschaffen werden soll.</li>
+<ul>
+<li><a href="http://www.heise.de/newsticker/meldung/Loriot-Erben-verklagen-Wikipedia-1380454.html">Loriot-Erben verklagen Wikipedia</a> (heise online)</li>
+</ul>
+<li>Urheberrecht 2: Constantin Film geht gegen YouTube wegen Mitschnitten von &#8220;Werner Eiskalt&#8221; vor und verlangt die Herausgabe von Nutzerdaten. Dieses wird vom Oberlandesgericht München abgelehnt.</li>
+<ul>
+<li><a href="http://www.heise.de/newsticker/meldung/Urteil-YouTube-muss-keine-Nutzerdaten-herausgeben-1381148.html" target="_blank">Urteil: YouTube muss keine Nutzerdaten herausgeben</a> (heise online)</li>
+<li><a href="http://knowyourmeme.com/memes/downfall-hitler-reacts" target="_blank">Downfall / Hitler Reacts</a> (Know Your Meme)</li>
+<li><a href="http://www.youtube.com/watch?v=kBO5dh9qrIQ" target="_blank">Hitler reacts to the Hitler parodies being removed from YouTube</a></li>
+</ul>
+<li>Urheberrecht 3: Wir sprechen noch kurz über ACTA, wollen das aber in einer späteren Sendung vertiefen</li>
+<ul>
+<li><a href="http://de.wikipedia.org/wiki/Anti-Counterfeiting_Trade_Agreement">ACTA</a></li>
+<li><a href="http://www.youtube.com/watch?v=citzRjwk-sQ">Mobilisierungsvideo La quadrature du net</a></li>
+<li><a href="http://gruen-digital.de/2011/11/video-zum-actalunch-in-der-heinrich-boell-stiftung-28-10-2011/">Video: wissenschaftliche Studien &amp; aktueller Stand des Ratifizierungsprozesses (Oktober 2011)</a></li>
+</ul>
+<li>Netzneutralität 1: Das EU-Parlament fordert die EU-Kommission auf, sich für Netzneutralität einzusetzen</li>
+<ul>
+<li><a href="http://gruen-digital.de/2011/11/gruene-in-deutschland-und-europa-begruessen-beschluss-zur-netzneutralitaet/">Grüne in Deutschland und Europa begrüßen Beschluss zur Netzneutralität (Grün Digital)</a></li>
+</ul>
+<li>Netzneutralität 2: British Telecom im Konflikt mit dem BBC iPlayer
+<ul>
+<li><a href="http://news.bbc.co.uk/2/hi/technology/8077839.stm"> BT accused of iPlayer throttling</a></li>
+</ul>
+<li>Netzneutralität 3: Verizon kündigt unter dem Namen TurboBoost eine API an, mit der Programme automatisiert garantierte Bandbreiten aktivieren können.
+<ul>
+<li><a href="http://www.heise.de/tr/artikel/Ueberholspur-fuer-Apps-1378077.html">Überholspur für Apps (Technology Review)</a></li>
+</ul>
+<li>In der SPD kommt es zu einem Streit in der Basis über den Umgang mit der Vorratsdatenspeicherung. Auf dem kommenden Parteitag (4.-6.12.2011) steht eine Grundsatzentscheidung an und es macht den Eindruck, als ob die Parteiführung über die Antragskommission versucht, den Willen der Basis zu &#8220;kanalisieren&#8221;
+<ul>
+<li><a href="http://www.wolfgangmichal.de/?p=1277">Wolfgang Michal: Die SPD und ihre innere Haltung zur Vorratsdatenspeicherung. Ein Lehrstück.</a></li>
+<li><a href="http://www.spd.de/aktuelles/Parteitag_2011/18740/begruessung.html">4.-6.12 Bundesparteitag SPD</a></li>
+<li><a href="http://de.wikipedia.org/wiki/Antragskommission">Antragskommission</a></li>
+<li><a href="http://spd-eimsbuettel-nord.de/2011/11/17/die-spd-und-die-vorratsdatenspeicherung-ein-zwischenruf/">Ortsverband Eimsbüttel Nord</a></li>
+<li><a href="http://sozis-gegen-vds.de/">Protestseite: &#8220;Sozis gegen Vorratsdatenspeicherung&#8221;</a></li>
+</ul>
+</ol>
+</ul>
+</ol>
+<p class="wp-flattr-button"></p> <p><a href="http://logbuch-netzpolitik.de/?flattrss_redirect&amp;id=97&amp;md5=04f76da282bd3edb6d14745f9d93fe83" title="Flattr" target="_blank"><img src="http://logbuch-netzpolitik.de/wp-content/plugins/flattr/img/flattr-badge-large.png" alt="flattr this!"/></a></p>]]></content:encoded>
+			<wfw:commentRss>http://logbuch-netzpolitik.de/lnp004-loriot-werner-verizon-turboboost-spd/feed/</wfw:commentRss>
+		<slash:comments>7</slash:comments>
+			<enclosure url="http://meta.metaebene.me/media/lnp/lnp004-loriot-werner-verizon-turboboost-spd.m4a" length="19753933" type="audio/x-m4a" />
+		<itunes:duration>0:40:38</itunes:duration>
+		<itunes:subtitle>Pünktlich produziert, leider erst einen Tag später rausgehauen aber deswegen nicht minder aktuell: die vierte Ausgabe des Netzpolitik-Logbuchs steht für Euch bereit.
+Und das sind unsere Themen der Woche:
+
+Nachtrag zu WikiLeaks (LNP002): Julian Assan[...]</itunes:subtitle>
+		<itunes:summary>Pünktlich produziert, leider erst einen Tag später rausgehauen aber deswegen nicht minder aktuell: die vierte Ausgabe des Netzpolitik-Logbuchs steht für Euch bereit.
+Und das sind unsere Themen der Woche:
+
+Nachtrag zu WikiLeaks (LNP002): Julian Assange möchte beim Supreme Court mit seinem Fall in UK klären, ob er mit seinem Fall ein weiteres Mal in Berufung gehen kann. Am 5.12.2011 ist die Verhandlung, ob die Berufung überhaupt zugelassen wird.
+
+Assange legt erneut Berufung gegen Auslieferung nach Schweden ein (sueddeutsche.de)
+
+Nachtrag zum Schultrojaner (LNP002): Nach Kritik am Schultrojaner soll nun nachverhandelt werden. Dabei wurde bekannt, dass die Länder für den Deal jährlich 7,3 Millionen Euro zahlen, ab 2015 sogar 9 Millionen Euro.
+
+Schultrojaner wird nachverhandelt (taz.de)
+
+Urheberrecht 1: Die Erben von Loriot gehen gegen die Wikimedia Foundation in den USA vor, weil die WIkipedia Bilder von Wohlfahrtsmarken mit Loriot-Motiven vorhielt. Wikimedia zog die Bilder zurück und ging nicht dagegen vor, da Briefmarken in den USA auch dem Copyright unterliegen und auch kein Präzedenfall geschaffen werden soll.
+
+Loriot-Erben verklagen Wikipedia (heise online)
+
+Urheberrecht 2: Constantin Film geht gegen YouTube wegen Mitschnitten von &#8220;Werner Eiskalt&#8221; vor und verlangt die Herausgabe von Nutzerdaten. Dieses wird vom Oberlandesgericht München abgelehnt.
+
+Urteil: YouTube muss keine Nutzerdaten herausgeben (heise online)
+Downfall / Hitler Reacts (Know Your Meme)
+Hitler reacts to the Hitler parodies being removed from YouTube
+
+Urheberrecht 3: Wir sprechen noch kurz über ACTA, wollen das aber in einer späteren Sendung vertiefen
+
+ACTA
+Mobilisierungsvideo La quadrature du net
+Video: wissenschaftliche Studien &#38; aktueller Stand des Ratifizierungsprozesses (Oktober 2011)
+
+Netzneutralität 1: Das EU-Parlament fordert die EU-Kommission auf, sich für Netzneutralität einzusetzen
+
+Grüne in Deutschland und Europa begrüßen Beschluss zur Netzneutralität (Grün Digital)
+
+Netzneutralität 2: British Telecom im Konflikt mit dem BBC iPlayer
+
+ BT accused of iPlayer throttling
+
+Netzneutralität 3: Verizon kündigt unter dem Namen TurboBoost eine API an, mit der Programme automatisiert garantierte Bandbreiten aktivieren können.
+
+Überholspur für Apps (Technology Review)
+
+In der SPD kommt es zu einem Streit in der Basis über den Umgang mit der Vorratsdatenspeicherung. Auf dem kommenden Parteitag (4.-6.12.2011) steht eine Grundsatzentscheidung an und es macht den Eindruck, als ob die Parteiführung über die Antragskommission versucht, den Willen der Basis zu &#8220;kanalisieren&#8221;
+
+Wolfgang Michal: Die SPD und ihre innere Haltung zur Vorratsdatenspeicherung. Ein Lehrstück.
+4.-6.12 Bundesparteitag SPD
+Antragskommission
+Ortsverband Eimsbüttel Nord
+Protestseite: &#8220;Sozis gegen Vorratsdatenspeicherung&#8221;
+
+
+
+
+ </itunes:summary>
+		<itunes:keywords>Podcast</itunes:keywords>
+		<itunes:author>tim@metaebene.me</itunes:author>
+		<itunes:explicit>no</itunes:explicit>
+		<itunes:block>no</itunes:block>
+	</item>
+		<item>
+		<title>LNP003 Datenherausgabe bei Twitter, Facebook Opt-In, American Censorship Day</title>
+		<link>http://logbuch-netzpolitik.de/lnp003-twitter-facebook-american-censorship-day/</link>
+		<comments>http://logbuch-netzpolitik.de/lnp003-twitter-facebook-american-censorship-day/#comments</comments>
+		<pubDate>Mon, 14 Nov 2011 21:44:27 +0000</pubDate>
+		<dc:creator>Tim Pritlove</dc:creator>
+				<category><![CDATA[Podcast]]></category>
+
+		<guid isPermaLink="false">http://metaebene.me/lnp/?p=82</guid>
+		<description><![CDATA[Das Logbuch geht in die dritte Runde und wir haben uns dieses Mal bemüht, das angestrebte Zeitlimit auch einzuhalten. Mit ein wenig mehr als einer halben Stunde hoffen wir einen guten Kompromiss gefunden zu haben. Wir würden uns über ...]]></description>
+			<content:encoded><![CDATA[<p>Das Logbuch geht in die dritte Runde und wir haben uns dieses Mal bemüht, das angestrebte Zeitlimit auch einzuhalten. Mit ein wenig mehr als einer halben Stunde hoffen wir einen guten Kompromiss gefunden zu haben. Wir würden uns über entsprechendes Feedback freuen, ob Ihr unsere Meinung teilt.</p>
+<p>Die Sendung dreht sich um drei Schwerpunkte:</p>
+<ol>
+<li>Im letzten Dezember trat Twitter mit der Nachricht an die Öffentlichkeit, dass die amerikanische Regierung sie zur Herausgabe von Nutzerdaten von WikiLeaks-Aktivisten zwingen möchte. Twitter sperrte sich zunächst dagegen und ermöglichte so überhaupt erst die Veröffentlichung. Jetzt gab es eine endgültige Entscheidung, die der amerikanische Regierung recht gibt. Wir diskutieren die Implikationen.</li>
+<ul>
+<li><a href="http://cryptome.org/0003/appelbaum/appelbaum-024.pdf" target="_blank">Court Order &amp; Widerspruch Datenherausgabe</a></li>
+<li><a href="https://netzpolitik.org/2011/neues-vom-fall-usa-vs-twitterwikileaksfollowereffaclu/" target="_blank">3 Anträge der EFF/ACLU u.a. zur Veröffentlichung, welche anderen Firmen angesprochen wurden</a></li>
+<li><a href="http://www.youtube.com/watch?v=sDkHPNbCC1M" target="_blank">Nicholas Merril: The importance of resisting Excessive Government Surveillance (Vortrag 27C3)</a></li>
+<li><a href="https://www.eff.org/press/releases/privacy-loses-twitterwikileaks-records-battle" target="_blank">Privacy Loses in Twitter/Wikileaks Records Battle (Pressemitteilung EFF)</a></li>
+<li><a href="http://chaosradio.ccc.de/cre172.html" target="_blank">CRE172 Holland und die Hacker</a></li>
+<li><a href="http://chaosradio.ccc.de/cre013.html" target="_blank">CRE013 Interview mit Jacob Appelbaum</a></li>
+<li><a href="http://www.fastcompany.com/1716100/why-twitter-was-the-only-company-to-challenge-the-secret-wikileaks-subpoena" target="_blank">Why Twitter Was the Only Company to Challenge the Secret WikiLeaks Subpoena</a> (Fast Company)</li>
+</ul>
+<li>In den USA gibt es eine Initiative der Federal Trade Commision (FTC), die möglicherweise ein Opt-In-Verfahren bei Facebook einleiten könnte. Damit müssten z.B. Änderungen beim Datenschutz anders als jetzt zunächst vom Nutzer genehmigt werden.</li>
+<ul>
+<li><a href="http://www.readwriteweb.com/archives/facebook_to_make_privacy_settings_opt-in_not_opt-o.php" target="_blank">Erste Gerüchte</a> (WSJ)</li>
+<li><a href="https://netzpolitik.org/2011/usa-muss-facebook-datenschutz-opt-in-bei-anderungen-einfuhren/" target="_blank">USA: Muss Facebook Datenschutz-Opt-In bei Änderungen einführen?</a> (netzpolitik.org)</li>
+</ul>
+<li>Der in den USA vorgeschlagene Stop Online Piracy Act (SOPA) droht wieder einmal mit drastischen Maßnahmen im Falle von Urheberrechts-Verletzungen. Der American Censorship Day soll am 16.11.2011 stattfinden.</li>
+<ul>
+<li><a href="http://netzpolitik.org/2011/sopa-die-usa-auf-weltweitem-feldzug/" target="_blank">SOPA: Die USA auf weltweitem Feldzug </a>(netzpolitik.org)</li>
+<li><a href="https://www.eff.org/deeplinks/2011/11/american-censorship-day-wednesday-and-you-can-join" target="_blank">American Censorship Day is this Wednesday — And You Can Join!</a> (EFF)</li>
+<li><a href="https://www.eff.org/issues/coica-internet-censorship-and-copyright-bill" target="_blank">Internet Blacklist Legislation</a> (EFF)</li>
+<li><a href="http://americancensorship.org/" target="_blank">Kampagnenseite American Censorship Day</a></li>
+</ul>
+</ol>
+<p class="wp-flattr-button"></p> <p><a href="http://logbuch-netzpolitik.de/?flattrss_redirect&amp;id=82&amp;md5=fe9d714004bb33b09bdb1783b6c68993" title="Flattr" target="_blank"><img src="http://logbuch-netzpolitik.de/wp-content/plugins/flattr/img/flattr-badge-large.png" alt="flattr this!"/></a></p>]]></content:encoded>
+			<wfw:commentRss>http://logbuch-netzpolitik.de/lnp003-twitter-facebook-american-censorship-day/feed/</wfw:commentRss>
+		<slash:comments>16</slash:comments>
+			<enclosure url="http://meta.metaebene.me/media/lnp/lnp003-twitter-facebook-american-censorship-day.m4a" length="16412201" type="audio/x-m4a" />
+		<itunes:duration>0:33:35</itunes:duration>
+		<itunes:subtitle>Das Logbuch geht in die dritte Runde und wir haben uns dieses Mal bemüht, das angestrebte Zeitlimit auch einzuhalten. Mit ein wenig mehr als einer halben Stunde hoffen wir einen guten Kompromiss gefunden zu haben. Wir würden uns über entsprechendes [...]</itunes:subtitle>
+		<itunes:summary>Das Logbuch geht in die dritte Runde und wir haben uns dieses Mal bemüht, das angestrebte Zeitlimit auch einzuhalten. Mit ein wenig mehr als einer halben Stunde hoffen wir einen guten Kompromiss gefunden zu haben. Wir würden uns über entsprechendes Feedback freuen, ob Ihr unsere Meinung teilt.
+Die Sendung dreht sich um drei Schwerpunkte:
+
+Im letzten Dezember trat Twitter mit der Nachricht an die Öffentlichkeit, dass die amerikanische Regierung sie zur Herausgabe von Nutzerdaten von WikiLeaks-Aktivisten zwingen möchte. Twitter sperrte sich zunächst dagegen und ermöglichte so überhaupt erst die Veröffentlichung. Jetzt gab es eine endgültige Entscheidung, die der amerikanische Regierung recht gibt. Wir diskutieren die Implikationen.
+
+Court Order &#38; Widerspruch Datenherausgabe
+3 Anträge der EFF/ACLU u.a. zur Veröffentlichung, welche anderen Firmen angesprochen wurden
+Nicholas Merril: The importance of resisting Excessive Government Surveillance (Vortrag 27C3)
+Privacy Loses in Twitter/Wikileaks Records Battle (Pressemitteilung EFF)
+CRE172 Holland und die Hacker
+CRE013 Interview mit Jacob Appelbaum
+Why Twitter Was the Only Company to Challenge the Secret WikiLeaks Subpoena (Fast Company)
+
+In den USA gibt es eine Initiative der Federal Trade Commision (FTC), die möglicherweise ein Opt-In-Verfahren bei Facebook einleiten könnte. Damit müssten z.B. Änderungen beim Datenschutz anders als jetzt zunächst vom Nutzer genehmigt werden.
+
+Erste Gerüchte (WSJ)
+USA: Muss Facebook Datenschutz-Opt-In bei Änderungen einführen? (netzpolitik.org)
+
+Der in den USA vorgeschlagene Stop Online Piracy Act (SOPA) droht wieder einmal mit drastischen Maßnahmen im Falle von Urheberrechts-Verletzungen. Der American Censorship Day soll am 16.11.2011 stattfinden.
+
+SOPA: Die USA auf weltweitem Feldzug (netzpolitik.org)
+American Censorship Day is this Wednesday — And You Can Join! (EFF)
+Internet Blacklist Legislation (EFF)
+Kampagnenseite American Censorship Day
+
+
+ </itunes:summary>
+		<itunes:keywords>Podcast</itunes:keywords>
+		<itunes:author>tim@metaebene.me</itunes:author>
+		<itunes:explicit>no</itunes:explicit>
+		<itunes:block>no</itunes:block>
+	</item>
+		<item>
+		<title>LNP002 WikiLeaks und Schultrojaner</title>
+		<link>http://logbuch-netzpolitik.de/lnp002-wikileaks-und-schultrojaner/</link>
+		<comments>http://logbuch-netzpolitik.de/lnp002-wikileaks-und-schultrojaner/#comments</comments>
+		<pubDate>Mon, 07 Nov 2011 20:42:40 +0000</pubDate>
+		<dc:creator>Tim Pritlove</dc:creator>
+				<category><![CDATA[Podcast]]></category>
+
+		<guid isPermaLink="false">http://metaebene.me/lnp/?p=68</guid>
+		<description><![CDATA[Es ist vollbracht: wir haben tatsächlich binnen einer Woche schon die zweite Sendung produziert. Doch leider ist es uns noch nicht gelungen, den Inhalt unter eine Stunde zu stampfen. Wir üben halt noch und würden uns über Feedback bezüglich ...]]></description>
+			<content:encoded><![CDATA[<p>Es ist vollbracht: wir haben tatsächlich binnen einer Woche schon die zweite Sendung produziert. Doch leider ist es uns noch nicht gelungen, den Inhalt unter eine Stunde zu stampfen. Wir üben halt noch und würden uns über Feedback bezüglich der Angemessenheit oder Unangemessenheit in der Ausführlichkeit freuen.</p>
+<p>Im Mittelpunkt stehen dieses Mal zwei Themen:</p>
+<ol>
+<li>die Entscheidung des britischen High Court, dass eine Auslieferung von Julian Assange an Schweden zulässig sei bringt neue Bewegung in den Fall WikiLeaks. Wir diskutieren die Ereignisse und die Geschichte von WikiLeaks wie sie sich bisher abgezeichnet hat</li>
+<ul>
+<li><a href="http://www.judiciary.gov.uk/Resources/JCO/Documents/Judgments/assange-summary.pdf"> Pressemeitteilung des High Court</a></li>
+<li><a href="http://www.judiciary.gov.uk/Resources/JCO/Documents/Judgments/assange-judgment.pdf"> Vollständiges Urteil</a></li>
+<li><a href="http://shop.wikileaks.org/donate"> neue Wikileaks-Spendenseite</a></li>
+<li><a href="http://de.wikipedia.org/wiki/Erich_M%C3%B6chel"> WP: Erich Möchel</a></li>
+<li><a href="http://fm4.orf.at/stories/1690025/"> Auslieferungswahrscheinlichkeit Schweden / UK</a></li>
+</ul>
+<li>der sogenannte &#8220;Schultrojaner&#8221; ist eine begrenzt überzeugende Idee der Schulbuch-Verlagswelt, die nicht nur unrealistisch in der Durchsetzung sondern vor allem höchst zweifelhaft in ihren unmittelbaren und mittelbaren Implikationen ist.</li>
+<ul>
+<li><a href="https://netzpolitik.org/?s=schultrojaner">Artikel zum Schultrojaner von Markus Beckedahl auf netzpolitik.org</a></li>
+<li><a href="http://blog.die-linke.de/digitalelinke/schultrojaner-die-urheberrechtliche-seite/"> Ilja Braun, die Linke: Die urheberrechtliche Seite</a></li>
+<li><a href="http://www.schulbuchkopie.de/pdf/Kopierbroschuere_2009.pdf"> Kopierbroschüre 2009</a></li>
+<li><a href="https://netzpolitik.org/2011/bundesjustizministerin-schultrojaner-war-arger-der-woche/"> Sabine Leutheuser-Schnarrenberger: Ärger der Woche</a></li>
+</ul>
+</ol>
+<p class="wp-flattr-button"></p> <p><a href="http://logbuch-netzpolitik.de/?flattrss_redirect&amp;id=68&amp;md5=9a51867e156ab683fdf3f6b4619be183" title="Flattr" target="_blank"><img src="http://logbuch-netzpolitik.de/wp-content/plugins/flattr/img/flattr-badge-large.png" alt="flattr this!"/></a></p>]]></content:encoded>
+			<wfw:commentRss>http://logbuch-netzpolitik.de/lnp002-wikileaks-und-schultrojaner/feed/</wfw:commentRss>
+		<slash:comments>39</slash:comments>
+			<enclosure url="http://meta.metaebene.me/media/lnp/lnp002-wikileaks-schultrojaner.m4a" length="30790841" type="audio/x-m4a" />
+		<itunes:duration>1:03:44</itunes:duration>
+		<itunes:subtitle>Es ist vollbracht: wir haben tatsächlich binnen einer Woche schon die zweite Sendung produziert. Doch leider ist es uns noch nicht gelungen, den Inhalt unter eine Stunde zu stampfen. Wir üben halt noch und würden uns über Feedback bezüglich der Ange[...]</itunes:subtitle>
+		<itunes:summary>Es ist vollbracht: wir haben tatsächlich binnen einer Woche schon die zweite Sendung produziert. Doch leider ist es uns noch nicht gelungen, den Inhalt unter eine Stunde zu stampfen. Wir üben halt noch und würden uns über Feedback bezüglich der Angemessenheit oder Unangemessenheit in der Ausführlichkeit freuen.
+Im Mittelpunkt stehen dieses Mal zwei Themen:
+
+die Entscheidung des britischen High Court, dass eine Auslieferung von Julian Assange an Schweden zulässig sei bringt neue Bewegung in den Fall WikiLeaks. Wir diskutieren die Ereignisse und die Geschichte von WikiLeaks wie sie sich bisher abgezeichnet hat
+
+ Pressemeitteilung des High Court
+ Vollständiges Urteil
+ neue Wikileaks-Spendenseite
+ WP: Erich Möchel
+ Auslieferungswahrscheinlichkeit Schweden / UK
+
+der sogenannte &#8220;Schultrojaner&#8221; ist eine begrenzt überzeugende Idee der Schulbuch-Verlagswelt, die nicht nur unrealistisch in der Durchsetzung sondern vor allem höchst zweifelhaft in ihren unmittelbaren und mittelbaren Implikationen ist.
+
+Artikel zum Schultrojaner von Markus Beckedahl auf netzpolitik.org
+ Ilja Braun, die Linke: Die urheberrechtliche Seite
+ Kopierbroschüre 2009
+ Sabine Leutheuser-Schnarrenberger: Ärger der Woche
+
+
+ </itunes:summary>
+		<itunes:keywords>Podcast</itunes:keywords>
+		<itunes:author>tim@metaebene.me</itunes:author>
+		<itunes:explicit>no</itunes:explicit>
+		<itunes:block>no</itunes:block>
+	</item>
+		<item>
+		<title>LNP001 State of the Union</title>
+		<link>http://logbuch-netzpolitik.de/lnp001-state-of-the-union/</link>
+		<comments>http://logbuch-netzpolitik.de/lnp001-state-of-the-union/#comments</comments>
+		<pubDate>Fri, 28 Oct 2011 20:58:10 +0000</pubDate>
+		<dc:creator>Tim Pritlove</dc:creator>
+				<category><![CDATA[Podcast]]></category>
+
+		<guid isPermaLink="false">http://metaebene.me/lnp/?p=39</guid>
+		<description><![CDATA[Logbuch:Netzpolitik ist der Versuch, das netzpolitische Geschehen im deutschsprachigen Raum weitgehend neutral und unaufgeregt in einem regelmässigen Podcast einzufangen. Der Podcast soll dabei Einblicke in die Themen aber auch Verständnis für die Hintergründe liefern.
+
+In der ersten Ausgabe versuchen wir ...]]></description>
+			<content:encoded><![CDATA[<p>Logbuch:Netzpolitik ist der Versuch, das netzpolitische Geschehen im deutschsprachigen Raum weitgehend neutral und unaufgeregt in einem regelmässigen Podcast einzufangen. Der Podcast soll dabei Einblicke in die Themen aber auch Verständnis für die Hintergründe liefern.</p>
+<p>In der ersten Ausgabe versuchen wir zunächst einmal die Basis für die weitere Arbeit zu legen und versuchen ein paar wichtige Bewegungen und Diskussionen vorzustellen. Aber vor allem versuchen wir, den richtigen Ton zu treffen. Ihr entscheidet, ob uns das gelungen ist.</p>
+<p><strong>Themen</strong>: Zielsetzung dieses Podcasts; <a href="http://netzpolitik.org/2011/npp110-netzaktivismus-und-digitale-gesellschaft-e-v/" target="_blank">NPP110: Netzaktivismus<br />
+und Digitale Gesellschaft e.V.</a>; Empörung in digitalen Kommunikationsnetzen; Streit in der Szene; <a href="http://alvar.a-blast.org/" target="_blank">Alvar Freude</a>; <a href="http://www.vorratsdatenspeicherung.de/" target="_blank">AK Vorrat</a>; <a href="http://ak-zensur.de/" target="_blank">AK Zensur</a>; <a href="http://blog.fefe.de" target="_blank">Felix von Leitner</a>; Datenschutz; Spackeria und Aluhüte; Datenschutz; Die Datenfresser (<a href="http://www.amazon.de/gp/product/3100485181/ref=as_li_ss_tl?ie=UTF8&amp;tag=logbuch-netzpolitik-21&amp;linkCode=as2&amp;camp=1638&amp;creative=19454&amp;creativeASIN=3100485181">Buch</a>*, <a href="http://www.amazon.de/gp/product/B0058G4P52/ref=as_li_ss_tl?ie=UTF8&amp;tag=logbuch-netzpolitik-21&amp;linkCode=as2&amp;camp=1638&amp;creative=19454&amp;creativeASIN=B0058G4P52">Kindle-eBook</a>*); <a href="http://de.wikipedia.org/wiki/Constanze_Kurz" target="_blank">Constanze Kurz</a>; <a href="http://frank.geekheim.de/" target="_blank">Frank Rieger</a>; <a href="http://www.plomlompom.de/" target="_blank">Christian Heller (plomlompom)</a>; <a href="http://www.amazon.de/gp/product/3406622232/ref=as_li_ss_tl?ie=UTF8&amp;tag=logbuch-netzpolitik-21&amp;linkCode=as2&amp;camp=1638&amp;creative=19454&amp;creativeASIN=3406622232">Post Privacy: Prima leben ohne Privatsphäre</a>* (<a href="http://www.plomlompom.de/PostPrivacyBuch/" target="_blank">Website zum Buch</a>); <a href="http://juliaschramm.de/" target="_blank">Julia Schramm</a>; <a href="http://mspr0.de/" target="_blank">Michael Seemann (mspro)</a>; Facebook; Piratenpartei; Telekommunikationsgesetz-Novelle; Netzneutralität; <a href="http://netzpolitik.org/2011/die-dmexco-uberleben-survival-in-der-einode-des-digital-marketing/" target="_blank">netzpolitik.org: Die dmexco überleben: Survival in der Einöde des Digital Marketing</a>.</p>
+<p>* = Affiliate Links</p>
+<p class="wp-flattr-button"></p> <p><a href="http://logbuch-netzpolitik.de/?flattrss_redirect&amp;id=39&amp;md5=422d02f083a10f49ada14b5a0e2acd7e" title="Flattr" target="_blank"><img src="http://logbuch-netzpolitik.de/wp-content/plugins/flattr/img/flattr-badge-large.png" alt="flattr this!"/></a></p>]]></content:encoded>
+			<wfw:commentRss>http://logbuch-netzpolitik.de/lnp001-state-of-the-union/feed/</wfw:commentRss>
+		<slash:comments>55</slash:comments>
+			<enclosure url="http://meta.metaebene.me/media/lnp/lnp001-state-of-the-union.m4a" length="26872259" type="audio/x-m4a" />
+		<itunes:duration>1:08:02</itunes:duration>
+		<itunes:subtitle>Logbuch:Netzpolitik ist der Versuch, das netzpolitische Geschehen im deutschsprachigen Raum weitgehend neutral und unaufgeregt in einem regelmässigen Podcast einzufangen. Der Podcast soll dabei Einblicke in die Themen aber auch Verständnis für die H[...]</itunes:subtitle>
+		<itunes:summary>Logbuch:Netzpolitik ist der Versuch, das netzpolitische Geschehen im deutschsprachigen Raum weitgehend neutral und unaufgeregt in einem regelmässigen Podcast einzufangen. Der Podcast soll dabei Einblicke in die Themen aber auch Verständnis für die Hintergründe liefern.
+In der ersten Ausgabe versuchen wir zunächst einmal die Basis für die weitere Arbeit zu legen und versuchen ein paar wichtige Bewegungen und Diskussionen vorzustellen. Aber vor allem versuchen wir, den richtigen Ton zu treffen. Ihr entscheidet, ob uns das gelungen ist.
+Themen: Zielsetzung dieses Podcasts; NPP110: Netzaktivismus
+und Digitale Gesellschaft e.V.; Empörung in digitalen Kommunikationsnetzen; Streit in der Szene; Alvar Freude; AK Vorrat; AK Zensur; Felix von Leitner; Datenschutz; Spackeria und Aluhüte; Datenschutz; Die Datenfresser (Buch*, Kindle-eBook*); Constanze Kurz; Frank Rieger; Christian Heller (plomlompom); Post Privacy: Prima leben ohne Privatsphäre* (Website zum Buch); Julia Schramm; Michael Seemann (mspro); Facebook; Piratenpartei; Telekommunikationsgesetz-Novelle; Netzneutralität; netzpolitik.org: Die dmexco überleben: Survival in der Einöde des Digital Marketing.
+* = Affiliate Links
+ </itunes:summary>
+		<itunes:keywords>Podcast</itunes:keywords>
+		<itunes:author>tim@metaebene.me</itunes:author>
+		<itunes:explicit>no</itunes:explicit>
+		<itunes:block>no</itunes:block>
+	</item>
+	</channel>
+</rss>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+Served from: logbuch-netzpolitik.de @ 2011-11-23 21:14:11 -->
