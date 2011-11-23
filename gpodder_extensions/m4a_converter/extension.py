@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
-# Put FLV files from YouTube into a MP4 container after download
+# Convertes m4a audio files to mp3
 # This requires ffmpeg to be installed. Also works as a context
-# menu item for already-downloaded files. This does not convert
-# the files in reality, but just swaps the container format.
+# menu item for already-downloaded files.
 #
-# (c) 2011-08-05 Thomas Perl <thp.io/about>
+# (c) 2011-11-23 Bernd Schlapsi <brot@gmx.info>
 # Released under the same license terms as gPodder itself.
 
 import gpodder
-from gpodder import youtube
 from gpodder.extensions import ExtensionParent
 
 import os
@@ -19,7 +17,13 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-DEFAULT_PARAMS = { 
+DEFAULT_PARAMS = {
+    "file_format": {
+        "desc": u"Target file format:",
+        "type": u"radiogroup",
+        "list": ( 'mp3', 'ogg' ),
+        "value": [ True, False ],
+    },
     "context_menu": {
         "desc": "add plugin to the context-menu",
         "value": True,
@@ -27,13 +31,17 @@ DEFAULT_PARAMS = {
     }   
 }
 
-FFMPEG_CMD = 'ffmpeg -i "%(infile)s" -vcodec copy -acodec copy "%(outfile)s"'
+FFMPEG_CMD = 'ffmpeg -i "%(infile)s" -sameq "%(outfile)s"'
+MIME_TYPES = ['audio/x-m4a', 'audio/mp4']
 
 
 class gPodderExtensions(ExtensionParent):
     def __init__(self, params=DEFAULT_PARAMS, **kwargs):
         super(gPodderExtensions, self).__init__(params=params, **kwargs)
         self.context_menu_callback = self._convert_episodes
+
+        choices = zip(params['file_format']['list'], params['file_format']['value'])
+        self.extension = '.' + [ext for ext, state in choices if state][0]
 
         self.test = kwargs.get('test', False)
         self.check_command(FFMPEG_CMD)
@@ -45,30 +53,23 @@ class gPodderExtensions(ExtensionParent):
         if not self.params['context_menu']:
             return False
 
-        if 'video/x-flv' not in [e.mime_type for e in episodes]:
+        episodes = [e for e in episodes if e.mime_type in MIME_TYPES]
+        if not episodes:
             return False
         return True 
 
     def _convert_episode(self, episode):
-        if not youtube.is_video_link(episode.url):
-            logger.debug('Not a YouTube video. Ignoring.')
-            return
-
         filename = episode.local_filename(create=False)
         dirname = os.path.dirname(filename)
         basename, ext = os.path.splitext(os.path.basename(filename))
+        new_filename = basename + self.extension
 
-        if open(filename, 'rb').read(3) != 'FLV':
-            logger.debug('Not a FLV file. Ignoring.')
+        if episode.mime_type not in MIME_TYPES:
             return
 
-        if ext == '.mp4':
-            # Move file out of place for conversion
-            newname = os.path.join(dirname, basename+'.flv')
-            os.rename(filename, newname)
-            filename = newname
-
-        target = os.path.join(dirname, basename+'.mp4')
+        self.notify_action("Converting", episode)
+        
+        target = os.path.join(dirname, new_filename)
         cmd = FFMPEG_CMD % {
             'infile': filename,
             'outfile': target 
@@ -84,13 +85,15 @@ class gPodderExtensions(ExtensionParent):
         stdout, stderr = ffmpeg.communicate()
 
         if ffmpeg.returncode == 0:
-            logger.info('FLV conversion successful.')
+            logger.info('m4a -> %s conversion successful.', self.extension)
+            self.notify_action("Converting finished", episode)
             if not self.test:
                 os.remove(filename)
-                episode.download_filename = basename+'.mp4'
+                episode.download_filename = new_filename
                 episode.save()
         else:
             logger.info('Error converting file. FFMPEG installed?')
+            self.notify_action("Converting finished with errors", episode)
             try:
                 os.remove(target)
             except OSError:

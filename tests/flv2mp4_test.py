@@ -23,7 +23,7 @@ class TestFlv2Mp4(unittest.TestCase):
         url1 = data.TEST_PODCASTS['TinFoilHat']['url']
         episode_no1 = data.TEST_PODCASTS['TinFoilHat']['episode']
         self.podcast1 = self.client.get_podcast(url1)
-        self.episode1 = self.podcast.get_episodes()[episode_no1]
+        self.episode1 = self.podcast1.get_episodes()[episode_no1]
 
     def tearDown(self):
         self.client._db.close()

@@ -1,0 +1,7 @@
+{
+    "id": "m4a_converter",
+    "name": "Converts M4A audio",
+    "desc": "Converts m4a audio files to mp3",
+    "authors": [ "Bernd Schlapsi <brot@gmx.info>" ],
+    "url": "https://github.com/gpodder/gpodder-hook-scripts"
+}
