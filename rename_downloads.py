@@ -28,5 +28,5 @@ class gPodderHooks(object):
         logger.info('Renaming:', current_filename, '->', new_filename)
 
         os.rename(current_filename, new_filename)
-        episode.filename = new_filename
+        episode.download_filename = new_filename
         episode.save()

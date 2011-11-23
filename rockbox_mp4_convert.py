@@ -130,7 +130,7 @@ class gPodderHooks(object):
         converted_filename = convert_mp4(current_filename)
 
         if converted_filename is not None:
-            episode.filename = os.path.basename(converted_filename)
+            episode.download_filename = os.path.basename(converted_filename)
             episode.save()
             os.remove(current_filename)
             logger.info('Conversion for %s was successfully' % current_filename)
