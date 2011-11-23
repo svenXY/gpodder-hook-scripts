@@ -55,7 +55,7 @@ class gPodderExtensions(ExtensionParent):
         converted_filename = self._convert_mp4(episode, current_filename, self.params)
 
         if converted_filename is not None:
-            episode.filename = os.path.basename(converted_filename)
+            episode.download_filename = os.path.basename(converted_filename)
             episode.save()
             os.remove(current_filename)
             logger.info('Conversion for %s was successfully' % current_filename)
