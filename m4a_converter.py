@@ -21,7 +21,7 @@ MIME_TYPES = ['audio/x-m4a', 'audio/mp4']
 EXTENSION = '.mp3'
 
 
-class gPodderExtensions(ExtensionParent):
+class gPodderHooks(object):
     def __init__(self, test=False):
         self.test = test
 
@@ -34,7 +34,7 @@ class gPodderExtensions(ExtensionParent):
         basename, ext = os.path.splitext(os.path.basename(filename))
         new_filename = basename + EXTENSION
 
-        if episode.mime_type not in MIME_TYPES:
+        if ext != '.m4a':
             return
 
         target = os.path.join(dirname, new_filename)
