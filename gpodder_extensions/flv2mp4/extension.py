@@ -86,9 +86,8 @@ class gPodderExtensions(ExtensionParent):
         if ffmpeg.returncode == 0:
             logger.info('FLV conversion successful.')
             if not self.test:
+                self.update_episode_file(episode, basename+'.mp4')
                 os.remove(filename)
-                episode.download_filename = basename+'.mp4'
-                episode.save()
         else:
             logger.info('Error converting file. FFMPEG installed?')
             try:

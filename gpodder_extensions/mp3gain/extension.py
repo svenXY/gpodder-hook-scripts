@@ -45,9 +45,9 @@ class gPodderExtensions(ExtensionParent):
         if not self.params['context_menu']:
             return False
 
-        files = [e.download_filename for e in episodes if e.download_filename is not None]
-        if 'mp3' not in [os.path.splitext(f)[1][1:].lower() for f in files]:
+        if 'audio/mpeg' not in [e.mime_type for e in episodes if e.mime_type is not None]:
             return False
+
         return True
 
     def _convert_episode(self, episode):
