@@ -14,11 +14,9 @@ logging.basicConfig()
 def read_args():
     #read command line arguments
     parser = argparse.ArgumentParser(description='start gPodder extension script tests')
-    parser.add_argument('--gpo_bin', required=False, dest='gpo_bin',
-                        help='Path of the gPodder bin files')
-    parser.add_argument('--gpo_src', required=True, dest='gpo_src',
-                        help='Path of the gPodder source')
-    parser.add_argument('--extension_src', required=True, dest='extension_src',
+    parser.add_argument('--gpo', required=True, dest='gpo',
+                        help='Path of the gPodder')
+    parser.add_argument('--extension', required=True, dest='extension',
                         help='Path of the gPodder extension scripts')
     parser.add_argument('--init', required=False, action='store_true', default=False,
                         help='initialization of the test date ' +
@@ -26,16 +24,18 @@ def read_args():
     return parser.parse_args()
 
 
-def append_python_path(gpo_src, extension_src):
-    if os.path.exists(gpo_src):
-        sys.path.append(args.gpo_src)
+def append_python_path(gpo_path, extension):
+    gpo_src_path = os.path.join(gpo_path, 'src')
+    if os.path.exists(gpo_src_path):
+        sys.path.append(gpo_src_path)
 
-    if os.path.exists(extension_src):
-        sys.path.append(args.extension_src)
+    if os.path.exists(extension):
+        sys.path.append(args.extension)
 
 
-def check_version(gpo_bin):
-    cmd = '%sgpodder --version' % os.path.join(gpo_bin, '')
+def check_version(gpo_path):
+    gpo_bin_path = os.path.join(gpo_path, 'bin')
+    cmd = '%sgpodder --version' % os.path.join(gpo_bin_path, '')
     myprocess = subprocess.Popen(shlex.split(cmd), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     (stdout, stderr) = myprocess.communicate()
 
@@ -87,9 +87,9 @@ def init_data():
 
 if __name__ == "__main__":
     args = read_args()
-    append_python_path(args.gpo_src, args.extension_src)
+    append_python_path(args.gpo, args.extension)
 
-    gpo_version = check_version(args.gpo_bin or '')
+    gpo_version = check_version(args.gpo or '')
     test_dir = os.path.dirname(__file__)
     if gpo_version == 2:
         os.environ['GPODDER_HOME'] = os.path.join(test_dir, 'gpodder2', 'config')
@@ -98,7 +98,7 @@ if __name__ == "__main__":
     elif gpo_version == 3:
         os.environ['GPODDER_HOME'] = os.path.join(test_dir, 'gpodder3', 'config')
         os.environ['GPODDER_DOWNLOAD_DIR'] = os.path.join(test_dir, 'gpodder3', 'config', 'Downloads')
-        os.environ['GPODDER_EXTENSIONS'] = args.extension_src
+        os.environ['GPODDER_EXTENSIONS'] = args.extension
 
     if args.init:
         init_data()
