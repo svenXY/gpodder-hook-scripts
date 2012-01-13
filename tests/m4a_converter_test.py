@@ -11,7 +11,7 @@ from m4a_converter import extension
 
 class TestM4AConversion(unittest.TestCase):
     def setUp(self):
-        self.params = extension.DEFAULT_PARAMS
+        self.config = extension.DEFAULT_CONFIG
         self.client = api.PodcastClient()
 
         url = data.TEST_PODCASTS['LogbuchNetzpolitik']['url']
@@ -41,8 +41,8 @@ class TestM4AConversion(unittest.TestCase):
         self.assertEqual('lnp003-twitter-facebook-american-censorship-day.m4a',
             os.path.split(self.filename)[1])
 
-        self.params['file_format']['value'] = [True, False]
-        m4a_extension = extension.gPodderExtensions(params=self.params, test=True)
+        self.config['m4a_converter']['params']['file_format']['value'] = [True, False]
+        m4a_extension = extension.gPodderExtensions(config=self.config, test=True)
         m4a_extension.on_episode_downloaded(self.episode._episode)
 
         self.assertTrue(os.path.exists(self.converted_mp3))
@@ -54,8 +54,8 @@ class TestM4AConversion(unittest.TestCase):
         self.assertEqual('lnp003-twitter-facebook-american-censorship-day.m4a',
             os.path.split(self.filename)[1])
 
-        self.params['file_format']['value'] = [False, True]
-        m4a_extension = extension.gPodderExtensions(params=self.params, test=True)
+        self.config['m4a_converter']['params']['file_format']['value'] = [False, True]
+        m4a_extension = extension.gPodderExtensions(config=self.config, test=True)
         m4a_extension.on_episode_downloaded(self.episode._episode)
 
         self.assertTrue(os.path.exists(self.converted_ogg))

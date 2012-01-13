@@ -44,18 +44,23 @@ from gpodder.extensions import ExtensionParent
 LINUX_OUTLAWS = u'Linux Outlaws'
 RADIOTUX = u'RadioTux Magazin'
 
-DEFAULT_PARAMS = {
-    "podcast_list": {
-        "desc": u"Supported podcasts:",
-        "type": u"multichoice-list",
-        "list": [ LINUX_OUTLAWS, RADIOTUX ],
-        "value": [ True, True ],
-    },
-    "context_menu": {
-        "desc": u"add plugin to the context-menu",
-        "value": True,
-        "type": u"checkbox",
-    }   
+DEFAULT_CONFIG = {
+    'cmml_creator': {
+        'enabled': False, 
+        'params': {
+            'podcast_list': {
+                'desc': u'Supported podcasts:',
+                'type': u'multichoice-list',
+                'list': [ LINUX_OUTLAWS, RADIOTUX ],
+                'value': [ True, True ],
+            },
+            'context_menu': {
+                'desc': u'add plugin to the context-menu',
+                'type': u'checkbox',
+                'value': True,
+            }
+        }
+    }
 }
 
 
@@ -121,12 +126,12 @@ def create_cmml_radiotux(html, audio_file):
 
 
 class gPodderExtensions(ExtensionParent):
-    def __init__(self, params=DEFAULT_PARAMS, **kwargs):
-        super(gPodderExtensions, self).__init__(params=params, **kwargs)
+    def __init__(self, config=DEFAULT_CONFIG, **kwargs):
+        super(gPodderExtensions, self).__init__(config=config, **kwargs)
         self.context_menu_callback = self._convert_episodes
 
-        self.choices = self.params['podcast_list']['list']
-        self.state = self.params['podcast_list']['value']
+        self.choices = self.config.cmml_creator.params.podcast_list.list
+        self.state = self.config.cmml_creator.params.podcast_list.value
 
     def on_episode_downloaded(self, episode):
         self._convert_episode(episode)
@@ -144,7 +149,7 @@ class gPodderExtensions(ExtensionParent):
         return True
 
     def _show_context_menu(self, episodes):
-        if not self.params['context_menu']:
+        if not self.config.params.context_menu.value:
             return False
 
         episodes = [e for e in episodes 

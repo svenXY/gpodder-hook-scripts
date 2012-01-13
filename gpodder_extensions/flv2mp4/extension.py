@@ -19,11 +19,16 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-DEFAULT_PARAMS = { 
-    "context_menu": {
-        "desc": "add plugin to the context-menu",
-        "value": True,
-        "type": "checkbox",
+DEFAULT_CONFIG = { 
+    'flv2mp4': {
+        'enabled': False,
+        'params': {
+            'context_menu': {
+                'desc': 'add plugin to the context-menu',
+                'value': True,
+                'type': 'checkbox',
+            }
+        }
     }   
 }
 
@@ -31,8 +36,8 @@ FFMPEG_CMD = 'ffmpeg -i "%(infile)s" -vcodec copy -acodec copy "%(outfile)s"'
 
 
 class gPodderExtensions(ExtensionParent):
-    def __init__(self, params=DEFAULT_PARAMS, **kwargs):
-        super(gPodderExtensions, self).__init__(params=params, **kwargs)
+    def __init__(self, config=DEFAULT_CONFIG, **kwargs):
+        super(gPodderExtensions, self).__init__(config=config, **kwargs)
         self.context_menu_callback = self._convert_episodes
 
         self.test = kwargs.get('test', False)
@@ -42,7 +47,7 @@ class gPodderExtensions(ExtensionParent):
         self._convert_episode(episode)
 
     def _show_context_menu(self, episodes):
-        if not self.params['context_menu']:
+        if not self.config.flv2mp4.params.context_menu.value:
             return False
 
         if 'video/x-flv' not in [e.mime_type for e in episodes]:

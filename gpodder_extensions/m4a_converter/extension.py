@@ -17,18 +17,23 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-DEFAULT_PARAMS = {
-    "file_format": {
-        "desc": u"Target file format:",
-        "type": u"radiogroup",
-        "list": ( 'mp3', 'ogg' ),
-        "value": [ True, False ],
-    },
-    "context_menu": {
-        "desc": "add plugin to the context-menu",
-        "value": True,
-        "type": "checkbox",
-    }   
+DEFAULT_CONFIG = {
+    'm4a_converter': {
+        'enabled': False,
+        'params': {
+            'file_format': {
+                'desc': u'Target file format:',
+                'type': u'radiogroup',
+                'list': ( 'mp3', 'ogg' ),
+                'value': [ True, False ],
+            },
+            'context_menu': {
+                'desc': 'add plugin to the context-menu',
+                'type': 'checkbox',
+                'value': True,
+            }   
+        }
+    }
 }
 
 FFMPEG_CMD = 'ffmpeg -i "%(infile)s" -sameq "%(outfile)s"'
@@ -36,11 +41,12 @@ MIME_TYPES = ['audio/x-m4a', 'audio/mp4']
 
 
 class gPodderExtensions(ExtensionParent):
-    def __init__(self, params=DEFAULT_PARAMS, **kwargs):
-        super(gPodderExtensions, self).__init__(params=params, **kwargs)
+    def __init__(self, config=DEFAULT_CONFIG, **kwargs):
+        super(gPodderExtensions, self).__init__(config=config, **kwargs)
         self.context_menu_callback = self._convert_episodes
 
-        choices = zip(params['file_format']['list'], params['file_format']['value'])
+        choices = zip(self.config.m4a_converter.params.file_format.list,
+            self.config.m4a_converter.params.file_format.value)
         self.extension = '.' + [ext for ext, state in choices if state][0]
 
         self.test = kwargs.get('test', False)
@@ -50,7 +56,7 @@ class gPodderExtensions(ExtensionParent):
         self._convert_episode(episode)
 
     def _show_context_menu(self, episodes):
-        if not self.params['context_menu']:
+        if not self.config.m4a_converter.params.context_menu.value:
             return False
 
         episodes = [e for e in episodes if e.mime_type in MIME_TYPES]

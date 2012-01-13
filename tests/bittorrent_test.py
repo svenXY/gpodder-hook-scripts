@@ -18,7 +18,7 @@ class TestBittorrent(unittest.TestCase):
         self.episode = self.podcast.get_episodes()[episode_no]
         self.filename = self.episode._episode.local_filename(create=False, check_only=True)
 
-        self.cmd = extension.DEFAULT_PARAMS['bittorrent_cmd']['value']
+        self.cmd = extension.DEFAULT_CONFIG['bittorrent']['params']['cmd']['value']
 
     def tearDown(self):
         self.client._db.close()

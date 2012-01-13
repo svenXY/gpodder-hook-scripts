@@ -9,6 +9,12 @@ import subprocess
 import gpodder
 from gpodder.extensions import ExtensionParent
 
+DEFAULT_CONFIG = {
+    'enqueue_in_vlc': {
+        'enabled': False,
+    }
+}
+
 CMD = "vlc --started-from-file --playlist-enqueue" 
 
 class gPodderExtensions(ExtensionParent):
