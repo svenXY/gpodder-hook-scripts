@@ -7,7 +7,7 @@ from mutagen import File
 
 from gpodder import api
 from config import data
-from tagging.extension import read_episode_info, write_info2file
+from tagging import extension
 
 
 class TestTagging(unittest.TestCase):
@@ -29,7 +29,8 @@ class TestTagging(unittest.TestCase):
         shutil.move(self.filename_save, self.filename)
 
     def test_get_info(self):
-        info = read_episode_info(self.episode._episode)
+        tag_extension = extension.gPodderExtension()
+        info = tag_extension.read_episode_info(self.episode._episode)
 
         self.assertEqual('Tin Foil Hat', info['album'])
         self.assertEqual('Pilot show', info['title'])
@@ -37,7 +38,8 @@ class TestTagging(unittest.TestCase):
         self.assertEqual(self.filename, info['filename'])
 
     def test_write2file(self):
-        info = read_episode_info(self.episode._episode)
+        tag_extension = extension.gPodderExtension()
+        info = tag_extension.read_episode_info(self.episode._episode)
         write_info2file(info)
 
         audio = File(info['filename'], easy=True)

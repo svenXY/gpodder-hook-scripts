@@ -37,13 +37,19 @@ logger = logging.getLogger(__name__)
 import gpodder
 from gpodder.extensions import ExtensionParent
 
+PARAMS = {
+    'context_menu': {
+        'desc': u'add plugin to the context-menu',
+        'type': u'checkbox',
+    }
+}
 
-DEFAULT_PARAMS = { 
-    "context_menu": {
-        "desc": u"add plugin to the context-menu",
-        "value": True,
-        "type": u"checkbox",
-    }   
+DEFAULT_CONFIG = {
+    'extensions': {
+        'tfh_shownotes': {
+            'context_menu': True,
+        }
+    }
 }
 
 TFH_TITLE = 'Tin Foil Hat'
@@ -51,8 +57,8 @@ STEGHIDE_CMD = 'steghide extract -f -p %(pwd)s -sf %(img)s -xf %(file)s'
 
 
 class gPodderExtensions(ExtensionParent):
-    def __init__(self, params=DEFAULT_PARAMS, **kwargs):
-        super(gPodderExtensions, self).__init__(params=params, **kwargs)
+    def __init__(self, config=DEFAULT_CONFIG, **kwargs):
+        super(gPodderExtensions, self).__init__(config=config, **kwargs)
         self.context_menu_callback = self._download_shownotes
 
         self.check_command(STEGHIDE_CMD)
@@ -62,7 +68,7 @@ class gPodderExtensions(ExtensionParent):
             self.on_episode_downloaded(episode)
 
     def _show_context_menu(self, episodes):
-        if not self.params['context_menu']:
+        if not self.config.context_menu:
             return False
 
         if TFH_TITLE not in [e.channel.title for e in episodes]:

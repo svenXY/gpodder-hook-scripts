@@ -16,13 +16,19 @@ logger = logging.getLogger(__name__)
 import gpodder
 from gpodder.extensions import ExtensionParent
 
+PARAMS = {
+    'context_menu': {
+        'desc': u'add plugin to the context-menu',
+        'type': u'checkbox',
+    }
+}
 
-DEFAULT_PARAMS = { 
-    "context_menu": {
-        "desc": u"add plugin to the context-menu",
-        "value": True,
-        "type": u"checkbox",
-    }   
+DEFAULT_CONFIG = {
+    'extensions': {
+        'normalize_audio': {
+            'context_menu': True,
+        }
+    }
 }
 
 # a tuple of (extension, command)
@@ -37,8 +43,8 @@ CMDS_TO_TEST = ('normalize-ogg', 'normalize-mp3', 'normalize-audio',
 
 
 class gPodderExtensions(ExtensionParent):
-    def __init__(self, params=DEFAULT_PARAMS, **kwargs):
-        super(gPodderExtensions, self).__init__(params=params, **kwargs)
+    def __init__(self, config=DEFAULT_CONFIG, **kwargs):
+        super(gPodderExtensions, self).__init__(config=config, **kwargs)
         self.context_menu_callback = self._convert_episodes
 
         for cmd in CMDS_TO_TEST:
@@ -48,7 +54,7 @@ class gPodderExtensions(ExtensionParent):
         self._convert_episode(episode)
 
     def _show_context_menu(self, episodes):
-        if not self.params['context_menu']:
+        if not self.config.context_menu:
             return False
 
         mimetypes = [e.mime_type for e in episodes if e.mime_type is not None]

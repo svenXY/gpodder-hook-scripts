@@ -1,5 +1,5 @@
 {
-    "id": "ogg_coverart_remover",
+    "id": "rm_ogg_cover",
     "name": "Remove Coverart from OGG",
     "desc": "removes coverart from all downloaded ogg files",
     "authors": [ "Bernd Schlapsi <brot@gmx.info>" ],

@@ -7,7 +7,7 @@ import urllib2
 
 from gpodder import api
 from config import data
-from cmml_creator import extension
+from cmml_generator import extension
 
 LINUXOUTLAWS_FILENAME='linuxoutlaws230.ogg'
 

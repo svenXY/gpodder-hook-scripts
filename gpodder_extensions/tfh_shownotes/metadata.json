@@ -1,5 +1,5 @@
 {
-    "id": "tinfoilhat_shownotes",
+    "id": "tfh_shownotes",
     "name": "Tin Foil Hat Shownotes",
     "desc": "extract the shownotes from the 'Tin Foil Hat' podcast",
     "authors": [ "Bernd Schlapsi <brot@gmx.info>" ],

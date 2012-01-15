@@ -1,5 +1,5 @@
 {
-    "id": "enqueue_vlc",
+    "id": "enqueue_in_vlc",
     "name": "Enqueue in VLC",
     "desc": "Add a context menu item for enqueueing episodes in VLC",
     "authors": [ "Thomas Perl <thp@gpodder.org>", "Bernd Schlapsi <brot@gmx.info>" ],

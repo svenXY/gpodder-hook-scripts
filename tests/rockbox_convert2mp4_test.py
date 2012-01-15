@@ -5,7 +5,7 @@ import unittest
 
 from gpodder import api
 from config import data
-from rockbox_mp4_convert import extension
+from rockbox_convert2mp4 import extension
 
 
 class TestRockboxMP4Convert(unittest.TestCase):

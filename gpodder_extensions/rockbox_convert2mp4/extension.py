@@ -20,22 +20,28 @@ import subprocess
 import logging
 logger = logging.getLogger(__name__)
 
-
-DEFAULT_PARAMS = {
+PARAMS = {
     "device_height": {
         "desc": u'Device height',
-        "value": 176.0,
         "type": u'spinbutton',
     },
     "device_width": {
         "desc": u'Device width',
-        "value": 224.0,
         "type": u'spinbutton',
     },
     "ffmpeg_options": {
         "desc": u'ffmpeg options',
-        "value": u'-vcodec mpeg2video -b 500k -ab 192k -ac 2 -ar 44100 -acodec libmp3lame',
         "type": u'textitem',
+    }
+}
+
+DEFAULT_CONFIG = {
+    'extensions': {
+        'rockbox_convert2mp4': {
+            "device_height": 176.0,
+            "device_width": 224.0,
+            "ffmpeg_options": u'-vcodec mpeg2video -b 500k -ab 192k -ac 2 -ar 44100 -acodec libmp3lame',
+        }
     }
 }
 
@@ -45,14 +51,14 @@ FFMPEG_CMD = 'ffmpeg -y -i "%(from)s" -s %(width)sx%(height)s %(options)s "%(to)
 
 
 class gPodderExtensions(ExtensionParent):
-    def __init__(self, params=DEFAULT_PARAMS, **kwargs):
-        super(gPodderExtensions, self).__init__(params=params, **kwargs)
+    def __init__(self, config=DEFAULT_CONFIG, **kwargs):
+        super(gPodderExtensions, self).__init__(config=config, **kwargs)
 
         self.check_command(FFMPEG_CMD)
 
     def on_episode_downloaded(self, episode):
         current_filename = episode.local_filename(False)
-        converted_filename = self._convert_mp4(episode, current_filename, self.params)
+        converted_filename = self._convert_mp4(episode, current_filename)
 
         if converted_filename is not None:
             self.update_episode_file(episode, converted_filename)
@@ -96,7 +102,7 @@ class gPodderExtensions(ExtensionParent):
         return (int(round(dest_width)), round(int(dest_height)))
 
 
-    def _convert_mp4(self, episode, from_file, params):
+    def _convert_mp4(self, episode, from_file):
         """Convert MP4 file to rockbox mpg file"""
         # generate new filename and check if the file already exists
         to_file = self._get_rockbox_filename(from_file)
@@ -111,8 +117,8 @@ class gPodderExtensions(ExtensionParent):
         resolution = self._calc_resolution(
             info.video[0].width,
             info.video[0].height,
-            params['device_width']['value'],
-            params['device_height']['value']
+            self.config.device_width,
+            self.config.device_height
         )
         if resolution is None:
             logger.error("Error calculating the new screen resolution") 
@@ -123,7 +129,7 @@ class gPodderExtensions(ExtensionParent):
             'to': to_file,
             'width': str(resolution[0]),
             'height': str(resolution[1]),
-            'options': params['ffmpeg_options']['value']
+            'options': self.config.ffmpeg_options
         }
 
         # Prior to Python 2.7.3, this module (shlex) did not support Unicode input.

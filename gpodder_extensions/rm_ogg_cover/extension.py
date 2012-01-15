@@ -36,12 +36,19 @@ except:
 import gpodder
 from gpodder.extensions import ExtensionParent
 
-DEFAULT_PARAMS = { 
-    "context_menu": {
-        "desc": u"add plugin to the context-menu",
-        "value": True,
-        "type": u"checkbox",
-    }   
+PARAMS = {
+    'context_menu': {
+        'desc': u'add plugin to the context-menu',
+        'type': u'checkbox',
+    }
+}
+
+DEFAULT_CONFIG = {
+    'extensions': {
+        'rm_ogg_cover': {
+            'context_menu': True,
+        }
+    }
 }
 
 
@@ -71,15 +78,15 @@ def rm_ogg_cover(episode):
             None
 
 class gPodderExtensions(ExtensionParent):
-    def __init__(self, params=DEFAULT_PARAMS, **kwargs):
-        super(gPodderExtensions, self).__init__(params=params, **kwargs)
+    def __init__(self, config=DEFAULT_CONFIG, **kwargs):
+        super(gPodderExtensions, self).__init__(config=config, **kwargs)
         self.context_menu_callback = self._rm_ogg_covers
 
     def on_episode_downloaded(self, episode):
         rm_ogg_cover(episode)
 
     def _show_context_menu(self, episodes):
-        if not self.params['context_menu']:
+        if not self.config.context_menu:
             return False
 
         if 'audio/ogg' not in [e.mime_type for e in episodes if e.mime_type is not None]:

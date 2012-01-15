@@ -16,11 +16,18 @@ logger = logging.getLogger(__name__)
 import gpodder
 from gpodder.extensions import ExtensionParent
 
-DEFAULT_PARAMS = { 
-    "context_menu": {
-        "desc": u"add plugin to the context-menu",
-        "value": True,
-        "type": u"checkbox",
+PARAMS = {
+    'context_menu': {
+        'desc': u'add plugin to the context-menu',
+        'type': u'checkbox',
+    }
+}
+
+DEFAULT_CONFIG = {
+    'extensions': {
+        'mp3gain': {
+            'context_menu': True,
+        }
     }   
 }
 
@@ -31,8 +38,8 @@ CMD = {
 
 
 class gPodderExtensions(ExtensionParent):
-    def __init__(self, params=DEFAULT_PARAMS, **kwargs):
-        super(gPodderExtensions, self).__init__(params=params, **kwargs)
+    def __init__(self, config=DEFAULT_CONFIG, **kwargs):
+        super(gPodderExtensions, self).__init__(config=config, **kwargs)
         self.context_menu_callback = self._convert_episodes
 
         self.cmd = CMD[platform.system()]
@@ -42,7 +49,7 @@ class gPodderExtensions(ExtensionParent):
         self._convert_episode(episode)
 
     def _show_context_menu(self, episodes):
-        if not self.params['context_menu']:
+        if not self.config.context_menu:
             return False
 
         if 'audio/mpeg' not in [e.mime_type for e in episodes if e.mime_type is not None]:

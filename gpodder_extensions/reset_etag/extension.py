@@ -26,24 +26,27 @@ from gpodder.extensions import ExtensionParent
 import logging
 logger = logging.getLogger(__name__)
 
-
-DEFAULT_PARAMS = { 
-    "domain_list": {
-        "desc": "reset the etag and last modified information for",
-        "value": [u'http://podcast.wdr.de', ],
-        "type": "combobox",
-    }   
+PARAMS = {
+    'domain_list': {
+        'desc': 'reset the etag and last modified information for',
+        'type': 'combobox',
+    }
 }
 
-## settings
-domains = (u'http://podcast.wdr.de', )
+DEFAULT_CONFIG = {
+    'extensions': {
+        'reset_etag': {
+            'domain_list': [u'http://podcast.wdr.de', ],
+        }
+    }
+}
 
 
 class gPodderExtensions(ExtensionParent):
-    def __init__(self, params=DEFAULT_PARAMS, **kwargs):
-        super(gPodderExtensions, self).__init__(params=params, **kwargs)
+    def __init__(self, config=DEFAULT_CONFIG, **kwargs):
+        super(gPodderExtensions, self).__init__(config=config, **kwargs)
 
-        self.domain_list = params['domain_list']['value']
+        self.domain_list = self.config.domain_list
 
     def on_podcast_updated(self, podcast):
         if podcast.url.startswith(self.domain_list):

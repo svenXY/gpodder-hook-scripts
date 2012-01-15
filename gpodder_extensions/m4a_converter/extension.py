@@ -16,22 +16,23 @@ import subprocess
 import logging
 logger = logging.getLogger(__name__)
 
+PARAMS = {
+    'file_format': {
+        'desc': u'Target file format:',
+        'type': u'radiogroup',
+        'list': ( 'mp3', 'ogg' ),
+    },
+    'context_menu': {
+        'desc': 'add plugin to the context-menu',
+        'type': 'checkbox',
+    }
+}
 
 DEFAULT_CONFIG = {
-    'm4a_converter': {
-        'enabled': False,
-        'params': {
-            'file_format': {
-                'desc': u'Target file format:',
-                'type': u'radiogroup',
-                'list': ( 'mp3', 'ogg' ),
-                'value': [ True, False ],
-            },
-            'context_menu': {
-                'desc': 'add plugin to the context-menu',
-                'type': 'checkbox',
-                'value': True,
-            }   
+    'extensions': {
+        'm4a_converter': {
+            'file_format': [ True, False ],
+            'context_menu': True,
         }
     }
 }
@@ -45,8 +46,8 @@ class gPodderExtensions(ExtensionParent):
         super(gPodderExtensions, self).__init__(config=config, **kwargs)
         self.context_menu_callback = self._convert_episodes
 
-        choices = zip(self.config.m4a_converter.params.file_format.list,
-            self.config.m4a_converter.params.file_format.value)
+        choices = zip(PARAMS['file_format']['list'],
+            self.config.file_format)
         self.extension = '.' + [ext for ext, state in choices if state][0]
 
         self.test = kwargs.get('test', False)
@@ -56,7 +57,7 @@ class gPodderExtensions(ExtensionParent):
         self._convert_episode(episode)
 
     def _show_context_menu(self, episodes):
-        if not self.config.m4a_converter.params.context_menu.value:
+        if not self.config.context_menu:
             return False
 
         episodes = [e for e in episodes if e.mime_type in MIME_TYPES]

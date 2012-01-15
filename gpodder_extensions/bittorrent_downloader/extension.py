@@ -7,16 +7,18 @@ import subprocess
 
 from gpodder.extensions import ExtensionParent
 
-DEFAULT_CONFIG = {
-    'bittorrent': {
-        'enabled': True,
-        'params': {
-            'cmd': {
-                'desc': u'Defines the command line bittorrent program:',
-                'type': u'textitem',
-                'value': u'transmission-cli %s',
-            }
-		}
+PARAMS = {
+    'cmd': {
+        'desc': u'Defines the command line bittorrent program:',
+        'type': u'textitem',
+    }
+}
+
+DEFAULT_CONFIG = {    
+    'extensions': {
+        'bittorrent_downloader': {
+            'cmd': u'transmission-cli %s'
+        }
     }
 }
 
@@ -26,7 +28,7 @@ class gPodderExtensions(ExtensionParent):
         super(gPodderExtensions, self).__init__(config=config, **kwargs)
 
         self.test = kwargs.get('test', False)
-        self.cmd = self.config.bittorrent.params.cmd.value
+        self.cmd = self.config.cmd
         self.check_command(self.cmd)
 
         if self.test:
