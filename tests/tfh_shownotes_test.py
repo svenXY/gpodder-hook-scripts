@@ -4,6 +4,7 @@ import unittest
 
 from gpodder import api
 from config import data
+from utils import get_episode, get_metadata
 from tfh_shownotes import extension
 
 IMAGEFILE='/tmp/FRONT_COVER.jpeg'
@@ -13,12 +14,13 @@ DESC=u'Show Notes Get the commands at http://cafeninja.blogspot.com<img height="
 class TestTfhShownotes(unittest.TestCase):
     def setUp(self):
         self.client = api.PodcastClient()
-        self.podcast = self.client.get_podcast(data.TEST_PODCASTS['TinFoilHat']['url'])
-        self.episode = self.podcast.get_episodes()[data.TEST_PODCASTS['TinFoilHat']['episode']]
-        self.filename = self.episode._episode.local_filename(create=False, check_only=True)
+        self.episode, self.filename = get_episode(self.client,
+            data.TEST_PODCASTS['TinFoilHat'], True)
 
-        self.podcast1 = self.client.get_podcast(data.TEST_PODCASTS['DeimHart']['url'])
-        self.episode1 = self.podcast1.get_episodes()[data.TEST_PODCASTS['DeimHart']['episode']]
+        self.episode1 = get_episode(self.client,
+            data.TEST_PODCASTS['DeimHart'], False)
+
+        self.metadata = get_metadata(extension)
 
     def tearDown(self):
         self.client._db.close()
@@ -30,18 +32,18 @@ class TestTfhShownotes(unittest.TestCase):
         self.assertTrue(self.episode.is_downloaded)
 
     def test_extract_image(self):
-        tfh_extension = extension.gPodderExtensions()
+        tfh_extension = extension.gPodderExtensions(metadata=self.metadata)
         imagefile = tfh_extension.extract_image(self.filename)
         self.assertTrue(imagefile)
         self.assertEqual(IMAGEFILE, imagefile)
 
     def test_extract_shownotes(self):
-        tfh_extension = extension.gPodderExtensions()
+        tfh_extension = extension.gPodderExtensions(metadata=self.metadata)
         shownotes = tfh_extension.extract_shownotes(IMAGEFILE, remove_image=False)
         self.assertIsNotNone(shownotes)
 
     def test_search_shownotes_in_desc(self):
-        tfh_extension = extension.gPodderExtensions()
+        tfh_extension = extension.gPodderExtensions(metadata=self.metadata)
         shownotes = tfh_extension.extract_shownotes(IMAGEFILE, remove_image=False)
         desc = self.episode._episode.description
 
@@ -52,6 +54,6 @@ class TestTfhShownotes(unittest.TestCase):
         self.assertEqual(self.episode._episode.channel.title, extension.TFH_TITLE)
         self.assertNotEqual(self.episode1._episode.channel.title, extension.TFH_TITLE)
 
-        tfh_extension = extension.gPodderExtensions()
+        tfh_extension = extension.gPodderExtensions(metadata=self.metadata)
         self.assertTrue(tfh_extension._show_context_menu([self.episode._episode,]))
         self.assertFalse(tfh_extension._show_context_menu([self.episode1._episode,]))

@@ -4,14 +4,14 @@ import unittest
 
 from gpodder import api
 from config import data
+from utils import get_episode
 from zpravy.extension import get_pubdate
 
 
 class TestZpravy(unittest.TestCase):
     def setUp(self):
         self.client = api.PodcastClient()
-        self.podcast = self.client.get_podcast(data.TEST_PODCASTS['Zpravy']['url'])
-        self.episode = self.podcast.get_episodes()[-1]
+        self.episode = get_episode(self.client, data.TEST_PODCASTS['Zpravy'])
 
     def tearDown(self):
         self.client._db.close()

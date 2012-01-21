@@ -16,7 +16,7 @@ TEST_PODCASTS = {
     # we don't have to download a epiosode for the tests
     'LinuxOutlaws': {#'url': 'http://feeds.feedburner.com/linuxoutlaws-ogg',
                      'url': 'file://%s/linuxoutlaws-ogg.rss' % config_dir,
-                     'episode': None },
+                     'episode': -1 },
 
     # selected episode should be 'lnp003-twitter-facebook-american-censorship-day.m4a'
     'LogbuchNetzpolitik': {#'url': 'http://logbuch-netzpolitik.de/feed/podcast/',
@@ -31,7 +31,7 @@ TEST_PODCASTS = {
     # we don't have to download a epiosode for the tests
     'Zpravy': {#'url': 'http://www2.rozhlas.cz/podcast/zpravy.php',
                'url': 'file://%s/zpravy.rss' % config_dir,
-               'episode': None },
+               'episode': -1 },
 
     # selected episode should be 'TED: Matt Cutts: Try something new for 30 days - Matt Cutts (2011)'
     'TEDTalks': {#'url': 'http://feeds.feedburner.com/tedtalks_video',

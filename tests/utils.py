@@ -9,8 +9,9 @@ def get_episode(client, podcast_config, read_filename=False):
 
     if read_filename:
         filename = episode._episode.local_filename(create=False, check_only=True)
+        return (episode, filename)
 
-    return (episode, filename)
+    return episode
 
 def get_metadata(extension_module):
     metadata = None

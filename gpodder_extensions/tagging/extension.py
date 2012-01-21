@@ -70,7 +70,7 @@ class gPodderExtensions(ExtensionParent):
             return
 
         info = read_episode_info(episode)
-        write_info2file(info)
+        self.write_info2file(info)
 
         logger.info(u'tagging.on_episode_downloaded(%s/%s)' % (episode.channel.title, episode.title))
 

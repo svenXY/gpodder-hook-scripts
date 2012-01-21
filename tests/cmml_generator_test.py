@@ -7,6 +7,7 @@ import urllib2
 
 from gpodder import api
 from config import data
+from utils import get_episode, get_metadata
 from cmml_generator import extension
 
 LINUXOUTLAWS_FILENAME='linuxoutlaws230.ogg'
@@ -25,16 +26,11 @@ def create_cmml_from_file(ogg_file):
 class TestCmmlLinuxOutlaws(unittest.TestCase):
     def setUp(self):
         self.client = api.PodcastClient()
-
-        url = data.TEST_PODCASTS['LinuxOutlaws']['url']
-        self.podcast = self.client.get_podcast(url)
-        self.episode = self.podcast.get_episodes()[-1]
-        self.filename = self.episode._episode.local_filename(create=True)
-
-        url2 = data.TEST_PODCASTS['TinFoilHat']['url']
-        epno2 = data.TEST_PODCASTS['TinFoilHat']['episode']
-        self.podcast2 = self.client.get_podcast(url2)
-        self.episode2 = self.podcast2.get_episodes()[epno2]
+        self.episode, self.filename = get_episode(self.client,
+            data.TEST_PODCASTS['LinuxOutlaws'], True)
+        self.episode2, self.filename2 = get_episode(self.client,
+            data.TEST_PODCASTS['TinFoilHat'], True)
+        self.metadata = get_metadata(extension)
 
     def tearDown(self):
         extension.delete_cmml_file(LINUXOUTLAWS_FILENAME)
@@ -48,13 +44,13 @@ class TestCmmlLinuxOutlaws(unittest.TestCase):
         self.assertTrue(os.path.getsize(cmml_file)>0)
 
     def test_create_cmml_extension(self):
-        cmml_extension = extension.gPodderExtensions()
+        cmml_extension = extension.gPodderExtensions(metadata=self.metadata)
         cmml_extension.on_episode_downloaded(self.episode._episode)
         cmml_file = extension.get_cmml_filename(self.filename)
         self.assertTrue(os.path.exists(cmml_file))
         self.assertTrue(os.path.getsize(cmml_file)>0)
 
     def test_context_menu(self):
-        cmml_extension = extension.gPodderExtensions()
+        cmml_extension = extension.gPodderExtensions(metadata=self.metadata)
         self.assertTrue(cmml_extension._show_context_menu([self.episode._episode,]))
         self.assertFalse(cmml_extension._show_context_menu([self.episode2._episode,]))

@@ -6,21 +6,15 @@ import unittest
 
 from gpodder import api
 from config import data
+from utils import get_episode, get_metadata
 from enqueue_in_vlc import extension
 
 
 class TestEnqueueInVLC(unittest.TestCase):
     def setUp(self):
         self.client = api.PodcastClient()
-
-        url = data.TEST_PODCASTS['TinFoilHat']['url']
-        self.podcast = self.client.get_podcast(url)
-        self.podcast_title = self.podcast.title
-
-        self.episode = self.podcast.get_episodes()[-1]
-
-        with open(os.path.join(os.path.dirname(extension.__file__), 'metadata.json'), 'r') as f:
-            self.metadata = json.load(f)
+        self.episode = get_episode(self.client, data.TEST_PODCASTS['TinFoilHat'], False)
+        self.metadata = get_metadata(extension)
 
     def tearDown(self):
         self.client._db.close()

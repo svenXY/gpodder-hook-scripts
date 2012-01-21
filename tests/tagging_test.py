@@ -7,6 +7,7 @@ from mutagen import File
 
 from gpodder import api
 from config import data
+from utils import get_episode, get_metadata
 from tagging import extension
 
 
@@ -14,22 +15,19 @@ class TestTagging(unittest.TestCase):
     def setUp(self):
         self.client = api.PodcastClient()
 
-        self.podcast = self.client.get_podcast(data.TEST_PODCASTS['TinFoilHat']['url'])
-        self.podcast_title = self.podcast.title
-
-        index = data.TEST_PODCASTS['TinFoilHat']['episode']
-        self.episode = self.podcast.get_episodes()[index]
-        self.filename = self.episode._episode.local_filename(create=False, check_only=True)
+        self.episode, self.filename = get_episode(self.client,
+            data.TEST_PODCASTS['TinFoilHat'], True)
         self.filename_save = '%s.save' % self.filename 
-
         shutil.copyfile(self.filename, self.filename_save)
+
+        self.metadata = get_metadata(extension)
 
     def tearDown(self):
         self.client._db.close()
         shutil.move(self.filename_save, self.filename)
 
     def test_get_info(self):
-        tag_extension = extension.gPodderExtension()
+        tag_extension = extension.gPodderExtensions(metadata=self.metadata)
         info = tag_extension.read_episode_info(self.episode._episode)
 
         self.assertEqual('Tin Foil Hat', info['album'])
@@ -38,9 +36,9 @@ class TestTagging(unittest.TestCase):
         self.assertEqual(self.filename, info['filename'])
 
     def test_write2file(self):
-        tag_extension = extension.gPodderExtension()
+        tag_extension = extension.gPodderExtensions(metadata=self.metadata)
         info = tag_extension.read_episode_info(self.episode._episode)
-        write_info2file(info)
+        tag_extension.write_info2file(info)
 
         audio = File(info['filename'], easy=True)
         self.assertIsNotNone(audio)

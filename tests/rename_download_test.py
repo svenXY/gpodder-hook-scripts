@@ -5,6 +5,7 @@ import unittest
 
 from gpodder import api
 from config import data
+from utils import get_episode, get_metadata
 from rename_download.extension import rename_file
 
 
@@ -12,12 +13,8 @@ class TestRenameDownloads(unittest.TestCase):
     def setUp(self):
         self.client = api.PodcastClient()
 
-        url = data.TEST_PODCASTS['TinFoilHat']['url']
-        self.podcast = self.client.get_podcast(url)
-        self.podcast_title = self.podcast.title
-
-        self.episode = self.podcast.get_episodes()[-1]
-        self.filename = self.episode._episode.local_filename(create=False, check_only=True)
+        self.episode, self.filename = get_episode(self.client,
+            data.TEST_PODCASTS['TinFoilHat'], True)
         self.title = self.episode.title
 
     def tearDown(self):
@@ -25,7 +22,7 @@ class TestRenameDownloads(unittest.TestCase):
 
     def test_rename_file(self):
         filename_test = os.path.join(os.environ['GPODDER_DOWNLOAD_DIR'],
-            self.podcast_title, 'Pilot show.mp3')
+            'Tin Foil Hat', 'Pilot show.mp3')
         filename_new = rename_file(self.filename, self.title) 
 
         self.assertEqual(filename_test, filename_new)
