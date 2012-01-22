@@ -18,7 +18,7 @@
 #
 # This extension resets the etag and last modified information for a podcast.
 # This could be necessary if the server "lies" about the last modified state
-# This will cause gPodder to reload (and re-parse) the feed every time 
+# This will cause gPodder to reload (and re-parse) the feed every time
 
 import gpodder
 from gpodder.extensions import ExtensionParent
@@ -42,9 +42,9 @@ DEFAULT_CONFIG = {
 }
 
 
-class gPodderExtensions(ExtensionParent):
+class gPodderExtension(ExtensionParent):
     def __init__(self, config=DEFAULT_CONFIG, **kwargs):
-        super(gPodderExtensions, self).__init__(config=config, **kwargs)
+        super(gPodderExtension, self).__init__(config=config, **kwargs)
 
         self.domain_list = self.config.domain_list
 

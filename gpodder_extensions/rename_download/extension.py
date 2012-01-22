@@ -19,11 +19,11 @@ def rename_file(current_filename, title):
 
     new_filename = util.sanitize_encoding(title) + ext
     return os.path.join(dirname, new_filename)
-    
 
-class gPodderExtensions(ExtensionParent):
+
+class gPodderExtension(ExtensionParent):
     def __init__(self, **kwargs):
-        super(gPodderExtensions, self).__init__(**kwargs)
+        super(gPodderExtension, self).__init__(**kwargs)
 
     def on_episode_downloaded(self, episode):
         current_filename = episode.local_filename(create=False)

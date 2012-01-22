@@ -56,9 +56,9 @@ TFH_TITLE = 'Tin Foil Hat'
 STEGHIDE_CMD = 'steghide extract -f -p %(pwd)s -sf %(img)s -xf %(file)s'
 
 
-class gPodderExtensions(ExtensionParent):
+class gPodderExtension(ExtensionParent):
     def __init__(self, config=DEFAULT_CONFIG, **kwargs):
-        super(gPodderExtensions, self).__init__(config=config, **kwargs)
+        super(gPodderExtension, self).__init__(config=config, **kwargs)
         self.context_menu_callback = self._download_shownotes
 
         self.check_command(STEGHIDE_CMD)
@@ -73,14 +73,14 @@ class gPodderExtensions(ExtensionParent):
 
         if TFH_TITLE not in [e.channel.title for e in episodes]:
             return False
-        return True 
+        return True
 
     def on_episode_downloaded(self, episode):
         if episode.channel.title.startswith(TFH_TITLE):
             filename = episode.local_filename(create=False, check_only=True)
             if filename is None:
                 return
-            
+
             imagefile = self.extract_image(filename)
             if imagefile is None:
                 return

@@ -30,15 +30,15 @@ DEFAULT_CONFIG = {
         'flv2mp4': {
             'context_menu': True,
         }
-    }   
+    }
 }
 
 FFMPEG_CMD = 'ffmpeg -i "%(infile)s" -vcodec copy -acodec copy "%(outfile)s"'
 
 
-class gPodderExtensions(ExtensionParent):
+class gPodderExtension(ExtensionParent):
     def __init__(self, config=DEFAULT_CONFIG, **kwargs):
-        super(gPodderExtensions, self).__init__(config=config, **kwargs)
+        super(gPodderExtension, self).__init__(config=config, **kwargs)
         self.context_menu_callback = self._convert_episodes
 
         self.test = kwargs.get('test', False)
@@ -53,7 +53,7 @@ class gPodderExtensions(ExtensionParent):
 
         if 'video/x-flv' not in [e.mime_type for e in episodes]:
             return False
-        return True 
+        return True
 
     def _convert_episode(self, episode):
         if not youtube.is_video_link(episode.url):
@@ -77,13 +77,13 @@ class gPodderExtensions(ExtensionParent):
         target = os.path.join(dirname, basename+'.mp4')
         cmd = FFMPEG_CMD % {
             'infile': filename,
-            'outfile': target 
+            'outfile': target
         }
 
         # Prior to Python 2.7.3, this module (shlex) did not support Unicode input.
         if isinstance(cmd, unicode):
             cmd = cmd.encode('ascii', 'ignore')
-            
+
         ffmpeg = subprocess.Popen(shlex.split(cmd),
             stdout=subprocess.PIPE, stderr=subprocess.PIPE
         )

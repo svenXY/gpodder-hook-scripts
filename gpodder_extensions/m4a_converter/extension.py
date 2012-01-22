@@ -41,9 +41,9 @@ FFMPEG_CMD = 'ffmpeg -i "%(infile)s" -sameq "%(outfile)s"'
 MIME_TYPES = ['audio/x-m4a', 'audio/mp4']
 
 
-class gPodderExtensions(ExtensionParent):
+class gPodderExtension(ExtensionParent):
     def __init__(self, config=DEFAULT_CONFIG, **kwargs):
-        super(gPodderExtensions, self).__init__(config=config, **kwargs)
+        super(gPodderExtension, self).__init__(config=config, **kwargs)
         self.context_menu_callback = self._convert_episodes
 
         choices = zip(PARAMS['file_format']['list'],
@@ -63,7 +63,7 @@ class gPodderExtensions(ExtensionParent):
         episodes = [e for e in episodes if e.mime_type in MIME_TYPES]
         if not episodes:
             return False
-        return True 
+        return True
 
     def _convert_episode(self, episode):
         filename = episode.local_filename(create=False)
@@ -75,17 +75,17 @@ class gPodderExtensions(ExtensionParent):
             return
 
         self.notify_action("Converting", episode)
-        
+
         target = os.path.join(dirname, new_filename)
         cmd = FFMPEG_CMD % {
             'infile': filename,
-            'outfile': target 
+            'outfile': target
         }
 
         # Prior to Python 2.7.3, this module (shlex) did not support Unicode input.
         if isinstance(cmd, unicode):
             cmd = cmd.encode('ascii', 'ignore')
-            
+
         ffmpeg = subprocess.Popen(shlex.split(cmd),
             stdout=subprocess.PIPE, stderr=subprocess.PIPE
         )

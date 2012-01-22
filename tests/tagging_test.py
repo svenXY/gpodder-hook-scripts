@@ -27,7 +27,7 @@ class TestTagging(unittest.TestCase):
         shutil.move(self.filename_save, self.filename)
 
     def test_get_info(self):
-        tag_extension = extension.gPodderExtensions(metadata=self.metadata)
+        tag_extension = extension.gPodderExtension(metadata=self.metadata)
         info = tag_extension.read_episode_info(self.episode._episode)
 
         self.assertEqual('Tin Foil Hat', info['album'])
@@ -36,7 +36,7 @@ class TestTagging(unittest.TestCase):
         self.assertEqual(self.filename, info['filename'])
 
     def test_write2file(self):
-        tag_extension = extension.gPodderExtensions(metadata=self.metadata)
+        tag_extension = extension.gPodderExtension(metadata=self.metadata)
         info = tag_extension.read_episode_info(self.episode._episode)
         tag_extension.write_info2file(info)
 

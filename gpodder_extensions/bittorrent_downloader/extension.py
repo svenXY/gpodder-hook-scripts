@@ -14,7 +14,7 @@ PARAMS = {
     }
 }
 
-DEFAULT_CONFIG = {    
+DEFAULT_CONFIG = {
     'extensions': {
         'bittorrent_downloader': {
             'cmd': u'transmission-cli %s'
@@ -23,9 +23,9 @@ DEFAULT_CONFIG = {
 }
 
 
-class gPodderExtensions(ExtensionParent):
+class gPodderExtension(ExtensionParent):
     def __init__(self, config=DEFAULT_CONFIG, **kwargs):
-        super(gPodderExtensions, self).__init__(config=config, **kwargs)
+        super(gPodderExtension, self).__init__(config=config, **kwargs)
 
         self.test = kwargs.get('test', False)
         self.cmd = self.config.cmd
@@ -38,7 +38,7 @@ class gPodderExtensions(ExtensionParent):
         if episode.extension() == '.torrent':
             self.notify_action("Downloading", episode)
             cmd = self.cmd % episode.local_filename(False)
-            
+
             # Prior to Python 2.7.3, this module (shlex) did not
             # support Unicode input.
             if isinstance(cmd, unicode):
@@ -55,6 +55,6 @@ class gPodderExtensions(ExtensionParent):
             else:
                 self.notify_action("Downloading finished with erros",
                     episode)
-            
-            if self.test:                
+
+            if self.test:
                 return (stdout, stderr)

@@ -33,7 +33,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 try:
-    from mutagen import File 
+    from mutagen import File
     mutagen_installed = True
 except:
     logger.error( '(tagging extension) Could not find mutagen')
@@ -60,9 +60,9 @@ DEFAULT_CONFIG = {
 }
 
 
-class gPodderExtensions(ExtensionParent):
+class gPodderExtension(ExtensionParent):
     def __init__(self, config=DEFAULT_CONFIG, **kwargs):
-        super(gPodderExtensions, self).__init__(config=config, **kwargs)
+        super(gPodderExtension, self).__init__(config=config, **kwargs)
 
     def on_episode_downloaded(self, episode):
         # exit if mutagen is not installed

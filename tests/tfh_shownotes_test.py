@@ -32,18 +32,18 @@ class TestTfhShownotes(unittest.TestCase):
         self.assertTrue(self.episode.is_downloaded)
 
     def test_extract_image(self):
-        tfh_extension = extension.gPodderExtensions(metadata=self.metadata)
+        tfh_extension = extension.gPodderExtension(metadata=self.metadata)
         imagefile = tfh_extension.extract_image(self.filename)
         self.assertTrue(imagefile)
         self.assertEqual(IMAGEFILE, imagefile)
 
     def test_extract_shownotes(self):
-        tfh_extension = extension.gPodderExtensions(metadata=self.metadata)
+        tfh_extension = extension.gPodderExtension(metadata=self.metadata)
         shownotes = tfh_extension.extract_shownotes(IMAGEFILE, remove_image=False)
         self.assertIsNotNone(shownotes)
 
     def test_search_shownotes_in_desc(self):
-        tfh_extension = extension.gPodderExtensions(metadata=self.metadata)
+        tfh_extension = extension.gPodderExtension(metadata=self.metadata)
         shownotes = tfh_extension.extract_shownotes(IMAGEFILE, remove_image=False)
         desc = self.episode._episode.description
 
@@ -54,6 +54,6 @@ class TestTfhShownotes(unittest.TestCase):
         self.assertEqual(self.episode._episode.channel.title, extension.TFH_TITLE)
         self.assertNotEqual(self.episode1._episode.channel.title, extension.TFH_TITLE)
 
-        tfh_extension = extension.gPodderExtensions(metadata=self.metadata)
+        tfh_extension = extension.gPodderExtension(metadata=self.metadata)
         self.assertTrue(tfh_extension._show_context_menu([self.episode._episode,]))
         self.assertFalse(tfh_extension._show_context_menu([self.episode1._episode,]))

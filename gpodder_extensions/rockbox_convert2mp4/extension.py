@@ -50,9 +50,9 @@ EXTENTIONS_TO_CONVERT = ['.mp4',"." + ROCKBOX_EXTENTION]
 FFMPEG_CMD = 'ffmpeg -y -i "%(from)s" -s %(width)sx%(height)s %(options)s "%(to)s"'
 
 
-class gPodderExtensions(ExtensionParent):
+class gPodderExtension(ExtensionParent):
     def __init__(self, config=DEFAULT_CONFIG, **kwargs):
-        super(gPodderExtensions, self).__init__(config=config, **kwargs)
+        super(gPodderExtension, self).__init__(config=config, **kwargs)
 
         self.check_command(FFMPEG_CMD)
 
@@ -88,13 +88,13 @@ class gPodderExtensions(ExtensionParent):
     def _calc_resolution(self, video_width, video_height, device_width, device_height):
         if video_height is None:
             return None
-            
+
         width_ratio = device_width / video_width
         height_ratio = device_height / video_height
-                    
+
         dest_width = device_width
         dest_height = width_ratio * video_height
-                    
+
         if dest_height > device_height:
             dest_width = height_ratio * video_width
             dest_height = device_height
@@ -121,9 +121,9 @@ class gPodderExtensions(ExtensionParent):
             self.config.device_height
         )
         if resolution is None:
-            logger.error("Error calculating the new screen resolution") 
+            logger.error("Error calculating the new screen resolution")
             return None
-            
+
         convert_command = FFMPEG_CMD % {
             'from': from_file,
             'to': to_file,

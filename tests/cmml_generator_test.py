@@ -44,13 +44,13 @@ class TestCmmlLinuxOutlaws(unittest.TestCase):
         self.assertTrue(os.path.getsize(cmml_file)>0)
 
     def test_create_cmml_extension(self):
-        cmml_extension = extension.gPodderExtensions(metadata=self.metadata)
+        cmml_extension = extension.gPodderExtension(metadata=self.metadata)
         cmml_extension.on_episode_downloaded(self.episode._episode)
         cmml_file = extension.get_cmml_filename(self.filename)
         self.assertTrue(os.path.exists(cmml_file))
         self.assertTrue(os.path.getsize(cmml_file)>0)
 
     def test_context_menu(self):
-        cmml_extension = extension.gPodderExtensions(metadata=self.metadata)
+        cmml_extension = extension.gPodderExtension(metadata=self.metadata)
         self.assertTrue(cmml_extension._show_context_menu([self.episode._episode,]))
         self.assertFalse(cmml_extension._show_context_menu([self.episode2._episode,]))

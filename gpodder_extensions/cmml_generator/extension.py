@@ -5,7 +5,7 @@
 # containing chapters for Linux Outlaws.
 #
 # Version 1.0 - Copyright (C) 2011 Eric Le Lay <neric27@wanadoo.fr>
-# 
+#
 # To use, copy it as a Python script into ~/.config/gpodder/extensions/linux_outlaws_cmml.py
 #
 # Dependencies:
@@ -127,9 +127,9 @@ def create_cmml_radiotux(html, audio_file):
         ET.ElementTree(cmml).write(to_file, encoding='utf-8')
 
 
-class gPodderExtensions(ExtensionParent):
+class gPodderExtension(ExtensionParent):
     def __init__(self, config=DEFAULT_CONFIG, **kwargs):
-        super(gPodderExtensions, self).__init__(config=config, **kwargs)
+        super(gPodderExtension, self).__init__(config=config, **kwargs)
         self.context_menu_callback = self._convert_episodes
 
         self.choices = PARAMS['podcast_list']['list']
@@ -154,7 +154,7 @@ class gPodderExtensions(ExtensionParent):
         if not self.config.context_menu:
             return False
 
-        episodes = [e for e in episodes 
+        episodes = [e for e in episodes
             if self._process_episode(e, LINUX_OUTLAWS) or self._process_episode(e, RADIOTUX)]
         if not episodes:
             return False
@@ -168,7 +168,7 @@ class gPodderExtensions(ExtensionParent):
 
         # may have to change that if the feed is renamed...
         if self._process_episode(episode, LINUX_OUTLAWS):
-        	create_cmml_linux_outlaws(html, audio_file)
+            create_cmml_linux_outlaws(html, audio_file)
 
         elif self._process_episode(episode, RADIOTUX):
             create_cmml_radiotux(html, audio_file)

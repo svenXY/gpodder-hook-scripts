@@ -42,9 +42,9 @@ CMDS_TO_TEST = ('normalize-ogg', 'normalize-mp3', 'normalize-audio',
     'lame', 'mpg123', 'oggenc', 'oggdec')
 
 
-class gPodderExtensions(ExtensionParent):
+class gPodderExtension(ExtensionParent):
     def __init__(self, config=DEFAULT_CONFIG, **kwargs):
-        super(gPodderExtensions, self).__init__(config=config, **kwargs)
+        super(gPodderExtension, self).__init__(config=config, **kwargs)
         self.context_menu_callback = self._convert_episodes
 
         for cmd in CMDS_TO_TEST:

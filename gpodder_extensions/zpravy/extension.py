@@ -47,9 +47,9 @@ def get_pubdate(episode):
     return ts
     
 
-class gPodderExtensions(ExtensionParent):
+class gPodderExtension(ExtensionParent):
     def __init__(self, **kwargs):
-        super(gPodderExtensions, self).__init__(**kwargs)
+        super(gPodderExtension, self).__init__(**kwargs)
 
     def on_episode_save(self, episode):
         ts = get_pubdate(episode)

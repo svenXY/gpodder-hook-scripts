@@ -17,7 +17,7 @@ class TestRockboxMP4Convert(unittest.TestCase):
             data.TEST_PODCASTS['TEDTalks'], True)
         
         self.metadata = get_metadata(extension)
-        self.rb_extension = extension.gPodderExtensions(metadata=self.metadata) 
+        self.rb_extension = extension.gPodderExtension(metadata=self.metadata) 
 
     def tearDown(self):
         self.client._db.close()

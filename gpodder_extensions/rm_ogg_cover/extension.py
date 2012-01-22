@@ -20,7 +20,7 @@
 # * python-mutagen (Mutagen is a Python module to handle audio metadata)
 #
 # This extension scripts removes coverart from all downloaded ogg files.
-# The reason for this script is that my media player (MEIZU SL6) 
+# The reason for this script is that my media player (MEIZU SL6)
 # couldn't handle ogg files with included coverart
 
 import os
@@ -29,7 +29,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 try:
-    from mutagen.oggvorbis import OggVorbis 
+    from mutagen.oggvorbis import OggVorbis
 except:
     logger.error( '(remove ogg cover extension) Could not find mutagen')
 
@@ -68,7 +68,7 @@ def rm_ogg_cover(episode):
                 if key.startswith('cover'):
                     found = True
                     ogg.pop(key)
-            
+
             if found:
                 logger.info(u'removed cover from the ogg file successfully')
                 ogg.save()
@@ -77,9 +77,9 @@ def rm_ogg_cover(episode):
         except:
             None
 
-class gPodderExtensions(ExtensionParent):
+class gPodderExtension(ExtensionParent):
     def __init__(self, config=DEFAULT_CONFIG, **kwargs):
-        super(gPodderExtensions, self).__init__(config=config, **kwargs)
+        super(gPodderExtension, self).__init__(config=config, **kwargs)
         self.context_menu_callback = self._rm_ogg_covers
 
     def on_episode_downloaded(self, episode):

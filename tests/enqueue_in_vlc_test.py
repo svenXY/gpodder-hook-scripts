@@ -20,7 +20,7 @@ class TestEnqueueInVLC(unittest.TestCase):
         self.client._db.close()
 
     def test_menu_entry(self):
-        vlc_extension = extension.gPodderExtensions(metadata=self.metadata)
+        vlc_extension = extension.gPodderExtension(metadata=self.metadata)
         menu_entry = vlc_extension.on_episodes_context_menu([self.episode._episode]) 
         self.assertTrue(isinstance(menu_entry, list))
         self.assertEqual(len(menu_entry), 1)
@@ -32,5 +32,5 @@ class TestEnqueueInVLC(unittest.TestCase):
 
     def test_enqueue_cmd(self):
         cmd = extension.CMD + " --no-audio"
-        vlc_extension = extension.gPodderExtensions(cmd=cmd)
+        vlc_extension = extension.gPodderExtension(cmd=cmd)
         vlc_extension._enqueue_episodes([self.episode._episode]) 

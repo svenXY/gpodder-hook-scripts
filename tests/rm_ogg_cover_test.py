@@ -56,7 +56,7 @@ class TestTagging(unittest.TestCase):
         self.assertFalse(ogg.has_key('coverartdescription'))
 
     def test_context_menu(self):
-        rm_extension = extension.gPodderExtensions(metadata=self.metadata)
+        rm_extension = extension.gPodderExtension(metadata=self.metadata)
         self.assertFalse(rm_extension._show_context_menu([self.mp3_episode._episode,]))
         self.assertTrue(rm_extension._show_context_menu([self.ogg_episode._episode,]))
 

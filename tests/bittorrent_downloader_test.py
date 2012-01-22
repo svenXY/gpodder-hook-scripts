@@ -23,7 +23,7 @@ class TestBittorrent(unittest.TestCase):
         self.assertIsNotNone(self.filename)
         self.assertIsNotNone(self.episode._episode)
 
-        bt_extension = extension.gPodderExtensions(metadata=self.metadata, test=True)
+        bt_extension = extension.gPodderExtension(metadata=self.metadata, test=True)
         result = bt_extension.on_episode_downloaded(self.episode._episode)
         self.assertIsNotNone(result)
         self.assertTrue(result, tuple)

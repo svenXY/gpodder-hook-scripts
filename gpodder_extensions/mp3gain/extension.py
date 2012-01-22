@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# This extension adjusts mp3s so that they all have the same volume 
+# This extension adjusts mp3s so that they all have the same volume
 #
 # Requires: mp3gain
 #
@@ -28,7 +28,7 @@ DEFAULT_CONFIG = {
         'mp3gain': {
             'context_menu': True,
         }
-    }   
+    }
 }
 
 CMD = {
@@ -37,9 +37,9 @@ CMD = {
 }
 
 
-class gPodderExtensions(ExtensionParent):
+class gPodderExtension(ExtensionParent):
     def __init__(self, config=DEFAULT_CONFIG, **kwargs):
-        super(gPodderExtensions, self).__init__(config=config, **kwargs)
+        super(gPodderExtension, self).__init__(config=config, **kwargs)
         self.context_menu_callback = self._convert_episodes
 
         self.cmd = CMD[platform.system()]

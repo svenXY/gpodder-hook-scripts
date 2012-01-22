@@ -10,11 +10,11 @@ import gpodder
 from gpodder.extensions import ExtensionParent
 
 
-CMD = "vlc --started-from-file --playlist-enqueue" 
+CMD = "vlc --started-from-file --playlist-enqueue"
 
-class gPodderExtensions(ExtensionParent):
+class gPodderExtension(ExtensionParent):
     def __init__(self, **kwargs):
-        super(gPodderExtensions, self).__init__(**kwargs)
+        super(gPodderExtension, self).__init__(**kwargs)
         self.context_menu_callback = self._enqueue_episodes
 
         self.cmd = kwargs.get('cmd', CMD)
@@ -25,6 +25,6 @@ class gPodderExtensions(ExtensionParent):
         subprocess.Popen(shlex.split(self.cmd) + filenames,
             stdout=subprocess.PIPE, stderr=subprocess.PIPE
         )
-        
-    def _show_context_menu(self, episodes):        
+
+    def _show_context_menu(self, episodes):
         return True
