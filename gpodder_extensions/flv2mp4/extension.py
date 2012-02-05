@@ -8,6 +8,7 @@
 # Released under the same license terms as gPodder itself.
 
 import gpodder
+from gpodder.util import sanitize_encoding
 from gpodder import youtube
 from gpodder.extensions import ExtensionParent
 
@@ -81,8 +82,7 @@ class gPodderExtension(ExtensionParent):
         }
 
         # Prior to Python 2.7.3, this module (shlex) did not support Unicode input.
-        if isinstance(cmd, unicode):
-            cmd = cmd.encode('ascii', 'ignore')
+        cmd = sanitize_encoding(cmd)
 
         ffmpeg = subprocess.Popen(shlex.split(cmd),
             stdout=subprocess.PIPE, stderr=subprocess.PIPE
@@ -92,7 +92,7 @@ class gPodderExtension(ExtensionParent):
         if ffmpeg.returncode == 0:
             logger.info('FLV conversion successful.')
             if not self.test:
-                self.update_episode_file(episode, basename+'.mp4')
+                self.rename_episode_file(episode, basename+'.mp4')
                 os.remove(filename)
         else:
             logger.info('Error converting file. FFMPEG installed?')

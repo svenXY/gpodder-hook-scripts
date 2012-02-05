@@ -9,7 +9,7 @@
 # Copyright (c) 2011-04-06 Guy Sheffer <guysoft at gmail.com>
 # Copyright (c) 2011-04-04 Thomas Perl <thp.io>
 # Licensed under the same terms as gPodder itself
-from gpodder import util
+from gpodder.util import sanitize_encoding 
 from gpodder.extensions import ExtensionParent
 
 import kaa.metadata
@@ -61,7 +61,7 @@ class gPodderExtension(ExtensionParent):
         converted_filename = self._convert_mp4(episode, current_filename)
 
         if converted_filename is not None:
-            self.update_episode_file(episode, converted_filename)
+            self.renameeepisode_file(episode, converted_filename)
             os.remove(current_filename)
             logger.info('Conversion for %s was successfully' % current_filename)
         else:
@@ -133,8 +133,7 @@ class gPodderExtension(ExtensionParent):
         }
 
         # Prior to Python 2.7.3, this module (shlex) did not support Unicode input.
-        if isinstance(convert_command, unicode):
-            convert_command = convert_command.encode('ascii', 'ignore')
+        convert_command = sanitize_encoding(convert_command)
 
         process = subprocess.Popen(shlex.split(convert_command),
             stdout=subprocess.PIPE, stderr=subprocess.PIPE)

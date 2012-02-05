@@ -14,6 +14,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 import gpodder
+from gpodder.util import sanitize_encoding
 from gpodder.extensions import ExtensionParent
 
 PARAMS = {
@@ -68,8 +69,7 @@ class gPodderExtension(ExtensionParent):
             cmd = self.cmd % filename
 
             # Prior to Python 2.7.3, this module (shlex) did not support Unicode input.
-            if isinstance(cmd, unicode):
-                cmd = cmd.encode('ascii', 'ignore')
+            cmd = sanitize_encoding(cmd)
 
             p = subprocess.Popen(shlex.split(cmd),
                 stdout=subprocess.PIPE, stderr=subprocess.PIPE)

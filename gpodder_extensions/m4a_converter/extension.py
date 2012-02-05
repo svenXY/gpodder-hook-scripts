@@ -7,6 +7,7 @@
 # Released under the same license terms as gPodder itself.
 
 import gpodder
+from gpodder.util import sanitize_encoding
 from gpodder.extensions import ExtensionParent
 
 import os
@@ -83,8 +84,7 @@ class gPodderExtension(ExtensionParent):
         }
 
         # Prior to Python 2.7.3, this module (shlex) did not support Unicode input.
-        if isinstance(cmd, unicode):
-            cmd = cmd.encode('ascii', 'ignore')
+        cmd = sanitize_encoding(cmd)
 
         ffmpeg = subprocess.Popen(shlex.split(cmd),
             stdout=subprocess.PIPE, stderr=subprocess.PIPE
@@ -95,7 +95,7 @@ class gPodderExtension(ExtensionParent):
             logger.info('m4a -> %s conversion successful.', self.extension)
             self.notify_action("Converting finished", episode)
             if not self.test:
-                self.update_episode_file(episode, new_filename)
+                self.renamee_episode_file(episode, new_filename)
                 os.remove(filename)
         else:
             logger.info('Error converting file. FFMPEG installed?')

@@ -32,4 +32,4 @@ class gPodderExtension(ExtensionParent):
         logger.info('Renaming:', current_filename, '->', new_filename)
 
         os.rename(current_filename, new_filename)
-        self.update_episode_file(episode, new_filename)
+        self.rename_episode_file(episode, new_filename)
