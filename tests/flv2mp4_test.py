@@ -7,7 +7,7 @@ import unittest
 from gpodder import api
 from config import data
 from utils import get_episode, get_metadata
-from flv2mp4 import extension
+import flv2mp4 as extension
 
 
 class TestFlv2Mp4(unittest.TestCase):

@@ -8,7 +8,7 @@ import urllib2
 from gpodder import api
 from config import data
 from utils import get_episode, get_metadata
-from cmml_generator import extension
+import cmml_generator as extension
 
 LINUXOUTLAWS_FILENAME='linuxoutlaws230.ogg'
 

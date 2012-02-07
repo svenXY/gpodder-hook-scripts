@@ -10,7 +10,7 @@ from mutagen.oggvorbis import OggVorbis
 from gpodder import api
 from config import data
 from utils import get_episode, get_metadata
-from rm_ogg_cover import extension
+import rm_ogg_cover as extension
 
 
 class TestTagging(unittest.TestCase):

@@ -37,6 +37,12 @@ logger = logging.getLogger(__name__)
 import gpodder
 from gpodder.extensions import ExtensionParent
 
+# Metadata for this extension
+__id__ = 'tfh_shownotes'
+__name__ = 'Tin Foil Hat Shownotes'
+__desc__ = 'extract the shownotes from the "Tin Foil Hat" podcast'
+
+
 PARAMS = {
     'context_menu': {
         'desc': u'add plugin to the context-menu',

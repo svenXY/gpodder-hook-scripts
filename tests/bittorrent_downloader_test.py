@@ -5,7 +5,7 @@ import unittest
 from gpodder import api
 from config import data
 from utils import get_episode, get_metadata
-from bittorrent_downloader import extension
+import bittorrent_downloader as extension
 
 
 class TestBittorrent(unittest.TestCase):

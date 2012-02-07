@@ -39,6 +39,12 @@ except:
     logger.error( '(tagging extension) Could not find mutagen')
     mutagen_installed = False
 
+# Metadata for this extension
+__id__ = 'tagging'
+__name__ = 'Tagging'
+__desc__ = 'adds episode title and podcast title to the audio file'
+
+
 PARAMS = {
     "strip_album_from_title": {
         "desc": u'Strip album name from title',

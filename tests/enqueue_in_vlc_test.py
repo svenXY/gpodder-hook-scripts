@@ -7,7 +7,7 @@ import unittest
 from gpodder import api
 from config import data
 from utils import get_episode, get_metadata
-from enqueue_in_vlc import extension
+import enqueue_in_vlc as extension
 
 
 class TestEnqueueInVLC(unittest.TestCase):

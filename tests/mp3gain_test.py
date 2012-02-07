@@ -7,7 +7,7 @@ import unittest
 from gpodder import api
 from config import data
 from utils import get_episode, get_metadata
-from mp3gain import extension
+import mp3gain as extension
 
 
 class TestMp3Gain(unittest.TestCase):

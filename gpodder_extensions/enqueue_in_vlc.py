@@ -9,6 +9,11 @@ import subprocess
 import gpodder
 from gpodder.extensions import ExtensionParent
 
+# Metadata for this extension
+__id__ = 'enqueue_in_vlc'
+__name__ = 'Enqueue in VLC'
+__desc__ = 'Add a context menu item for enqueueing episodes in VLC'
+
 
 CMD = "vlc --started-from-file --playlist-enqueue"
 

@@ -7,7 +7,7 @@ import unittest
 from gpodder import api
 from config import data
 from utils import get_episode, get_metadata
-from m4a_converter import extension
+import m4a_converter as extension
 
 
 class TestM4AConversion(unittest.TestCase):

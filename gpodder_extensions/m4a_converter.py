@@ -17,6 +17,12 @@ import subprocess
 import logging
 logger = logging.getLogger(__name__)
 
+# Metadata for this extension
+__id__ = 'm4a_converter'
+__name__ = 'Converts M4A audio'
+__desc__ = 'Converts m4a audio files to mp3'
+
+
 PARAMS = {
     'file_format': {
         'desc': u'Target file format:',

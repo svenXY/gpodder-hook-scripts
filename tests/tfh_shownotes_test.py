@@ -5,7 +5,7 @@ import unittest
 from gpodder import api
 from config import data
 from utils import get_episode, get_metadata
-from tfh_shownotes import extension
+import tfh_shownotes as extension
 
 IMAGEFILE='/tmp/FRONT_COVER.jpeg'
 DESC=u'Show Notes Get the commands at http://cafeninja.blogspot.com<img height="1" src="http://feeds.feedburner.com/~r/TinFoilHat/~4/zzwDl_AW194" width="1" />'

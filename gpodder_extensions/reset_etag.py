@@ -26,6 +26,14 @@ from gpodder.extensions import ExtensionParent
 import logging
 logger = logging.getLogger(__name__)
 
+# Metadata for this extension
+__id__ = "reset_etag"
+__name__ = "Reset etag"
+__desc__ = "This hook resets the etag and last modified information for a podcast"
+__authors__ = [ "Bernd Schlapsi <brot@gmx.info>" ]
+__url__ = "https://github.com/gpodder/gpodder-hook-scripts"
+
+
 PARAMS = {
     'domain_list': {
         'desc': 'reset the etag and last modified information for',

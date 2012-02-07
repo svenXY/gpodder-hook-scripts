@@ -8,6 +8,12 @@ import subprocess
 from gpodder.util import sanitize_encoding
 from gpodder.extensions import ExtensionParent
 
+# Metadata for this extension
+__id__ = 'bittorrent_downloader'
+__name__ = 'Bittorrent downloader'
+__desc__ = 'Downloads the file if the file from the podcast ends with .torrent'
+
+
 PARAMS = {
     'cmd': {
         'desc': u'Defines the command line bittorrent program:',

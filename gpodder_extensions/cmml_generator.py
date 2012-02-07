@@ -41,6 +41,12 @@ logger = logging.getLogger(__name__)
 import gpodder
 from gpodder.extensions import ExtensionParent
 
+# Metadata for this extension
+__id__ = 'cmml_generator'
+__name__ = 'CMML generator'
+__desc__ = 'Generates CMML-files after downloading a Episode. The supported podcasts are listed in the preferences'
+
+
 LINUX_OUTLAWS = u'Linux Outlaws'
 RADIOTUX = u'RadioTux Magazin'
 

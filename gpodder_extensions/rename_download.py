@@ -11,6 +11,11 @@ import os
 import logging
 logger = logging.getLogger(__name__)
 
+# Metadata for this extension
+__id__ = 'rename_download'
+__name__ = 'Rename after download'
+__desc__ = 'rename files after download based on the episode title'
+
 
 def rename_file(current_filename, title):
     dirname = os.path.dirname(current_filename)

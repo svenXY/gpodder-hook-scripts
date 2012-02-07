@@ -36,6 +36,12 @@ except:
 import gpodder
 from gpodder.extensions import ExtensionParent
 
+# Metadata for this extension
+__id__ = 'rm_ogg_cover'
+__name__ = 'Remove Coverart from OGG'
+__desc__ = 'removes coverart from all downloaded ogg files'
+
+
 PARAMS = {
     'context_menu': {
         'desc': u'add plugin to the context-menu',

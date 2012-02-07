@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-# This extension adjusts the volume of audio files to a standard level
-# Supported file formats are mp3 and ogg
+# This extension adjusts mp3s so that they all have the same volume
 #
-# Requires: normalize-audio, mpg123
+# Requires: mp3gain
 #
 # (c) 2011-11-06 Bernd Schlapsi <brot@gmx.info>
 # Released under the same license terms as gPodder itself.
 import os
+import platform
 import shlex
 import subprocess
 
@@ -17,6 +17,12 @@ import gpodder
 from gpodder.util import sanitize_encoding
 from gpodder.extensions import ExtensionParent
 
+# Metadata for this extension
+__id__ = 'mp3gain'
+__name__ = 'mp3gain'
+__desc__ = 'This hook adjusts mp3s so that they all have the same volume. It don\'t decode and re-encode the audio file'
+
+
 PARAMS = {
     'context_menu': {
         'desc': u'add plugin to the context-menu',
@@ -26,21 +32,16 @@ PARAMS = {
 
 DEFAULT_CONFIG = {
     'extensions': {
-        'normalize_audio': {
+        'mp3gain': {
             'context_menu': True,
         }
     }
 }
 
-# a tuple of (extension, command)
-SUPPORTED = (('ogg', 'normalize-ogg "%s"'), ('mp3', 'normalize-mp3 "%s"'))
-
-#TODO: add setting to use normalize-audio instead of normalizie-mp3 for mp3 files if wanted
-# http://normalize.nongnu.org/README.html FAQ #5
-#MP3_CMD = 'normalize-audio "%s"'
-
-CMDS_TO_TEST = ('normalize-ogg', 'normalize-mp3', 'normalize-audio',
-    'lame', 'mpg123', 'oggenc', 'oggdec')
+CMD = {
+    'Linux': 'mp3gain -c "%s"',
+    'Windows': 'mp3gain.exe -c "%s"'
+}
 
 
 class gPodderExtension(ExtensionParent):
@@ -48,8 +49,8 @@ class gPodderExtension(ExtensionParent):
         super(gPodderExtension, self).__init__(config=config, **kwargs)
         self.context_menu_callback = self._convert_episodes
 
-        for cmd in CMDS_TO_TEST:
-            self.check_command(cmd)
+        self.cmd = CMD[platform.system()]
+        self.check_command(self.cmd)
 
     def on_episode_downloaded(self, episode):
         self._convert_episode(episode)
@@ -58,9 +59,9 @@ class gPodderExtension(ExtensionParent):
         if not self.config.context_menu:
             return False
 
-        mimetypes = [e.mime_type for e in episodes if e.mime_type is not None]
-        if 'audio/ogg' not in mimetypes and 'audio/mpeg' not in mimetypes:
+        if 'audio/mpeg' not in [e.mime_type for e in episodes if e.mime_type is not None]:
             return False
+
         return True
 
     def _convert_episode(self, episode):
@@ -68,13 +69,10 @@ class gPodderExtension(ExtensionParent):
         if filename is None:
             return
 
-        formats, commands = zip(*SUPPORTED)
         (basename, extension) = os.path.splitext(filename)
-        extension = extension.lstrip('.').lower()
-        if episode.file_type() == 'audio' and extension in formats:
-            self.notify_action("Normalizing", episode)
+        if episode.file_type() == 'audio' and extension.lower().endswith('mp3'):
 
-            cmd = commands[formats.index(extension)] % filename
+            cmd = self.cmd % filename
 
             # Prior to Python 2.7.3, this module (shlex) did not support Unicode input.
             cmd = sanitize_encoding(cmd)
@@ -84,12 +82,10 @@ class gPodderExtension(ExtensionParent):
             stdout, stderr = p.communicate()
 
             if p.returncode == 0:
-                logger.info('normalize-audio processing successfull.')
-                self.notify_action("Normalizing finished successfully", episode)
+                logger.info('mp3gain processing successfull.')
 
             else:
-                logger.info('normalize-audio processing not successfull.')
-                self.notify_action("Normalizing finished not successfully", episode)
+                logger.info('mp3gain processing not successfull.')
                 logger.debug(stderr)
 
     def _convert_episodes(self, episodes):

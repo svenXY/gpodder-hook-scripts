@@ -20,6 +20,12 @@ import subprocess
 import logging
 logger = logging.getLogger(__name__)
 
+# Metadata for this extension
+__id__ = 'rockbox_convert2mp4'
+__name__ = 'Convert to MP4'
+__desc__ = 'Converts Files to MP4 to use on Rockbox devices'
+
+
 PARAMS = {
     "device_height": {
         "desc": u'Device height',

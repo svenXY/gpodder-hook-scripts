@@ -8,7 +8,7 @@ from mutagen import File
 from gpodder import api
 from config import data
 from utils import get_episode, get_metadata
-from tagging import extension
+import tagging as extension
 
 
 class TestTagging(unittest.TestCase):

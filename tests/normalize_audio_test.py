@@ -7,7 +7,7 @@ import unittest
 from gpodder import api
 from config import data
 from utils import get_episode, get_metadata
-from normalize_audio import extension
+import normalize_audio as extension
 
 
 class TestNormalizeAudio(unittest.TestCase):

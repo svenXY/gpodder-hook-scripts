@@ -6,7 +6,7 @@ import unittest
 from gpodder import api
 from config import data
 from utils import get_episode, get_metadata
-from rockbox_convert2mp4 import extension
+import rockbox_convert2mp4 as extension
 
 
 class TestRockboxMP4Convert(unittest.TestCase):

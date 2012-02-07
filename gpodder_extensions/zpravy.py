@@ -30,6 +30,11 @@ import time
 import logging
 logger = logging.getLogger(__name__)
 
+# Metadata for this extension
+__id__ = 'zpravy'
+__name__ = 'Zpravy' 
+__desc__ = 'Insert a missing GUI to podcasts from zpravy'
+
 
 # settings
 domain = u'http://.*/media/zpravy/(\d+)-cro1_(\d\d)_(\d\d)_(\d\d)_(\d\d).mp3'

@@ -19,6 +19,12 @@ import subprocess
 import logging
 logger = logging.getLogger(__name__)
 
+# Metadata for this extension
+__id__ = 'flv2mp4'
+__name__ = 'Convert FLV to MP4'
+__desc__ = 'Put FLV files from YouTube into a MP4 container after download'
+
+
 PARAMS = {
     'context_menu': {
         'desc': 'add plugin to the context-menu',
