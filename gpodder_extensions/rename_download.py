@@ -34,7 +34,7 @@ class gPodderExtension(ExtensionParent):
         current_filename = episode.local_filename(create=False)
 
         new_filename = rename_file(current_filename, episode.title)
-        logger.info('Renaming:', current_filename, '->', new_filename)
+        logger.info('Renaming %s -> %s:', current_filename, new_filename)
 
         os.rename(current_filename, new_filename)
         self.rename_episode_file(episode, new_filename)

@@ -39,27 +39,25 @@ __desc__ = 'Insert a missing GUI to podcasts from zpravy'
 # settings
 domain = u'http://.*/media/zpravy/(\d+)-cro1_(\d\d)_(\d\d)_(\d\d)_(\d\d).mp3'
 
-def get_pubdate(episode):
-    ts = None
-
-    m = re.search(domain, episode.url)
-    if m: 
-        ts = time.mktime([int(m.group(1)), int(m.group(2)), int(m.group(3)), 
-            int(m.group(4)), int(m.group(5)), 0, -1, -1, -1])
-    else:
-        ts = episode.pubDate
-
-    return ts
-    
 
 class gPodderExtension(ExtensionParent):
     def __init__(self, **kwargs):
         super(gPodderExtension, self).__init__(**kwargs)
 
     def on_episode_save(self, episode):
-        ts = get_pubdate(episode)
-        episode.pubDate = ts 
-        episode.guid = int(ts)
-        episode.save()
-        episode.db.commit()
-        logger.info(u'updated pubDate and guid for podcast: (%s/%s)' % (episode.channel.title, episode.title))
+        ts = self._get_pubdate(episode)
+        if ts is not None:
+            episode.published = ts 
+            episode.guid = int(ts)
+            episode.save()
+            episode.db.commit()
+            logger.info(u'updated pubDate and guid for podcast: (%s/%s)' %
+                (episode.channel.title, episode.title))
+
+    def _get_pubdate(self, episode):
+        m = re.search(domain, episode.url)
+        if m: 
+            return time.mktime([int(m.group(1)), int(m.group(2)), int(m.group(3)), 
+                int(m.group(4)), int(m.group(5)), 0, -1, -1, -1])
+
+        return None 

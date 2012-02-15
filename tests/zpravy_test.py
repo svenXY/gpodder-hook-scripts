@@ -5,7 +5,7 @@ import unittest
 from gpodder import api
 from config import data
 from utils import get_episode
-from zpravy import get_pubdate
+import zpravy
 
 
 class TestZpravy(unittest.TestCase):
@@ -23,8 +23,9 @@ class TestZpravy(unittest.TestCase):
             # since version 3 the published date has a new/other name
             pubDate = self.episode._episode.published
         guid = self.episode._episode.guid
+        zpravy_extension = zpravy.gPodderExtension()
 
         self.assertEqual(0, pubDate)
         self.assertEqual(guid, self.episode.url)
-        self.assertNotEqual(pubDate, get_pubdate(self.episode))
+        self.assertNotEqual(pubDate, zpravy_extension._get_pubdate(self.episode))
 

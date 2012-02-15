@@ -86,7 +86,7 @@ class gPodderExtension(ExtensionParent):
 
             else:
                 logger.info('mp3gain processing not successfull.')
-                logger.debug(stderr)
+                logger.debug(stdout + stderr)
 
     def _convert_episodes(self, episodes):
         for episode in episodes:

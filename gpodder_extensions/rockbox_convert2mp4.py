@@ -67,14 +67,13 @@ class gPodderExtension(ExtensionParent):
         converted_filename = self._convert_mp4(episode, current_filename)
 
         if converted_filename is not None:
-            self.renameeepisode_file(episode, converted_filename)
+            self.rename_episode_file(episode, converted_filename)
             os.remove(current_filename)
             logger.info('Conversion for %s was successfully' % current_filename)
-        else:
-            logger.info('Conversion for %s had errors' % current_filename)
 
     def _get_rockbox_filename(self, origin_filename):
         if not os.path.exists(origin_filename):
+            logger.info("File '%s' don't exists." % origin_filename)
             return None
 
         dirname = os.path.dirname(origin_filename)
@@ -82,6 +81,7 @@ class gPodderExtension(ExtensionParent):
         basename, ext = os.path.splitext(filename)
 
         if ext not in EXTENTIONS_TO_CONVERT:
+            logger.info("Ignore file with file-extension %s." % ext)
             return None
 
         if filename.endswith(ROCKBOX_EXTENTION):
@@ -110,8 +110,11 @@ class gPodderExtension(ExtensionParent):
 
     def _convert_mp4(self, episode, from_file):
         """Convert MP4 file to rockbox mpg file"""
+
         # generate new filename and check if the file already exists
         to_file = self._get_rockbox_filename(from_file)
+        if to_file is None:
+            return None
         if os.path.isfile(to_file):
             return to_file
 

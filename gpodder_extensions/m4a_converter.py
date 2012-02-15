@@ -101,7 +101,7 @@ class gPodderExtension(ExtensionParent):
             logger.info('m4a -> %s conversion successful.', self.extension)
             self.notify_action("Converting finished", episode)
             if not self.test:
-                self.renamee_episode_file(episode, new_filename)
+                self.rename_episode_file(episode, target)
                 os.remove(filename)
         else:
             logger.info('Error converting file. FFMPEG installed?')
