@@ -95,10 +95,12 @@ class gPodderExtension(ExtensionParent):
         if not self.config.context_menu:
             return False
 
-        if 'audio/ogg' not in [e.mime_type for e in episodes if e.mime_type is not None]:
-            return False
-        return True
+        if 'audio/ogg' in [e.mime_type for e in episodes
+            if e.mime_type is not None and self.get_filename(e)]:
+            return True
+
+        return False
 
     def _rm_ogg_covers(self, episodes):
         for episode in episodes:
-            rm_ogg_cover(episodes)
+            rm_ogg_cover(episode)

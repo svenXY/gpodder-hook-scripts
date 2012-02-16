@@ -59,10 +59,11 @@ class gPodderExtension(ExtensionParent):
         if not self.config.context_menu:
             return False
 
-        if 'audio/mpeg' not in [e.mime_type for e in episodes if e.mime_type is not None]:
-            return False
+        if 'audio/mpeg' in [e.mime_type for e in episodes
+            if e.mime_type is not None and self.get_filename(e)]:
+            return True
 
-        return True
+        return False
 
     def _convert_episode(self, episode):
         filename = episode.local_filename(create=False, check_only=True)

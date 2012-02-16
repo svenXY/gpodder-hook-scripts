@@ -58,7 +58,7 @@ class gPodderExtension(ExtensionParent):
         if not self.config.context_menu:
             return False
 
-        if 'video/x-flv' not in [e.mime_type for e in episodes]:
+        if 'video/x-flv' not in [e.mime_type for e in episodes if self.get_filename(e)]:
             return False
         return True
 

@@ -67,7 +67,8 @@ class gPodderExtension(ExtensionParent):
         if not self.config.context_menu:
             return False
 
-        episodes = [e for e in episodes if e.mime_type in MIME_TYPES]
+        episodes = [e for e in episodes
+            if e.mime_type in MIME_TYPES and self.get_filename(e)]
         if not episodes:
             return False
         return True

@@ -32,4 +32,7 @@ class gPodderExtension(ExtensionParent):
         )
 
     def _show_context_menu(self, episodes):
-        return True
+        if [e for e in episodes if self.get_filename(e)]:
+            return True
+
+        return False

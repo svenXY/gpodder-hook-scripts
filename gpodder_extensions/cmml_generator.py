@@ -139,7 +139,6 @@ class gPodderExtension(ExtensionParent):
         self.context_menu_callback = self._convert_episodes
 
         self.choices = PARAMS['podcast_list']['list']
-        self.state = self.config.podcast_list
 
     def on_episode_downloaded(self, episode):
         self._convert_episode(episode)
@@ -151,7 +150,7 @@ class gPodderExtension(ExtensionParent):
         if not episode.channel.title.startswith(podcast_title):
             return False
 
-        if not self.state[self.choices.index(podcast_title)]:
+        if not self.config.podcast_list[self.choices.index(podcast_title)]:
             return False
 
         return True
@@ -160,8 +159,9 @@ class gPodderExtension(ExtensionParent):
         if not self.config.context_menu:
             return False
 
-        episodes = [e for e in episodes
-            if self._process_episode(e, LINUX_OUTLAWS) or self._process_episode(e, RADIOTUX)]
+        episodes = [e for e in episodes if self.get_filename(e) and
+            self._process_episode(e, LINUX_OUTLAWS) or
+            self._process_episode(e, RADIOTUX)]
         if not episodes:
             return False
         return True

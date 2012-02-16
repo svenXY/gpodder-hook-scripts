@@ -66,7 +66,6 @@ class gPodderExtension(ExtensionParent):
     def __init__(self, config=DEFAULT_CONFIG, **kwargs):
         super(gPodderExtension, self).__init__(config=config, **kwargs)
         self.context_menu_callback = self._download_shownotes
-
         self.check_command(STEGHIDE_CMD)
 
     def _download_shownotes(self, episodes):
@@ -77,13 +76,14 @@ class gPodderExtension(ExtensionParent):
         if not self.config.context_menu:
             return False
 
-        if TFH_TITLE not in [e.channel.title for e in episodes]:
-            return False
-        return True
+        if TFH_TITLE in [e.channel.title for e in episodes if self.get_filename(e)]:
+            return True
+
+        return False
 
     def on_episode_downloaded(self, episode):
         if episode.channel.title.startswith(TFH_TITLE):
-            filename = episode.local_filename(create=False, check_only=True)
+            filename = self.get_filename(episode)
             if filename is None:
                 return
 

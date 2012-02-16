@@ -64,7 +64,8 @@ class gPodderExtension(ExtensionParent):
         if not self.config.context_menu:
             return False
 
-        mimetypes = [e.mime_type for e in episodes if e.mime_type is not None]
+        mimetypes = [e.mime_type for e in episodes if e.mime_type is not None
+            and self.get_filename(e)]
         if 'audio/ogg' not in mimetypes and 'audio/mpeg' not in mimetypes:
             return False
         return True
