@@ -20,26 +20,16 @@
 # This could be necessary if the server "lies" about the last modified state
 # This will cause gPodder to reload (and re-parse) the feed every time
 
-import gpodder
-from gpodder.extensions import ExtensionParent
-
 import logging
 logger = logging.getLogger(__name__)
 
 # Metadata for this extension
-__id__ = 'reset_etag'
-__name__ = 'Reset etag'
-__desc__ = 'This hook resets the etag and last modified information for a podcast'
+__title__ = 'Reset etag'
+__description__ = 'This hook resets the etag and last modified information for a podcast'
+__author__ = "Bernd Schlapsi <brot@gmx.info>"
 
 
-PARAMS = {
-    'domain_list': {
-        'desc': 'reset the etag and last modified information for',
-        'type': 'combobox',
-    }
-}
-
-DEFAULT_CONFIG = {
+DefaultConfig = {
     'extensions': {
         'reset_etag': {
             'domain_list': [u'http://podcast.wdr.de', ],
@@ -48,14 +38,18 @@ DEFAULT_CONFIG = {
 }
 
 
-class gPodderExtension(ExtensionParent):
-    def __init__(self, config=DEFAULT_CONFIG, **kwargs):
-        super(gPodderExtension, self).__init__(config=config, **kwargs)
+class gPodderExtension:
+    def __init__(self, container):
+        self.container = container
 
-        self.domain_list = self.config.domain_list
+    def on_load(self):
+        logger.info('Extension "%s" is being loaded.' % __title__)
+
+    def on_unload(self):
+        logger.info('Extension "%s" is being unloaded.' % __title__)
 
     def on_podcast_updated(self, podcast):
-        if podcast.url.startswith(self.domain_list):
+        if podcast.url.startswith(self.container.config.domain_list):
             podcast.etag = None
             podcast.last_modified = None
             podcast.save()

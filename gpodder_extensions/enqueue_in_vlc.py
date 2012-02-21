@@ -6,24 +6,35 @@
 import shlex
 import subprocess
 
-import gpodder
-from gpodder.extensions import ExtensionParent
+from gpodder import util
+
+import logging
+logger = logging.getLogger(__name__)
+
 
 # Metadata for this extension
-__id__ = 'enqueue_in_vlc'
-__name__ = 'Enqueue in VLC'
-__desc__ = 'Add a context menu item for enqueueing episodes in VLC'
+__title__ = 'Enqueue in VLC'
+__description__ = 'Add a context menu item for enqueueing episodes in VLC'
+__author__ = "Thomas Perl <thp@gpodder.org>, Bernd Schlapsi <brot@gmx.info>"
 
 
 CMD = "vlc --started-from-file --playlist-enqueue"
 
-class gPodderExtension(ExtensionParent):
-    def __init__(self, **kwargs):
-        super(gPodderExtension, self).__init__(**kwargs)
-        self.context_menu_callback = self._enqueue_episodes
+class gPodderExtension:
+    def __init__(self, container):
+        self.container = container
 
-        self.cmd = kwargs.get('cmd', CMD)
-        self.check_command(self.cmd)
+        #self.cmd = kwargs.get('cmd', CMD)
+        self.cmd = CMD
+        program = shlex.split(self.cmd)[0]
+        if not util.find_command(program):
+            raise ImportError("Couldn't find program '%s'" % program)
+
+    def on_load(self):
+        logger.info('Extension "%s" is being loaded.' % __title__)
+
+    def on_unload(self):
+        logger.info('Extension "%s" is being unloaded.' % __title__)
 
     def _enqueue_episodes(self, episodes):
         filenames = [episode.get_playback_url() for episode in episodes]
@@ -31,8 +42,10 @@ class gPodderExtension(ExtensionParent):
             stdout=subprocess.PIPE, stderr=subprocess.PIPE
         )
 
-    def _show_context_menu(self, episodes):
-        if [e for e in episodes if self.get_filename(e)]:
-            return True
+    def on_episodes_context_menu(self, episodes):
+        if not [e for e in episodes if e.file_exists()]:
+            return None
 
-        return False
+        return [(self.container.metadata.title, self._enqueue_episodes)]
+
+

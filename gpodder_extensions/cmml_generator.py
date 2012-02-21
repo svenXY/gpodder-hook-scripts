@@ -38,31 +38,18 @@ from xml.etree import ElementTree as ET
 import logging
 logger = logging.getLogger(__name__)
 
-import gpodder
-from gpodder.extensions import ExtensionParent
 
 # Metadata for this extension
-__id__ = 'cmml_generator'
-__name__ = 'CMML generator'
-__desc__ = 'Generates CMML-files after downloading a Episode. The supported podcasts are listed in the preferences'
+__title__ = 'CMML generator'
+__description__ = 'Generates CMML-files after downloading a Episode. Supported podcasts: Linux Outlaws, RadioTux'
+__author__ = "Eric Le Lay <neric27@wanadoo.fr>, Bernd Schlapsi <brot@gmx.info>"
 
 
 LINUX_OUTLAWS = u'Linux Outlaws'
 RADIOTUX = u'RadioTux Magazin'
 
-PARAMS = {
-    'podcast_list': {
-        'desc': u'Supported podcasts:',
-        'type': u'multichoice-list',
-        'list': [ LINUX_OUTLAWS, RADIOTUX ],
-    },
-    'context_menu': {
-        'desc': u'add plugin to the context-menu',
-        'type': u'checkbox',
-    }
-}
-
-DEFAULT_CONFIG = {
+# order of the podcast_list => LINUX_OUTLAWS, RADIOTUX
+DefaultConfig = {
     'extensions': {
         'cmml_generator': {
             'podcast_list': [ True, True ],
@@ -133,12 +120,16 @@ def create_cmml_radiotux(html, audio_file):
         ET.ElementTree(cmml).write(to_file, encoding='utf-8')
 
 
-class gPodderExtension(ExtensionParent):
-    def __init__(self, config=DEFAULT_CONFIG, **kwargs):
-        super(gPodderExtension, self).__init__(config=config, **kwargs)
-        self.context_menu_callback = self._convert_episodes
+class gPodderExtension:
+    def __init__(self, container):
+        self.container = container
+        self.choices = [ LINUX_OUTLAWS, RADIOTUX ]
 
-        self.choices = PARAMS['podcast_list']['list']
+    def on_load(self):
+        logger.info('Extension "%s" is being loaded.' % __title__)
+
+    def on_unload(self):
+        logger.info('Extension "%s" is being unloaded.' % __title__)
 
     def on_episode_downloaded(self, episode):
         self._convert_episode(episode)
@@ -150,21 +141,22 @@ class gPodderExtension(ExtensionParent):
         if not episode.channel.title.startswith(podcast_title):
             return False
 
-        if not self.config.podcast_list[self.choices.index(podcast_title)]:
+        if not self.container.config.podcast_list[self.choices.index(podcast_title)]:
             return False
 
         return True
 
-    def _show_context_menu(self, episodes):
-        if not self.config.context_menu:
-            return False
+    def on_episodes_context_menu(self, episodes):
+        if not self.container.config.context_menu:
+            return None
 
-        episodes = [e for e in episodes if self.get_filename(e) and
-            self._process_episode(e, LINUX_OUTLAWS) or
-            self._process_episode(e, RADIOTUX)]
+        episodes = [e for e in episodes if e.file_exists() and
+            (self._process_episode(e, LINUX_OUTLAWS) or
+             self._process_episode(e, RADIOTUX))]
         if not episodes:
-            return False
-        return True
+            return None
+
+        return [(self.container.metadata.title, self._convert_episodes)]
 
     def _convert_episode(self, episode):
         logger.info('create_cmml(%s, %s)' % (episode.title, episode.channel.url))

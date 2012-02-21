@@ -3,18 +3,17 @@
 # Copyright (c) 2011-04-04 Thomas Perl <thp.io>
 # Licensed under the same terms as gPodder itself
 
-from gpodder import util
-from gpodder.extensions import ExtensionParent
-
 import os
+
+from gpodder import util
 
 import logging
 logger = logging.getLogger(__name__)
 
 # Metadata for this extension
-__id__ = 'rename_download'
-__name__ = 'Rename after download'
-__desc__ = 'rename files after download based on the episode title'
+__title__ = 'Rename after download'
+__description__ = 'rename files after download based on the episode title'
+__author__ = "Bernd Schlapsi <brot@gmx.info>"
 
 
 def rename_file(current_filename, title):
@@ -26,9 +25,15 @@ def rename_file(current_filename, title):
     return os.path.join(dirname, new_filename)
 
 
-class gPodderExtension(ExtensionParent):
-    def __init__(self, **kwargs):
-        super(gPodderExtension, self).__init__(**kwargs)
+class gPodderExtension:
+    def __init__(self, container):
+        self.container = container
+
+    def on_load(self):
+        logger.info('Extension "%s" is being loaded.' % __title__)
+
+    def on_unload(self):
+        logger.info('Extension "%s" is being unloaded.' % __title__)
 
     def on_episode_downloaded(self, episode):
         current_filename = episode.local_filename(create=False)
@@ -37,4 +42,4 @@ class gPodderExtension(ExtensionParent):
         logger.info('Renaming %s -> %s:', current_filename, new_filename)
 
         os.rename(current_filename, new_filename)
-        self.rename_episode_file(episode, new_filename)
+        util.rename_episode_file(episode, new_filename)

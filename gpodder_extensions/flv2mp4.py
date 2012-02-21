@@ -7,32 +7,23 @@
 # (c) 2011-08-05 Thomas Perl <thp.io/about>
 # Released under the same license terms as gPodder itself.
 
-import gpodder
-from gpodder.util import sanitize_encoding
-from gpodder import youtube
-from gpodder.extensions import ExtensionParent
-
 import os
 import shlex
 import subprocess
 
+from gpodder import util
+from gpodder import youtube
+
 import logging
 logger = logging.getLogger(__name__)
 
+
 # Metadata for this extension
-__id__ = 'flv2mp4'
-__name__ = 'Convert FLV to MP4'
-__desc__ = 'Put FLV files from YouTube into a MP4 container after download'
+__title__ = 'Convert FLV to MP4'
+__description__ = 'Put FLV files from YouTube into a MP4 container after download'
+__author__ = "Thomas Perl <thp@gpodder.org>, Bernd Schlapsi <brot@gmx.info>"
 
-
-PARAMS = {
-    'context_menu': {
-        'desc': 'add plugin to the context-menu',
-        'type': 'checkbox',
-    }
-}
-
-DEFAULT_CONFIG = {
+DefaultConfig = {
     'extensions': {
         'flv2mp4': {
             'context_menu': True,
@@ -43,24 +34,33 @@ DEFAULT_CONFIG = {
 FFMPEG_CMD = 'ffmpeg -i "%(infile)s" -vcodec copy -acodec copy "%(outfile)s"'
 
 
-class gPodderExtension(ExtensionParent):
-    def __init__(self, config=DEFAULT_CONFIG, **kwargs):
-        super(gPodderExtension, self).__init__(config=config, **kwargs)
-        self.context_menu_callback = self._convert_episodes
+class gPodderExtension:
+    def __init__(self, container):
+        self.container = container
 
-        self.test = kwargs.get('test', False)
-        self.check_command(FFMPEG_CMD)
+        #self.test = kwargs.get('test', False)
+        self.cmd = FFMPEG_CMD
+        program = shlex.split(self.cmd)[0]
+        if not util.find_command(program):
+            raise ImportError("Couldn't find program '%s'" % program)
+
+    def on_load(self):
+        logger.info('Extension "%s" is being loaded.' % __title__)
+
+    def on_unload(self):
+        logger.info('Extension "%s" is being unloaded.' % __title__)
 
     def on_episode_downloaded(self, episode):
         self._convert_episode(episode)
 
-    def _show_context_menu(self, episodes):
-        if not self.config.context_menu:
-            return False
+    def on_episodes_context_menu(self, episodes):
+        if not self.container.config.context_menu:
+            return None
 
-        if 'video/x-flv' not in [e.mime_type for e in episodes if self.get_filename(e)]:
-            return False
-        return True
+        if 'video/x-flv' not in [e.mime_type for e in episodes if e.file_exists()]:
+            return None
+
+        return [(self.container.metadata.title, self._convert_episodes)]
 
     def _convert_episode(self, episode):
         if not youtube.is_video_link(episode.url):
@@ -88,7 +88,7 @@ class gPodderExtension(ExtensionParent):
         }
 
         # Prior to Python 2.7.3, this module (shlex) did not support Unicode input.
-        cmd = sanitize_encoding(cmd)
+        cmd = util.sanitize_encoding(cmd)
 
         ffmpeg = subprocess.Popen(shlex.split(cmd),
             stdout=subprocess.PIPE, stderr=subprocess.PIPE

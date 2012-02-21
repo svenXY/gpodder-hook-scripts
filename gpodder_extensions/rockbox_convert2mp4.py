@@ -9,39 +9,25 @@
 # Copyright (c) 2011-04-06 Guy Sheffer <guysoft at gmail.com>
 # Copyright (c) 2011-04-04 Thomas Perl <thp.io>
 # Licensed under the same terms as gPodder itself
-from gpodder.util import sanitize_encoding 
-from gpodder.extensions import ExtensionParent
 
 import kaa.metadata
 import os
 import shlex
 import subprocess
 
+from gpodder import util
+
 import logging
 logger = logging.getLogger(__name__)
 
+
 # Metadata for this extension
-__id__ = 'rockbox_convert2mp4'
-__name__ = 'Convert to MP4'
-__desc__ = 'Converts Files to MP4 to use on Rockbox devices'
+__title__ = 'Convert to MP4'
+__description__ = 'Converts Files to MP4 to use on Rockbox devices'
+__author__ = "Guy Sheffer <guysoft at gmail.com>, Thomas Perl <thp@gpodder.org>, Bernd Schlapsi <brot@gmx.info>"
 
 
-PARAMS = {
-    "device_height": {
-        "desc": u'Device height',
-        "type": u'spinbutton',
-    },
-    "device_width": {
-        "desc": u'Device width',
-        "type": u'spinbutton',
-    },
-    "ffmpeg_options": {
-        "desc": u'ffmpeg options',
-        "type": u'textitem',
-    }
-}
-
-DEFAULT_CONFIG = {
+DefaultConfig = {
     'extensions': {
         'rockbox_convert2mp4': {
             "device_height": 176.0,
@@ -56,11 +42,19 @@ EXTENTIONS_TO_CONVERT = ['.mp4',"." + ROCKBOX_EXTENTION]
 FFMPEG_CMD = 'ffmpeg -y -i "%(from)s" -s %(width)sx%(height)s %(options)s "%(to)s"'
 
 
-class gPodderExtension(ExtensionParent):
-    def __init__(self, config=DEFAULT_CONFIG, **kwargs):
-        super(gPodderExtension, self).__init__(config=config, **kwargs)
+class gPodderExtension:
+    def __init__(self, container):
+        self.container = container
 
-        self.check_command(FFMPEG_CMD)
+        program = shlex.split(FFMPEG_CMD)[0]
+        if not util.find_command(program):
+            raise ImportError("Couldn't find program '%s'" % program)
+
+    def on_load(self):
+        logger.info('Extension "%s" is being loaded.' % __title__)
+
+    def on_unload(self):
+        logger.info('Extension "%s" is being unloaded.' % __title__)
 
     def on_episode_downloaded(self, episode):
         current_filename = episode.local_filename(False)
@@ -126,8 +120,8 @@ class gPodderExtension(ExtensionParent):
         resolution = self._calc_resolution(
             info.video[0].width,
             info.video[0].height,
-            self.config.device_width,
-            self.config.device_height
+            self.container.config.device_width,
+            self.container.config.device_height
         )
         if resolution is None:
             logger.error("Error calculating the new screen resolution")
@@ -138,11 +132,11 @@ class gPodderExtension(ExtensionParent):
             'to': to_file,
             'width': str(resolution[0]),
             'height': str(resolution[1]),
-            'options': self.config.ffmpeg_options
+            'options': self.container.config.ffmpeg_options
         }
 
         # Prior to Python 2.7.3, this module (shlex) did not support Unicode input.
-        convert_command = sanitize_encoding(convert_command)
+        convert_command = util.sanitize_encoding(convert_command)
 
         process = subprocess.Popen(shlex.split(convert_command),
             stdout=subprocess.PIPE, stderr=subprocess.PIPE)

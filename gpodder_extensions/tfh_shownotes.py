@@ -31,26 +31,19 @@ import shlex
 import subprocess
 import tempfile
 
+from gpodder import util
+
 import logging
 logger = logging.getLogger(__name__)
 
-import gpodder
-from gpodder.extensions import ExtensionParent
 
 # Metadata for this extension
-__id__ = 'tfh_shownotes'
-__name__ = 'Tin Foil Hat Shownotes'
-__desc__ = 'extract the shownotes from the "Tin Foil Hat" podcast'
+__title__ = "Tin Foil Hat Shownotes"
+__description__ = "extract the shownotes from the 'Tin Foil Hat' podcast"
+__author__ = "Bernd Schlapsi <brot@gmx.info>"
 
 
-PARAMS = {
-    'context_menu': {
-        'desc': u'add plugin to the context-menu',
-        'type': u'checkbox',
-    }
-}
-
-DEFAULT_CONFIG = {
+DefaultConfig = {
     'extensions': {
         'tfh_shownotes': {
             'context_menu': True,
@@ -62,24 +55,32 @@ TFH_TITLE = 'Tin Foil Hat'
 STEGHIDE_CMD = 'steghide extract -f -p %(pwd)s -sf %(img)s -xf %(file)s'
 
 
-class gPodderExtension(ExtensionParent):
-    def __init__(self, config=DEFAULT_CONFIG, **kwargs):
-        super(gPodderExtension, self).__init__(config=config, **kwargs)
-        self.context_menu_callback = self._download_shownotes
-        self.check_command(STEGHIDE_CMD)
+class gPodderExtension():
+    def __init__(self, container):
+        self.container = container
+
+        program = shlex.split(STEGHIDE_CMD)[0]
+        if not util.find_command(program):
+            raise ImportError("Couldn't find program '%s'" % program)
+
+    def on_load(self):
+        logger.info('Extension "%s" is being loaded.' % __title__)
+
+    def on_unload(self):
+        logger.info('Extension "%s" is being unloaded.' % __title__)
 
     def _download_shownotes(self, episodes):
         for episode in episodes:
             self.on_episode_downloaded(episode)
 
-    def _show_context_menu(self, episodes):
-        if not self.config.context_menu:
-            return False
+    def on_episodes_context_menu(self, episodes):
+        if not self.container.config.context_menu:
+            return None
 
-        if TFH_TITLE in [e.channel.title for e in episodes if self.get_filename(e)]:
-            return True
+        if TFH_TITLE not in [e.channel.title for e in episodes if e.file_exists()]:
+            return None
 
-        return False
+        return [(self.container.metadata.title, self._download_shownotes)]
 
     def on_episode_downloaded(self, episode):
         if episode.channel.title.startswith(TFH_TITLE):

@@ -6,36 +6,23 @@
 # (c) 2011-11-23 Bernd Schlapsi <brot@gmx.info>
 # Released under the same license terms as gPodder itself.
 
-import gpodder
-from gpodder.util import sanitize_encoding
-from gpodder.extensions import ExtensionParent
-
 import os
 import shlex
 import subprocess
 
+from gpodder import util
+
 import logging
 logger = logging.getLogger(__name__)
 
+
 # Metadata for this extension
-__id__ = 'm4a_converter'
-__name__ = 'Converts M4A audio'
-__desc__ = 'Converts m4a audio files to mp3'
+__title__ = 'Converts M4A audio'
+__description__ = 'Converts m4a audio files to mp3'
+__author__ = "Bernd Schlapsi <brot@gmx.info>"
 
 
-PARAMS = {
-    'file_format': {
-        'desc': u'Target file format:',
-        'type': u'radiogroup',
-        'list': ( 'mp3', 'ogg' ),
-    },
-    'context_menu': {
-        'desc': 'add plugin to the context-menu',
-        'type': 'checkbox',
-    }
-}
-
-DEFAULT_CONFIG = {
+DefaultConfig = {
     'extensions': {
         'm4a_converter': {
             'file_format': [ True, False ],
@@ -44,34 +31,41 @@ DEFAULT_CONFIG = {
     }
 }
 
+FILE_FORMATS = ( 'mp3', 'ogg' )
 FFMPEG_CMD = 'ffmpeg -i "%(infile)s" -sameq "%(outfile)s"'
 MIME_TYPES = ['audio/x-m4a', 'audio/mp4']
 
 
-class gPodderExtension(ExtensionParent):
-    def __init__(self, config=DEFAULT_CONFIG, **kwargs):
-        super(gPodderExtension, self).__init__(config=config, **kwargs)
-        self.context_menu_callback = self._convert_episodes
+class gPodderExtension:
+    def __init__(self, container):
+        self.container = container
 
-        choices = zip(PARAMS['file_format']['list'],
-            self.config.file_format)
+        choices = zip(FILE_FORMATS, self.container.config.file_format)
         self.extension = '.' + [ext for ext, state in choices if state][0]
 
-        self.test = kwargs.get('test', False)
-        self.check_command(FFMPEG_CMD)
+        #self.test = kwargs.get('test', False)
+        self.cmd = FFMPEG_CMD
+        program = shlex.split(self.cmd)[0]
+        if not util.find_command(program):
+            raise ImportError("Couldn't find program '%s'" % program)
+
+    def on_load(self):
+        logger.info('Extension "%s" is being loaded.' % __title__)
+
+    def on_unload(self):
+        logger.info('Extension "%s" is being unloaded.' % __title__)
 
     def on_episode_downloaded(self, episode):
         self._convert_episode(episode)
 
-    def _show_context_menu(self, episodes):
-        if not self.config.context_menu:
-            return False
+    def on_episodes_context_menu(self, episodes):
+        if not self.container.config.context_menu:
+            return None
 
-        episodes = [e for e in episodes
-            if e.mime_type in MIME_TYPES and self.get_filename(e)]
-        if not episodes:
-            return False
-        return True
+        if not [e for e in episodes if e.mime_type in MIME_TYPES and e.file_exists()]:
+            return None
+
+        return [(self.container.metadata.title, self._convert_episodes)]
 
     def _convert_episode(self, episode):
         filename = episode.local_filename(create=False)
@@ -91,7 +85,7 @@ class gPodderExtension(ExtensionParent):
         }
 
         # Prior to Python 2.7.3, this module (shlex) did not support Unicode input.
-        cmd = sanitize_encoding(cmd)
+        cmd = util.sanitize_encoding(cmd)
 
         ffmpeg = subprocess.Popen(shlex.split(cmd),
             stdout=subprocess.PIPE, stderr=subprocess.PIPE

@@ -26,9 +26,6 @@
 import datetime
 import os
 
-import gpodder
-from gpodder.extensions import ExtensionParent
-
 import logging
 logger = logging.getLogger(__name__)
 
@@ -39,24 +36,14 @@ except:
     logger.error( '(tagging extension) Could not find mutagen')
     mutagen_installed = False
 
+
 # Metadata for this extension
-__id__ = 'tagging'
-__name__ = 'Tagging'
-__desc__ = 'adds episode title and podcast title to the audio file'
+__title__ = 'Tagging'
+__description__ = 'adds episode title and podcast title to the audio file'
+__author__ = "Bernd Schlapsi <brot@gmx.info>"
 
 
-PARAMS = {
-    "strip_album_from_title": {
-        "desc": u'Strip album name from title',
-        "type": u'checkbox',
-    },
-    "genre_tag": {
-        "desc": u'Genre tag',
-        "type": u'textitem',
-    },
-}
-
-DEFAULT_CONFIG = {
+DefaultConfig = {
     'extensions': {
         'tagging': {
             "strip_album_from_title": True,
@@ -66,9 +53,15 @@ DEFAULT_CONFIG = {
 }
 
 
-class gPodderExtension(ExtensionParent):
-    def __init__(self, config=DEFAULT_CONFIG, **kwargs):
-        super(gPodderExtension, self).__init__(config=config, **kwargs)
+class gPodderExtension:
+    def __init__(self, container):
+        self.container = container
+
+    def on_load(self):
+        logger.info('Extension "%s" is being loaded.' % __title__)
+
+    def on_unload(self):
+        logger.info('Extension "%s" is being unloaded.' % __title__)
 
     def on_episode_downloaded(self, episode):
         # exit if mutagen is not installed
@@ -96,7 +89,7 @@ class gPodderExtension(ExtensionParent):
         # read title+album from gPodder database
         info['album'] = episode.channel.title
         title = episode.title
-        if (self.config.strip_album_from_title and title and info['album'] and title.startswith(info['album'])):
+        if (self.container.config.strip_album_from_title and title and info['album'] and title.startswith(info['album'])):
             info['title'] = title[len(info['album']):].lstrip()
         else:
             info['title'] = title
@@ -132,8 +125,8 @@ class gPodderExtension(ExtensionParent):
             audio.tags['title'] = info['title']
 
         # write genre tag
-        if self.config.genre_tag is not None:
-            audio.tags['genre'] = self.config.genre_tag
+        if self.container.config.genre_tag is not None:
+            audio.tags['genre'] = self.container.config.genre_tag
         else:
             audio.tags['genre'] = ''
 

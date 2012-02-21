@@ -33,23 +33,14 @@ try:
 except:
     logger.error( '(remove ogg cover extension) Could not find mutagen')
 
-import gpodder
-from gpodder.extensions import ExtensionParent
 
 # Metadata for this extension
-__id__ = 'rm_ogg_cover'
-__name__ = 'Remove Coverart from OGG'
-__desc__ = 'removes coverart from all downloaded ogg files'
+__title__ = 'Remove Coverart from OGG'
+__description__ = 'removes coverart from all downloaded ogg files'
+__author__ = "Bernd Schlapsi <brot@gmx.info>"
 
 
-PARAMS = {
-    'context_menu': {
-        'desc': u'add plugin to the context-menu',
-        'type': u'checkbox',
-    }
-}
-
-DEFAULT_CONFIG = {
+DefaultConfig = {
     'extensions': {
         'rm_ogg_cover': {
             'context_menu': True,
@@ -83,23 +74,28 @@ def rm_ogg_cover(episode):
         except:
             None
 
-class gPodderExtension(ExtensionParent):
-    def __init__(self, config=DEFAULT_CONFIG, **kwargs):
-        super(gPodderExtension, self).__init__(config=config, **kwargs)
-        self.context_menu_callback = self._rm_ogg_covers
+class gPodderExtension:
+    def __init__(self, container):
+        self.container = container
+
+    def on_load(self):
+        logger.info('Extension "%s" is being loaded.' % __title__)
+
+    def on_unload(self):
+        logger.info('Extension "%s" is being unloaded.' % __title__)
 
     def on_episode_downloaded(self, episode):
         rm_ogg_cover(episode)
 
-    def _show_context_menu(self, episodes):
-        if not self.config.context_menu:
-            return False
+    def on_episodes_context_menu(self, episodes):
+        if not self.container.config.context_menu:
+            return None
 
-        if 'audio/ogg' in [e.mime_type for e in episodes
+        if 'audio/ogg' not in [e.mime_type for e in episodes
             if e.mime_type is not None and self.get_filename(e)]:
-            return True
+            return None
 
-        return False
+        return [(self.container.metadata.title, self._rm_ogg_covers)]
 
     def _rm_ogg_covers(self, episodes):
         for episode in episodes:

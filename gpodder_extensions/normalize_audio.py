@@ -10,27 +10,19 @@ import os
 import shlex
 import subprocess
 
+from gpodder import util
+
 import logging
 logger = logging.getLogger(__name__)
 
-import gpodder
-from gpodder.util import sanitize_encoding
-from gpodder.extensions import ExtensionParent
 
 # Metadata for this extension
-__id__ = 'normalize_audio'
-__name__ = 'Normalize audio'
-__desc__ = 'This hook adjusts mp3s/oggs so that they all have the same volume. It decode and re-encode the audio file'
+__title__ = 'Normalize audio'
+__description__ = 'This hook adjusts mp3s/oggs so that they all have the same volume. It decode and re-encode the audio file'
+__author__ = "Bernd Schlapsi <brot@gmx.info>"
 
 
-PARAMS = {
-    'context_menu': {
-        'desc': u'add plugin to the context-menu',
-        'type': u'checkbox',
-    }
-}
-
-DEFAULT_CONFIG = {
+DefaultConfig = {
     'extensions': {
         'normalize_audio': {
             'context_menu': True,
@@ -49,26 +41,34 @@ CMDS_TO_TEST = ('normalize-ogg', 'normalize-mp3', 'normalize-audio',
     'lame', 'mpg123', 'oggenc', 'oggdec')
 
 
-class gPodderExtension(ExtensionParent):
-    def __init__(self, config=DEFAULT_CONFIG, **kwargs):
-        super(gPodderExtension, self).__init__(config=config, **kwargs)
-        self.context_menu_callback = self._convert_episodes
+class gPodderExtension:
+    def __init__(self, container):
+        self.container = container
 
         for cmd in CMDS_TO_TEST:
-            self.check_command(cmd)
+            program = shlex.split(cmd)[0]
+            if not util.find_command(program):
+                raise ImportError("Couldn't find program '%s'" % program)
+
+    def on_load(self):
+        logger.info('Extension "%s" is being loaded.' % __title__)
+
+    def on_unload(self):
+        logger.info('Extension "%s" is being unloaded.' % __title__)
 
     def on_episode_downloaded(self, episode):
         self._convert_episode(episode)
 
-    def _show_context_menu(self, episodes):
-        if not self.config.context_menu:
-            return False
+    def on_episodes_context_menu(self, episodes):
+        if not self.container.config.context_menu:
+            return None
 
-        mimetypes = [e.mime_type for e in episodes if e.mime_type is not None
-            and self.get_filename(e)]
+        mimetypes = [e.mime_type for e in episodes
+            if e.mime_type is not None and e.file_exists()]
         if 'audio/ogg' not in mimetypes and 'audio/mpeg' not in mimetypes:
-            return False
-        return True
+            return None
+
+        return [(self.container.metadata.title, self._convert_episodes)]
 
     def _convert_episode(self, episode):
         filename = episode.local_filename(create=False, check_only=True)
@@ -84,7 +84,7 @@ class gPodderExtension(ExtensionParent):
             cmd = commands[formats.index(extension)] % filename
 
             # Prior to Python 2.7.3, this module (shlex) did not support Unicode input.
-            cmd = sanitize_encoding(cmd)
+            cmd = util.sanitize_encoding(cmd)
 
             p = subprocess.Popen(shlex.split(cmd),
                 stdout=subprocess.PIPE, stderr=subprocess.PIPE)
