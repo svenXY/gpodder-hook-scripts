@@ -59,67 +59,6 @@ DefaultConfig = {
 }
 
 
-def get_cmml_filename(audio_file):
-    (name, ext) = os.path.splitext(audio_file)
-    return '%s.cmml' % name
-
-def delete_cmml_file(filename):
-    cmml_file = get_cmml_filename(filename)
-    if os.path.exists(cmml_file):
-        os.remove(cmml_file)
-
-def create_cmml_linux_outlaws(html, audio_file):
-    soup = BeautifulSoup(html, convertEntities=BeautifulSoup.HTML_ENTITIES)
-    time_re  = text=re.compile("\\d{1,2}(:\\d{2}){2}")
-    times = soup.findAll(text=time_re)
-    if len(times) > 0:
-        to_file = get_cmml_filename(audio_file)
-        cmml = ET.Element('cmml',attrib={'lang':'en'})
-        remove_ws = re.compile('\s+')
-        for t in times:
-            txt = ''
-            for c in t.parent.findAll(text=True):
-                if c is not t: txt += c
-            txt = remove_ws.sub(' ', txt)
-            txt = txt.strip()
-            logger.info("found chapter %s at %s"%(txt,t))
-            # totem want's escaped html in the title attribute (not &amp; but &amp;amp;)
-            txt = txt.replace('&','&amp;')
-            clip = ET.Element('clip')
-            clip.set('id',t)
-            clip.set( 'start', ('npt:'+t))
-            clip.set('title',txt)
-            cmml.append(clip)
-        ET.ElementTree(cmml).write(to_file,encoding='utf-8')
-
-def create_cmml_radiotux(html, audio_file):
-    soup = BeautifulSoup(html, convertEntities=BeautifulSoup.HTML_ENTITIES)
-    startzeit = soup.findAll(text='Startzeit')
-    if len(startzeit) == 1:
-        to_file = get_cmml_filename(audio_file)
-        cmml = ET.Element('cmml',attrib={'lang':'en'})
-        remove_ws = re.compile('\s+')
-        for s in startzeit:
-            tr = s.parent.parent.parent
-            for row in tr.findNextSiblings(name='tr'):
-                txt = ''
-                tds=row.findAll(name='td')
-                t = remove_ws.sub('',tds[1].string)
-                for c in tds[0].findAll(text=True):
-                    txt += c
-                txt = remove_ws.sub(' ', txt)
-                txt = txt.strip()
-                logger.info("found chapter %s at %s"%(txt,t))
-                # totem want's escaped html in the title attribute (not &amp; but &amp;amp;)
-                txt = txt.replace('&','&amp;')
-                clip = ET.Element('clip')
-                clip.set('id',t)
-                clip.set( 'start', ('npt:'+t))
-                clip.set('title',txt)
-                cmml.append(clip)
-        ET.ElementTree(cmml).write(to_file, encoding='utf-8')
-
-
 class gPodderExtension:
     def __init__(self, container):
         self.container = container
@@ -135,7 +74,7 @@ class gPodderExtension:
         self._convert_episode(episode)
 
     def on_episode_delete(self, episode, filename):
-        delete_cmml_file(filename)
+        self.delete_cmml_file(filename)
 
     def _process_episode(self, episode, podcast_title):
         if not episode.channel.title.startswith(podcast_title):
@@ -166,11 +105,71 @@ class gPodderExtension:
 
         # may have to change that if the feed is renamed...
         if self._process_episode(episode, LINUX_OUTLAWS):
-            create_cmml_linux_outlaws(html, audio_file)
+            self.create_cmml_linux_outlaws(html, audio_file)
 
         elif self._process_episode(episode, RADIOTUX):
-            create_cmml_radiotux(html, audio_file)
+            self.create_cmml_radiotux(html, audio_file)
 
     def _convert_episodes(self, episodes):
         for episode in episodes:
             self._convert_episode(episode)
+
+    def get_cmml_filename(self, audio_file):
+        (name, ext) = os.path.splitext(audio_file)
+        return '%s.cmml' % name
+
+    def delete_cmml_file(self, filename):
+        cmml_file = self.get_cmml_filename(filename)
+        if os.path.exists(cmml_file):
+            os.remove(cmml_file)
+
+    def create_cmml_linux_outlaws(self, html, audio_file):
+        soup = BeautifulSoup(html, convertEntities=BeautifulSoup.HTML_ENTITIES)
+        time_re  = text=re.compile("\\d{1,2}(:\\d{2}){2}")
+        times = soup.findAll(text=time_re)
+        if len(times) > 0:
+            to_file = self.get_cmml_filename(audio_file)
+            cmml = ET.Element('cmml',attrib={'lang':'en'})
+            remove_ws = re.compile('\s+')
+            for t in times:
+                txt = ''
+                for c in t.parent.findAll(text=True):
+                    if c is not t: txt += c
+                txt = remove_ws.sub(' ', txt)
+                txt = txt.strip()
+                logger.info("found chapter %s at %s"%(txt,t))
+                # totem want's escaped html in the title attribute (not &amp; but &amp;amp;)
+                txt = txt.replace('&','&amp;')
+                clip = ET.Element('clip')
+                clip.set('id',t)
+                clip.set( 'start', ('npt:'+t))
+                clip.set('title',txt)
+                cmml.append(clip)
+            ET.ElementTree(cmml).write(to_file,encoding='utf-8')
+
+    def create_cmml_radiotux(self, html, audio_file):
+        soup = BeautifulSoup(html, convertEntities=BeautifulSoup.HTML_ENTITIES)
+        startzeit = soup.findAll(text='Startzeit')
+        if len(startzeit) == 1:
+            to_file = self.get_cmml_filename(audio_file)
+            cmml = ET.Element('cmml',attrib={'lang':'en'})
+            remove_ws = re.compile('\s+')
+            for s in startzeit:
+                tr = s.parent.parent.parent
+                for row in tr.findNextSiblings(name='tr'):
+                    txt = ''
+                    tds=row.findAll(name='td')
+                    t = remove_ws.sub('',tds[1].string)
+                    for c in tds[0].findAll(text=True):
+                        txt += c
+                    txt = remove_ws.sub(' ', txt)
+                    txt = txt.strip()
+                    logger.info("found chapter %s at %s"%(txt,t))
+                    # totem want's escaped html in the title attribute (not &amp; but &amp;amp;)
+                    txt = txt.replace('&','&amp;')
+                    clip = ET.Element('clip')
+                    clip.set('id',t)
+                    clip.set( 'start', ('npt:'+t))
+                    clip.set('title',txt)
+                    cmml.append(clip)
+            ET.ElementTree(cmml).write(to_file, encoding='utf-8')

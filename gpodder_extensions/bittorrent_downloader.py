@@ -29,13 +29,9 @@ DefaultConfig = {
 class gPodderExtension:
     def __init__(self, container):
         self.container = container
+
         self.cmd = self.container.config.cmd
-
-        #self.test = kwargs.get('test', False)
-        #if self.test:
-        #    self.cmd = 'echo "%s"' % self.cmd
-
-        program = shlex.split(self.cmd)[0]
+        program = shlex.split(util.sanitize_encoding(self.cmd))[0]
         if not util.find_command(program):
             raise ImportError("Couldn't find program '%s'" % program)
 
@@ -47,8 +43,8 @@ class gPodderExtension:
 
     def on_episode_downloaded(self, episode):
         if episode.extension() == '.torrent':
-            self.notify_action("Downloading", episode)
-            cmd = self.cmd % episode.local_filename(False)
+            self.container.manager.on_notification_show("Downloading", episode)
+            cmd = self.container.config.cmd % episode.local_filename(False)
 
             # Prior to Python 2.7.3, this module (shlex) did not
             # support Unicode input.
@@ -61,10 +57,9 @@ class gPodderExtension:
             stdout, stderr = p.communicate()
 
             if p.returncode == 0:
-                self.notify_action("Downloading finished", episode)
+                self.container.manager.on_notification_show("Downloading finished", episode)
             else:
-                self.notify_action("Downloading finished with erros",
+                self.container.manager.on_notification_show("Downloading finished with erros",
                     episode)
 
-            if self.test:
-                return (stdout, stderr)
+            return (stdout, stderr)

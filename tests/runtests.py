@@ -106,22 +106,22 @@ if __name__ == "__main__":
     #import all test files
     import bittorrent_downloader_test
     import cmml_generator_test
-    import enqueue_in_vlc_test
-    import flv2mp4_test
-    import m4a_converter_test
-    import mp3gain_test
-    import normalize_audio_test
-    import rename_download_test
-    import rm_ogg_cover_test
-    import rockbox_convert2mp4_test
-    import tagging_test
-    import tfh_shownotes_test
-    import zpravy_test
+    #import enqueue_in_vlc_test
+    #import flv2mp4_test
+    #import m4a_converter_test
+    #import mp3gain_test
+    #import normalize_audio_test
+    #import rename_download_test
+    #import rm_ogg_cover_test
+    #import rockbox_convert2mp4_test
+    #import tagging_test
+    #import tfh_shownotes_test
+    #import zpravy_test
 
     loader = unittest.TestLoader()
 
     suite = loader.loadTestsFromModule(bittorrent_downloader_test)
-    #suite.addTests(loader.loadTestsFromModule(cmml_generator_test))
+    suite.addTests(loader.loadTestsFromModule(cmml_generator_test))
     #suite.addTests(loader.loadTestsFromModule(enqueue_in_vlc_test))
     #suite.addTests(loader.loadTestsFromModule(flv2mp4_test))
     #suite.addTests(loader.loadTestsFromModule(m4a_converter_test))

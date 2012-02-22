@@ -13,10 +13,3 @@ def get_episode(client, podcast_config, read_filename=False):
         return (episode, filename)
 
     return episode
-
-def get_metadata(extension_module):
-    filename, ext = os.path.splitext(extension_module.__file__)
-    extension_py = open(filename + '.py').read()
-    metadata = dict(re.findall("__([a-z]+)__ = '([^']+)'", extension_py))
-
-    return metadata
