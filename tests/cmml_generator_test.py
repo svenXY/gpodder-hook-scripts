@@ -5,11 +5,9 @@ import os
 import unittest
 import urllib2
 
-from gpodder import api
-from gpodder import extensions
 from config import data
-from utils import get_episode
-#import cmml_generator as extension
+import utils
+
 
 EXTENSION_NAME = 'cmml_generator'
 EXTENSION_FILE = os.path.join(os.environ['GPODDER_EXTENSIONS'], EXTENSION_NAME+'.py')
@@ -17,13 +15,14 @@ EXTENSION_FILE = os.path.join(os.environ['GPODDER_EXTENSIONS'], EXTENSION_NAME+'
 
 class TestCmmlLinuxOutlaws(unittest.TestCase):
     def setUp(self):
-        self.client = api.PodcastClient()
-        self.episode, self.filename = get_episode(self.client,
-            data.TEST_PODCASTS['LinuxOutlaws'], True)
-        self.episode2, self.filename2 = get_episode(self.client,
-            data.TEST_PODCASTS['TinFoilHat'], True)
+        self.client, self.em, podcast_list = utils.init_test(
+            EXTENSION_FILE,
+            [(data.TEST_PODCASTS['LinuxOutlaws'], True),
+             (data.TEST_PODCASTS['TinFoilHat'], True)
+            ]
+        )
+        self.episode, self.filename, self.episode2, self.filename2 = podcast_list
 
-        self.em = extensions.ExtensionManager(self.client.core, EXTENSION_FILE)
         self.save_enabled = self.em.core.config.extensions.enabled
         self.em.core.config.extensions.enabled = [EXTENSION_NAME]
 

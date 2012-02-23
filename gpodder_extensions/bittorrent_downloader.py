@@ -50,8 +50,6 @@ class gPodderExtension:
             # support Unicode input.
             cmd = util.sanitize_encoding(cmd)
 
-            # for testing purpose it's possible to get to stdout+stderr
-            # output
             p = subprocess.Popen(shlex.split(cmd), shell=False,
                 stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             stdout, stderr = p.communicate()
@@ -62,4 +60,3 @@ class gPodderExtension:
                 self.container.manager.on_notification_show("Downloading finished with erros",
                     episode)
 
-            return (stdout, stderr)
