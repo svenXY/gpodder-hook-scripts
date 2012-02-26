@@ -23,10 +23,11 @@
 import logging
 logger = logging.getLogger(__name__)
 
-# Metadata for this extension
-__title__ = 'Reset etag'
-__description__ = 'This hook resets the etag and last modified information for a podcast'
-__author__ = "Bernd Schlapsi <brot@gmx.info>"
+_ = gpodder.gettext
+
+__title__ = _('Reset etag')
+__description__ = _('This hook resets the etag and last modified information for a podcast')
+__author__ = 'Bernd Schlapsi <brot@gmx.info>'
 
 
 DefaultConfig = {

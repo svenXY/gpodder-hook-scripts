@@ -15,11 +15,11 @@ from gpodder import util
 import logging
 logger = logging.getLogger(__name__)
 
+_ = gpodder.gettext
 
-# Metadata for this extension
-__title__ = 'Converts M4A audio'
-__description__ = 'Converts m4a audio files to mp3'
-__author__ = "Bernd Schlapsi <brot@gmx.info>"
+__title__ = _('Converts M4A audio')
+__description__ = _('Converts m4a audio files to mp3')
+__author__ = 'Bernd Schlapsi <brot@gmx.info>'
 
 
 DefaultConfig = {

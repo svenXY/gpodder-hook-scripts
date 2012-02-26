@@ -10,11 +10,11 @@ from gpodder import util
 import logging
 logger = logging.getLogger(__name__)
 
+_ = gpodder.gettext
 
-# Metadata for this extension
-__title__ = 'Bittorrent downloader'
-__description__ = 'Downloads the file if the file from the podcast ends with .torrent'
-__author__ = "Thomas Perl <thp@gpodder.org>, Bernd Schlapsi <brot@gmx.info>"
+__title__ = _('Bittorrent downloader')
+__description__ = _('Downloads the file if the file from the podcast ends with .torrent')
+__author__ = 'Thomas Perl <thp@gpodder.org>, Bernd Schlapsi <brot@gmx.info>'
 
 
 DefaultConfig = {

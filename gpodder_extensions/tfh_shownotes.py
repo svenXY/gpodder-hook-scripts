@@ -36,11 +36,11 @@ from gpodder import util
 import logging
 logger = logging.getLogger(__name__)
 
+_ = gpodder.gettext
 
-# Metadata for this extension
-__title__ = "Tin Foil Hat Shownotes"
-__description__ = "extract the shownotes from the 'Tin Foil Hat' podcast"
-__author__ = "Bernd Schlapsi <brot@gmx.info>"
+__title__ = _('Tin Foil Hat Shownotes')
+__description__ = _('extract the shownotes from the "Tin Foil Hat" podcast')
+__author__ = 'Bernd Schlapsi <brot@gmx.info>'
 
 
 DefaultConfig = {

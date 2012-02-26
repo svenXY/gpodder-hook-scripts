@@ -36,11 +36,11 @@ except:
     logger.error( '(tagging extension) Could not find mutagen')
     mutagen_installed = False
 
+_ = gpodder.gettext
 
-# Metadata for this extension
-__title__ = 'Tagging'
-__description__ = 'adds episode title and podcast title to the audio file'
-__author__ = "Bernd Schlapsi <brot@gmx.info>"
+__title__ = _('Tagging')
+__description__ = _('adds episode title and podcast title to the audio file')
+__author__ = 'Bernd Schlapsi <brot@gmx.info>'
 
 
 DefaultConfig = {

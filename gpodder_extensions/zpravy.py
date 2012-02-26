@@ -27,11 +27,11 @@ import time
 import logging
 logger = logging.getLogger(__name__)
 
+_ = gpodder.gettext
 
-# Metadata for this extension
-__title__ = 'Zpravy'
-__description__ = 'Insert a missing GUI to podcasts from zpravy'
-__author__ = "Jan Lana <lana.jan@gmail.org>, Bernd Schlapsi <brot@gmx.info>"
+__title__ = _('Zpravy')
+__description__ = _('Insert a missing GUI to podcasts from zpravy')
+__author__ = 'Jan Lana <lana.jan@gmail.org>, Bernd Schlapsi <brot@gmx.info>'
 
 
 # settings

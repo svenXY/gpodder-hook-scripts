@@ -10,10 +10,11 @@ from gpodder import util
 import logging
 logger = logging.getLogger(__name__)
 
-# Metadata for this extension
-__title__ = 'Rename after download'
-__description__ = 'rename files after download based on the episode title'
-__author__ = "Bernd Schlapsi <brot@gmx.info>"
+_ = gpodder.gettext
+
+__title__ = _('Rename after download')
+__description__ = _('rename files after download based on the episode title')
+__author__ = 'Bernd Schlapsi <brot@gmx.info>'
 
 
 def rename_file(current_filename, title):

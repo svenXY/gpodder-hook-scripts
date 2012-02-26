@@ -33,11 +33,11 @@ try:
 except:
     logger.error( '(remove ogg cover extension) Could not find mutagen')
 
+_ = gpodder.gettext
 
-# Metadata for this extension
-__title__ = 'Remove Coverart from OGG'
-__description__ = 'removes coverart from all downloaded ogg files'
-__author__ = "Bernd Schlapsi <brot@gmx.info>"
+__title__ = _('Remove Coverart from OGG')
+__description__ = _('removes coverart from all downloaded ogg files')
+__author__ = 'Bernd Schlapsi <brot@gmx.info>'
 
 
 DefaultConfig = {

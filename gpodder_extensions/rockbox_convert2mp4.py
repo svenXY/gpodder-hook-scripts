@@ -20,11 +20,11 @@ from gpodder import util
 import logging
 logger = logging.getLogger(__name__)
 
+_ = gpodder.gettext
 
-# Metadata for this extension
-__title__ = 'Convert to MP4'
-__description__ = 'Converts Files to MP4 to use on Rockbox devices'
-__author__ = "Guy Sheffer <guysoft at gmail.com>, Thomas Perl <thp@gpodder.org>, Bernd Schlapsi <brot@gmx.info>"
+__title__ = _('Convert to MP4')
+__description__ = _('Converts Files to MP4 to use on Rockbox devices')
+__author__ = 'Guy Sheffer <guysoft at gmail.com>, Thomas Perl <thp@gpodder.org>, Bernd Schlapsi <brot@gmx.info>'
 
 
 DefaultConfig = {

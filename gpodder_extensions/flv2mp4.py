@@ -17,11 +17,11 @@ from gpodder import youtube
 import logging
 logger = logging.getLogger(__name__)
 
+_ = gpodder.gettext
 
-# Metadata for this extension
-__title__ = 'Convert FLV to MP4'
-__description__ = 'Put FLV files from YouTube into a MP4 container after download'
-__author__ = "Thomas Perl <thp@gpodder.org>, Bernd Schlapsi <brot@gmx.info>"
+__title__ = _('Convert FLV to MP4')
+__description__ = _('Put FLV files from YouTube into a MP4 container after download')
+__author__ = 'Thomas Perl <thp@gpodder.org>, Bernd Schlapsi <brot@gmx.info>'
 
 DefaultConfig = {
     'extensions': {

@@ -11,11 +11,12 @@ from gpodder import util
 import logging
 logger = logging.getLogger(__name__)
 
+_ = gpodder.gettext
 
-# Metadata for this extension
-__title__ = 'Enqueue in VLC'
-__description__ = 'Add a context menu item for enqueueing episodes in VLC'
-__author__ = "Thomas Perl <thp@gpodder.org>, Bernd Schlapsi <brot@gmx.info>"
+__title__ = _('Enqueue in VLC')
+__description__ = _('Add a context menu item for enqueueing episodes in VLC')
+__author__ = 'Thomas Perl <thp@gpodder.org>, Bernd Schlapsi <brot@gmx.info>'
+__only_for__ = 'gtk'
 
 
 CMD = "vlc --started-from-file --playlist-enqueue"

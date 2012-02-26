@@ -15,11 +15,11 @@ from gpodder import util
 import logging
 logger = logging.getLogger(__name__)
 
+_ = gpodder.gettext
 
-# Metadata for this extension
-__title__ = 'Normalize audio'
-__description__ = 'This hook adjusts mp3s/oggs so that they all have the same volume. It decode and re-encode the audio file'
-__author__ = "Bernd Schlapsi <brot@gmx.info>"
+__title__ = _('Normalize audio')
+__description__ = _('This hook adjusts mp3s/oggs so that they all have the same volume. It decode and re-encode the audio file')
+__author__ = 'Bernd Schlapsi <brot@gmx.info>'
 
 
 DefaultConfig = {

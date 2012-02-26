@@ -38,11 +38,11 @@ from xml.etree import ElementTree as ET
 import logging
 logger = logging.getLogger(__name__)
 
+_ = gpodder.gettext
 
-# Metadata for this extension
-__title__ = 'CMML generator'
-__description__ = 'Generates CMML-files after downloading a Episode. Supported podcasts: Linux Outlaws, RadioTux'
-__author__ = "Eric Le Lay <neric27@wanadoo.fr>, Bernd Schlapsi <brot@gmx.info>"
+__title__ = _('CMML generator')
+__description__ = _('Generates CMML-files after downloading a Episode. Supported podcasts: Linux Outlaws, RadioTux')
+__author__ = 'Eric Le Lay <neric27@wanadoo.fr>, Bernd Schlapsi <brot@gmx.info>'
 
 
 LINUX_OUTLAWS = u'Linux Outlaws'
