@@ -15,6 +15,7 @@ import os
 import shlex
 import subprocess
 
+import gpodder
 from gpodder import util
 
 import logging
@@ -113,7 +114,7 @@ class gPodderExtension:
             return to_file
 
         logger.info("Converting: %s", from_file)
-        self.notify_action("Converting", episode)
+        gpodder.user_extensions.on_notification_show("Converting", episode)
 
         # calculationg the new screen resolution
         info = kaa.metadata.parse(from_file)
@@ -145,6 +146,6 @@ class gPodderExtension:
             logger.error(stderr)
             return None
 
-        self.notify_action("Converting finished", episode)
+        gpodder.user_extensions.on_notification_show("Converting finished", episode)
 
         return to_file

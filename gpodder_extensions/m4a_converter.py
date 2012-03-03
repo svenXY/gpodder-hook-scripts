@@ -10,6 +10,7 @@ import os
 import shlex
 import subprocess
 
+import gpodder
 from gpodder import util
 
 import logging
@@ -40,12 +41,7 @@ class gPodderExtension:
     def __init__(self, container):
         self.container = container
 
-        choices = zip(FILE_FORMATS, self.container.config.file_format)
-        self.extension = '.' + [ext for ext, state in choices if state][0]
-
-        #self.test = kwargs.get('test', False)
-        self.cmd = FFMPEG_CMD
-        program = shlex.split(self.cmd)[0]
+        program = shlex.split(FFMPEG_CMD)[0]
         if not util.find_command(program):
             raise ImportError("Couldn't find program '%s'" % program)
 
@@ -68,15 +64,35 @@ class gPodderExtension:
         return [(self.container.metadata.title, self._convert_episodes)]
 
     def _convert_episode(self, episode):
+        retvalue = self._run_conversion(episode)
+
+        if retvalue == 0:
+            logger.info('m4a -> %s conversion successful.', extension)
+            gpodder.user_extensions.on_notification_show("Converting finished", episode)
+            if not self.container.manager.testrun:
+                self.rename_episode_file(episode, target)
+                os.remove(filename)
+        else:
+            logger.info('Error converting file. FFMPEG installed?')
+            gpodder.user_extensions.on_notification_show("Converting finished with errors", episode)
+            try:
+                os.remove(target)
+            except OSError:
+                pass
+
+    def _run_conversion(self, episode):
+        choices = zip(FILE_FORMATS, self.container.config.file_format)
+        extension = '.' + [ext for ext, state in choices if state][0]
+
         filename = episode.local_filename(create=False)
         dirname = os.path.dirname(filename)
         basename, ext = os.path.splitext(os.path.basename(filename))
-        new_filename = basename + self.extension
+        new_filename = basename + extension
 
         if episode.mime_type not in MIME_TYPES:
             return
 
-        self.notify_action("Converting", episode)
+        gpodder.user_extensions.on_notification_show("Converting", episode)
 
         target = os.path.join(dirname, new_filename)
         cmd = FFMPEG_CMD % {
@@ -91,20 +107,7 @@ class gPodderExtension:
             stdout=subprocess.PIPE, stderr=subprocess.PIPE
         )
         stdout, stderr = ffmpeg.communicate()
-
-        if ffmpeg.returncode == 0:
-            logger.info('m4a -> %s conversion successful.', self.extension)
-            self.notify_action("Converting finished", episode)
-            if not self.test:
-                self.rename_episode_file(episode, target)
-                os.remove(filename)
-        else:
-            logger.info('Error converting file. FFMPEG installed?')
-            self.notify_action("Converting finished with errors", episode)
-            try:
-                os.remove(target)
-            except OSError:
-                pass
+        return ffmpeg.returncode
 
     def _convert_episodes(self, episodes):
         for episode in episodes:

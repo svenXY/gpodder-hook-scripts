@@ -24,6 +24,8 @@
 import re
 import time
 
+import gpodder
+
 import logging
 logger = logging.getLogger(__name__)
 

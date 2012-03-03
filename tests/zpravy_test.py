@@ -1,29 +1,41 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+import os
 import unittest
 
-from gpodder import api
+import gpodder
+
 from config import data
-from utils import get_episode
-import zpravy
+import utils
+
+EXTENSION_NAME = 'zpravy'
+EXTENSION_FILE = os.path.join(os.environ['GPODDER_EXTENSIONS'], EXTENSION_NAME+'.py')
 
 
 class TestZpravy(unittest.TestCase):
     def setUp(self):
-        self.client = api.PodcastClient()
-        self.episode = get_episode(self.client, data.TEST_PODCASTS['Zpravy'])
+        self.core, podcast_list = utils.init_test(
+            EXTENSION_FILE,
+            [(data.TEST_PODCASTS['Zpravy'], False)]
+        )
+        self.episode, self.filename = podcast_list
+
+        self.save_enabled = self.core.config.extensions.enabled
+        self.core.config.extensions.enabled = [EXTENSION_NAME]
 
     def tearDown(self):
-        self.client._db.close()
+        self.core.config.extensions.enabled = self.save_enabled
+        gpodder.user_extensions.shutdown()
+        self.core.db.close()
 
     def test_zpravy_pubdate(self):
         try:
-            pubDate = self.episode._episode.pubDate
+            pubDate = self.episode.pubDate
         except:
             # since version 3 the published date has a new/other name
-            pubDate = self.episode._episode.published
-        guid = self.episode._episode.guid
-        zpravy_extension = zpravy.gPodderExtension()
+            pubDate = self.episode.published
+        guid = self.episode.guid
+        zpravy_extension = gpodder.user_extensions.containers[0].module
 
         self.assertEqual(0, pubDate)
         self.assertEqual(guid, self.episode.url)

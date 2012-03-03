@@ -38,6 +38,7 @@ from xml.etree import ElementTree as ET
 import logging
 logger = logging.getLogger(__name__)
 
+import gpodder
 _ = gpodder.gettext
 
 __title__ = _('CMML generator')

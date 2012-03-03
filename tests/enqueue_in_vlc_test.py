@@ -4,24 +4,36 @@ import json
 import os
 import unittest
 
-from gpodder import api
+import gpodder
+
 from config import data
-from utils import get_episode, get_metadata
-import enqueue_in_vlc as extension
+import utils
+
+EXTENSION_NAME = 'enqueue_in_vlc'
+EXTENSION_FILE = os.path.join(os.environ['GPODDER_EXTENSIONS'], EXTENSION_NAME+'.py')
 
 
 class TestEnqueueInVLC(unittest.TestCase):
     def setUp(self):
-        self.client = api.PodcastClient()
-        self.episode = get_episode(self.client, data.TEST_PODCASTS['TinFoilHat'], False)
-        self.metadata = get_metadata(extension)
+        self.core, podcast_list = utils.init_test(
+            EXTENSION_FILE,
+            [(data.TEST_PODCASTS['TinFoilHat'], True)]
+        )
+        self.episode, self.filename = podcast_list
+
+        self.save_enabled = self.core.config.extensions.enabled
+        self.core.config.extensions.enabled = [EXTENSION_NAME]
+
+        # set ui to gtk because the extension only works with gtk
+        gpodder.ui.gtk = True
+        gpodder.user_extensions.containers[0].load_extension()
 
     def tearDown(self):
-        self.client._db.close()
+        self.core.config.extensions.enabled = self.save_enabled
+        self.core.db.close()
 
     def test_menu_entry(self):
-        vlc_extension = extension.gPodderExtension(metadata=self.metadata)
-        menu_entry = vlc_extension.on_episodes_context_menu([self.episode._episode]) 
+        menu_entry = gpodder.user_extensions.on_episodes_context_menu([self.episode,])
         self.assertTrue(isinstance(menu_entry, list))
         self.assertEqual(len(menu_entry), 1)
 
@@ -30,7 +42,5 @@ class TestEnqueueInVLC(unittest.TestCase):
 
         self.assertEqual(menu_entry[0][0], 'Enqueue in VLC')
 
-    def test_enqueue_cmd(self):
-        cmd = extension.CMD + " --no-audio"
-        vlc_extension = extension.gPodderExtension(cmd=cmd)
-        vlc_extension._enqueue_episodes([self.episode._episode]) 
+    #def test_enqueue_cmd(self):
+    #    gpodder.user_extensions.containers[0].module._enqueue_episodes([self.episode])

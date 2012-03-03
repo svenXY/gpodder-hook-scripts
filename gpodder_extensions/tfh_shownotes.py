@@ -31,6 +31,7 @@ import shlex
 import subprocess
 import tempfile
 
+import gpodder
 from gpodder import util
 
 import logging

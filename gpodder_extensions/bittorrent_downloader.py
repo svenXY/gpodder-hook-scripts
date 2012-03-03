@@ -5,6 +5,7 @@
 import shlex
 import subprocess
 
+import gpodder
 from gpodder import util
 
 import logging

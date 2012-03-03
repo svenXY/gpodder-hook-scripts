@@ -3,27 +3,35 @@
 import os
 import unittest
 
-from gpodder import api
+import gpodder
+
 from config import data
-from utils import get_episode, get_metadata
-from rename_download import rename_file
+import utils
+
+EXTENSION_NAME = 'rename_download'
+EXTENSION_FILE = os.path.join(os.environ['GPODDER_EXTENSIONS'], EXTENSION_NAME+'.py')
 
 
 class TestRenameDownloads(unittest.TestCase):
     def setUp(self):
-        self.client = api.PodcastClient()
+        self.core, podcast_list = utils.init_test(
+            EXTENSION_FILE,
+            [(data.TEST_PODCASTS['TinFoilHat'], True)]
+        )
+        self.episode, self.filename = podcast_list
 
-        self.episode, self.filename = get_episode(self.client,
-            data.TEST_PODCASTS['TinFoilHat'], True)
-        self.title = self.episode.title
+        self.save_enabled = self.core.config.extensions.enabled
+        self.core.config.extensions.enabled = [EXTENSION_NAME]
 
     def tearDown(self):
-        self.client._db.close()
+        self.core.config.extensions.enabled = self.save_enabled
+        gpodder.user_extensions.shutdown()
+        self.core.db.close()
 
     def test_rename_file(self):
         filename_test = os.path.join(os.environ['GPODDER_DOWNLOAD_DIR'],
             'Tin Foil Hat', 'Pilot show.mp3')
-        filename_new = rename_file(self.filename, self.title) 
+        filename_new = gpodder.user_extensions.containers[0].module.rename_file(self.filename, self.episode.title)
 
         self.assertEqual(filename_test, filename_new)
         self.assertNotEqual(self.filename, filename_new)

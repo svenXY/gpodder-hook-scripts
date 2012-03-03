@@ -6,6 +6,7 @@
 import shlex
 import subprocess
 
+import gpodder
 from gpodder import util
 
 import logging
@@ -25,7 +26,6 @@ class gPodderExtension:
     def __init__(self, container):
         self.container = container
 
-        #self.cmd = kwargs.get('cmd', CMD)
         self.cmd = CMD
         program = shlex.split(self.cmd)[0]
         if not util.find_command(program):

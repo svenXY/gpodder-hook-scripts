@@ -25,6 +25,8 @@
 
 import os
 
+import gpodder
+
 import logging
 logger = logging.getLogger(__name__)
 
@@ -49,31 +51,6 @@ DefaultConfig = {
 }
 
 
-def rm_ogg_cover(episode):
-    filename = episode.local_filename(create=False, check_only=True)
-    if filename is None:
-        return
-
-    (basename, extension) = os.path.splitext(filename)
-    if episode.file_type() == 'audio' and extension.lower().endswith('ogg'):
-        logger.info(u'trying to remove cover from %s' % filename)
-        found = False
-
-        try:
-            ogg = OggVorbis(filename)
-            for key in ogg.keys():
-                if key.startswith('cover'):
-                    found = True
-                    ogg.pop(key)
-
-            if found:
-                logger.info(u'removed cover from the ogg file successfully')
-                ogg.save()
-            else:
-                logger.info(u'there was no cover to remove in the ogg file')
-        except:
-            None
-
 class gPodderExtension:
     def __init__(self, container):
         self.container = container
@@ -85,18 +62,43 @@ class gPodderExtension:
         logger.info('Extension "%s" is being unloaded.' % __title__)
 
     def on_episode_downloaded(self, episode):
-        rm_ogg_cover(episode)
+        self.rm_ogg_cover(episode)
 
     def on_episodes_context_menu(self, episodes):
         if not self.container.config.context_menu:
             return None
 
         if 'audio/ogg' not in [e.mime_type for e in episodes
-            if e.mime_type is not None and self.get_filename(e)]:
+            if e.mime_type is not None and e.file_exists()]:
             return None
 
         return [(self.container.metadata.title, self._rm_ogg_covers)]
 
     def _rm_ogg_covers(self, episodes):
         for episode in episodes:
-            rm_ogg_cover(episode)
+            self.rm_ogg_cover(episode)
+
+    def rm_ogg_cover(self, episode):
+        filename = episode.local_filename(create=False, check_only=True)
+        if filename is None:
+            return
+
+        (basename, extension) = os.path.splitext(filename)
+        if episode.file_type() == 'audio' and extension.lower().endswith('ogg'):
+            logger.info(u'trying to remove cover from %s' % filename)
+            found = False
+
+            try:
+                ogg = OggVorbis(filename)
+                for key in ogg.keys():
+                    if key.startswith('cover'):
+                        found = True
+                        ogg.pop(key)
+
+                if found:
+                    logger.info(u'removed cover from the ogg file successfully')
+                    ogg.save()
+                else:
+                    logger.info(u'there was no cover to remove in the ogg file')
+            except:
+                None

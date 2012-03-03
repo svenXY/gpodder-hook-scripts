@@ -11,6 +11,7 @@ import os
 import shlex
 import subprocess
 
+import gpodder
 from gpodder import util
 from gpodder import youtube
 
@@ -38,7 +39,6 @@ class gPodderExtension:
     def __init__(self, container):
         self.container = container
 
-        #self.test = kwargs.get('test', False)
         self.cmd = FFMPEG_CMD
         program = shlex.split(self.cmd)[0]
         if not util.find_command(program):
@@ -63,6 +63,20 @@ class gPodderExtension:
         return [(self.container.metadata.title, self._convert_episodes)]
 
     def _convert_episode(self, episode):
+        retvalue = self._run_conversion(episode)
+
+        if retvalue == 0:
+            logger.info('FLV conversion successful.')
+            self.rename_episode_file(episode, basename+'.mp4')
+            os.remove(filename)
+        else:
+            logger.info('Error converting file. FFMPEG installed?')
+            try:
+                os.remove(target)
+            except OSError:
+                pass
+
+    def _run_conversion(self, episode):
         if not youtube.is_video_link(episode.url):
             logger.debug('Not a YouTube video. Ignoring.')
             return
@@ -94,18 +108,7 @@ class gPodderExtension:
             stdout=subprocess.PIPE, stderr=subprocess.PIPE
         )
         stdout, stderr = ffmpeg.communicate()
-
-        if ffmpeg.returncode == 0:
-            logger.info('FLV conversion successful.')
-            if not self.test:
-                self.rename_episode_file(episode, basename+'.mp4')
-                os.remove(filename)
-        else:
-            logger.info('Error converting file. FFMPEG installed?')
-            try:
-                os.remove(target)
-            except OSError:
-                pass
+        return ffmpeg.returncode
 
     def _convert_episodes(self, episodes):
         for episode in episodes:

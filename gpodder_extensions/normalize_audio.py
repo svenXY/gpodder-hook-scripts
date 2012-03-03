@@ -10,6 +10,7 @@ import os
 import shlex
 import subprocess
 
+import gpodder
 from gpodder import util
 
 import logging
@@ -79,7 +80,7 @@ class gPodderExtension:
         (basename, extension) = os.path.splitext(filename)
         extension = extension.lstrip('.').lower()
         if episode.file_type() == 'audio' and extension in formats:
-            self.notify_action("Normalizing", episode)
+            gpodder.user_extensions.on_notification_show("Normalizing", episode)
 
             cmd = commands[formats.index(extension)] % filename
 
@@ -92,11 +93,11 @@ class gPodderExtension:
 
             if p.returncode == 0:
                 logger.info('normalize-audio processing successfull.')
-                self.notify_action("Normalizing finished successfully", episode)
+                gpodder.user_extensions.on_notification_show("Normalizing finished successfully", episode)
 
             else:
                 logger.info('normalize-audio processing not successfull.')
-                self.notify_action("Normalizing finished not successfully", episode)
+                gpodder.user_extensions.on_notification_show("Normalizing finished not successfully", episode)
                 logger.debug(stderr)
 
     def _convert_episodes(self, episodes):

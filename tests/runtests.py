@@ -9,6 +9,8 @@ import sys
 import unittest
 
 import logging
+FMT = '%(created)f [%(name)s] %(levelname)s: %(message)s'
+#logging.basicConfig(format=FMT, level=logging.DEBUG)
 logging.basicConfig()
 
 def read_args():
@@ -67,7 +69,7 @@ def ins_test_podcast(client, podcast_url, episode2dl=None):
         episode = podcast.get_episodes()[episode2dl]
         if (not episode.is_downloaded):
             episode.download()
-    
+
 
 def init_data():
     from config import data
@@ -76,12 +78,12 @@ def init_data():
     client = api.PodcastClient()
 
     # set preferred youtube format to FLV (for flv2mp4 test)
-    client._config.youtube_preferred_fmt_id = 34 
+    client._config.youtube_preferred_fmt_id = 34
     client._config.save()
 
     for name, conf in data.TEST_PODCASTS.items():
         ins_test_podcast(client, conf['url'], conf['episode'])
-        
+
     client._db.close()
 
 
@@ -106,33 +108,33 @@ if __name__ == "__main__":
     #import all test files
     import bittorrent_downloader_test
     import cmml_generator_test
-    #import enqueue_in_vlc_test
-    #import flv2mp4_test
-    #import m4a_converter_test
-    #import mp3gain_test
-    #import normalize_audio_test
-    #import rename_download_test
-    #import rm_ogg_cover_test
-    #import rockbox_convert2mp4_test
-    #import tagging_test
-    #import tfh_shownotes_test
-    #import zpravy_test
+    import enqueue_in_vlc_test
+    import flv2mp4_test
+    import m4a_converter_test
+    import mp3gain_test
+    import normalize_audio_test
+    import rename_download_test
+    import rm_ogg_cover_test
+    import rockbox_convert2mp4_test
+    import tagging_test
+    import tfh_shownotes_test
+    import zpravy_test
 
     loader = unittest.TestLoader()
 
     suite = loader.loadTestsFromModule(bittorrent_downloader_test)
     suite.addTests(loader.loadTestsFromModule(cmml_generator_test))
-    #suite.addTests(loader.loadTestsFromModule(enqueue_in_vlc_test))
-    #suite.addTests(loader.loadTestsFromModule(flv2mp4_test))
-    #suite.addTests(loader.loadTestsFromModule(m4a_converter_test))
-    #suite.addTests(loader.loadTestsFromModule(mp3gain_test))
-    #suite.addTests(loader.loadTestsFromModule(normalize_audio_test))
-    #suite.addTests(loader.loadTestsFromModule(rename_download_test))
-    #suite.addTests(loader.loadTestsFromModule(rm_ogg_cover_test))
-    #suite.addTests(loader.loadTestsFromModule(rockbox_convert2mp4_test))
-    #suite.addTests(loader.loadTestsFromModule(tagging_test))
-    #suite.addTests(loader.loadTestsFromModule(tfh_shownotes_test))
-    #suite.addTests(loader.loadTestsFromModule(zpravy_test))
+    suite.addTests(loader.loadTestsFromModule(enqueue_in_vlc_test))
+    suite.addTests(loader.loadTestsFromModule(flv2mp4_test))
+    suite.addTests(loader.loadTestsFromModule(m4a_converter_test))
+    suite.addTests(loader.loadTestsFromModule(mp3gain_test))
+    suite.addTests(loader.loadTestsFromModule(normalize_audio_test))
+    suite.addTests(loader.loadTestsFromModule(rename_download_test))
+    suite.addTests(loader.loadTestsFromModule(rm_ogg_cover_test))
+    suite.addTests(loader.loadTestsFromModule(rockbox_convert2mp4_test))
+    suite.addTests(loader.loadTestsFromModule(tagging_test))
+    suite.addTests(loader.loadTestsFromModule(tfh_shownotes_test))
+    suite.addTests(loader.loadTestsFromModule(zpravy_test))
 
     runner = unittest.TextTestRunner(verbosity=2)
     result = runner.run(suite)

@@ -26,6 +26,8 @@
 import datetime
 import os
 
+import gpodder
+
 import logging
 logger = logging.getLogger(__name__)
 
