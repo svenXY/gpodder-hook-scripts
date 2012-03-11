@@ -51,25 +51,16 @@ RADIOTUX = u'RadioTux Magazin'
 
 # order of the podcast_list => LINUX_OUTLAWS, RADIOTUX
 DefaultConfig = {
-    'extensions': {
-        'cmml_generator': {
-            'podcast_list': [ True, True ],
-            'context_menu': True,
-        }
-    }
+    'podcast_list': [ True, True ],
+    'context_menu': True,
 }
 
 
 class gPodderExtension:
     def __init__(self, container):
         self.container = container
+        self.config = self.container.config
         self.choices = [ LINUX_OUTLAWS, RADIOTUX ]
-
-    def on_load(self):
-        logger.info('Extension "%s" is being loaded.' % __title__)
-
-    def on_unload(self):
-        logger.info('Extension "%s" is being unloaded.' % __title__)
 
     def on_episode_downloaded(self, episode):
         self._convert_episode(episode)
@@ -81,13 +72,13 @@ class gPodderExtension:
         if not episode.channel.title.startswith(podcast_title):
             return False
 
-        if not self.container.config.podcast_list[self.choices.index(podcast_title)]:
+        if not self.config.podcast_list[self.choices.index(podcast_title)]:
             return False
 
         return True
 
     def on_episodes_context_menu(self, episodes):
-        if not self.container.config.context_menu:
+        if not self.config.context_menu:
             return None
 
         episodes = [e for e in episodes if e.file_exists() and
@@ -126,7 +117,7 @@ class gPodderExtension:
 
     def create_cmml_linux_outlaws(self, html, audio_file):
         soup = BeautifulSoup(html, convertEntities=BeautifulSoup.HTML_ENTITIES)
-        time_re  = text=re.compile("\\d{1,2}(:\\d{2}){2}")
+        time_re  = text=re.compile('\\d{1,2}(:\\d{2}){2}')
         times = soup.findAll(text=time_re)
         if len(times) > 0:
             to_file = self.get_cmml_filename(audio_file)
@@ -138,7 +129,7 @@ class gPodderExtension:
                     if c is not t: txt += c
                 txt = remove_ws.sub(' ', txt)
                 txt = txt.strip()
-                logger.info("found chapter %s at %s"%(txt,t))
+                logger.info('found chapter %s at %s' % (txt,t))
                 # totem want's escaped html in the title attribute (not &amp; but &amp;amp;)
                 txt = txt.replace('&','&amp;')
                 clip = ET.Element('clip')
@@ -165,7 +156,7 @@ class gPodderExtension:
                         txt += c
                     txt = remove_ws.sub(' ', txt)
                     txt = txt.strip()
-                    logger.info("found chapter %s at %s"%(txt,t))
+                    logger.info('found chapter %s at %s' % (txt,t))
                     # totem want's escaped html in the title attribute (not &amp; but &amp;amp;)
                     txt = txt.replace('&','&amp;')
                     clip = ET.Element('clip')

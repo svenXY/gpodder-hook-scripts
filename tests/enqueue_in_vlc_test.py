@@ -21,7 +21,6 @@ class TestEnqueueInVLC(unittest.TestCase):
         )
         self.episode, self.filename = podcast_list
 
-        self.save_enabled = self.core.config.extensions.enabled
         self.core.config.extensions.enabled = [EXTENSION_NAME]
 
         # set ui to gtk because the extension only works with gtk
@@ -29,8 +28,7 @@ class TestEnqueueInVLC(unittest.TestCase):
         gpodder.user_extensions.containers[0].load_extension()
 
     def tearDown(self):
-        self.core.config.extensions.enabled = self.save_enabled
-        self.core.db.close()
+        self.core.shutdown()
 
     def test_menu_entry(self):
         menu_entry = gpodder.user_extensions.on_episodes_context_menu([self.episode,])
@@ -41,6 +39,3 @@ class TestEnqueueInVLC(unittest.TestCase):
         self.assertEqual(len(menu_entry[0]), 2)
 
         self.assertEqual(menu_entry[0][0], 'Enqueue in VLC')
-
-    #def test_enqueue_cmd(self):
-    #    gpodder.user_extensions.containers[0].module._enqueue_episodes([self.episode])

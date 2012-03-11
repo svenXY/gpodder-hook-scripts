@@ -29,17 +29,14 @@ class TestNormalizeAudio(unittest.TestCase):
         self.mp3_file_save = self.save_episode(self.mp3_file)
         self.flv_file_save = self.save_episode(self.flv_file)
 
-        self.save_enabled = self.core.config.extensions.enabled
         self.core.config.extensions.enabled = [EXTENSION_NAME]
 
     def tearDown(self):
-        self.core.config.extensions.enabled = self.save_enabled
-        gpodder.user_extensions.shutdown()
-        self.core.db.close()
-
         shutil.move(self.ogg_file_save, self.ogg_file)
         shutil.move(self.mp3_file_save, self.mp3_file)
         shutil.move(self.flv_file_save, self.flv_file)
+
+        self.core.shutdown()
 
     def save_episode(self, episode_name):
         filename_save = '%s.save' % episode_name

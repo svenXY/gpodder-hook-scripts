@@ -25,15 +25,12 @@ class TestTfhShownotes(unittest.TestCase):
         )
         self.episode, self.filename, self.episode1, self.filename1 = podcast_list
 
-        self.save_enabled = self.core.config.extensions.enabled
         self.core.config.extensions.enabled = [EXTENSION_NAME]
 
         self.tfh_extension = gpodder.user_extensions.containers[0].module
 
     def tearDown(self):
-        self.core.config.extensions.enabled = self.save_enabled
-        gpodder.user_extensions.shutdown()
-        self.core.db.close()
+        self.core.shutdown()
 
     def test_episode_name(self):
         self.assertEqual('Pilot show', self.episode.title)

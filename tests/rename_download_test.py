@@ -20,18 +20,15 @@ class TestRenameDownloads(unittest.TestCase):
         )
         self.episode, self.filename = podcast_list
 
-        self.save_enabled = self.core.config.extensions.enabled
         self.core.config.extensions.enabled = [EXTENSION_NAME]
 
     def tearDown(self):
-        self.core.config.extensions.enabled = self.save_enabled
-        gpodder.user_extensions.shutdown()
-        self.core.db.close()
+        self.core.shutdown()
 
     def test_rename_file(self):
         filename_test = os.path.join(os.environ['GPODDER_DOWNLOAD_DIR'],
             'Tin Foil Hat', 'Pilot show.mp3')
-        filename_new = gpodder.user_extensions.containers[0].module.rename_file(self.filename, self.episode.title)
+        filename_new = gpodder.user_extensions.containers[0].module.make_filename(self.filename, self.episode.title)
 
         self.assertEqual(filename_test, filename_new)
         self.assertNotEqual(self.filename, filename_new)

@@ -20,19 +20,16 @@ class TestRockboxMP4Convert(unittest.TestCase):
         )
         self.episode, self.filename = podcast_list
 
-        self.save_enabled = self.core.config.extensions.enabled
         self.core.config.extensions.enabled = [EXTENSION_NAME]
 
         self.rb_extension = gpodder.user_extensions.containers[0].module
 
     def tearDown(self):
-        self.core.config.extensions.enabled = self.save_enabled
-        gpodder.user_extensions.shutdown()
-        self.core.db.close()
-
         converted_file = self.rb_extension._get_rockbox_filename(self.filename)
         if (os.path.exists(converted_file)):
             os.remove(converted_file)
+
+        self.core.shutdown()
 
     def test_file_renaming(self):
         self.assertIsNotNone(self.filename)

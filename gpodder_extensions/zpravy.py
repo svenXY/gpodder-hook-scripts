@@ -44,12 +44,6 @@ class gPodderExtension:
     def __init__(self, container):
         self.container = container
 
-    def on_load(self):
-        logger.info('Extension "%s" is being loaded.' % __title__)
-
-    def on_unload(self):
-        logger.info('Extension "%s" is being unloaded.' % __title__)
-
     def on_episode_save(self, episode):
         ts = self._get_pubdate(episode)
         if ts is not None:

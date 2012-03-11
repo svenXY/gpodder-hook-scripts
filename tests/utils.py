@@ -1,11 +1,14 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+import os
+
 from gpodder import core
 from gpodder import extensions
 
 
 def init_test(extension_file, podcast_configs):
-    gpo_core = core.Core(extension_list=[extension_file])
+    os.environ['GPODDER_EXTENSIONS'] = extension_file
+    gpo_core = core.Core()
     podcast_list = []
 
     for podcast_config, read_filename in podcast_configs:

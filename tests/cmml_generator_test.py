@@ -25,14 +25,13 @@ class TestCmmlLinuxOutlaws(unittest.TestCase):
         )
         self.episode, self.filename, self.episode2, self.filename2 = podcast_list
 
-        self.save_enabled = self.core.config.extensions.enabled
         self.core.config.extensions.enabled = [EXTENSION_NAME]
 
     def tearDown(self):
+        # delete cmml files
         gpodder.user_extensions.on_episode_delete(self.episode, self.filename)
-        self.core.config.extensions.enabled = self.save_enabled
-        gpodder.user_extensions.shutdown()
-        self.core.db.close()
+
+        self.core.shutdown()
 
     def test_create_cmml(self):
         gpodder.user_extensions.on_episode_downloaded(self.episode)

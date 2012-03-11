@@ -25,17 +25,14 @@ class TestTagging(unittest.TestCase):
         self.filename_save = '%s.save' % self.filename
         shutil.copyfile(self.filename, self.filename_save)
 
-        self.save_enabled = self.core.config.extensions.enabled
         self.core.config.extensions.enabled = [EXTENSION_NAME]
 
         self.tag_extension = gpodder.user_extensions.containers[0].module
 
     def tearDown(self):
-        self.core.config.extensions.enabled = self.save_enabled
-        gpodder.user_extensions.shutdown()
-        self.core.db.close()
-
         shutil.move(self.filename_save, self.filename)
+
+        self.core.shutdown()
 
     def test_get_info(self):
         info = self.tag_extension.read_episode_info(self.episode)

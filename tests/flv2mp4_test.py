@@ -24,16 +24,13 @@ class TestFlv2Mp4(unittest.TestCase):
         self.episode, self.filename, self.episode1, self.filename1 = podcast_list
         self.converted_file = os.path.splitext(self.filename)[0] + '.mp4'
 
-        self.save_enabled = self.core.config.extensions.enabled
         self.core.config.extensions.enabled = [EXTENSION_NAME]
 
     def tearDown(self):
-        self.core.config.extensions.enabled = self.save_enabled
-        gpodder.user_extensions.shutdown()
-        self.core.db.close()
-
         if os.path.exists(self.converted_file):
             os.remove(self.converted_file)
+
+        self.core.shutdown()
 
     def test_mp4convert(self):
         self.assertIsNotNone(self.filename)

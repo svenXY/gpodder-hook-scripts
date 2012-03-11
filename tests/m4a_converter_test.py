@@ -26,20 +26,17 @@ class TestM4AConversion(unittest.TestCase):
         self.converted_mp3 = os.path.splitext(self.filename)[0] + '.mp3'
         self.converted_ogg = os.path.splitext(self.filename)[0] + '.ogg'
 
-        self.save_enabled = self.core.config.extensions.enabled
         self.core.config.extensions.enabled = [EXTENSION_NAME]
 
         self.extension = gpodder.user_extensions.containers[0].module
 
     def tearDown(self):
-        self.core.config.extensions.enabled = self.save_enabled
-        gpodder.user_extensions.shutdown()
-        self.core.db.close()
-
         if os.path.exists(self.converted_mp3):
             os.remove(self.converted_mp3)
         if os.path.exists(self.converted_ogg):
             os.remove(self.converted_ogg)
+
+        self.core.shutdown()
 
     def test_m4a2mp3(self):
         self.assertIsNotNone(self.filename)

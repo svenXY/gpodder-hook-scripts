@@ -27,7 +27,6 @@
 
 import eyeD3
 import os
-import shlex
 import subprocess
 import tempfile
 
@@ -45,30 +44,18 @@ __author__ = 'Bernd Schlapsi <brot@gmx.info>'
 
 
 DefaultConfig = {
-    'extensions': {
-        'tfh_shownotes': {
-            'context_menu': True,
-        }
-    }
+    'context_menu': True,
 }
-
-TFH_TITLE = 'Tin Foil Hat'
-STEGHIDE_CMD = 'steghide extract -f -p %(pwd)s -sf %(img)s -xf %(file)s'
 
 
 class gPodderExtension():
+    TFH_TITLE = 'Tin Foil Hat'
+
     def __init__(self, container):
         self.container = container
 
-        program = shlex.split(STEGHIDE_CMD)[0]
-        if not util.find_command(program):
-            raise ImportError("Couldn't find program '%s'" % program)
-
-    def on_load(self):
-        logger.info('Extension "%s" is being loaded.' % __title__)
-
-    def on_unload(self):
-        logger.info('Extension "%s" is being unloaded.' % __title__)
+        # Dependency checks
+        self.container.require_command('steghide')
 
     def _download_shownotes(self, episodes):
         for episode in episodes:
@@ -78,13 +65,13 @@ class gPodderExtension():
         if not self.container.config.context_menu:
             return None
 
-        if TFH_TITLE not in [e.channel.title for e in episodes if e.file_exists()]:
+        if self.TFH_TITLE not in [e.channel.title for e in episodes if e.file_exists()]:
             return None
 
         return [(self.container.metadata.title, self._download_shownotes)]
 
     def on_episode_downloaded(self, episode):
-        if episode.channel.title.startswith(TFH_TITLE):
+        if episode.channel.title.startswith(self.TFH_TITLE):
             filename = self.get_filename(episode)
             if filename is None:
                 return
@@ -134,12 +121,10 @@ class gPodderExtension():
         if not os.path.exists(imagefile):
             return shownotes
 
-        cmd = STEGHIDE_CMD % {
-            'pwd': password,
-            'img': imagefile,
-            'file': shownotes_file
-        }
-        myprocess = subprocess.Popen(shlex.split(cmd),
+        cmd = ['steghide', 'extract', '-f', '-p', password,
+            '-sf', imagefile, '-xf',  shownotes_file]
+
+        myprocess = subprocess.Popen(cmd,
             stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         (stdout, stderr) = myprocess.communicate()
 

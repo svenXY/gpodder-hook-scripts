@@ -13,6 +13,8 @@ FMT = '%(created)f [%(name)s] %(levelname)s: %(message)s'
 #logging.basicConfig(format=FMT, level=logging.DEBUG)
 logging.basicConfig()
 
+from config import data
+
 def read_args():
     #read command line arguments
     parser = argparse.ArgumentParser(description='start gPodder extension script tests')
@@ -35,72 +37,47 @@ def append_python_path(gpo_path, extension):
         sys.path.append(args.extension)
 
 
-def check_version(gpo_path):
-    gpo_bin_path = os.path.join(gpo_path, 'bin')
-    cmd = '%sgpodder --version' % os.path.join(gpo_bin_path, '')
-    myprocess = subprocess.Popen(shlex.split(cmd), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    (stdout, stderr) = myprocess.communicate()
+def ins_test_podcast(core, podcast_url, episode2dl=None):
+    from gpodder import download
 
-    if myprocess.returncode > 0:
-        raise NameError("couldn't start gpodder with '%s'" % cmd)
-    else:
-        # group(0): gpodder 2.19, group(1): gpodder, group(2): 2.19
-        m = re.match(r'(\w+) ([0-9]\.[0-9]+)', stdout)
-        if m is not None and m.group(2) is not None:
-            try:
-                version = float(m.group(2))
-                if 2.0 < version < 2.99:
-                    return 2
-                elif version >= 2.99:
-                    return 3
-                else:
-                    raise NameError("couldn't read gpodder version number")
-            except:
-                raise NameError("couldn't read gpodder version number")
+    podcast = core.model.load_podcast(podcast_url, create=True)
 
-
-def ins_test_podcast(client, podcast_url, episode2dl=None):
-    podcast = client.get_podcast(podcast_url)
-    if podcast is None:
-        podcast = client.create_podcast(podcast_url)
-        podcast.disable()
+    if not podcast.pause_subscription:
+        podcast.pause_subscription = True
+        podcast.save()
 
     if episode2dl is not None:
-        episode = podcast.get_episodes()[episode2dl]
-        if (not episode.is_downloaded):
-            episode.download()
+        episode = podcast.get_all_episodes()[episode2dl]
+        if (not episode.was_downloaded(and_exists=True)):
+            task = download.DownloadTask(episode, core.config)
+            task.status = download.DownloadTask.QUEUED
+            task.run()
 
 
 def init_data():
-    from config import data
-    from gpodder import api
+    from gpodder import core
 
-    client = api.PodcastClient()
+    os.environ['GPODDER_DISABLE_EXTENSIONS'] = 'yes'
+    gpo_core = core.Core()
 
     # set preferred youtube format to FLV (for flv2mp4 test)
-    client._config.youtube_preferred_fmt_id = 34
-    client._config.save()
+    gpo_core.config.youtube_preferred_fmt_id = 34
+    gpo_core.config.save()
 
     for name, conf in data.TEST_PODCASTS.items():
-        ins_test_podcast(client, conf['url'], conf['episode'])
+        ins_test_podcast(gpo_core, conf['url'], conf['episode'])
 
-    client._db.close()
-
+    gpo_core.shutdown()
+    os.environ['GPODDER_DISABLE_EXTENSIONS'] = ''
 
 if __name__ == "__main__":
     args = read_args()
     append_python_path(args.gpo, args.extension)
 
-    gpo_version = check_version(args.gpo or '')
     test_dir = os.path.dirname(__file__)
-    if gpo_version == 2:
-        os.environ['GPODDER_HOME'] = os.path.join(test_dir, 'gpodder2', 'config')
-        os.environ['GPODDER_DOWNLOAD_DIR'] = os.path.join(test_dir, 'gpodder2', 'downloads')
-
-    elif gpo_version == 3:
-        os.environ['GPODDER_HOME'] = os.path.join(test_dir, 'gpodder3', 'config')
-        os.environ['GPODDER_DOWNLOAD_DIR'] = os.path.join(test_dir, 'gpodder3', 'config', 'Downloads')
-        os.environ['GPODDER_EXTENSIONS'] = args.extension
+    os.environ['GPODDER_HOME'] = os.path.join(test_dir, 'gpodder3', 'config')
+    os.environ['GPODDER_DOWNLOAD_DIR'] = os.path.join(test_dir, 'gpodder3', 'config', 'Downloads')
+    os.environ['GPODDER_EXTENSIONS'] = args.extension
 
     if args.init:
         init_data()
@@ -125,10 +102,10 @@ if __name__ == "__main__":
     suite = loader.loadTestsFromModule(bittorrent_downloader_test)
     suite.addTests(loader.loadTestsFromModule(cmml_generator_test))
     suite.addTests(loader.loadTestsFromModule(enqueue_in_vlc_test))
-    suite.addTests(loader.loadTestsFromModule(flv2mp4_test))
-    suite.addTests(loader.loadTestsFromModule(m4a_converter_test))
+    ## suite.addTests(loader.loadTestsFromModule(flv2mp4_test))
+    ## suite.addTests(loader.loadTestsFromModule(m4a_converter_test))
     suite.addTests(loader.loadTestsFromModule(mp3gain_test))
-    suite.addTests(loader.loadTestsFromModule(normalize_audio_test))
+    ## suite.addTests(loader.loadTestsFromModule(normalize_audio_test))
     suite.addTests(loader.loadTestsFromModule(rename_download_test))
     suite.addTests(loader.loadTestsFromModule(rm_ogg_cover_test))
     suite.addTests(loader.loadTestsFromModule(rockbox_convert2mp4_test))

@@ -21,9 +21,6 @@ class TestBittorrent(unittest.TestCase):
         )
         self.episode, self.filename = podcast_list
 
-        self.save_enabled = self.core.config.extensions.enabled
-        self.save_cmd = self.core.config.extensions.bittorrent_downloader.cmd
-
         test_cmd = 'cp "%s" ' + TEST_OUTPUT
         self.core.config.extensions.enabled = [EXTENSION_NAME]
         self.core.config.extensions.bittorrent_downloader.cmd = test_cmd
@@ -32,10 +29,7 @@ class TestBittorrent(unittest.TestCase):
         if os.path.exists(TEST_OUTPUT):
             os.remove(TEST_OUTPUT)
 
-        self.core.config.extensions.enabled = self.save_enabled
-        self.core.config.extensions.bittorrent_downloader.cmd = self.save_cmd
-        gpodder.user_extensions.shutdown()
-        self.core.db.close()
+        self.core.shutdown()
 
     def test_shellcommand(self):
         self.assertIsNotNone(self.filename)

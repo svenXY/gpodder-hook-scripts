@@ -20,13 +20,10 @@ class TestZpravy(unittest.TestCase):
         )
         self.episode, self.filename = podcast_list
 
-        self.save_enabled = self.core.config.extensions.enabled
         self.core.config.extensions.enabled = [EXTENSION_NAME]
 
     def tearDown(self):
-        self.core.config.extensions.enabled = self.save_enabled
-        gpodder.user_extensions.shutdown()
-        self.core.db.close()
+        self.core.shutdown()
 
     def test_zpravy_pubdate(self):
         try:
