@@ -34,9 +34,10 @@ class TestFlv2Mp4(unittest.TestCase):
 
     def test_mp4convert(self):
         self.assertIsNotNone(self.filename)
+        self.assertTrue(os.path.exists(self.filename))
+        self.assertTrue(gpodder.youtube.is_video_link(self.episode.url))
 
-        extension = gpodder.user_extensions.containers[0].module
-        extension._run_conversion(self.episode)
+        gpodder.user_extensions.on_episode_downloaded(self.episode)
 
         self.assertTrue(os.path.exists(self.converted_file))
         self.assertTrue(os.path.getsize(self.converted_file)>0)

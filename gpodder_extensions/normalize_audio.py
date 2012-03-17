@@ -29,8 +29,8 @@ DefaultConfig = {
 
 # a tuple of (extension, command)
 CONVERT_COMMANDS = {
-    'ogg': 'normalize-ogg',
-    'mp3': 'normalize-mp3',
+    '.ogg': 'normalize-ogg',
+    '.mp3': 'normalize-mp3',
 }
 
 class gPodderExtension:
@@ -73,7 +73,6 @@ class gPodderExtension:
         basename, extension = os.path.splitext(filename)
 
         cmd = [CONVERT_COMMANDS.get(extension, 'normalize-audio'), filename]
-        print cmd
 
         p = subprocess.Popen(cmd, stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE)

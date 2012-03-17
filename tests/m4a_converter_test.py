@@ -44,8 +44,8 @@ class TestM4AConversion(unittest.TestCase):
         self.assertEqual('lnp003-twitter-facebook-american-censorship-day.m4a',
             os.path.split(self.filename)[1])
 
-        self.core.config.extensions.m4a_converter.file_format = [True, False]
-        self.extension._run_conversion(self.episode)
+        self.core.config.extensions.m4a_converter.use_ogg = False
+        gpodder.user_extensions.on_episode_downloaded(self.episode)
 
         self.assertTrue(os.path.exists(self.converted_mp3))
         self.assertTrue(os.path.getsize(self.converted_mp3)>0)
@@ -56,8 +56,8 @@ class TestM4AConversion(unittest.TestCase):
         self.assertEqual('lnp003-twitter-facebook-american-censorship-day.m4a',
             os.path.split(self.filename)[1])
 
-        self.core.config.extensions.m4a_converter.file_format = [False, True]
-        self.extension._run_conversion(self.episode)
+        self.core.config.extensions.m4a_converter.use_ogg = True
+        gpodder.user_extensions.on_episode_downloaded(self.episode)
 
         self.assertTrue(os.path.exists(self.converted_ogg))
         self.assertTrue(os.path.getsize(self.converted_ogg)>0)
