@@ -1,4 +1,3 @@
-
 # Use a logger for debug output - this will be managed by gPodder
 import os
 import json
@@ -27,8 +26,6 @@ class gPodderExtension:
         formatedTime = str ( hours ) + ':' + str (minutes) + ':' + str ( seconds ) + ',' + str ( milliseconds )
         return formatedTime
 
-
-
     def convertTEDSubtitlesToSRTSubtitles(self, jsonString, introDuration):
         jsonObject = json.loads( jsonString )
 
@@ -39,12 +36,10 @@ class gPodderExtension:
             startTime = str ( self.formatTime ( introDuration + caption['startTime'] ) )
             endTime = str ( self.formatTime ( introDuration + caption['startTime'] + caption['duration'] ) )
 
-
             srtContent += ( str ( captionIndex ) + os.linesep )
             srtContent += ( startTime + ' --> ' + endTime + os.linesep )
             srtContent += ( caption['content'] + os.linesep )
             srtContent += os.linesep
-
 
             captionIndex = captionIndex + 1
         return srtContent
