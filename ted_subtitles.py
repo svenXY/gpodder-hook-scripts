@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+# vi:si:et:sw=4:sts=4:ts=4
 # Use a logger for debug output - this will be managed by gPodder
 import os
 import json
@@ -73,7 +75,7 @@ class gPodderExtension:
 
         if (introduration):
             sub = self.ted_to_srt ( result,
-                                                          int(introduration) )
+                                   int(introduration) )
             srtFile = open ( basename + '.srt' , 'w+' )
             srtFile.write ( sub.encode ( "utf-8" ) )
             srtFile.close ()
