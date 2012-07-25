@@ -44,6 +44,7 @@ class gPodderExtension:
             srtContent += os.linesep
 
             captionIndex = captionIndex + 1
+
         return srtContent
 
     def on_episode_downloaded(self, episode):
