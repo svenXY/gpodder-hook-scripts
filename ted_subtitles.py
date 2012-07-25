@@ -18,26 +18,26 @@ class gPodderExtension:
     def __init__(self, container):
         self.container = container
 
-    def formatTime(self, time):
+    def formattime(self, time):
         milliseconds = 0
-        seconds = ((time / 1000) % 60)
-        minutes = ((time / 1000) / 60)
-        hours = (((time / 1000) / 60) / 60)
-        formatedTime = str ( hours ) + ':' + str (minutes) + ':' + str ( seconds ) + ',' + str ( milliseconds )
-        return formatedTime
+        seconds = str(((time / 1000) % 60))
+        minutes = str(((time / 1000) / 60))
+        hours = str((((time / 1000) / 60) / 60))
+        formatedtime = hours + ':' + minutes + ':' + seconds + ',' + milliseconds
+        return formatedtime
 
-    def convertTEDSubtitlesToSRTSubtitles(self, jsonString, introDuration):
-        jsonObject = json.loads( jsonString )
+    def ted_to_srt(self, jsonstring, introduration):
+        jsonobject = json.loads( jsonstring )
 
         srtContent = ''
         captionIndex = 1
 
-        for caption in jsonObject['captions'] :
-            startTime = str ( self.formatTime ( introDuration + caption['startTime'] ) )
-            endTime = str ( self.formatTime ( introDuration + caption['startTime'] + caption['duration'] ) )
+        for caption in jsonobject['captions'] :
+            starttime = str ( self.formattime ( introduration + caption['starttime'] ) )
+            endTime = str ( self.formattime ( introduration + caption['starttime'] + caption['duration'] ) )
 
             srtContent += ( str ( captionIndex ) + os.linesep )
-            srtContent += ( startTime + ' --> ' + endTime + os.linesep )
+            srtContent += ( starttime + ' --> ' + endTime + os.linesep )
             srtContent += ( caption['content'] + os.linesep )
             srtContent += os.linesep
 
@@ -67,13 +67,13 @@ class gPodderExtension:
             req2 = urllib2.Request(episode.link)
             response2 = urllib2.urlopen(req2)
             result2 = response2.read()
-            introDuration = result2.split('introDuration=')[1].split('&')[0]
+            introduration = result2.split('introduration=')[1].split('&')[0]
         except urllib2.URLError, e:
             logger.debug("subtitle url returned error %s", e, exc_info=1)
 
-        if (introDuration):
-            sub = self.convertTEDSubtitlesToSRTSubtitles ( result,
-                                                          int(introDuration) )
+        if (introduration):
+            sub = self.ted_to_srt ( result,
+                                                          int(introduration) )
             srtFile = open ( basename + '.srt' , 'w+' )
             srtFile.write ( sub.encode ( "utf-8" ) )
             srtFile.close ()
