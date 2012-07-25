@@ -46,15 +46,15 @@ class gPodderExtension:
 
     def on_episode_downloaded(self, episode):
         current_filename = episode.local_filename(create=False)
-        basename, ext = os.path.splitext(current_filename)
+        basename, _ = os.path.splitext(current_filename)
         talkId = episode.guid.split(':')[1]
         try:
             int(talkId)
         except ValueError:
             return
         sub_url = 'http://www.ted.com/talks/subtitles/id/' + str(talkId) + '/lang/eng'
-        logger.debug('subtitle url: %s',sub_url)
-        logger.debug('episode url: %s',episode.link)
+        logger.debug('subtitle url: %s', sub_url)
+        logger.debug('episode url: %s', episode.link)
 
         try:
             req = urllib2.Request(sub_url)
