@@ -13,8 +13,9 @@ __description__ = 'downloads ted subtitles'
 __only_for__ = 'gtk, cli, qml'
 __authors__ = 'Danilo Shiga <daniloshiga@gmail.com>'
 
+
 class gPodderExtension:
-    # The extension will be instantiated the first time it's used
+    # The etension will be instantiated the first time it's used
     # You can do some sanity checks here and raise an Exception if
     # you want to prevent the extension from being loaded..
     def __init__(self, container):
@@ -29,18 +30,18 @@ class gPodderExtension:
         return formatedtime
 
     def ted_to_srt(self, jsonstring, introduration):
-        jsonobject = json.loads( jsonstring )
+        jsonobject = json.loads(jsonstring)
 
         srtContent = ''
         captionIndex = 1
 
-        for caption in jsonobject['captions'] :
-            starttime = str ( self.formattime ( introduration + caption['starttime'] ) )
-            endTime = str ( self.formattime ( introduration + caption['starttime'] + caption['duration'] ) )
+        for caption in jsonobject['captions']:
+            starttime = str(self.formattime(introduration + caption['starttime']))
+            endTime = str(self.formattime(introduration + caption['starttime'] + caption['duration']))
 
-            srtContent += ( str ( captionIndex ) + os.linesep )
-            srtContent += ( starttime + ' --> ' + endTime + os.linesep )
-            srtContent += ( caption['content'] + os.linesep )
+            srtContent += (str(captionIndex) + os.linesep)
+            srtContent += (starttime + ' --> ' + endTime + os.linesep)
+            srtContent += (caption['content'] + os.linesep)
             srtContent += os.linesep
 
             captionIndex = captionIndex + 1
@@ -75,8 +76,8 @@ class gPodderExtension:
             logger.debug("subtitle url returned error %s", e, exc_info=1)
 
         if (introduration):
-            sub = self.ted_to_srt ( result,
-                                   int(introduration) )
-            srtFile = open ( basename + '.srt' , 'w+' )
-            srtFile.write ( sub.encode ( "utf-8" ) )
-            srtFile.close ()
+            sub = self.ted_to_srt(result,
+                                   int(introduration))
+            srtFile = open(basename + '.srt', 'w+')
+            srtFile.write(sub.encode("utf-8"))
+            srtFile.close()
