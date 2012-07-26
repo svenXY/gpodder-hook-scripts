@@ -22,7 +22,7 @@ class gPodderExtension:
         self.container = container
 
     def formattime(self, time):
-        milliseconds = 0
+        milliseconds = '0'
         seconds = str(((time / 1000) % 60))
         minutes = str(((time / 1000) / 60))
         hours = str((((time / 1000) / 60) / 60))
@@ -36,8 +36,8 @@ class gPodderExtension:
         captionIndex = 1
 
         for caption in jsonobject['captions']:
-            starttime = str(self.formattime(introduration + caption['starttime']))
-            endTime = str(self.formattime(introduration + caption['starttime'] + caption['duration']))
+            starttime = str(self.formattime(introduration + caption['startTime']))
+            endTime = str(self.formattime(introduration + caption['startTime'] + caption['duration']))
 
             srtContent += (str(captionIndex) + os.linesep)
             srtContent += (starttime + ' --> ' + endTime + os.linesep)
@@ -64,16 +64,18 @@ class gPodderExtension:
             req = urllib2.Request(sub_url)
             response = urllib2.urlopen(req)
             result = response.read()
-        except urllib2.URLError, e:
+        except (urllib2.URLError, urllib2.HTTPError), e:
             logger.debug("subtitle url returned error %s", e, exc_info=1)
+            return
 
         try:
             req2 = urllib2.Request(episode.link)
             response2 = urllib2.urlopen(req2)
             result2 = response2.read()
-            introduration = result2.split('introduration=')[1].split('&')[0]
-        except urllib2.URLError, e:
+            introduration = result2.split('introDuration=')[1].split('&')[0]
+        except (urllib2.URLError, urllib2.HTTPError), e:
             logger.debug("subtitle url returned error %s", e, exc_info=1)
+            return
 
         if (introduration):
             sub = self.ted_to_srt(result,
