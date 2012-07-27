@@ -5,6 +5,7 @@ import os
 import json
 import urllib2
 import logging
+from datetime import timedelta
 logger = logging.getLogger(__name__)
 
 # Provide some metadata that will be displayed in the gPodder GUI
@@ -21,13 +22,10 @@ class gPodderExtension:
     def __init__(self, container):
         self.container = container
 
-    def formattime(self, time):
-        milliseconds = '0'
-        seconds = str(((time / 1000) % 60))
-        minutes = str(((time / 1000) / 60))
-        hours = str((((time / 1000) / 60) / 60))
-        formatedtime = hours + ':' + minutes + ':' + seconds + ',' + milliseconds
-        return formatedtime
+    def milli_to_srt(self, time):
+        srt_time = str(timedelta(0, 0, 1, time))
+        srt_time = srt_time.replace('.', ',')[:12]
+        return srt_time
 
     def ted_to_srt(self, jsonstring, introduration):
         jsonobject = json.loads(jsonstring)
@@ -36,8 +34,8 @@ class gPodderExtension:
         captionIndex = 1
 
         for caption in jsonobject['captions']:
-            starttime = str(self.formattime(introduration + caption['startTime']))
-            endTime = str(self.formattime(introduration + caption['startTime'] + caption['duration']))
+            starttime = self.milli_to_srt(introduration + caption['startTime'])
+            endTime = self.milli_to_srt(introduration + caption['startTime'] + caption['duration'])
 
             srtContent += (str(captionIndex) + os.linesep)
             srtContent += (starttime + ' --> ' + endTime + os.linesep)
