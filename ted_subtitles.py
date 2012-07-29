@@ -24,16 +24,12 @@ class gPodderExtension(object):
 
     def milli_to_srt(self, time):
         srt_time = timedelta(milliseconds=time)
-        has_hour = srt_time > timedelta(hours=1)
         srt_time = str(srt_time)
         if '.' in srt_time:
-            if has_hour:
-                srt_time = srt_time.replace('.', ',')[:13]
-            else:
-                srt_time = srt_time.replace('.', ',')[:12]
+            srt_time = srt_time.replace('.', ',')[:11]
         else:
-            # ',0000' required to be a valid srt line
-            srt_time +=  + ',0000'
+            # ',000' required to be a valid srt line
+            srt_time += ',000'
         return srt_time
 
     def ted_to_srt(self, jsonstring, introduration):
