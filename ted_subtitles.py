@@ -15,7 +15,7 @@ __only_for__ = 'gtk, cli, qml'
 __authors__ = 'Danilo Shiga <daniloshiga@gmail.com>'
 
 
-class gPodderExtension:
+class gPodderExtension(object):
     # The etension will be instantiated the first time it's used
     # You can do some sanity checks here and raise an Exception if
     # you want to prevent the extension from being loaded..
@@ -23,61 +23,68 @@ class gPodderExtension:
         self.container = container
 
     def milli_to_srt(self, time):
-        srt_time = str(timedelta(0, 0, 1, time))
-        srt_time = srt_time.replace('.', ',')[:12]
+        srt_time = timedelta(milliseconds=time)
+        has_hour = srt_time > timedelta(hours=1)
+        srt_time = str(srt_time)
+        if '.' in srt_time:
+            if has_hour:
+                srt_time = srt_time.replace('.', ',')[:13]
+            else:
+                srt_time = srt_time.replace('.', ',')[:12]
+        else:
+            # ',0000' required to be a valid srt line
+            srt_time +=  + ',0000'
         return srt_time
 
     def ted_to_srt(self, jsonstring, introduration):
         jsonobject = json.loads(jsonstring)
 
         srtContent = ''
-        captionIndex = 1
-
-        for caption in jsonobject['captions']:
-            starttime = self.milli_to_srt(introduration + caption['startTime'])
-            endTime = self.milli_to_srt(introduration + caption['startTime'] + caption['duration'])
-
-            srtContent += (str(captionIndex) + os.linesep)
-            srtContent += (starttime + ' --> ' + endTime + os.linesep)
-            srtContent += (caption['content'] + os.linesep)
-            srtContent += os.linesep
-
-            captionIndex = captionIndex + 1
-
+        for captionIndex, caption in enumerate(jsonobject['captions'], 1):
+            startTime = self.milli_to_srt(introduration + caption['startTime'])
+            endTime = self.milli_to_srt(introduration + caption['startTime'] +
+                                        caption['duration'])
+            srtContent += ''.join([str(captionIndex), os.linesep, startTime,
+                                   ' --> ', endTime, os.linesep,
+                                   caption['content'], os.linesep * 2])
         return srtContent
 
+    def get_data_from_url(self, url):
+        try:
+            req = urllib2.Request(url)
+            response = urllib2.urlopen(req)
+        except (urllib2.URLError, urllib2.HTTPError), e:
+            logger.debug("subtitle url returned error %s", e, exc_info=1)
+            return ''
+        return response.read()
+
     def on_episode_downloaded(self, episode):
-        current_filename = episode.local_filename(create=False)
-        basename, _ = os.path.splitext(current_filename)
         talkId = episode.guid.split(':')[1]
         try:
             int(talkId)
         except ValueError:
+            logger.debug('invalid talk id: %s', talkId)
             return
-        sub_url = 'http://www.ted.com/talks/subtitles/id/' + str(talkId) + '/lang/eng'
+
+        sub_url = 'http://www.ted.com/talks/subtitles/id/%s/lang/eng' % talkId
         logger.debug('subtitle url: %s', sub_url)
+        sub_data = self.get_data_from_url(sub_url)
+        if not sub_data:
+            return
+
         logger.debug('episode url: %s', episode.link)
-
-        try:
-            req = urllib2.Request(sub_url)
-            response = urllib2.urlopen(req)
-            result = response.read()
-        except (urllib2.URLError, urllib2.HTTPError), e:
-            logger.debug("subtitle url returned error %s", e, exc_info=1)
+        episode_data = self.get_data_from_url(episode.link)
+        if not episode_data:
             return
 
-        try:
-            req2 = urllib2.Request(episode.link)
-            response2 = urllib2.urlopen(req2)
-            result2 = response2.read()
-            introduration = result2.split('introDuration=')[1].split('&')[0]
-        except (urllib2.URLError, urllib2.HTTPError), e:
-            logger.debug("subtitle url returned error %s", e, exc_info=1)
-            return
+        # default to '0' ?
+        # TODO: add try/except when dealing with files.
+        introduration = episode_data.split('introDuration=')[1].split('&')[0]
+        if introduration:
+            current_filename = episode.local_filename(create=False)
+            basename, _ = os.path.splitext(current_filename)
 
-        if (introduration):
-            sub = self.ted_to_srt(result,
-                                   int(introduration))
+            sub = self.ted_to_srt(sub_data, int(introduration))
             srtFile = open(basename + '.srt', 'w+')
             srtFile.write(sub.encode("utf-8"))
             srtFile.close()
