@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 # vi:si:et:sw=4:sts=4:ts=4
-# Use a logger for debug output - this will be managed by gPodder
 import os
 import json
 import urllib2
@@ -8,7 +7,6 @@ import logging
 from datetime import timedelta
 logger = logging.getLogger(__name__)
 
-# Provide some metadata that will be displayed in the gPodder GUI
 __title__ = 'TED Subtitle Download Extension'
 __description__ = 'downloads ted subtitles'
 __only_for__ = 'gtk, cli, qml'
@@ -16,9 +14,6 @@ __authors__ = 'Danilo Shiga <daniloshiga@gmail.com>'
 
 
 class gPodderExtension(object):
-    # The etension will be instantiated the first time it's used
-    # You can do some sanity checks here and raise an Exception if
-    # you want to prevent the extension from being loaded..
     def __init__(self, container):
         self.container = container
 
