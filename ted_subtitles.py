@@ -80,14 +80,15 @@ class gPodderExtension(object):
         if not episode_data:
             return
 
-        # default to '0' ?
-        # TODO: add try/except when dealing with files.
-        introduration = episode_data.split('introDuration=')[1].split('&')[0]
-        if introduration:
-            current_filename = episode.local_filename(create=False)
-            basename, _ = os.path.splitext(current_filename)
+        intro = episode_data.split('introDuration=')[1].split('&')[0] or 0
+        current_filename = episode.local_filename(create=False)
+        basename, _ = os.path.splitext(current_filename)
+        sub = self.ted_to_srt(sub_data, int(intro))
 
-            sub = self.ted_to_srt(sub_data, int(introduration))
+        try:
             srtFile = open(basename + '.srt', 'w+')
             srtFile.write(sub.encode("utf-8"))
+        except IOError:
+            logger.debug("Can't write srt file")
+        else:
             srtFile.close()
