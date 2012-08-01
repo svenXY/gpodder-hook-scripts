@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 # vi:si:et:sw=4:sts=4:ts=4
+"""
+TED Subtitle Download Extension
+Downloads ted subtitles
+"""
 import os
 import json
 import urllib2
@@ -14,10 +18,15 @@ __authors__ = 'Danilo Shiga <daniloshiga@gmail.com>'
 
 
 class gPodderExtension(object):
+    """
+    TED Subtitle Download Extension
+    Downloads ted subtitles
+    """
     def __init__(self, container):
         self.container = container
 
     def milli_to_srt(self, time):
+        """Converts milliseconds to srt time format"""
         srt_time = timedelta(milliseconds=time)
         srt_time = str(srt_time)
         if '.' in srt_time:
@@ -28,6 +37,7 @@ class gPodderExtension(object):
         return srt_time
 
     def ted_to_srt(self, jsonstring, introduration):
+        """Converts the json object to srt format"""
         jsonobject = json.loads(jsonstring)
 
         srtContent = ''
@@ -41,6 +51,7 @@ class gPodderExtension(object):
         return srtContent
 
     def get_data_from_url(self, url):
+        """deal with url requests"""
         try:
             req = urllib2.Request(url)
             response = urllib2.urlopen(req)
@@ -50,6 +61,7 @@ class gPodderExtension(object):
         return response.read()
 
     def on_episode_downloaded(self, episode):
+        """Gpodder hook"""
         talkId = episode.guid.split(':')[1]
         try:
             int(talkId)
