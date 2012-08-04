@@ -21,9 +21,9 @@ class TestBittorrent(unittest.TestCase):
         )
         self.episode, self.filename = podcast_list
 
-        test_cmd = 'cp "%s" ' + TEST_OUTPUT
-        self.core.config.extensions.enabled = [EXTENSION_NAME]
+        test_cmd = 'cp "%s" ' + TEST_OUTPUT        
         self.core.config.extensions.bittorrent_downloader.cmd = test_cmd
+        self.core.config.extensions.enabled = [EXTENSION_NAME]
 
     def tearDown(self):
         if os.path.exists(TEST_OUTPUT):

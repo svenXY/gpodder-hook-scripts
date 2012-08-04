@@ -19,14 +19,14 @@ logging.basicConfig()
 
 from config import data
 
+test_dir = os.path.dirname(os.path.abspath(__file__))
+extension_dir = os.path.join(os.path.split(test_dir)[0], 'gpodder_extensions')
 
 def read_args():
     #read command line arguments
     parser = argparse.ArgumentParser(description='start gPodder extension script tests')
     parser.add_argument('--gpo', required=True, dest='gpo',
                         help='Path of the gPodder')
-    parser.add_argument('--extension', required=True, dest='extension',
-                        help='Path of the gPodder extension scripts')
     return parser.parse_args()
 
 
@@ -36,7 +36,7 @@ def append_python_path(gpo_path, extension):
         sys.path.append(gpo_src_path)
 
     if os.path.exists(extension):
-        sys.path.append(args.extension)
+        sys.path.append(extension)
 
 
 def my_retrieve_resume(self, url, filename, reporthook=None, data=None):
@@ -85,13 +85,13 @@ def init_data(gpo_dir):
 
 if __name__ == "__main__":
     args = read_args()
-    append_python_path(args.gpo, args.extension)
+    append_python_path(args.gpo, extension_dir)
 
     test_dir = os.path.dirname(__file__)
     gpo_dir = os.path.join(test_dir, 'gpodder3')
     os.environ['GPODDER_HOME'] = os.path.join(gpo_dir, 'config')
     os.environ['GPODDER_DOWNLOAD_DIR'] = os.path.join(gpo_dir, 'config', 'Downloads')
-    os.environ['GPODDER_EXTENSIONS'] = args.extension
+    os.environ['GPODDER_EXTENSIONS'] = extension_dir
 
     init_data(gpo_dir)
 
