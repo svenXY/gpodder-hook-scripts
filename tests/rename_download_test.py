@@ -26,9 +26,13 @@ class TestRenameDownloads(unittest.TestCase):
         self.core.shutdown()
 
     def test_rename_file(self):
-        filename_test = os.path.join(os.environ['GPODDER_DOWNLOAD_DIR'],
-            'Tin Foil Hat', 'Pilot show.mp3')
-        filename_new = gpodder.user_extensions.containers[0].module.make_filename(self.filename, self.episode.title)
+        filename_test = os.path.abspath(os.path.join(
+            os.environ['GPODDER_DOWNLOAD_DIR'], 'Tin Foil Hat',
+            'Pilot show.mp3'))
+            
+        module = gpodder.user_extensions.containers[0].module
+        filename_new = module.make_filename(self.filename, self.episode.title)
+        filename_new = os.path.abspath(filename_new)
 
         self.assertEqual(filename_test, filename_new)
         self.assertNotEqual(self.filename, filename_new)

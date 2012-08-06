@@ -37,7 +37,7 @@ _ = gpodder.gettext
 
 __title__ = _('Tag downloaded files using Mutagen')
 __description__ = _('Add episode and podcast titles to MP3/OGG tags')
-__author__ = 'Bernd Schlapsi <brot@gmx.info>'
+__authors__ = 'Bernd Schlapsi <brot@gmx.info>'
 
 
 DefaultConfig = {
@@ -49,13 +49,12 @@ DefaultConfig = {
 class gPodderExtension:
     def __init__(self, container):
         self.container = container
-        self.config = self.container.config
 
     def on_episode_downloaded(self, episode):
         info = self.read_episode_info(episode)
         self.write_info2file(info)
 
-        logger.info('tagging.on_episode_downloaded(%s/%s)' % (episode.channel.title, episode.title))
+        logger.info(u'tagging.on_episode_downloaded(%s/%s)' % (episode.channel.title, episode.title))
 
     def read_episode_info(self, episode):
         info = {
@@ -73,7 +72,7 @@ class gPodderExtension:
         # read title+album from gPodder database
         info['album'] = episode.channel.title
         title = episode.title
-        if (self.config.strip_album_from_title and title and info['album'] and title.startswith(info['album'])):
+        if (self.container.config.strip_album_from_title and title and info['album'] and title.startswith(info['album'])):
             info['title'] = title[len(info['album']):].lstrip()
         else:
             info['title'] = title
@@ -109,8 +108,8 @@ class gPodderExtension:
             audio.tags['title'] = info['title']
 
         # write genre tag
-        if self.config.genre_tag is not None:
-            audio.tags['genre'] = self.config.genre_tag
+        if self.container.config.genre_tag is not None:
+            audio.tags['genre'] = self.container.config.genre_tag
         else:
             audio.tags['genre'] = ''
 

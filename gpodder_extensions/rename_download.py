@@ -15,7 +15,7 @@ _ = gpodder.gettext
 
 __title__ = _('Rename episodes after download')
 __description__ = _('Rename episodes to "<Episode Title>.<ext>" on download')
-__author__ = 'Bernd Schlapsi <brot@gmx.info>, Thomas Perl <thp@gpodder.org>'
+__authors__ = 'Bernd Schlapsi <brot@gmx.info>, Thomas Perl <thp@gpodder.org>'
 
 
 class gPodderExtension:
@@ -38,6 +38,7 @@ class gPodderExtension:
         basename, ext = os.path.splitext(filename)
 
         new_basename = util.sanitize_encoding(title) + ext
+        new_basename = util.sanitize_filename(new_basename)
         new_filename = os.path.join(dirname, new_basename)
 
         if new_filename == current_filename:

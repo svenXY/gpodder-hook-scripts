@@ -25,7 +25,7 @@ _ = gpodder.gettext
 
 __title__ = _('Convert video files to MP4 for Rockbox')
 __description__ = _('Converts all videos to a Rockbox-compatible format')
-__author__ = 'Guy Sheffer <guysoft@gmail.com>, Thomas Perl <thp@gpodder.org>, Bernd Schlapsi <brot@gmx.info>'
+__authors__ = 'Guy Sheffer <guysoft@gmail.com>, Thomas Perl <thp@gpodder.org>, Bernd Schlapsi <brot@gmx.info>'
 
 
 DefaultConfig = {
@@ -34,18 +34,24 @@ DefaultConfig = {
     'ffmpeg_options': '-vcodec mpeg2video -b 500k -ab 192k -ac 2 -ar 44100 -acodec libmp3lame',
 }
 
+ROCKBOX_EXTENSION = "mpg"
+EXTENTIONS_TO_CONVERT = ['.mp4',"." + ROCKBOX_EXTENSION]
+FFMPEG_CMD = 'ffmpeg -y -i "%(from)s" -s %(width)sx%(height)s %(options)s "%(to)s"'
+
 
 class gPodderExtension:
-    ROCKBOX_EXTENSION = 'mpg'
-    EXTENTIONS_TO_CONVERT = ['.mp4','.' + ROCKBOX_EXTENSION]
-    FFMPEG_CMD = 'ffmpeg -y -i "%(from)s" -s %(width)sx%(height)s %(options)s "%(to)s"'
-
     def __init__(self, container):
         self.container = container
-        self.config = self.container.config
 
-        # Dependency checks
-        self.container.require_command('ffmpeg')
+        program = shlex.split(FFMPEG_CMD)[0]
+        if not util.find_command(program):
+            raise ImportError("Couldn't find program '%s'" % program)
+
+    def on_load(self):
+        logger.info('Extension "%s" is being loaded.' % __title__)
+
+    def on_unload(self):
+        logger.info('Extension "%s" is being unloaded.' % __title__)
 
     def on_episode_downloaded(self, episode):
         current_filename = episode.local_filename(False)
@@ -58,21 +64,21 @@ class gPodderExtension:
 
     def _get_rockbox_filename(self, origin_filename):
         if not os.path.exists(origin_filename):
-            logger.info('File "%s" don''t exists.' % origin_filename)
+            logger.info("File '%s' don't exists." % origin_filename)
             return None
 
         dirname = os.path.dirname(origin_filename)
         filename = os.path.basename(origin_filename)
         basename, ext = os.path.splitext(filename)
 
-        if ext not in self.EXTENTIONS_TO_CONVERT:
-            logger.info('Ignore file with file-extension %s.' % ext)
+        if ext not in EXTENTIONS_TO_CONVERT:
+            logger.info("Ignore file with file-extension %s." % ext)
             return None
 
-        if filename.endswith(self.ROCKBOX_EXTENSION):
-            new_filename = '%s-convert.%s' % (basename, self.ROCKBOX_EXTENSION)
+        if filename.endswith(ROCKBOX_EXTENSION):
+            new_filename = "%s-convert.%s" % (basename, ROCKBOX_EXTENSION)
         else:
-            new_filename = '%s.%s' % (basename, self.ROCKBOX_EXTENSION)
+            new_filename = "%s.%s" % (basename, ROCKBOX_EXTENSION)
         return os.path.join(dirname, new_filename)
 
 
@@ -103,28 +109,31 @@ class gPodderExtension:
         if os.path.isfile(to_file):
             return to_file
 
-        logger.info('Converting: %s', from_file)
-        gpodder.user_extensions.on_notification_show('Converting', episode)
+        logger.info("Converting: %s", from_file)
+        gpodder.user_extensions.on_notification_show("Converting", episode)
 
         # calculationg the new screen resolution
         info = kaa.metadata.parse(from_file)
         resolution = self._calc_resolution(
             info.video[0].width,
             info.video[0].height,
-            self.config.device_width,
-            self.config.device_height
+            self.container.config.device_width,
+            self.container.config.device_height
         )
         if resolution is None:
-            logger.error('Error calculating the new screen resolution')
+            logger.error("Error calculating the new screen resolution")
             return None
 
-        convert_command = self.FFMPEG_CMD % {
+        convert_command = FFMPEG_CMD % {
             'from': from_file,
             'to': to_file,
             'width': str(resolution[0]),
             'height': str(resolution[1]),
-            'options': self.config.ffmpeg_options
+            'options': self.container.config.ffmpeg_options
         }
+
+        # Prior to Python 2.7.3, this module (shlex) did not support Unicode input.
+        convert_command = util.sanitize_encoding(convert_command)
 
         process = subprocess.Popen(shlex.split(convert_command),
             stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -133,5 +142,6 @@ class gPodderExtension:
             logger.error(stderr)
             return None
 
-        gpodder.user_extensions.on_notification_show('Converting finished', episode)
+        gpodder.user_extensions.on_notification_show("Converting finished", episode)
+
         return to_file
