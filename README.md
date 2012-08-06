@@ -129,6 +129,11 @@ The podcast title is written into the album tag
 
 - python-mutagen - Mutagen is a Python module to handle audio metadata. (http://code.google.com/p/mutagen/)
 
+## ted_subtitles
+
+- This script downloads subtitles for TED Talks when present and convert then to
+srt
+
 
 ## tfh_shownotes_hook
 
