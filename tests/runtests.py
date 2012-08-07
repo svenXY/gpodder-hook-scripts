@@ -100,6 +100,7 @@ if __name__ == "__main__":
     import cmml_generator_test
     import enqueue_in_vlc_test
     import mp3gain_test
+    import ted_subtitles_test
     import tfh_shownotes_test
     import zpravy_test
 
@@ -109,6 +110,7 @@ if __name__ == "__main__":
     suite.addTests(loader.loadTestsFromModule(cmml_generator_test))
     suite.addTests(loader.loadTestsFromModule(enqueue_in_vlc_test))
     suite.addTests(loader.loadTestsFromModule(mp3gain_test))
+    suite.addTests(loader.loadTestsFromModule(ted_subtitles_test))
     suite.addTests(loader.loadTestsFromModule(tfh_shownotes_test))
     suite.addTests(loader.loadTestsFromModule(zpravy_test))
 
