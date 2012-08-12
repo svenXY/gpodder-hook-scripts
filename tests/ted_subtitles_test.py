@@ -42,5 +42,5 @@ class TestTedSubtitles(unittest.TestCase):
         gpodder.user_extensions.on_episode_downloaded(self.episode)
         self.assertTrue(os.path.exists(self.srt_filename))
 
-        #gpodder.user_extensions.on_episode_delete(self.episode, self.filename)
-        #self.assertFalse(os.path.exists(self.srt_filename))
+        gpodder.user_extensions.on_episode_delete(self.episode, self.filename)
+        self.assertFalse(os.path.exists(self.srt_filename))
