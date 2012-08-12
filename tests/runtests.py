@@ -106,6 +106,7 @@ if __name__ == "__main__":
     import rm_ogg_cover_test
     import rockbox_convert2mp4_test
     import tagging_test
+    import ted_subtitles_test
 
     loader = unittest.TestLoader()
 
@@ -115,6 +116,7 @@ if __name__ == "__main__":
     suite.addTests(loader.loadTestsFromModule(rm_ogg_cover_test))
     suite.addTests(loader.loadTestsFromModule(rockbox_convert2mp4_test))
     suite.addTests(loader.loadTestsFromModule(tagging_test))
+    suite.addTests(loader.loadTestsFromModule(ted_subtitles_test))
 
     # this is the last test, because it converts the flv file which is used in tests above
     suite.addTests(loader.loadTestsFromModule(flv2mp4_test))

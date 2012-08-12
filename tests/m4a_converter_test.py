@@ -26,6 +26,12 @@ class TestM4AConversion(unittest.TestCase):
         self.converted_mp3 = os.path.splitext(self.filename)[0] + '.mp3'
         self.converted_ogg = os.path.splitext(self.filename)[0] + '.ogg'
 
+        # workaround for wrong mimetype from the metaebene server
+        # I already contacted Tim Pritlove to correct the wrong mimetype
+        if os.path.splitext(self.filename)[1] == '.m4a' and self.episode.mime_type == 'audio/mpeg':
+            self.episode.mime_type = 'audio/mp4'
+        ## end of workaround
+
         self.core.config.extensions.enabled = [EXTENSION_NAME]
 
         self.extension = gpodder.user_extensions.containers[0].module
