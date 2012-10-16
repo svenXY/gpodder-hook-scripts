@@ -11,8 +11,6 @@ Extention to gPodder for sending files to iPod from context menu
 # * user feedback
 # * automatic conversion to file format supported by iPod (assume mp3)
 
-# path to the ipod, hardcoded until autodetection or configuration gets implemented
-_IPOD_PATH = '/media/ortyl/PO'
 
 import os
 import gpodder
@@ -41,6 +39,8 @@ class gPodderExtension:
 
         self.container = container
         self.config = self.container.config
+        # use default evironment variable as defined for gtkpod
+        self.ipod_mount = os.getenv('IPOD_MOUNTPOINT')
 
     def on_episode_downloaded(self, episode):
         True
@@ -56,13 +56,16 @@ class gPodderExtension:
             if e.mime_type is not None and e.file_exists()]:
             return None
 
-        return [(_('Send To iPod'), self._send_to_ipod)]
+        if self._find_ipod():
+            return [(_('Send To iPod'), self._send_to_ipod)]
+        else:
+            return None
 
     def _send_to_ipod(self, episodes):
-        ipod_mount = _IPOD_PATH
-        itdb = gpod.itdb_parse(ipod_mount, None)
+        itdb = gpod.itdb_parse(self.ipod_mount, None)
         if not itdb:
-            logger.error('Could not open iPod database at %s' % ipod_mount)
+            logger.error('Could not open iPod database at %s' % self.ipod_mount)
+            self.ipod_mount = None
             return
 
         itdb_modified = False
@@ -116,5 +119,24 @@ class gPodderExtension:
             return is_copied
         else:
             logger.error("File format for %s is not mp3, skipping" % fname)
-
             return False
+
+    def _find_ipod(self):
+        '''Try to autodetect mount point of ipod and set the internal path to ipod'''
+        if self.ipod_mount: return True
+
+        # find first vfat mounted directory with iPod_Control subdir
+        try:
+            with open('/proc/mounts', 'r') as f:
+                for line in f.readlines():
+                    tokens = line.split(' ', 4)
+                    if tokens and 'vfat' == tokens[2] and os.path.exists(tokens[1] + '/iPod_Control'):
+                        self.ipod_mount = tokens[1]
+                        return True
+        except IOError as e: pass  # in case we are not on standard linux
+
+        return False
+
+
+
+
