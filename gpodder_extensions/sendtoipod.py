@@ -3,7 +3,7 @@
 # Copyright (c) 2012-10-15 Paul Ortyl <ortylp@3miasto.net.pl>
 # Licensed under the same terms as gPodder itself
 '''
-Extention to gPodder for sending files to iPod from context menu
+Extention to gPodder for sending (moving) files to iPod from context menu
 '''
 
 # missing features:
@@ -26,8 +26,8 @@ except Exception, e:
 
 _ = gpodder.gettext
 
-__title__ = _('Send file(s) to iPod from context menu')
-__description__ = _('Send file(s) to iPod from context menu')
+__title__ = _('Move file(s) to iPod from context menu')
+__description__ = _('Move file(s) to iPod from context menu')
 __authors__ = 'Paul Ortyl <ortylp@3miasto.net.pl>'
 
 DefaultConfig = {
@@ -57,7 +57,7 @@ class gPodderExtension:
             return None
 
         if self._find_ipod():
-            return [(_('Send To iPod'), self._send_to_ipod)]
+            return [(_('Move To iPod'), self._send_to_ipod)]
         else:
             return None
 
@@ -68,30 +68,25 @@ class gPodderExtension:
             self.ipod_mount = None
             return
 
-        itdb_modified = False
-
         for episode in episodes:
             filename = episode.local_filename(create=False)
             if filename is None:
-              return
+                return
 
             extension = os.path.splitext(filename)[1]
 
             if episode.file_type() != 'audio':
-              return
+                return
 
             if extension.lower() != '.mp3':
-              return
+                return
 
-            modified = self.send_file_to_ipod(itdb, filename)
-            itdb_modified |= modified
-            if modified:
-              episode.mark_old()
-              episode.delete_from_disk()
+            if self.send_file_to_ipod(itdb, filename):
+                episode.mark_old()
+                episode.delete_from_disk()
+                logger.info("File '%s' has been deleted from gPoddes database and filesystem" % filename)
 
-        if itdb_modified:
-            gpod.itdb_write(itdb, None)
-            gpod.itdb_free(itdb)
+        gpod.itdb_free(itdb)
 
     def send_file_to_ipod(self, itdb, fname):
         if eyeD3.isMp3File(fname):
@@ -115,7 +110,12 @@ class gPodderExtension:
             if is_copied:
                 logger.info("File '%s' has been successfully copied to iPod" % fname)
             else:
+                # roll back
                 logger.error("File '%s' could not be copied to iPod" % fname)
+                gpod.itdb_playlist_remove_track(podcasts, track)
+                gpod.itdb_track_remove(track)
+                track = None
+            gpod.itdb_write(itdb, None)
             return is_copied
         else:
             logger.error("File format for %s is not mp3, skipping" % fname)
@@ -136,7 +136,3 @@ class gPodderExtension:
         except IOError as e: pass  # in case we are not on standard linux
 
         return False
-
-
-
-
