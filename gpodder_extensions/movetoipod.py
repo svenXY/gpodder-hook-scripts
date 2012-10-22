@@ -113,7 +113,7 @@ class gPodderExtension:
             self.ipod_mount = None
             return
 
-        for episode in episodes:
+        for episode in reversed(episodes):
             filename = episode.local_filename(create=False)
             if filename is None:
                 return
