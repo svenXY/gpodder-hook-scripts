@@ -8,6 +8,8 @@ Extention to gPodder for sending (moving) files to iPod from context menu
 
 # missing features:
 # * user feedback
+# * BUG: UI does not get updates after enabling of this extention, restart of gpodder is necessary
+# * BUG: UI does not get updated until the complete batch of files gets processed
 
 import os
 import gpodder
