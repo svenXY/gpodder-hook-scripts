@@ -56,19 +56,19 @@ def _convert_to_mp3(filename):
 def _get_MP3_tags(filename):
     tagsMP3 = MP3(filename)
     tags = {}
-    tags['album'] = tagsMP3['TALB']
-    tags['title'] = tagsMP3['TIT2']
-    tags['artist'] = tagsMP3['TPE1']
+    tags['album'] = tagsMP3.get('TALB', '')
+    tags['title'] = tagsMP3.get('TIT2', '')
+    tags['artist'] = tagsMP3.get('TPE1', '')
     tags['length'] = tagsMP3.info.length * 1000
-    tags['genre'] = tagsMP3['TCON']
+    tags['genre'] = tagsMP3.get('TCON', '')
     return tags
 
 def _get_OGG_tags(filename):
     tagsOGG = OggVorbis(filename)
     tags = {}
-    tags['album'] = tagsOGG['album']
-    tags['title'] = tagsOGG['title']
-    tags['artist'] = tagsOGG['artist']
+    tags['album'] = tagsOGG.get('album', '')
+    tags['title'] = tagsOGG.get('title', '')
+    tags['artist'] = tagsOGG.get('artist', '')
     tags['length'] = tagsOGG.info.length * 1000
     tags['genre'] = 'Podcast'
     return tags
