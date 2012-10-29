@@ -118,13 +118,13 @@ class gPodderExtension:
         for episode in reversed(episodes):
             filename = episode.local_filename(create=False)
             if filename is None:
-                return
+                continue
 
             extension = episode.extension()
             basename = os.path.splitext(os.path.basename(filename))[0]
 
             if episode.file_type() != 'audio':
-                return
+                continue
 
             sent = False  # set to true if file transfer was successful
             if extension.lower() == '.mp3':
@@ -144,7 +144,7 @@ class gPodderExtension:
                     sent = self.send_file_to_ipod(itdb, tmpname, _get_OGG_tags(filename))
                     os.unlink(tmpname);
             else:
-                return
+                continue
 
             if sent:
                 episode.mark_old()
