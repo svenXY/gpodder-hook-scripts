@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Send files to iPod using libgpod
-# Copyright (c) 2012-10-21 Paul Ortyl <ortylp@3miasto.net.pl>
+# Copyright (c) 2012-10-29 Paul Ortyl <ortylp@3miasto.net.pl>
 # Licensed under the same terms as gPodder itself
 '''
 Extention to gPodder for sending (moving) files to iPod from context menu
@@ -8,7 +8,7 @@ Extention to gPodder for sending (moving) files to iPod from context menu
 
 # missing features:
 # * user feedback
-# * BUG: UI does not get updates after enabling of this extention, restart of gpodder is necessary
+# * BUG: UI does not get updates after enabling of this extension, restart of gpodder is necessary
 # * BUG: UI does not get updated until the complete batch of files gets processed
 
 import os
@@ -68,9 +68,9 @@ def _get_MP3_tags(filename):
 def _get_OGG_tags(filename):
     tagsOGG = OggVorbis(filename)
     tags = {}
-    tags['album'] = tagsOGG.get('album', '')
-    tags['title'] = tagsOGG.get('title', '')
-    tags['artist'] = tagsOGG.get('artist', '')
+    tags['album'] = ''.join(tagsOGG.get('album', ['']))
+    tags['title'] = ''.join(tagsOGG.get('title', ['']))
+    tags['artist'] = ''.join(tagsOGG.get('artist', ['']))
     tags['length'] = tagsOGG.info.length * 1000
     tags['genre'] = 'Podcast'
     return tags
@@ -120,14 +120,24 @@ class gPodderExtension:
             if filename is None:
                 return
 
-            extension = os.path.splitext(filename)[1]
+            extension = episode.extension()
+            basename = os.path.splitext(os.path.basename(filename))[0]
 
             if episode.file_type() != 'audio':
                 return
 
             sent = False  # set to true if file transfer was successful
             if extension.lower() == '.mp3':
-                sent = self.send_file_to_ipod(itdb, filename, _get_MP3_tags(filename))
+                tags = _get_MP3_tags(filename)
+                if not tags['album']:
+                  tags['album'] = episode.parent.title
+                if not tags['title'] or basename == tags['title']:
+                  tags['title'] = episode.title
+                if not tags['title']:
+                  tags['title'] = episode.basename()
+                if not tags['genre']:
+                  tags['genre'] = 'Podcast'
+                sent = self.send_file_to_ipod(itdb, filename, tags)
             elif extension.lower() == '.ogg':
                 tmpname = _convert_to_mp3(filename)
                 if tmpname:
