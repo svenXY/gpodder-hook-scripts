@@ -1,15 +1,19 @@
 # -*- coding: utf-8 -*-
 # Send files to iPod using libgpod
-# Copyright (c) 2012-10-29 Paul Ortyl <ortylp@3miasto.net.pl>
+# Copyright (c) 2012-11-01 Paul Ortyl <ortylp@3miasto.net.pl>
 # Licensed under the same terms as gPodder itself
 '''
 Extention to gPodder for sending (moving) files to iPod from context menu
 '''
 
 # missing features:
-# * user feedback
+# * user feedback (at the moment only via logging to console, start gpodder with '-v' option)
 # * BUG: UI does not get updates after enabling of this extension, restart of gpodder is necessary
 # * BUG: UI does not get updated until the complete batch of files gets processed
+# missing goodies, ideas:
+# * extract audio from video tracks and send it to iPod
+# * two menu entries, one for audio and one for video
+# * stop file transfers as soon as free space in iPod gets below predefined threshold
 
 import os
 import gpodder
@@ -75,13 +79,29 @@ def _get_OGG_tags(filename):
     tags['genre'] = 'Podcast'
     return tags
 
+def _fix_tags(tags, episode, basename):
+    if not tags.has_key('album') or not tags['album']:
+        tags['album'] = episode.parent.title
+    if not tags.has_key('title') or not tags['title'] or basename == tags['title']:
+        tags['title'] = episode.title
+    if not tags.has_key('title') or not tags['title']:
+        tags['title'] = basename
+    if not tags.has_key('genre') or not tags['genre']:
+        tags['genre'] = 'Podcast'
+    if not tags.has_key('artist') or not tags['artist']:
+        tags['artist'] = ''
+    if not tags.has_key('length') or not tags['length']:
+        tags['length'] = 0  # FIXME: get length from converted mp3 file!
+
+    return tags
+
 class gPodderExtension:
     def __init__(self, container):
 
         self.container = container
         self.config = self.container.config
         self.ui = None
-        # use default evironment variable as defined for gtkpod
+        # use default environment variable as defined for gtkpod
         self.ipod_mount = os.getenv('IPOD_MOUNTPOINT')
 
     def on_ui_object_available(self, name, ui_object):
@@ -95,12 +115,10 @@ class gPodderExtension:
         if not self.config.context_menu:
             return None
 
-        mpeg = 'audio/mpeg' in [e.mime_type for e in episodes
-            if e.mime_type is not None and e.file_exists()]
-        ogg = 'audio/ogg'  in [e.mime_type for e in episodes
+        audio = 'audio' in [e.file_type() for e in episodes
             if e.mime_type is not None and e.file_exists()]
 
-        if not mpeg and not ogg:
+        if not audio:
             return None
 
         if self._find_ipod():
@@ -127,21 +145,24 @@ class gPodderExtension:
                 continue
 
             sent = False  # set to true if file transfer was successful
+            # for each file type:
+            # 1. extract (id3) tags
+            # 2. fix missing tags using available information
+            # 3. convert file to mp3 if necessary
+            # 4. send to iPod
             if extension.lower() == '.mp3':
                 tags = _get_MP3_tags(filename)
-                if not tags['album']:
-                  tags['album'] = episode.parent.title
-                if not tags['title'] or basename == tags['title']:
-                  tags['title'] = episode.title
-                if not tags['title']:
-                  tags['title'] = episode.basename()
-                if not tags['genre']:
-                  tags['genre'] = 'Podcast'
-                sent = self.send_file_to_ipod(itdb, filename, tags)
+                sent = self.send_file_to_ipod(itdb, filename, _fix_tags(tags, episode, basename))
             elif extension.lower() == '.ogg':
                 tmpname = _convert_to_mp3(filename)
                 if tmpname:
                     sent = self.send_file_to_ipod(itdb, tmpname, _get_OGG_tags(filename))
+                    os.unlink(tmpname);
+            elif extension.lower() == '.wav':
+                tags = {}
+                tmpname = _convert_to_mp3(filename)
+                if tmpname:
+                    sent = self.send_file_to_ipod(itdb, tmpname, _fix_tags({}, episode, basename))
                     os.unlink(tmpname);
             else:
                 continue
@@ -160,6 +181,10 @@ class gPodderExtension:
         gpod.itdb_free(itdb)
 
     def send_file_to_ipod(self, itdb, fname, tags):
+        if not os.path.exists(fname):
+            logger.error("File '%s' does not exist" % fname)
+            return False
+
         logger.debug("Copying file '%s' to iPod..." % fname)
         podcasts = gpod.itdb_playlist_podcasts(itdb)
         track = gpod.itdb_track_new()
