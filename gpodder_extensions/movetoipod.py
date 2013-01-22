@@ -1,10 +1,29 @@
 # -*- coding: utf-8 -*-
 # Send files to iPod using libgpod
-# Copyright (c) 2012-11-01 Paul Ortyl <ortylp@3miasto.net.pl>
+# Copyright (c) 2013-01-22 Paul Ortyl <ortylp@3miasto.net.pl>
 # Licensed under the same terms as gPodder itself
 '''
 Extention to gPodder for sending (moving) files to iPod from context menu
 '''
+
+# HOWTO HOWTO HOWTO HOWTO HOWTO
+# * copy the file 'movetoipod.py' to share/gpodder/extensions/.
+# * make sure gpod and mutagen libraries (and python wrappers) are installed
+#   to install it on Ubuntu suffices:
+#      sudo apt-get install python-gpod python-mutagen
+# * restart gpodder ( gpodder -v to see diagnostics)
+# * enable this extension in preferences/extentions
+# * restart gpodder again (just to make sure all hooks fired at gpodder startup)
+# * connect iPod (make sure it is mounted, and mounted as vfat, use "mount" command to check it)
+# * new entry "Move to iPod" should appear in the context menu of episodes
+# * use it for transferring _audio_ files to the end of Podcast playlist on the iPod
+#
+# Other info::
+#   The UI is blocked while the files are transferred.
+#   For more info start gpodder with '-v' to see detailed logging.
+#   This script has been tested (and is dogfooded) with iPod Shuffle 2G (and a little on 4G)
+#   Video files are ignored/skipped (there is no use for them on iPod Shuffle)
+#   For audio file formats other than mp3 'avconv' is used, (sudo apt-get install libav-tools)
 
 # missing features:
 # * user feedback (at the moment only via logging to console, start gpodder with '-v' option)
@@ -24,9 +43,15 @@ logger = logging.getLogger(__name__)
 _are_libraries_available = True
 try:
     import gpod
+except Exception, e:
+    logger.error('gpod library is missing')
+    _are_libraries_available = False
+
+try:
     from mutagen.oggvorbis import OggVorbis
     from mutagen.mp3       import MP3
 except Exception, e:
+    logger.error('mutagen library is missing')
     _are_libraries_available = False
 
 _ = gpodder.gettext
