@@ -24,6 +24,8 @@ Extention to gPodder for sending (moving) files to iPod from context menu
 #   This script has been tested (and is dogfooded) with iPod Shuffle 2G (and a little on 4G)
 #   Video files are ignored/skipped (there is no use for them on iPod Shuffle)
 #   For audio file formats other than mp3 'avconv' is used, (sudo apt-get install libav-tools)
+#   If autodetection of iPod fails, you can always set IPOD_MOUNTPOINT to the desired path:
+#         export IPOD_MOUNTPOINT=/paht/to/ipod ; gpodder -v
 
 # missing features:
 # * user feedback (at the moment only via logging to console, start gpodder with '-v' option)
@@ -245,9 +247,16 @@ class gPodderExtension:
             with open('/proc/mounts', 'r') as f:
                 for line in f.readlines():
                     tokens = line.split(' ', 4)
-                    if tokens and 'vfat' == tokens[2] and os.path.exists(tokens[1] + '/iPod_Control'):
-                        self.ipod_mount = tokens[1]
-                        return True
+                    if tokens and 'vfat' == tokens[2]:
+                        # replace the following escapes (see man 3 getmntent):
+                        #  space (\040), tab (\011), newline (\012) and backslash (\134)
+                        path = tokens[1]
+                        path = path.replace('\\040','\040').replace('\\011','\011')
+                        path = path.replace('\\012','\012').replace('\\134','\134')
+                        if os.path.exists(path + '/iPod_Control'):
+                            self.ipod_mount = path
+                            logger.info("iPod mountpoint found at '%s'" % self.ipod_mount)
+                            return True
         except IOError as e: pass  # in case we are not on standard linux
 
         return False
